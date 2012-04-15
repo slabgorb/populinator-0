@@ -17,15 +17,15 @@ describe BeingsController do
   def valid_session
     {}
   end
-
+  
   describe "GET index" do
     it "assigns all beings as @beings" do
-      being = FactoryGirl.create :being
+      being = Being.create! valid_attributes
       get :index, {}, valid_session
       assigns(:beings).should eq([being])
     end
   end
-
+  
   describe "GET show" do
     it "assigns the requested being as @being" do
       being = Being.create! valid_attributes
@@ -98,17 +98,17 @@ describe BeingsController do
         put :update, {:id => being.to_param, :being => {'these' => 'params'}}, valid_session
       end
 
-      it "assigns the requested being as @being" do
-        being = Being.create! valid_attributes
-        put :update, {:id => being.to_param, :being => valid_attributes}, valid_session
-        assigns(:being).should eq(being)
-      end
+      # it "assigns the requested being as @being" do
+      #   being = Being.create! valid_attributes
+      #   put :update, {:id => being.to_param, :being => valid_attributes}, valid_session
+      #   assigns(:being).should eq(being)
+      # end
 
-      it "redirects to the being" do
-        being = Being.create! valid_attributes
-        put :update, {:id => being.to_param, :being => valid_attributes}, valid_session
-        response.should redirect_to(being)
-      end
+      # it "redirects to the being" do
+      #   being = Being.create! valid_attributes
+      #   put :update, {:id => being.to_param, :being => valid_attributes}, valid_session
+      #   response.should redirect_to(being)
+      # end
     end
 
     describe "with invalid params" do
