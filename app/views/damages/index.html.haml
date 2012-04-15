@@ -1,0 +1,21 @@
+%h1 Listing damages
+
+%table
+  %tr
+    %th Duration
+    %th Description
+    %th
+    %th
+    %th
+
+  - @damages.each do |damage|
+    %tr
+      %td= damage.duration
+      %td= damage.description
+      %td= link_to 'Show', damage
+      %td= link_to 'Edit', edit_damage_path(damage)
+      %td= link_to 'Destroy', damage, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Damage', new_damage_path

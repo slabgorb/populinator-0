@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Duration:
+  = @damage.duration
+%p
+  %b Description:
+  = @damage.description
+
+= link_to 'Edit', edit_damage_path(@damage)
+\|
+= link_to 'Back', damages_path

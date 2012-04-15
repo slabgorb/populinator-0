@@ -6,6 +6,8 @@ gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
 gem 'jquery-rails'
 gem 'thin', "~> 1.3"
+gem 'haml'
+gem 'sass'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -15,10 +17,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
+group :development, :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails', '~> 0.7'
+  gem 'factory_girl_rails'
   gem 'haml-rails', '~> 0.3'
+  gem 'spork-rails'
 end
 
 

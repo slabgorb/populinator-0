@@ -15,11 +15,6 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-config.generators do |g|
-  g.template_engine :haml
-  g.test_framework  :rspec
-  g.orm             :mongoid
-end    
 
 module Population
   class Application < Rails::Application
@@ -45,6 +40,13 @@ module Population
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    
+    config.generators do |g|
+      g.template_engine :haml
+      g.test_framework  :rspec
+      g.orm             :mongoid
+    end    
+    
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 

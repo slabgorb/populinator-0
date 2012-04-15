@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @being.name
+%p
+  %b Gender:
+  = @being.gender
+%p
+  %b Age:
+  = @being.age
+
+= link_to 'Edit', edit_being_path(@being)
+\|
+= link_to 'Back', beings_path
