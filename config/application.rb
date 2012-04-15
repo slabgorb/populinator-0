@@ -15,6 +15,12 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+config.generators do |g|
+  g.template_engine :haml
+  g.test_framework  :rspec
+  g.orm             :mongoid
+end    
+
 module Population
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
