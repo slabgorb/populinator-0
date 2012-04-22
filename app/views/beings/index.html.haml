@@ -1,4 +1,27 @@
 %h1 Listing beings
--# %ul.beings
--#   = render :partial => 'being', :collection => @beings
 
+%table
+  %tr
+    %th Name
+    %th Gender
+    %th Age
+    %th Type
+    %th Settlement
+    %th
+    %th
+    %th
+
+  - @beings.each do |being|
+    %tr
+      %td= being.name
+      %td= being.gender
+      %td= being.age
+      %td= being._type
+      %td= link_to_if( being.settlement.present?, being.settlement.try(:name), "/settlements/#{being.settlement.try(:id)}")
+      %td= link_to 'Show', being
+      %td= link_to 'Edit', edit_being_path(being)
+      %td= link_to 'Destroy', being, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Being', new_being_path

@@ -1,8 +1,10 @@
 class Being
   include Mongoid::Document
+  include Mongoid::Timestamps::Created
   embeds_many :damages 
   has_many :things
   has_many :beings
+  has_many :events
   belongs_to :being
   belongs_to :settlement
   field :name, :type => String
