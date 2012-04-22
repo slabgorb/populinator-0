@@ -78,6 +78,7 @@ class Being
     self.alive = false
     save!
   end
+  
 
   # def relation(other) 
   #   case 

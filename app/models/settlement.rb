@@ -1,7 +1,7 @@
 class Settlement
   include Mongoid::Document
   field :name, :type => String
-
+  field :established, :type => Integer
   has_many :beings, :dependent => :destroy   
   has_many :rulers, :dependent => :destroy
   has_many :events
@@ -14,5 +14,4 @@ class Settlement
   def history
     events
   end
-  
 end
