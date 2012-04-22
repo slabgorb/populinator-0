@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%h3= @settlement.name
+%h4 
+  Population:
+  = @settlement.population
+%h4 Rulers:
+%ul.beings
+  = render :partial => '/beings/being', :collection => @settlement.rulers
+.clear
+%h4 People:
+%ul.beings
+  = render :partial => '/beings/being', :collection => @settlement.beings
+.clear
+
+= link_to 'Edit', edit_settlement_path(@settlement)
+\|
+= link_to 'Back', settlements_path

@@ -1,0 +1,13 @@
+%li.being
+  %dl.being
+    %dt Name
+    %dd= being.name
+    - if being.respond_to?(:title)
+      %dt Title
+      %dd= being.title
+    %dt Gender
+    %dd= being.gender
+    %dt Age
+    %dd= being.age
+    %dt Alive?
+    %dd= being.alive?

@@ -1,7 +1,7 @@
 class Thing
   include Mongoid::Document
   field :name, :type => String
-  embedded_in :being
+  belongs_to :being
   def owner 
     self.being
   end

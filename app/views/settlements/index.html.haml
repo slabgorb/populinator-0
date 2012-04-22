@@ -1,0 +1,19 @@
+%h1 Listing settlements
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @settlements.each do |settlement|
+    %tr
+      %td= settlement.name
+      %td= link_to 'Show', settlement
+      %td= link_to 'Edit', edit_settlement_path(settlement)
+      %td= link_to 'Destroy', settlement, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Settlement', new_settlement_path

@@ -1,3 +1,27 @@
 // Place all the styles related to the beings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'common';
+
+ul.beings {
+  li.being {
+	list-style-type: none;
+	dl.being {
+	  dd, dt {
+		font-size: 0.9em;
+		float: left;
+		margin: 5px 5px;
+	  }
+	  dt {
+		letter-spacing: 1px;
+		color: $label-color;
+		clear: left;
+		font-weight: bold;
+		&:after {
+		  content: ':';
+		}
+	  }
+	}
+  }
+}

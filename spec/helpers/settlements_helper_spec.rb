@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 # Specs in this file have access to a helper object that includes
-# the DamagesHelper. For example:
+# the SettlementsHelper. For example:
 #
-# describe DamagesHelper do
+# describe SettlementsHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       helper.concat_strings("this","that").should == "this that"
 #     end
 #   end
 # end
-describe DamagesHelper do
+describe SettlementsHelper do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
