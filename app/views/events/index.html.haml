@@ -4,7 +4,7 @@
   %tr
     %th Name
     %th Description
-    %th Occured on
+    %th
     %th
     %th
     %th
@@ -13,7 +13,7 @@
     %tr
       %td= event.name
       %td= event.description
-      %td= event.occured_on
+      %td= event.effect
       %td= link_to 'Show', event
       %td= link_to 'Edit', edit_event_path(event)
       %td= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete
