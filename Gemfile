@@ -22,6 +22,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'haml-rails', '~> 0.3'
   gem 'spork-rails'
+  gem 'guard-spork'		
 end
 
 
