@@ -1,0 +1,21 @@
+%html
+  %head
+    %title
+      = [yield(:title), 'Population'].join(' | ')
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags 
+    = yield(:head)
+  %body
+    = yield(:top);
+    #notice= flash[:notice]
+    #warning= flash[:warning]
+    #info= flash[:info]    
+    #main-content
+      = yield
+    #sidebar 
+      = yield(:sidebar)
+    #footer 
+      = yield(:footer)
+    #dialogs.invisible
+      = yield(:dialogs)

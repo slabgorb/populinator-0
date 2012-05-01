@@ -12,6 +12,11 @@ class Being
   field :age, :type => Fixnum
   field :alive, :type => Boolean, :default => true
   
+  def to_s
+    "#{name}, aged #{age}"
+  end
+
+  
   def alive?
     alive
   end
@@ -126,6 +131,7 @@ class Being
     child = self.class.new(:name => child_name || 'Child of#{self.name}', :gender => child_gender || Being.random_gender)
     self.beings << child
     other.beings << child if other
+    self.settlement.beings << child
     return child
   end
   

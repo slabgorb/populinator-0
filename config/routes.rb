@@ -9,6 +9,8 @@ Population::Application.routes.draw do
   resources :things 
   resources :people, :controller => 'beings',  :type => 'Person'
   resources :ruler, :controller => 'beings',  :type => 'Ruler'
-  match '/simulation/run' => 'simulations#run'
-
+  
+  post '/run'    => 'simulations#run'
+  get  '/setup'  => 'simulations#setup'
+  
 end

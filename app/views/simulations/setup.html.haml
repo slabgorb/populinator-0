@@ -1,0 +1,35 @@
+
+#accordion
+  %h3 Settlement
+  %fieldset#settlement-form 
+    - fieldname  = 'settlement-name'
+    %ul
+      %li
+        %label{:for => "field-#{fieldname}"} Name
+      %li
+        %input{:type => 'text', :name => fieldname, :id => "field-#{fieldname}"}
+    - fieldname = 'settlement-population'
+    %ul
+      %li
+        %label{:for => "field-#{fieldname}"} Population
+      %li
+        %input{:type => 'text', :name => fieldname, :id => "field-#{fieldname}"}    
+  %h3 Text2
+  .content 
+    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+  %h3 Text3
+  .content 
+    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+  %h3 Text4
+  .content 
+    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+

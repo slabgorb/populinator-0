@@ -8,7 +8,7 @@ class Settlement
   accepts_nested_attributes_for :rulers
   
   def population
-    beings.length
+    beings.select{ |c| c.alive? }.length
   end
   
   def history

@@ -1,0 +1,60 @@
+$font-color: #333;
+$label-color: #333;
+$page-background: #fff7cd;
+$label-background: #a79da5;
+$base-color: #005175;
+$secondary-fill: #f0edbb;
+$border-color: #007391;
+$highlight-color: #f15f22;
+$glow: #888;
+
+@mixin box-shadow($horizontal, $vertical, $blur, $color, $offset: "") {
+    @if $offset == "" {
+	-moz-box-shadow: $horizontal $vertical $blur $color;
+	-webkit-box-shadow: $horizontal $vertical $blur $color;
+	box-shadow: $horizontal $vertical $blur $color;
+    }
+    @else {
+	-moz-box-shadow: $horizontal $vertical $blur $offset $color;
+	-webkit-box-shadow: $horizontal $vertical $blur $offset $color;
+	box-shadow: $horizontal $vertical $blur $offset $color;
+    }
+}
+
+@mixin border-radius($radius) {
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+}
+
+
+body {
+  background: {
+	color: $page-background;
+  }
+  font {
+	family: georgia;
+  }
+  a { 
+	color: $highlight-color;
+  }
+}
+
+#main-content {
+  width: 960px;
+  background-color: $secondary-fill;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  @include box-shadow(0px, 0px, 9px, $glow, 0px);
+  @include border-radius(3px);
+  background: {
+	color: $secondary_fill;
+  }
+  color: $base-color;
+  padding: 5px;
+  border: 1px solid $border-color;
+  font: {
+	family: georgia;
+  }
+}
