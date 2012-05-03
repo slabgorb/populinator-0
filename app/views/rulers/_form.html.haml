@@ -1,0 +1,25 @@
+%fieldset
+  = form_for @ruler do |f|
+    -if @ruler.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@ruler.errors.count, "error")} prohibited this ruler from being saved:"
+        %ul
+          - @ruler.errors.full_messages.each do |msg|
+            %li= msg
+    %ul.left
+      %li= f.label :given_name
+      %li= f.text_field :given_name
+    %ul.left
+      %li= f.label :surname
+      %li= f.text_field :surname
+    .clear
+    %ul.left
+      %li= f.label :gender
+      %li= f.select :gender, {'Male' => :male, 'Female' => :female}
+    %ul.left
+      %li= f.label :age
+      %li= f.text_field :age
+    .clear
+    = f.submit
+
+

@@ -11,8 +11,9 @@ $(document).ready ->
   $( "input:submit").button()
 
   $('#random-name').click ->
-    $.getJSON('/random-name') ->
-    $('#ruler_given_name').val(name[0])
-    $('#ruler_surname').val(name[1])
-
+    $.getJSON '/random-name', (name)->
+      $('#ruler_gender').val(name[0])
+      $('#ruler_given_name').val(name[1][0])
+      $('#ruler_surname').val(name[1][1])
+      $('#ruler_age').val(name[2])
 
