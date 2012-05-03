@@ -1,12 +1,15 @@
 @import 'common';
 
-#accordion {
-  fieldset {
-	@include border-radius(5px);
-	@include box-shadow(0px, 0px, 9px, $glow, 0px);
+fieldset {
+  @include border-radius(5px);
+  @include box-shadow(0px, 0px, 9px, $glow, 0px);
+  background: {
+	color: #FFF;
+  }
+  border: 0px;
+  form {
 	ul {
 	  width: 200px;
-	  float: left;
 	  li {
 		list-style-type: none;
 	  }
@@ -14,15 +17,14 @@
 	&#settlement-form {
 	}
 	label {
-	  font-weight: bold;
-	  float: right;
-	  margin: 0px 20px 0px 0px;
-	  color: $base-color;
+	  margin: 0px 20px 5px 0px;
+	  color: $color05;
 	}
 	input {
 	  font-size: 1.02em;
-	  padding: 0.2em;
-	  border: 1px solid $border-color;
+	  padding: 0.3em;
+	  border: 1px solid $color05;
+	  color: $color05;
 	}
   }
 }

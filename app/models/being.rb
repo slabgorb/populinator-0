@@ -5,6 +5,8 @@ class Being
   has_many :things
   has_many :beings
   has_many :events
+  has_many :chromosomes
+  
   belongs_to :being
   belongs_to :settlement
   field :name, :type => String
@@ -15,7 +17,10 @@ class Being
   def to_s
     "#{name}, aged #{age}"
   end
-
+  
+  def genotype 
+    chromosomes
+  end
   
   def alive?
     alive

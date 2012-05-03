@@ -8,9 +8,10 @@ Population::Application.routes.draw do
   end
   resources :things 
   resources :people, :controller => 'beings',  :type => 'Person'
-  resources :ruler, :controller => 'beings',  :type => 'Ruler'
+  resources :rulers, :controller => 'beings',  :type => 'Ruler'
   
   post '/run'    => 'simulations#run'
   get  '/setup'  => 'simulations#setup'
+  get '/random-name' => 'people#random_name'
   
 end

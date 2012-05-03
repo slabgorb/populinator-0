@@ -1,12 +1,27 @@
-$font-color: #333;
-$label-color: #333;
-$page-background: #fff7cd;
-$label-background: #a79da5;
-$base-color: #005175;
-$secondary-fill: #f0edbb;
-$border-color: #007391;
-$highlight-color: #f15f22;
-$glow: #888;
+$font-color				: #9c9985;
+$label-color			: #9c9985;
+$page-background		: #101010;
+$label-background		: #788880;
+$base-color				: #324654;
+$secondary-fill			: #788880;
+$primary-fill           : #e3cbac;
+$border-color			: #9c9985;
+$highlight-color		: #c46d3b;
+$glow					: #888;
+
+
+
+$color01: #E3CBAC;
+$color02: #9C9985;
+$color03: #C46D3B;
+$color04: #788880;
+$color05: #324654;
+
+$font-color: $color01;
+$label-color: $color01;
+$page-background: $color05;
+$border-color: $color02;
+
 
 @mixin box-shadow($horizontal, $vertical, $blur, $color, $offset: "") {
     @if $offset == "" {
@@ -22,39 +37,127 @@ $glow: #888;
 }
 
 @mixin border-radius($radius) {
-    -moz-border-radius: $radius;
-    -webkit-border-radius: $radius;
-    border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
 }
 
+
+@mixin corners($tl, $tr, $br, $bl) {
+  -webkit-border-top-left-radius: $tl;
+  -webkit-border-top-right-radius: $tr;
+  -webkit-border-bottom-left-radius: $bl;
+  -webkit-border-bottom-right-radius: $br;
+	
+  -moz-border-radius-top-left: $tl;
+  -moz-border-radius-top-right: $tr;
+  -moz-border-radius-bottom-left: $bl;
+  -moz-border-radius-bottom-right: $br;
+	
+}
+
+@mixin gradient-label($color, $bg_color1, $bg_color2, $border-color) {
+	color: $color;
+	border: solid 1px $border-color;
+	background: $bg_color1;
+	background: -webkit-gradient(linear, left top, left bottom, from($bg_color2), to($bg_color1));
+	background: -moz-linear-gradient(top,  $bg_color2,  $bg_color1);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$bg_color2', endColorstr='$bg_color1');
+}
+
+@mixin gradient-button() {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: .5em 2em .55em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  -webkit-border-radius: .5em; 
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  &:hover {
+	text-decoration: none;
+  }
+  &:active {
+	position: relative;
+	top: 1px;
+  }
+}
 
 body {
   background: {
 	color: $page-background;
   }
-  font {
-	family: georgia;
+  font: {
+	family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
   }
   a { 
 	color: $highlight-color;
   }
+  margin:50px;
 }
 
 #main-content {
   width: 960px;
-  background-color: $secondary-fill;
+  background-color: $page-background;
+  margin: auto;
+  border: 3px solid red;
 }
 
 h1,h2,h3,h4,h5,h6 {
-  @include box-shadow(0px, 0px, 9px, $glow, 0px);
-  @include border-radius(3px);
+  /*@include box-shadow(0px, 0px, 9px, $glow, 0px);
+  @include border-radius(3px);*/
+  @include gradient-label($label-color, $color04, $color02, $border-color);
   background: {
 	color: $secondary_fill;
   }
-  color: $base-color;
-  padding: 5px;
+  color: $label-color;
+  padding: 3px;
+  margin: 2px;
   border: 1px solid $border-color;
-  font: {
-	family: georgia;
-  }
 }
+
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.clear { 
+  clear: both;
+}
+
+.bold {
+  font-weight:  bold;
+}
+
+.invisible {
+  display: none;
+}
+
+.small {
+  font-size: 0.9em;
+}
+.smaller {
+  font-size: 0.8em;
+}
+.smallest {
+  font-size: 0.7em;
+}
+
+.large {
+  font-size: 1.1em;
+}
+.larger {
+  font-size: 1.2em;
+}
+.largest {
+  font-size: 1.3em;
+}
+

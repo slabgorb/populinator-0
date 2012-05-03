@@ -1,6 +1,8 @@
 class SimulationsController < ApplicationController
   
   def setup
+    @settlement = Settlement.new
+    @ruler = Ruler.new
   end
 
   

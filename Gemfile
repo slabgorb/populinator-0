@@ -23,6 +23,7 @@ group :development, :test do
   gem 'haml-rails', '~> 0.3'
   gem 'spork-rails'
   gem 'guard-spork'		
+  gem 'guard-rspec'
 end
 
 

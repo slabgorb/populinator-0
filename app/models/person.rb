@@ -29,16 +29,17 @@ class Person < Being
     settlement.beings.select{ |f| f != self }
   end
 
-  
-  #--------------------
-  protected
-  #--------------------
   def random_gender 
     unless self.gender.present?
       self.gender = ['male', 'female'].shuffle.first
     end
     true
   end
+  
+  def self.random_name
+    [@@names[['male', 'female'].shuffle.first].shuffle.first, @@names['surname'].shuffle.first]
+  end
+
 
   def random_name
     unless self.name.present?
