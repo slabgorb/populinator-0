@@ -80,4 +80,10 @@ class SettlementsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def random_name 
+     render :json => [Settlement.random_name]
+  end
+
+  
 end

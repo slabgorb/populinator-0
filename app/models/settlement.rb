@@ -1,4 +1,5 @@
 class Settlement
+  @@names = YAML::load(File.read(File.join(Rails.root, 'words', 'settlement_names.yml')))
   include Mongoid::Document
   field :name, :type => String
   field :established, :type => Integer
@@ -10,8 +11,13 @@ class Settlement
   def population
     beings.select{ |c| c.alive? }.length
   end
-  
-  def history
-    events
+
+  def self.random_name
+    meat = Person.names['surname'].shuffle.first
+    top  = rand > 0.5 ? @names['prefix'].shuffle.first : ''
+    bottom = rand > 0.5 ? @names['suffix'].shuffle.first : ''
+    top += rand > 0.7 ? @names['divider'].shuffle.first : ''
+    meat += rand > 0.7 ? @names['divider'].shuffle.first : ''
+    [top, meat, bottom].join
   end
 end

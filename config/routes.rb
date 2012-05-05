@@ -12,6 +12,7 @@ Population::Application.routes.draw do
   
   post '/run'    => 'simulations#run'
   get  '/setup'  => 'simulations#setup'
-  get '/random-name' => 'people#random_name'
+  get '/people/random-name' => 'people#random_name'
+  get '/settlements/random-name' => 'settlements#random-name'
   
 end
