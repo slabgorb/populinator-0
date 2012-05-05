@@ -17,6 +17,10 @@ $color03: #C46D3B;
 $color04: #788880;
 $color05: #324654;
 
+
+$disabled: $color04;
+$bg-disabled: #ddd;
+
 $font-color: $color01;
 $label-color: $color01;
 $page-background: $color05;
@@ -165,3 +169,7 @@ h1,h2,h3,h4,h5,h6 {
   font-size: 1.3em;
 }
 
+.disabled {
+  color: $disabled;
+  background-color: $bg-disabled;
+}
