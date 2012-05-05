@@ -20,6 +20,13 @@
       %li= f.label :age
       %li= f.text_field :age
     .clear
+    %ul.left
+      %li
+        %label{:for => 'random-ruler-name'} Random
+      %li
+        %input#random-ruler-name{:type => 'checkbox', :value => 'Random Name'}
+    .clear
     = f.submit
+  
 
 

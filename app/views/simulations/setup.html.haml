@@ -6,6 +6,4 @@
     %li 
       %a{:href => '#tab-ruler'} Ruler
   #tab-settlement= render :partial => '/settlements/form'
-  #tab-ruler
-    = render :partial => '/rulers/form' 
-    %input#random-name{:type => 'submit', :value => 'Random Name'}
+  #tab-ruler= render :partial => '/rulers/form' 
