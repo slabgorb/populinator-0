@@ -89,6 +89,10 @@ $border-color: $color02;
   }
 }
 
+input.ui-button {
+  padding: 0.2em 0.5em;
+}
+
 body {
   background: {
 	color: $page-background;
