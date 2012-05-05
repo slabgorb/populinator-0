@@ -9,6 +9,11 @@ class Person < Being
   field :surname, :type => String
   field :given_name, :type => String
   
+  def self.names
+    @@names
+  end
+
+  
   def marry(spouse)
     spouses << spouse
     spouse.spouses << spouse

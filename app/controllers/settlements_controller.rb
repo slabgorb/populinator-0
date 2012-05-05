@@ -82,7 +82,7 @@ class SettlementsController < ApplicationController
   end
   
   def random_name 
-     render :json => [Settlement.random_name]
+     render :json => Settlement.random_name.as_json
   end
 
   
