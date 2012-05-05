@@ -14,10 +14,9 @@ class Settlement
 
   def self.random_name
     meat = Person.names['surname'].shuffle.first
-    top  = rand > 0.5 ? @names['prefix'].shuffle.first : ''
-    bottom = rand > 0.5 ? @names['suffix'].shuffle.first : ''
-    top += rand > 0.7 ? @names['divider'].shuffle.first : ''
-    meat += rand > 0.7 ? @names['divider'].shuffle.first : ''
-    [top, meat, bottom].join
+    top  = rand > 0.5 ? @@names['prefix'].shuffle.first : ''
+    bottom = rand > 0.5 ? @@names['suffix'].shuffle.first : ''
+    top += rand > 0.7 ? @@names['divider'].shuffle.first : ''
+    [[top, meat, bottom].join.capitalize, (rand * 1000).floor]
   end
 end
