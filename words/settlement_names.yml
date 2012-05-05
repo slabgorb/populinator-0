@@ -1,12 +1,11 @@
 prefix:
-  hant
-  fainté
+  - hant
+  - faint
 suffix:
-  dai
-  prétangé
-  in
+  - edai
+  - eprtang
+  - in
 divider:
-  suf`
-  barde
-  -
-  `
+  - suf`
+  - arde
+  - `
