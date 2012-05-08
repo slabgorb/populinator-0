@@ -41,7 +41,17 @@ class SettlementsController < ApplicationController
   # POST /settlements.json
   def create
     @settlement = Settlement.new(params[:settlement])
-
+    @settlement.save
+    params[:settlement][:population].to_i.times do
+      @settlement.beings << Person.create
+    end       
+    params[:settlement][:population].to_i.times do
+      @settlement.beings << Person.create
+    end   
+    @settlement.beings.each do |b| 
+      b.settlement = @settlement 
+      b.save
+    end
     respond_to do |format|
       if @settlement.save
         format.html { redirect_to @settlement, notice: 'Settlement was successfully created.' }
