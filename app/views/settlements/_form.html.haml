@@ -12,9 +12,11 @@
     %ul
       %li= f.label :population
       %li= f.text_field :population
-    %ul
-      %li
-        %label{:for => 'random-settlement-name'} random
+    .random
+      %ul
+        %li
+          %label{:for => 'random-settlement-name'} random
+    .clear
     %input#random-settlement-name{:type => 'checkbox', :value => 'Random Name'}
-    = f.submit
+    = link_to 'Create', '#', :id => 'create-settlement'
 
