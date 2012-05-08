@@ -1,24 +1,27 @@
-$page-background		: #101010;
-$color01				: #4B592C;
-$color02				: #788C2E;
-$color03				: #26251E;
-$color04				: #403E37;
-$color05				: #71726F;
+$page-background: #FFFFFF;
 
-$label-background		: $color04;
-$base-color				: $color03;
-$secondary-fill			: $color04;
-$primary-fill           : $color05;
-$border-color			: $color01;
-$highlight-color		: $color01;
-$glow					: #888;
+$color01: #4B592C;
+$color02: #788C2E;
+$color03: #26251E;
+$color04: #403E37;
+$color05: #71726F;
+					 
+$label-background:		$color04;	
+$base-color:			$color03;			
+$secondary-fill:		$color04;		
+$primary-fill:			$color05;		
+$border-color:			$color01;		
+$highlight-color:		$color01;		
+$glow: #888;
+								
+$disabled: $color04;
+$bg-disabled: #ddd;
+					 
+$font-color:   $color01;
+$label-color:  $color02;
+$border-color: $color02;
 
-$disabled				: $color04;
-$bg-disabled			: #ddd;
-
-$font-color				: $color01;
-$label-color			: $color02;
-$border-color			: $color02;
+$icon-padding: 16px;
 
 
 @mixin box-shadow($horizontal, $vertical, $blur, $color, $offset: "") {
@@ -88,12 +91,12 @@ $border-color			: $color02;
 }
 
 
-@mixin icon-image($image, $left_pad) {
+@mixin icon-image($icon) {
   background: {
-	image: url($image);
+	image: url('/assets/#{$icon}.png');
 	repeat: no-repeat;
   }
-  padding-left: $left_pad;
+  padding-left: $icon-padding;
 }
 
 input.ui-button {
