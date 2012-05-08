@@ -1,5 +1,6 @@
 
 $ = jQuery
+debug = false
 
 $(document).ready ->
   $('#random-ruler-name').click ->
