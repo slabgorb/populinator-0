@@ -7,21 +7,17 @@
 ul.beings {
   li.being {
 	list-style-type: none;
-	dl.being {
-	  dd, dt {
-		font-size: 0.9em;
-		float: left;
-		margin: 5px 5px;
-	  }
-	  dt {
-		letter-spacing: 1px;
-		color: $label-color;
-		clear: left;
-		font-weight: bold;
-		&:after {
-		  content: ':';
-		}
-	  }
-	}
+	font-size: 0.8em;
+
+	
   }
+}
+
+
+.female {
+  @include icon-image('images/female.png', 14px);
+}
+
+.male {
+  @include icon-image('images/male.png', 14px);
 }
