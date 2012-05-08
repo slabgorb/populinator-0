@@ -23,7 +23,7 @@
     .clear
   #tab-population
     %ul.beings
-      = render :partial => '/beings/being', :collection => @settlement.beings
+      = render :partial => '/beings/being', :collection => @settlement.beings.sort{|a, b| a.surname <=> b.surname}
     .clear
 
 = link_to 'Edit', edit_settlement_path(@settlement), :class => 'button'
