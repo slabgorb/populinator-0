@@ -15,9 +15,9 @@ ul.beings {
 
 
 .female {
-  @include icon-image('images/female.png', 14px);
+  @include icon-image('female');
 }
 
 .male {
-  @include icon-image('images/male.png', 14px);
+  @include icon-image('male');
 }
