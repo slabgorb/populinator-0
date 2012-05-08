@@ -7,7 +7,13 @@
     = csrf_meta_tags 
     = yield(:head)
   %body
-    = yield(:top);
+    = yield(:top)
+    #navigation
+      %ul
+        %li= link_to "Setup", setup_path
+        %li= link_to "Settlements", settlements_path
+        %li= link_to "Beings", beings_path
+    .clear
     #notice= flash[:notice]
     #warning= flash[:warning]
     #info= flash[:info]    
@@ -17,5 +23,10 @@
       = yield(:sidebar)
     #footer 
       = yield(:footer)
+      %ul.credits
+        %li All content creative commons licensed
+        %li 
+          Silk icons from 
+          = link_to 'FamFamFam', 'http://www.famfamfam.com/lab/icons/silk/'
     #dialogs.invisible
       = yield(:dialogs)
