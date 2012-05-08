@@ -4,8 +4,10 @@
 
 
 $ = jQuery
+debug = false
 
 $(document).ready ->
+  # random name
   $('#random-settlement-name').click ->
     $sn = $('#settlement_name')
     $sp = $('#settlement_population')
@@ -22,9 +24,21 @@ $(document).ready ->
       $sp.unstash()
     true
 
+  # force the entry in the population to be an int
   $('#settlement_population').keyup ->
     parsed = parseInt($(this).val())
     if (isNaN(parsed))
       $(this).val('')
     else
       $(this).val(parseInt($(this).val()))
+
+  # bind the 'create' link to a post ajax call with a callback
+  $('#create-settlement').click ->
+    options =
+      'settlement[name]': $('#settlement_name').val(),
+      'settlement[population]': $('#settlement_population').val()
+    $.post '/settlements', options,   (data, textStatus) ->
+        $('#info-settlement dd.name').html( '<a href="/settlement/' + data.id + '">' + data.name + '</a>')
+        $('#info-settlement dd.population').text(data.population)
+      ,"json"
+    false
