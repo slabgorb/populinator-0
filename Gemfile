@@ -18,12 +18,14 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'growl'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'haml-rails', '~> 0.3'
   gem 'spork-rails'
   gem 'guard-spork'		
   gem 'guard-rspec'
+  gem 'guard-bundler'
 end
 
 

@@ -1,5 +1,16 @@
 class SimulationsController < ApplicationController
   layout 'application'
+  
+  def index
+    @viability = { 
+      'Ice/Desert' => 10,
+      'Rocky/Tundra' => 20,
+      'Dry Plains' => 30,
+      'Fertile' => 110
+    }
+  end 
+
+   
   def setup
     @settlement = Settlement.new
     @ruler = Ruler.new

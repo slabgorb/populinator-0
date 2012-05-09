@@ -1,0 +1,10 @@
+#pop-form
+  %ul
+    %li
+      %label{:for => 'region-name-field'} Region Name
+      %input#region-name-field{:name => 'region-name'}
+    %li
+      %label{:for => 'viability-field'} Viability
+      %select#region-name-field{:name => 'viability'}
+        - @viability.each_pair do |k,v|
+          %option{:value => v}= k

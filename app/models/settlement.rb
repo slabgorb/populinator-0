@@ -3,6 +3,7 @@ class Settlement
   include Mongoid::Document
   field :name, :type => String
   field :established, :type => Integer
+  field :area, :type => Integer
   has_many :beings, :dependent => :destroy   
   has_many :rulers, :dependent => :destroy
   has_many :events

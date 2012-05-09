@@ -9,7 +9,6 @@
   #info-ruler {}
 }
 fieldset {
-  @include border-radius(5px);
   background: {
 	color: #FFF;
   }
@@ -27,11 +26,6 @@ fieldset {
 	  margin: 0px 20px 5px 0px;
 	  color: $color05;
 	}
-	input {
-	  font-size: 1.02em;
-	  padding: 0.3em;
-	  border: 1px solid $color05;
-	  color: $color05;
-	}
+
   }
 }

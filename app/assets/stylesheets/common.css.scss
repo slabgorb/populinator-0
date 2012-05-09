@@ -5,7 +5,7 @@ $color02: #788C2E;
 $color03: #26251E;
 $color04: #403E37;
 $color05: #71726F;
-					 
+
 $label-background:		$color04;	
 $base-color:			$color03;			
 $secondary-fill:		$color04;		
@@ -13,10 +13,10 @@ $primary-fill:			$color05;
 $border-color:			$color01;		
 $highlight-color:		$color01;		
 $glow: #888;
-								
+
 $disabled: $color04;
 $bg-disabled: #ddd;
-					 
+
 $font-color:   $color01;
 $label-color:  $color02;
 $border-color: $color02;
@@ -111,7 +111,7 @@ body {
 	family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
   }
   a { 
-	color: $highlight-color;
+	color: $base-color;
   }
   margin:50px;
   color: $color02;
@@ -133,6 +133,8 @@ body {
 	width: 960px;
 	background-color: $page-background;
 	margin: auto;
+
+	
   }
 
   #footer {
@@ -203,6 +205,23 @@ body {
   .disabled {
 	color: $disabled;
 	background-color: $bg-disabled;
+  }
+
+
+  ul.form {
+
+	li {
+	  list-style-type: none;
+	  label {
+		display: block;
+	  }
+	  input {
+		font-size: 1.02em;
+		padding: 0.3em;
+		border: 1px solid $color05;
+		color: $color05;
+	  }
+	}
   }
 
 }

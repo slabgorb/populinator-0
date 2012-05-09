@@ -1,51 +1,43 @@
 class Chromosome
   include Mongoid::Document
   include Mongoid::Timestamps::Created
+  field :seed, :type => String
   belongs_to :being
-  
-  
   attr_accessor :seed
 
-  def initialize(seed)
-    @seed = seed
+  def length 
+    seed.length
   end
 
+  def to_s
+    seed
+  end
+
+  def [](index)
+    seed[index] == '1'
+  end
+
+  def []=(index, value)
+    seed[index] = value.to_i.to_s
+  end
+  
   def fitness
-    @seed.count('F')
+    seed.count(1)
   end
 
-  def reproduce(other)
+  def reproduce_with(other)
     genome = seed.dup
     genome.length.times do |i|
       genome[i] = rand > 0.5 ? genome[i] : other.seed[i]
     end
     seed = genome
-    save
+    Chromosome.new(:seed => seed)
   end
 
   def mutate 
-    seed[floor(rand * seed.count)] = %w|A B C D E F|.shuffle.first
+    index = (rand * length).floor
+    seed[index] = seed[index] == '0' ? '1' : '0'
   end
 end
 
-class Gene
-  attr_accessor :score
-  attr_reader :length, :answers
 
-  def initialize(length)
-    @length = length
-    @answers = Array.new(@length) { rand(3) }
-  end
-
-  def [](index)
-    @answers[index]
-  end
-
-  def []=(index, value)
-    @answers[index] = value
-  end
-
-  def to_s
-    "[" + @answers.join(',') + "]"
-  end
-end
