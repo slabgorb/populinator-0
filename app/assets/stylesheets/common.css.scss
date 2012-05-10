@@ -1,13 +1,13 @@
-$page-background: #FFFFFF;
+$page-background: #C3AB7E;
 
-$color01: #4B592C;
+$color01: #29271E;
 $color02: #788C2E;
 $color03: #26251E;
 $color04: #403E37;
-$color05: #71726F;
+$color05: #B2AA94;
 
 $label-background:		$color04;	
-$base-color:			$color03;			
+$base-color:			$color01;			
 $secondary-fill:		$color04;		
 $primary-fill:			$color05;		
 $border-color:			$color01;		
@@ -114,7 +114,7 @@ body {
 	color: $base-color;
   }
   margin:50px;
-  color: $color02;
+  color: $font-color;
   #navigation {
 	ul {
 	  li {
@@ -209,11 +209,15 @@ body {
 
 
   ul.form {
-
+	input.randcheck {
+	  @include icon-image('pencil_go');
+	}
 	li {
 	  list-style-type: none;
 	  label {
 		display: block;
+		font-size: 0.8em;
+		
 	  }
 	  input {
 		font-size: 1.02em;
