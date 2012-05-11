@@ -9,23 +9,6 @@
   #info-ruler {}
 }
 fieldset {
-  background: {
-	color: #FFF;
-  }
-  border: 0px;
-  form {
-	ul {
-	  width: 200px;
-	  li {
-		list-style-type: none;
-	  }
-	}
-	&#settlement-form {
-	}
-	label {
-	  margin: 0px 20px 5px 0px;
-	  color: $color05;
-	}
-
-  }
+  border: 1px solid $color02;
+	width:300px;
 }

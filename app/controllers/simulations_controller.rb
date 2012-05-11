@@ -2,11 +2,11 @@ class SimulationsController < ApplicationController
   layout 'application'
   
   def index
-    @viability = { 
-      'Ice/Desert' => 10,
-      'Rocky/Tundra' => 20,
-      'Dry Plains' => 30,
-      'Fertile' => 110
+    @sizes = { 
+      'Hamlet' => 25,
+      'Village' => 100,
+      'Town' => 2500,
+      'City' => 10000
     }
   end 
 

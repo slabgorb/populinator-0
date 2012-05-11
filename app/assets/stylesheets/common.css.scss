@@ -1,17 +1,16 @@
-$page-background: #C3AB7E;
-
 $color01: #29271E;
-$color02: #788C2E;
-$color03: #26251E;
-$color04: #403E37;
-$color05: #B2AA94;
+$color02: #590A10;
+$color03: #C3AB7E;
+$color04: #B2AA94;
+$color05: #AE2514;
 
-$label-background:		$color04;	
-$base-color:			$color01;			
-$secondary-fill:		$color04;		
-$primary-fill:			$color05;		
-$border-color:			$color01;		
-$highlight-color:		$color01;		
+$page-background:	$color03;
+$label-background:	$color04;	
+$base-color:		$color01;			
+$secondary-fill:	$color04;		
+$primary-fill:		$color05;		
+$border-color:		$color01;		
+$highlight-color:	$color01;		
 $glow: #888;
 
 $disabled: $color04;
@@ -96,7 +95,7 @@ $icon-padding: 16px;
 	image: url('/assets/#{$icon}.png');
 	repeat: no-repeat;
   }
-  padding-left: $icon-padding;
+  padding: 0px $icon-padding;
 }
 
 input.ui-button {
@@ -203,27 +202,34 @@ body {
   }
 
   .disabled {
-	color: $disabled;
+	color: $color04;
 	background-color: $bg-disabled;
   }
 
 
   ul.form {
-	input.randcheck {
+	padding:0px;
+	.selectbox {
+	  @include icon-image('bullet_arrow_down')
+	}
+	.randcheck {
 	  @include icon-image('pencil_go');
+	  background-position: right center;
+	  padding-left: 0px;
 	}
 	li {
 	  list-style-type: none;
 	  label {
 		display: block;
 		font-size: 0.8em;
-		
 	  }
-	  input {
+	  input, select {
 		font-size: 1.02em;
 		padding: 0.3em;
-		border: 1px solid $color05;
-		color: $color05;
+		border: 1px solid $color02;
+		color: $color02;
+		background: $page-background;
+		background-image: none;
 	  }
 	}
   }

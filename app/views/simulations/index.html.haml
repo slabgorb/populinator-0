@@ -1,10 +1,19 @@
 #pop-form
-  %ul
-    %li
-      %label{:for => 'region-name-field'} Region Name
-      %input#region-name-field{:name => 'region-name'}
-    %li
-      %label{:for => 'viability-field'} Viability
-      %select#region-name-field{:name => 'viability'}
-        - @viability.each_pair do |k,v|
-          %option{:value => v}= k
+  %fieldset
+    %ul.form
+      %li
+        %label{:for => 'settlement-name-field'} Settlement Name
+        %input#settlement-name-field{:name => 'settlement_name'}
+        %span.randcheck.name
+      %li
+        %label{:for => 'settlement-population-field'} Settlement Population
+        %input#settlement-population-field{:name => 'settlement_population', :size => 5, :maxlength => 6 }
+      %li
+        %label{:for => 'size-field'} Size
+        %select#size{:name => 'size'}
+          - @sizes.each_pair do |k,v|
+            %option{:value => v}= k
+  %fieldset
+    %ul.form
+      %li
+

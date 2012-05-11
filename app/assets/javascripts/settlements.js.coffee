@@ -6,23 +6,16 @@
 $ = jQuery
 debug = false
 
-$(document).ready ->
-  # random name
-  $('#random-settlement-name').click ->
-    $sn = $('#settlement_name')
-    $sp = $('#settlement_population')
-    if $(this).is(':checked')
-      console.log('checked state') if debug
-      $sn.stash()
-      $sp.stash()
-      $.getJSON '/settlements/random-name', (name)->
-        $sn.val(name[0])
-        $sp.val(name[1])
-    else
-      console.log('unchecked state') if debug
-      $sn.unstash()
-      $sp.unstash()
-    true
+Settlement = () ->
+  @name = $('#settlement-name-field')
+  @pop  = $('#settlement-pop-field')
+  $('.randcheck.name').click =>
+    $.getJSON '/settlements/random-name', (name) =>
+      @name.val(name[0])
+      @pop.val(name[1])
+
+  #make the selection box a pretty pretty princess
+  $('select').selectbox()
 
   # force the entry in the population to be an int
   $('#settlement_population').keyup ->
@@ -42,3 +35,15 @@ $(document).ready ->
         $('#info-settlement dd.population').text(data.population)
       ,"json"
     false
+
+
+
+
+$(document).ready ->
+  settlement = new Settlement();
+
+
+
+
+
+
