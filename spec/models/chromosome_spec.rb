@@ -8,7 +8,7 @@ describe Chromosome do
   end
   
   it "should give the indexed seed" do 
-    @c0[0].should eq(false)
+    @c0[0].should eq(true)
   end
   
   context 'fitness' do 
@@ -40,7 +40,7 @@ describe Chromosome do
     end
     it 'should have a genome pattern based on the parents' do
       # NOTE: this works because of the call to srand
-      @c3.seed.should eq('ABAAAA')
+      @c3.seed.should eq('010000')
     end
     
     it 'should be a chromosome' do 

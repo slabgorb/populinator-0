@@ -11,7 +11,7 @@
     %th
     %th
 
-  - @beings.each do |being|
+  - @beings.try(:each) do |being|
     %tr
       %td= being.name
       %td= being.gender

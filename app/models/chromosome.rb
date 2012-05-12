@@ -22,7 +22,7 @@ class Chromosome
   end
   
   def fitness
-    seed.count(1)
+    seed.count('1')
   end
 
   def reproduce_with(other)
