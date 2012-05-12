@@ -6,7 +6,7 @@ describe Settlement do
     50.times do 
       @settlement.beings << Being.new
     end
-    @settlement.rulers << Ruler.new(:name => 'Richard', :title => 'King')
+    @settlement.rulers << Ruler.new(:surname => 'Plantagenet', :title => 'King')
   end
   
   it 'counts the population' do
@@ -14,7 +14,7 @@ describe Settlement do
   end
 
   it 'shows the ruler' do
-    @settlement.rulers.first.name.should == 'Richard'
+    @settlement.rulers.first.surname.should == 'Plantagenet'
   end
   
 end
