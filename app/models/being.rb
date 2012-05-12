@@ -131,12 +131,12 @@ class Being
 
   
   def reproduce(other = nil, child_name = nil, child_gender = nil) 
-        raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
+    raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
     raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
     child = self.class.new(:name => child_name || 'Child of#{self.name}', :gender => child_gender || Being.random_gender)
     self.beings << child
     other.beings << child if other
-    self.settlement.beings << child
+    self.settlement.beings << child if self.settlement
     return child
   end
   
