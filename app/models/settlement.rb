@@ -13,6 +13,15 @@ class Settlement
     beings.select{ |c| c.alive? }.length
   end
 
+  def as_json(options = { })
+    { :name => name, 
+      :established => established, 
+      :population => population,
+      :rulers => rulers, 
+      :residents => beings }
+  end
+
+  
   def self.random_name
     meat = Person.names['surname'].shuffle.first
     top  = rand > 0.5 ? @@names['prefix'].shuffle.first : ''
