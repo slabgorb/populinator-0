@@ -25,7 +25,6 @@ Settlement = () ->
 
   @pop.keyup updateDrop
 
-
   # force the entry in the population to be an int
   $('#settlement_population').keyup ->
     parsed = parseInt($(this).val())
