@@ -1,32 +1,35 @@
 %html
   %head
     %title
-      = [yield(:title), 'Population'].join(' | ')
+      = [yield(:title), 'Populator'].join(' | ')
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags 
     = yield(:head)
   %body
-    = yield(:top)
-    #navigation
-      %ul
-        %li= link_to "Setup", setup_path
-        %li= link_to "Settlements", settlements_path
-        %li= link_to "Beings", beings_path
-    .clear
-    #notice= flash[:notice]
-    #warning= flash[:warning]
-    #info= flash[:info]    
-    #main-content
-      = yield
-    #sidebar 
-      = yield(:sidebar)
+    %h1 Populator
+    .watermark.griffin_sejeant
+    #border
+      = yield(:top)
+      #navigation
+        %ul
+          %li= link_to "Setup", setup_path
+          %li= link_to "Settlements", settlements_path
+          %li= link_to "Beings", beings_path
+      .clear
+      #notice= flash[:notice]
+      #warning= flash[:warning]
+      #info= flash[:info]    
+      #main-content
+        = yield
+      #sidebar 
+        = yield(:sidebar)
     #footer 
       = yield(:footer)
       %ul.credits      
         %li 
-          Silk icons from 
-          = link_to 'FamFamFam', 'http://www.famfamfam.com/lab/icons/silk/'
+          Textures from 
+          = link_to 'Deviant Art', 'http://djeric.deviantart.com/art/Free-wood-pack-texture-193590616'
     #dialogs.invisible
       = yield(:dialogs)
-      
+
