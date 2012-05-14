@@ -22,7 +22,6 @@ $border-color: $color02;
 
 $icon-padding: 16px;
 
-
 @mixin box-shadow($horizontal, $vertical, $blur, $color, $offset: "") {
   @if $offset == "" {
 	-moz-box-shadow: $horizontal $vertical $blur $color;
@@ -36,12 +35,26 @@ $icon-padding: 16px;
   }
 }
 
+@mixin shadow ($horizontal, $vertical, $blur, $color) {
+  -moz-box-shadow:    inset $horizontal $vertical $blur $color;
+  -webkit-box-shadow: inset $horizontal $vertical $blur $color;
+  box-shadow:         inset $horizontal $vertical $blur $color;
+}
+
 @mixin border-radius($radius) {
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;
   border-radius: $radius;
 }
 
+
+@mixin appliqued() {
+  text-shadow: 0px 1px 0px rgba(0,0,0,1);
+}
+
+@mixin engraved() {
+  text-shadow: 0px -1px 0px rgba(0,0,0,1);
+}
 
 @mixin corners($tl, $tr, $br, $bl) {
   -webkit-border-top-left-radius: $tl;
@@ -56,36 +69,10 @@ $icon-padding: 16px;
   
 }
 
-@mixin gradient-label($color, $bg_color1, $bg_color2, $border-color) {
-  color: $color;
-  border: solid 1px $border-color;
-  background: $bg_color1;
-  background: -webkit-gradient(linear, left top, left bottom, from($bg_color2), to($bg_color1));
-  background: -moz-linear-gradient(top,  $bg_color2,  $bg_color1);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$bg_color2', endColorstr='$bg_color1');
-}
-
-@mixin gradient-button() {
-  display: inline-block;
-  outline: none;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  padding: .5em 2em .55em;
-  text-shadow: 0 1px 1px rgba(0,0,0,.3);
-  -webkit-border-radius: .5em; 
-  -moz-border-radius: .5em;
-  border-radius: .5em;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-  box-shadow: 0 1px 2px rgba(0,0,0,.2);
-  &:hover {
-	text-decoration: none;
-  }
-  &:active {
-	position: relative;
-	top: 1px;
+@mixin paper($offset_x, $offset_y) {
+  background: {
+	position: $offset_x $offset_y;
+	image: url('backgrounds/paper.jpg');
   }
 }
 
@@ -103,17 +90,22 @@ input.ui-button {
 }
 
 body {
-  background: {
-	color: $page-background;
-  }
+  margin:50px;
+  color: $font-color;
+  
+  @include paper(0, 0);
   font: {
-	family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	font-family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+
+  }
+  #border {
+  	
+	border: 1px solid $color01;
+	padding:10px;
   }
   a { 
 	color: $base-color;
   }
-  margin:50px;
-  color: $font-color;
   #navigation {
 	ul {
 	  li {
@@ -129,11 +121,7 @@ body {
   }
 
   #main-content {
-	width: 960px;
-	background-color: $page-background;
-	margin: auto;
-
-	
+	margin: 20px;
   }
 
   #footer {
@@ -153,14 +141,15 @@ body {
   }
 
   h1,h2,h3,h4,h5,h6 {
-	color: $label-color;
+	color: $color01;
 	font-weight: bold;
 	margin: 10px 10px;
-	letter-spacing: 1px;
-	border: {
-	  bottom: 1px solid $border-color;
+	font: {
+	  weight: normal;
 	}
   }
+
+
 
 
   .left {
@@ -206,35 +195,62 @@ body {
 	background-color: $bg-disabled;
   }
 
-
-  ul.form {
+  fieldset {
+	margin: 0px;
 	padding:0px;
-	.selectbox {
-	  @include icon-image('bullet_arrow_down')
-	}
-	.randcheck {
-	  @include icon-image('pencil_go');
-	  background-position: right center;
-	  padding-left: 0px;
-	}
-	li {
-	  list-style-type: none;
-	  label {
-		display: block;
-		font-size: 0.8em;
+	width: 250px;
+	border: 0px;
+	ul.form {
+	  padding:0px;
+	  margin:0px;
+	  .selectbox-wrapper {
+		ul {
+		  margin-left: --35px;;
+		  li {
+			line-height: 20px;
+			font-size: 0.9em;
+			
+		  }
+		}
+		
 	  }
-	  input, select {
-		font-size: 1.02em;
-		padding: 0.3em;
-		border: 1px solid $color02;
-		color: $color02;
-		background: $page-background;
-		background-image: none;
+	  .randcheck {
+		padding-left: 0px;
+		background-repeat: no-repeat;
+		width: 10px;
+	  }
+	  li {
+		list-style-type: none;
+		label {
+		  display: block;
+		  color: $color05;
+		  font-size: 0.8em;
+		  padding: 3px 0px 3px 10px;
+		  font-family: georgia;
+		  margin-left: -10px;
+		}
+		input, select {
+		  font-size: 1.02em;
+		  font-family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+		  padding: 0.3em;
+		  border: 1px solid $color02;
+		  color: $color01;
+		  @include appliqued();
+		  @include paper(random(100),random(100));
+		}
+	  }
+	  input[type=submit] {
+		border: 0px !important;
+		font-size: 0.9em;
+		padding:10px !important;
+		@include paper(random(100), random(100));
+		color: $color01;
+		@include border-radius(6px);
 	  }
 	}
   }
-
 }
+
 
 
 
