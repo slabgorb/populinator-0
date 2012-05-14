@@ -97,6 +97,46 @@ $icon-padding: 16px;
   padding: 0px $icon-padding;
 }
 
+
+
+@font-face {
+    font-family: 'KingthingsCalligraphicaLight';
+    src: url('fonts/Kingthings_Calligraphica_Light-webfont.eot');
+    src: url('fonts/Kingthings_Calligraphica_Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Kingthings_Calligraphica_Light-webfont.woff') format('woff'),
+         url('fonts/Kingthings_Calligraphica_Light-webfont.ttf') format('truetype'),
+         url('fonts/Kingthings_Calligraphica_Light-webfont.svg#KingthingsCalligraphicaLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'KingthingsCalligraphica2Rg';
+    src: url('fonts/Kingthings_Calligraphica_2-webfont.eot');
+    src: url('fonts/Kingthings_Calligraphica_2-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Kingthings_Calligraphica_2-webfont.woff') format('woff'),
+         url('fonts/Kingthings_Calligraphica_2-webfont.ttf') format('truetype'),
+         url('fonts/Kingthings_Calligraphica_2-webfont.svg#KingthingsCalligraphica2Rg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'KingthingsCalligraphicaItalic';
+    src: url('fonts/Kingthings_Calligraphica_Italic-webfont.eot');
+    src: url('fonts/Kingthings_Calligraphica_Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Kingthings_Calligraphica_Italic-webfont.woff') format('woff'),
+         url('fonts/Kingthings_Calligraphica_Italic-webfont.ttf') format('truetype'),
+         url('fonts/Kingthings_Calligraphica_Italic-webfont.svg#KingthingsCalligCalligraphica') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
 input.ui-button {
   padding: 0.2em 0.5em;
 }
@@ -115,11 +155,30 @@ body {
 	border: 1px solid $color01;
 	padding:10px;
   }
+
   a { 
 	color: $base-color;
   }
+
+  table {
+	th {
+	  font: {
+		family: KingthingsCalligraphicaItalic;
+		weight: normal;
+		size: 1.1em;
+	  }
+	}
+  }
+
   #navigation {
+	font: {
+	  family: KingthingsCalligraphicaLight;
+	  size: 1.4em;
+	}
+	
 	ul {
+	  margin: 0px;
+	  padding: 0px;
 	  li {
 		list-style-type: none;
 		float: left;
@@ -128,6 +187,9 @@ body {
 		  left: 1px dashed $color01;
 		  right: 1px dashed $color01;
 		}
+	  }
+	  a:hover {
+		color: $color05;
 	  }
 	}
   }
@@ -155,9 +217,10 @@ body {
   h1,h2,h3,h4,h5,h6 {
 	color: $color01;
 	font-weight: bold;
-	margin: 10px 10px;
+	margin: 0px 0px;
 	font: {
 	  weight: normal;
+	  family: KingthingsCalligraphica2Rg;
 	}
 	@include outline-text(1, $color04, $color01);
   }
@@ -224,7 +287,6 @@ body {
   fieldset {
 	margin: 0px;
 	padding:0px;
-	width: 250px;
 	border: 0px;
 	ul.form {
 	  padding:0px;
@@ -256,8 +318,8 @@ body {
 		  margin-left: -10px;
 		}
 		input, select {
-		  font-size: 1.02em;
-		  font-family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+		  font-size: 1.3em;
+		  font-family:  KingthingsCalligraphicaLight;
 		  padding: 0.3em;
 		  border: 1px solid $color02;
 		  color: $color01;
