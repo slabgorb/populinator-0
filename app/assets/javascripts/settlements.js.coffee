@@ -8,7 +8,7 @@ debug = false
 
 Settlement = () ->
   @name = $('#settlement-name-field')
-  @pop  = $('#settlement-pop-field')
+  @pop  = $('#settlement-population-field')
   $('.randcheck.name').click =>
     $.getJSON '/settlements/random-name', (name) =>
       @name.val(name[0])
@@ -16,6 +16,15 @@ Settlement = () ->
 
   #make the selection box a pretty pretty princess
   $('select').selectbox()
+
+  updateDrop = () =>
+    pop = parseInt(@pop.val())
+    $.each $('#size option'), ->
+      if pop > parseInt($(this).val())
+          $('#size_input').val($(this).text())
+
+  @pop.keyup updateDrop
+
 
   # force the entry in the population to be an int
   $('#settlement_population').keyup ->
