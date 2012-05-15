@@ -17,8 +17,8 @@ class Settlement
     { :name => name, 
       :established => established, 
       :population => population,
-      :rulers => rulers, 
-      :residents => beings }
+      :ruler => rulers.first, 
+      :residents => beings.sort{ |a,b| a.surname <=> b.surname } }
   end
 
   

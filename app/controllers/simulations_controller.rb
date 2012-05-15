@@ -20,16 +20,16 @@ class SimulationsController < ApplicationController
   def run
     params[:name] ||= Settlement.random_name.first
     params[:population] ||= Settlement.random_name.last
-    
+    params[:years] ||= 10
     
     logger.debug '*' * 80
     logger.debug params
     @settlement = Settlement.create(:name => params[:name])
     @settlement.established = 0
     params[:population].to_i.times do
-      @settlement.beings << Person.create(:age => 1)
+      @settlement.beings << Person.create(:age => Person.random_age)
     end
-    @settlement.rulers << Ruler.create(:settlement => @settlement)
+    @settlement.rulers << Ruler.create(:settlement => @settlement, :age => Person.random_age)
     @settlement.save
     @output = "Current population: #{@settlement.population}<br/>"
     @year = 1

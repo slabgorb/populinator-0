@@ -2,7 +2,8 @@ require 'yaml'
 class Person < Being
   @@names = YAML::load(File.read(File.join(Rails.root, 'words', 'names.yml')))
   @@coming_of_age = 18
-  before_create :random_gender, :random_name
+  @@old_age = 80
+  before_create :random_gender, :random_name, :random_age
   has_and_belongs_to_many :spouses, :class_name => 'Person'
   scope :neighbors, ->(person) { where(:settlement => person.settlement) }
   scope :other_gender, ->(sex) { where(:gender.ne => sex)}
@@ -47,12 +48,17 @@ class Person < Being
     true
   end
   
+  def random_age
+    age = Person.random_age
+  end
+
+  
   def self.random_gender
     ['male', 'female'].shuffle.first
   end
 
   def self.random_age
-    @@coming_of_age + ((rand * 40).floor - 6)
+    (rand * @@old_age).floor
   end
 
   

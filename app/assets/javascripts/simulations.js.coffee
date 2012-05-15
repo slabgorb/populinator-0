@@ -9,23 +9,34 @@ class Simulation
         $('.loader').fadeIn(fade_time)
       $history = $('.report #history')
       $population = $('.report #population')
+      $ruler = $('.report #ruler')
       $.post '/run',
         name: $('#settlement-name-field').val(),
         population: $('#settlement-population-field').val()
         dataType: 'json'
         (data) ->
-          $('#settlement-id').text(data.settlement.name)
+          settlement = data.settlement
+          $('#settlement-id').text(settlement.name)
           $('.loader.tower').fadeOut fade_time, ->
             $('ul.report').fadeIn fade_time
-          $.each data.settlement.residents, ->
-            $population.append "
-              <ul>
+          $.each settlement.residents, ->
+            age =  if this.alive? then ('aged ' + this.age) else 'dead'
+            $population.append """
+              <ul >
               <li class='name'>#{this.name}</li>
-              <li class='gender'>#{this.gender}</li>
-              <li class='age'>(#{this.age})</li>
+              <li class='gender #{this.gender}'>&nbsp;</li>
+              <li class='age'>(#{age})</li>
               </ul>
-              "
-          $history.text(data.history)
+              """
+          $history.html(data.history)
+          console.log settlement
+          $ruler.append "
+            <ul>
+            <li class='name'>#{settlement.ruler.name}</li>
+            <li class='gender #{settlement.ruler.gender}'>&nbsp;</li>
+            <li class='age'>(#{settlement.ruler.age})</li>
+            </ul>
+            "
       return false
 
 

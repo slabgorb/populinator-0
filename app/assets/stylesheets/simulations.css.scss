@@ -12,16 +12,22 @@
 
 
 ul.report {
+  font-family: KingthingsCalligraphicaLight;
   li {
 	list-style-type: none;
 	ul {
 	  margin:0px;
 	  padding: 0px;
 	  clear:left;
+	  font-size: 0.9em;
 	  li {
+		line-height: 20px;
 		margin: 0px 5px;
 		&.name, &.gender {
 		  float: left;
+		}
+		&.name {
+		  width: 20em;
 		}
 		&.age {
 		  float: left;

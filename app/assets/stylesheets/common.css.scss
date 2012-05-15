@@ -89,12 +89,12 @@ $icon-padding: 16px;
 }
 
 
-@mixin icon-image($icon) {
+@mixin icon-image($icon, $padding) {
   background: {
 	image: url('/assets/#{$icon}.png');
 	repeat: no-repeat;
   }
-  padding: 0px $icon-padding;
+  padding: 0px $padding;
 }
 
 

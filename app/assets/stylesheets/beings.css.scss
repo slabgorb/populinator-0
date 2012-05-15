@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+@import 'common';
 
 ul.beings {
   li.being {
@@ -14,3 +14,10 @@ ul.beings {
 }
 
 
+.female {
+  @include icon-image('icons/female', 22px);
+}
+
+.male {
+  @include icon-image('icons/male', 22px);
+}
