@@ -19,6 +19,11 @@ class Person < Being
     spouse.spouses << spouse
   end
   
+  def spouse 
+    spouses.first
+  end
+
+  
   def married?
     not spouses.select{ |s| s.alive? }.empty?
   end

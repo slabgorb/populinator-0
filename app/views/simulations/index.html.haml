@@ -1,22 +1,27 @@
+%h3#settlement-id Settlement
+.loader.tower.invisible
 #pop-form
-  .section
-    %fieldset
-      %h3 Settlement
-      %ul.form
-        %li
-          %label{:for => 'settlement-name-field'} Name
-          %input#settlement-name-field{:name => 'settlement_name'}
-          %span.randcheck.name= escape_once('&lsaquo; random');
-        %li
-          %label{:for => 'settlement-population-field'} Population
-          %input#settlement-population-field{:name => 'settlement_population', :size => 5, :maxlength => 6 }
-        %li
-          %label{:for => 'size-field'} Size
-          %select#size{:name => 'size'}
-            - @sizes.each_pair do |k,v|
-              %option{:value => v}= k
-    %fieldset
-      %ul.form
-        %li
-          = link_to 'Run Simulation', '#', :id => 'run-simulation'
-
+  %fieldset
+    %ul.form
+      %li
+        %label{:for => 'settlement-name-field'} Name
+        %input#settlement-name-field{:name => 'name'}
+        %span.randcheck.name= escape_once('&lsaquo; random');
+      %li
+        %label{:for => 'settlement-population-field'} Population
+        %input#settlement-population-field{:name => 'population', :size => 5, :maxlength => 6 }
+      %li
+        %label{:for => 'size-field'} Size
+        %select#size{:name => 'size'}
+          - @sizes.each_pair do |k,v|
+            %option{:value => v}= k
+      %li
+        = link_to 'Run Simulation', '#', :id => 'run-simulation'
+  %ul.report.invisible
+    %li
+      %h3 History
+      #history
+    %li
+      %h3 Residents
+      #population
+  .clear

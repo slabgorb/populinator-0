@@ -20,6 +20,6 @@ $.fn.unstash = () ->
 # page setup
 $(document).ready ->
   # set up the buttons
-  $( "input:submit, .button").button()
+  # $( "input:submit, .button").button()
   # set up any tabs
   $('#tabs').tabs();

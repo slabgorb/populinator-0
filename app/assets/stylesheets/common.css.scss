@@ -357,3 +357,15 @@ body {
 
 }
 
+.loader {
+  z-index: 100;
+  width: 200px;
+  height: 300px;
+  &.tower {
+	background: {
+	  image: url('loaders/tower.gif');
+	  repeat: no-repeat;
+	}
+  }
+}
+

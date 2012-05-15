@@ -7,13 +7,14 @@
     = csrf_meta_tags 
     = yield(:head)
   %body
-    %h1 Populator
-    .watermark.griffin_sejeant
+    %h1 
+      = link_to 'Populator', '/'
+    = yield :watermark
     #border
-      = yield(:top)
+      = yield :top
       #navigation
         %ul
-          %li= link_to "Setup", setup_path
+          %li= link_to "Simulation", '/'
           %li= link_to "Settlements", settlements_path
           %li= link_to "Beings", beings_path
       .clear
@@ -23,13 +24,13 @@
       #main-content
         = yield
       #sidebar 
-        = yield(:sidebar)
+        = yield :sidebar
     #footer 
-      = yield(:footer)
+      = yield :footer
       %ul.credits      
         %li 
-          Textures from 
-          = link_to 'Deviant Art', 'http://djeric.deviantart.com/art/Free-wood-pack-texture-193590616'
+          Fonts from 
+          = link_to 'Fontsquirrel', 'http://www.fontsquirrel.com/'
     #dialogs.invisible
       = yield(:dialogs)
 

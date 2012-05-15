@@ -1,21 +1,24 @@
-%h1 Listing settlements
+- unless @settlements.empty?
 
-%table
-  %tr
-    %th Name
-    %th Population
-    %th
-    %th
-    %th
+  %h3 Listing settlements
 
-  - @settlements.each do |settlement|
+  %table
     %tr
-      %td= settlement.name
-      %td= settlement.population
-      %td= link_to 'Show', settlement
-      %td= link_to 'Edit', edit_settlement_path(settlement)
-      %td= link_to 'Destroy', settlement, :confirm => 'Are you sure?', :method => :delete
-    
+      %th Name
+      %th Population
+      %th
+      %th
+      %th
+
+    - @settlements.each do |settlement|
+      %tr
+        %td= settlement.name
+        %td= settlement.population
+        %td= link_to 'Show', settlement
+        %td= link_to 'Edit', edit_settlement_path(settlement)
+        %td= link_to 'Destroy', settlement, :confirm => 'Are you sure?', :method => :delete
+- else 
+  %h3 No Settlements
 %br
 
 = link_to 'New Settlement', new_settlement_path

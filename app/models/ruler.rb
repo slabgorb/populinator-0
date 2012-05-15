@@ -9,7 +9,7 @@ class Ruler < Person
       if self.settlement.present?
         pop = settlement.population
         @@titles.each{ |k,v| self.title = v if k < pop }
-        self.title = @@titles.last unless self.title.present?
+        self.title = @@titles.to_a.last unless self.title.present?
       end
     end
   end

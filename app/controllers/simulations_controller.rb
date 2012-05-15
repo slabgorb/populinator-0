@@ -18,11 +18,12 @@ class SimulationsController < ApplicationController
 
   
   def run
-    params.merge!({ 
-      :name => Settlement.random_name,
-      :population => '100',
-      :years => '100 '           
-    })
+    params[:name] ||= Settlement.random_name.first
+    params[:population] ||= Settlement.random_name.last
+    
+    
+    logger.debug '*' * 80
+    logger.debug params
     @settlement = Settlement.create(:name => params[:name])
     @settlement.established = 0
     params[:population].to_i.times do
