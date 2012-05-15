@@ -1,11 +1,12 @@
 class Simulation
   constructor: ->
+    fade_time = 500
     self = this
     $('.selectbox-wrapper').on 'click', =>
       self.sizeSettlement()
     $('a#run-simulation').click ->
-      $('#pop-form fieldset').slideUp ->
-        $('.loader').slideDown()
+      $('#pop-form fieldset').fadeOut fade_time, ->
+        $('.loader').fadeIn(fade_time)
       $history = $('.report #history')
       $population = $('.report #population')
       $.post '/run',
@@ -14,8 +15,8 @@ class Simulation
         dataType: 'json'
         (data) ->
           $('#settlement-id').text(data.settlement.name)
-          $('.loader.tower').hide()
-          $('ul.report').show()
+          $('.loader.tower').fadeOut fade_time, ->
+            $('ul.report').fadeIn fade_time
           $.each data.settlement.residents, ->
             $population.append "
               <ul>
