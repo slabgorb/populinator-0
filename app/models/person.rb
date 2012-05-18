@@ -6,7 +6,6 @@ class Person < Being
   has_and_belongs_to_many :spouses, :class_name => 'Person'
   scope :neighbors, ->(person) { where(:settlement => person.settlement) }
   scope :other_gender, ->(sex) { where(:gender.ne => sex)}
-
   field :surname, :type => String
   field :given_name, :type => String
 
@@ -45,18 +44,23 @@ class Person < Being
     [given_name, surname].join(' ')
   end
   
+  def name=(n)
+    given_name, surname = [n.split.first, n.split.last]
+     self.write_attribute(:name, name)
+  end
+  
   def neighbors 
     settlement.beings.select{ |f| f != self }
   end
 
-  def random_gender 
+  def random_gender! 
     unless self.gender.present?
       self.gender = Person.random_gender
     end
     true
   end
   
-  def random_age
+  def random_age!
     age = Person.random_age
   end
 
@@ -69,20 +73,18 @@ class Person < Being
     (rand * @@old_age).floor
   end
 
+
   
-  def self.random_name(gender = nil)
-    gender ||= self.random_gender
-    [@@names[gender].shuffle.first, @@names['surname'].shuffle.first]
+  def self.random_name(sex = self.random_gender)
+    [@@names[sex].shuffle.first, @@names['surname'].shuffle.first]
   end
 
 
-  def random_name
-    unless self.name.present?
-      self.given_name = @@names[self.gender].shuffle.first
-      self.surname =  @@names['surname'].shuffle.first
-      self.write_attribute(:name, name)
-    end
-    save
+  def randomize!
+    gender = self.random_gender
+    name = self.random_name(gender)
+    age = self.random_age
+    save!
   end
 
 end

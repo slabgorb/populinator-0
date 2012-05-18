@@ -11,14 +11,21 @@ class Settlement
   
   def population
     beings.select{ |c| c.alive? }.length + rulers.select{ |c| c.alive? }.length
-   end
+  end
 
-   def as_json(options = { })
-     { :name => name, 
-       :established => established, 
-       :population => population,
-       :ruler => rulers.first,   
-       :residents => beings.sort{ |a,b| a.surname <=> b.surname } }
+  def as_json(options = { })
+    { :name => name, 
+      :established => established, 
+      :population => population,
+      :ruler => rulers.first,   
+      :residents => beings.sort{ |a,b| a.surname <=> b.surname } }
+  end
+  
+  def populate(population)
+    population.to_i.times do
+      beings << Person.create(:age => Person.random_age, :gender => Person.random_gender).randomize!
+    end
+    save
   end
 
   
@@ -29,6 +36,13 @@ class Settlement
     top += rand > 0.7 ? @@names['divider'].shuffle.first : ''
     [[top, meat, bottom].join.capitalize, (rand * 1000).floor]
   end
+  
+  
+  def families
+    beings.collect{ |b| b.surname }.collect{ |s| Hash.new(s, beings.select{ |b| b.surname = s })}
+    
+  end
+
   
   def seed_original_families(marriage = Event.where(:name => 'marriage').first)
     beings.collect{ |b| b.surname }.uniq.each do |name|
@@ -48,7 +62,6 @@ class Settlement
       minors.each do |child|
         females.select{ |s| s.married? }.shuffle.first.beings << child
       end
-      
     end
   end
 end

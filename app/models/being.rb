@@ -25,11 +25,8 @@ class Being
   end
   
   def as_json(options = { })
-    super(only:{  :name => name, 
-            age: age,
-            alive: alive,
-            gender: gender,
-            children: beings})
+    super(only:[:name, :age, :alive],
+          methods: [:children, :married?, :parent])
   end
 
   def coming_of_age
@@ -73,7 +70,7 @@ class Being
   def parent
     being
   end
-
+  
   def hurt(damage)
     self.damages << damage
   end

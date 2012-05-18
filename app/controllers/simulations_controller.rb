@@ -26,9 +26,7 @@ class SimulationsController < ApplicationController
     logger.debug params
     @settlement = Settlement.create(:name => params[:name])
     @settlement.established = 0
-    params[:population].to_i.times do
-      @settlement.beings << Person.create(:age => Person.random_age)
-    end
+    @settlement.populate params[:population]
     @settlement.rulers << Ruler.create(:settlement => @settlement, :age => Person.random_age)
     @settlement.save
     @output = "Current population: #{@settlement.population}<br/>"

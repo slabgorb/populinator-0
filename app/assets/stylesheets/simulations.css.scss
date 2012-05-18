@@ -32,6 +32,15 @@ ul.report {
 		&.age {
 		  float: left;
 		}
+		&.name {
+		  background: {
+			image: url('icons/tree.png');
+			repeat: repeat-y;
+		  }
+		}
+		&:last_child {
+		  background-position: 3px 0px;
+		}
 	  }
 	}
 	
