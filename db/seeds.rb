@@ -7,7 +7,7 @@
  {:category => 'disaster',:name =>'famine'  ,:description => 'had a famine',:effect => '{|settlement, virulence| settlement.beings.each{|b| b.die! if rand < virulence and b.alive? }}'},
  {:category => 'disaster',:name =>'epidemic'  ,:description => 'had an epidemic',:effect => '{|settlement, virulence| settlement.beings.each{|b| b.die! if rand < virulence and b.alive? }}'},
  {:category => 'disaster',:name =>'flood'  ,:description => 'had a flood',:effect => '{|settlement, virulence| settlement.beings.each{|b| b.die! if rand < virulence and b.alive? }}'}
- 
- 
 ].each { |e| Event.create(e) }
+
+
 

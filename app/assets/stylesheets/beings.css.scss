@@ -21,3 +21,11 @@ ul.beings {
 .male {
   @include icon-image('icons/male', 22px);
 }
+
+
+.alive {
+}
+
+.dead {
+  color: white;
+}

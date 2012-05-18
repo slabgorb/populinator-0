@@ -9,12 +9,20 @@ class Person < Being
   scope :other_gender, ->(sex) { where(:gender.ne => sex)}
   field :surname, :type => String
   field :given_name, :type => String
-  
+
   def self.names
     @@names
   end
 
-  
+  def self.marriage_strategy (m,f) 
+    (m.age / 2 + 7) < f.age and 
+      (f.age / 2 + 7) < m.age and 
+      not m.married? and 
+      not f.married? and 
+      f.age >> @@coming_of_age and
+      m.age >> @@coming_of_age
+  end
+
   def marry(spouse)
     spouses << spouse
     spouse.spouses << spouse

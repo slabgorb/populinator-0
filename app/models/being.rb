@@ -18,6 +18,11 @@ class Being
     "#{name}, aged #{age}"
   end
   
+  def experienced(event)
+    
+  end
+
+  
   def genotype 
     chromosomes
   end

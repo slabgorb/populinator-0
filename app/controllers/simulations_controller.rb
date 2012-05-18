@@ -41,18 +41,20 @@ class SimulationsController < ApplicationController
         @output += "#{@settlement.name} #{event.description}"
         event.happened_to(@settlement, rand)
       end
-    #   @year += 1
-    #   @settlement.beings.each { |b| b.age += 1 }
-    #   @settlement.beings.each do |person|
-    #     if rand < 0.10 and person.age > 16 and not person.married?
-    #       person.marry(person.find_spouse) 
-    #       @output += "#{person} was married to #{person.spouse}"
-    #       @output += "#{person} reproduced"
-    #       # person.reproduce(@settlement.beings.select{|s| s.gender != person.gender }.shuffle.first) if rand < 0.01
-    #     end
-
-    #     @output += "Current population: #{@settlement.population}<br/>"
-    #   end
+      @year += 1
+      # @settlement.beings.each { |b| b.age += 1 }
+      # @settlement.beings.each do |person|
+      #   if rand < 0.10 and person.age > 16 and not person.married?
+      #     person.marry(person.find_spouse) 
+      #     @output += "#{person} was married to #{person.spouse}"
+      #     @output += "#{person} reproduced"
+      #     # person.reproduce(@settlement.beings.select{|s| s.gender != person.gender }.shuffle.first) if rand < 0.01
+      #   end
+      #   # old age check
+      #   person.die! if person.age > (@old_age * (rand + 0.20))
+      #   @output += "Current population: #{@settlement.population}<br/>"
+      #   person.save
+      # end
       @year += 1
     end
     render :json => { settlement: @settlement.as_json, history: @output}

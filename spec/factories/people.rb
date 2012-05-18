@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :person do
-    name "Adam"
-    gender "male"
-    age 1
+    name Person.random_name
+    gender Person.random_gender
+    age Person.random_age
   end
 end

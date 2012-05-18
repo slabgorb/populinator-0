@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :ruler do
-    title "MyString"
+    title "King"
+    surname "Plantagenet"
+    given_name "Richard"
   end
 end
