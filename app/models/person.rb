@@ -3,10 +3,10 @@ class Person < Being
   @@names = YAML::load(File.read(File.join(Rails.root, 'words', 'names.yml')))
   @@coming_of_age = 18
   @@old_age = 80
-  before_create :random_gender, :random_name, :random_age
   has_and_belongs_to_many :spouses, :class_name => 'Person'
   scope :neighbors, ->(person) { where(:settlement => person.settlement) }
   scope :other_gender, ->(sex) { where(:gender.ne => sex)}
+
   field :surname, :type => String
   field :given_name, :type => String
 
@@ -44,14 +44,14 @@ class Person < Being
   def name 
     [given_name, surname].join(' ')
   end
-
+  
   def neighbors 
     settlement.beings.select{ |f| f != self }
   end
 
   def random_gender 
     unless self.gender.present?
-      self.gender = ['male', 'female'].shuffle.first
+      self.gender = Person.random_gender
     end
     true
   end
@@ -82,7 +82,7 @@ class Person < Being
       self.surname =  @@names['surname'].shuffle.first
       self.write_attribute(:name, name)
     end
-    true
+    save
   end
 
 end

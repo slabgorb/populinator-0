@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :person do
-    name Person.random_name
-    gender Person.random_gender
-    age Person.random_age
+    sequence(:name) { |n| Person.random_name }
+    sequence(:gender){ |n| Person.random_gender }
+    sequence(:age){ |n|  Person.random_age }
   end
 end

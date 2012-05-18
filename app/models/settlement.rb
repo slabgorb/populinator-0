@@ -10,17 +10,15 @@ class Settlement
   accepts_nested_attributes_for :rulers
   
   def population
-    beings.select{ |c| c.alive? }.length
-  end
+    beings.select{ |c| c.alive? }.length + rulers.select{ |c| c.alive? }.length
+   end
 
-  def as_json(options = { })
-    { :name => name, 
-      :established => established, 
-      :population => population,
-      :ruler => rulers.first,   
-  
-
-      :residents => beings.sort{ |a,b| a.surname <=> b.surname } }
+   def as_json(options = { })
+     { :name => name, 
+       :established => established, 
+       :population => population,
+       :ruler => rulers.first,   
+       :residents => beings.sort{ |a,b| a.surname <=> b.surname } }
   end
 
   
@@ -32,13 +30,12 @@ class Settlement
     [[top, meat, bottom].join.capitalize, (rand * 1000).floor]
   end
   
-  def seed_original_families
+  def seed_original_families(marriage = Event.where(:name => 'marriage').first)
     beings.collect{ |b| b.surname }.uniq.each do |name|
       family_members = beings.select{ |s| s.surname == name }
       # try to make married couples
       males = family_members.select{ |s| s.gender == 'male'}
       females = family_members.select{ |s| s.gender == 'female'}
-      marriage = Event.where(:name => 'marriage').first
       males.each do |m| 
         females.each do |f|
           if Person.marriage_strategy(m, f) 

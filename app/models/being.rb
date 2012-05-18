@@ -6,25 +6,38 @@ class Being
   has_many :beings
   has_many :events
   has_many :chromosomes
-  
   belongs_to :being
   belongs_to :settlement
   field :name, :type => String
-  field :gender, :type => String
-  field :age, :type => Fixnum
+  field :gender, :type => String, :default => nil
+  field :age, :type => Fixnum, :default => 0
   field :alive, :type => Boolean, :default => true
-  
+  scope :living, -> { where(:alive => true) }
+  scope :adult, -> { where(:age.gt => @@coming_of_age) }
   def to_s
     "#{name}, aged #{age}"
   end
   
-  def experienced(event)
-    
+  def genotype 
+    chromosomes
+  end
+  
+  def as_json(options = { })
+    { :name => name, 
+    :age => age,
+    :alive => alive,
+    :gender => gender,
+      :children => beings}
   end
 
   
-  def genotype 
-    chromosomes
+  def random_name
+    unless self.name.present?
+      self.given_name = %w|green red yellow black|.shuffle.first.capitalize
+      self.surname = %w|dra cula franken stein were wolf shark jackal bear blob spider snake goo|.shuffle[0..((rand * 2).floor + 1)].join
+      self.write_attribute(:name, name)
+    end
+    true
   end
   
   def alive?

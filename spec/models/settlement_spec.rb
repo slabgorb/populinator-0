@@ -2,18 +2,15 @@ require 'spec_helper'
 
 describe Settlement do
   
-  before :each do 
+  before :all do 
+    srand(0)
     @marriage = FactoryGirl.create(:marriage)
-
-    @settlement = Settlement.new(:name => 'New York')
-    50.times do 
-      @settlement.beings << Person.create(:age => Person.random_age)
-    end
-    @settlement.rulers << Ruler.new(:surname => 'Plantagenet', :title => 'King')
+    p @marriage
+    @settlement = FactoryGirl.create(:settlement)
   end
   
   it 'counts the population' do
-    @settlement.population.should be(50)
+    @settlement.population.should be(101)
   end
 
   it 'shows the ruler' do
@@ -21,8 +18,8 @@ describe Settlement do
   end
 
   it 'seeds original families with siblings' do
-    @settlement.seed_original_families
+    @settlement.seed_original_families(@marriage)
+    puts @settlement.beings.sort.as_json
     @settlement.beings.select{ |s| s.married? }.empty?.should be_false
   end
-
 end

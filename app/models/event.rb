@@ -7,6 +7,7 @@ class Event
   belongs_to :settlement
   belongs_to :being
   scope :disasters, where(category: 'disaster')
+  scope :personal, where(category: 'personal')
   def affect(*args) 
     proc = eval("Proc.new #{self.effect}")
     proc.call(*args)
