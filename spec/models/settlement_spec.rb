@@ -15,9 +15,18 @@ describe Settlement do
   it 'shows the ruler' do
     @settlement.rulers.first.surname.should == 'Plantagenet'
   end
+  
+  context 'seeding' do
+    before :all do 
+      @settlement.seed_original_families(@marriage)
+    end
 
-  it 'seeds original families with siblings' do
-    @settlement.seed_original_families(@marriage)
-    @settlement.beings.select{ |s| s.married? }.empty?.should be_false
+    it 'seeds original families with married couples' do
+      @settlement.beings.select{ |s| s.married? }.empty?.should be_false
+      end
+    
+    it 'puts children in families' do 
+      @settlement.beings.select{ |s| s.children.present? }.empty?.should be_false
+    end
   end
 end

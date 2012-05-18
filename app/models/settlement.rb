@@ -43,6 +43,12 @@ class Settlement
           end
         end
       end
+      # try to put the minors with families 
+      minors = family_members.select{ |s| s.age < s.coming_of_age }
+      minors.each do |child|
+        females.select{ |s| s.married? }.shuffle.first.beings << child
+      end
+      
     end
   end
 end
