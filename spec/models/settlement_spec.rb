@@ -5,7 +5,6 @@ describe Settlement do
   before :all do 
     srand(0)
     @marriage = FactoryGirl.create(:marriage)
-    p @marriage
     @settlement = FactoryGirl.create(:settlement)
   end
   
@@ -19,7 +18,6 @@ describe Settlement do
 
   it 'seeds original families with siblings' do
     @settlement.seed_original_families(@marriage)
-    puts @settlement.beings.sort.as_json
     @settlement.beings.select{ |s| s.married? }.empty?.should be_false
   end
 end
