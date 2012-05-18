@@ -18,16 +18,22 @@ class Being
     "#{name}, aged #{age}"
   end
   
+  @@coming_of_age = 1
+  
   def genotype 
     chromosomes
   end
   
   def as_json(options = { })
-    { :name => name, 
-    :age => age,
-    :alive => alive,
-    :gender => gender,
-      :children => beings}
+    super(only:{  :name => name, 
+            age: age,
+            alive: alive,
+            gender: gender,
+            children: beings})
+  end
+
+  def coming_of_age
+    @@coming_of_age
   end
 
   
@@ -151,7 +157,7 @@ class Being
   def reproduce(other = nil, child_name = nil, child_gender = nil) 
     raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
     raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
-    child = self.class.new(:name => child_name || 'Child of#{self.name}', :gender => child_gender || Being.random_gender, :age => 0)
+    child = self.class.new(name: child_name || 'Child of#{self.name}', gender: child_gender || Being.random_gender, age: 0)
     self.beings << child
     other.beings << child if other
     self.settlement.beings << child if self.settlement
