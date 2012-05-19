@@ -22,4 +22,5 @@ $(document).ready ->
   # set up the buttons
   # $( "input:submit, .button").button()
   # set up any tabs
-  $('#tabs').tabs();
+  $('.tabs').tabs();
+  $('.accordion').accordion();

@@ -25,6 +25,8 @@ class Person < Being
   def marry(spouse)
     spouses << spouse
     spouse.spouses << spouse
+    save
+    spouse.save
   end
   
   def spouse 

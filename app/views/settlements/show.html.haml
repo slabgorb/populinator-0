@@ -5,7 +5,7 @@
 %p#notice= notice
 
 %h3= @settlement.name
-#tabs
+.tabs
   %ul
     %li
       %a{:href => '#tab-summary'} Summary
@@ -14,16 +14,19 @@
     %li
       %a{:href => '#tab-population'} Population
   #tab-summary
-    %h5
+    %h3
       Population:
       = @settlement.population
+    %h3 
+      Families:
+      = @settlement.family_names.length 
+    .clear
   #tab-rulers
     %ul.beings
       = render :partial => '/beings/being', :collection => @settlement.rulers
     .clear
   #tab-population
-    %ul.beings
-      = render :partial => '/beings/being', :collection => @settlement.beings.sort{|a, b| a.surname <=> b.surname}
+    = render :partial => 'families', :collection => @settlement.families.to_a
     .clear
 
 = link_to 'Edit', edit_settlement_path(@settlement), :class => 'button'

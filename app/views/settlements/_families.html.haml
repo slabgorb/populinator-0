@@ -1,0 +1,5 @@
+.accordion
+  %h2
+    %a{href:'#'}= escape_once "#{families.first} with #{pluralize(families.last.count, 'member')}"
+  %div  
+    = render partial:'family', locals:{family: families.last}

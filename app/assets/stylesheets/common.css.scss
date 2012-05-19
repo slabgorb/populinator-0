@@ -10,7 +10,7 @@ $base-color:		$color01;
 $secondary-fill:	$color04;		
 $primary-fill:		$color05;		
 $border-color:		$color01;		
-$highlight-color:	$color01;		
+$highlight-color:	$color04;		
 $glow: #888;
 
 $disabled: $color04;
@@ -196,6 +196,52 @@ body {
 
   #main-content {
 	margin: 20px;
+
+
+	.ui-tabs, .ui-accordion {
+	  font-family: KingthingsCalligraphicaLight;
+	  background: none;
+	  border: none;
+	  color: $color01;
+	  h2 a {
+		font-size: 1.5em;
+	  }
+
+
+	  .ui-widget-header, .ui-accordion-header  {
+		background: none;
+		border: none;
+	  }
+	  .ui-widget-content {
+		color: $font-color;
+		background: none;
+		border: none;
+	  }
+
+	  .ui-tabs-selected {
+		background: none;
+		border: none;
+		a { 
+		  @include engraved();
+		  color: $color05; 
+		}
+	  }
+	  .ui-state-active, .ui-state-hover, .ui-state-default  {
+		border: none;
+	  }
+	  .ui-state-active {
+		@include icon-image('icons/selector_12', 12px);
+		background-position: left;
+	  }
+
+	  .ui-state-hover {
+		a { 
+		  color: white;
+		  @include engraved();
+		}
+		border: none;
+	  }
+	}
   }
 
   #footer {

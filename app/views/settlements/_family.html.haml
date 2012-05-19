@@ -1,0 +1,4 @@
+%ul.family
+  = family.each do |family_member|
+    = render partial:'family_members', locals:{ :family_member => family_member }
+

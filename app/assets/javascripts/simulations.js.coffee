@@ -1,43 +1,61 @@
 class Simulation
   constructor: ->
-    fade_time = 500
+    @animationDuration = 500
     self = this
+    @history = $('.report #history')
+    @population = $('.report #population')
+    @ruler = $('.report #ruler')
     $('.selectbox-wrapper').on 'click', =>
       self.sizeSettlement()
-    $('a#run-simulation').click ->
-      $('#pop-form fieldset').fadeOut fade_time, ->
-        $('.loader').fadeIn(fade_time)
-      $history = $('.report #history')
-      $population = $('.report #population')
-      $ruler = $('.report #ruler')
+
+    # set up the reset button
+    $('a#simulation-reset').on 'click', =>
+      if $('#pop-form').length > 0
+        $('ul.report').fadeOut @animationDuration, ->
+          $('#pop-form fieldset').fadeIn @animationDuration
+        false
+      else
+        true
+
+    $('a#run-simulation').click =>
+      $('#pop-form fieldset').fadeOut @animationDuration, ->
+        $('.loader').fadeIn(@animationDuration)
       $.post '/run',
         name: $('#settlement-name-field').val(),
         population: $('#settlement-population-field').val()
         dataType: 'json'
-        (data) ->
-          settlement = data.settlement
-          $('#settlement-id').text(settlement.name)
-          $('.loader.tower').fadeOut fade_time, ->
-            $('ul.report').fadeIn fade_time
-          $.each settlement.residents, ->
-            age =  if this.alive? then ('aged ' + this.age) else 'dead'
-            $population.append """
-              <ul >
-              <li class='name'>#{this.name}</li>
-              <li class='gender #{this.gender}'>&nbsp;</li>
-              <li class='age'>(#{age})</li>
-              </ul>
-              """
-          $history.html(data.history)
-          console.log settlement
-          $ruler.append "
-            <ul>
-            <li class='name'>#{settlement.ruler.name}</li>
-            <li class='gender #{settlement.ruler.gender}'>&nbsp;</li>
-            <li class='age'>(#{settlement.ruler.age})</li>
-            </ul>
-            "
+        (settlement) => self.loadSettlement(settlement)
       return false
+
+  loadSettlement: (settlement) ->
+    console.log settlement
+    $('#settlement-id').text(settlement.name)
+    $('.loader.tower').fadeOut @animationDuration, =>
+      $('ul.report').fadeIn @animationDuration
+    $.each settlement.families, (surname, members) =>
+      markup = "
+        <div class='clear'></div>
+        <h3>#{surname}</h3>
+        <ul class='family'>
+      "
+      $.each members, (index, member) =>
+        markup += this.residentTemplate(member)
+      markup += "</ul>"
+      @population.append(markup)
+    @history.html(settlement.history)
+    @ruler.append this.residentTemplate(settlement.ruler)
+
+  residentTemplate: (resident) ->
+    age =  if resident.alive? then ('aged ' + resident.age) else 'dead'
+    """
+      <ul>
+        <li class='name'>#{resident.name}</li>
+
+        <li class='gender #{resident.gender}'>&nbsp;</li>
+        <li class='age'>(#{age})</li>
+      </ul>
+
+    """
 
 
   # sets the value of one element to that of the other

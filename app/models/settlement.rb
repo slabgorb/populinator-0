@@ -14,22 +14,26 @@ class Settlement
   end
 
   def as_json(options = { })
-    { :name => name, 
-      :established => established, 
-      :population => population,
-      :ruler => rulers.first,   
-      :families => self.families.each { |f| Hash.new(f, self.family(f)) },
-      :residents => beings.sort{ |a,b| a.surname <=> b.surname }
+    { name: name, 
+      established: established, 
+      population: population,
+      ruler: rulers.first,   
+      families: families,
+      residents: beings,
+      history: history
     }
   end
   
-  def populate(population)
-    population.to_i.times do
+  def populate(pop)
+    pop.to_i.times do
       beings << Person.create.randomize!
     end
     save
   end
 
+  def history
+    events
+  end
   
   def self.random_name
     meat = Person.names['surname'].shuffle.first
@@ -43,15 +47,24 @@ class Settlement
   def family(surname)
     beings.select{ |b| b.surname == surname }
   end
-
+  
   def families
-    beings.collect{ |b| b.surname }.uniq
+    Hash[*family_names.sort.collect{ |s| [s, self.family(s)] }.flatten(1)]
+  end
+
+  def family_names
+    beings.collect{ |b| b.surname }.uniq.select{ |b| b }
+  end
+  
+  def family_populations
+    Hash[*family_names.inject([]){|n,f| n << [f, family(f).count] }.flatten]
   end
 
   
   def seed_original_families(marriage = Event.where(:name => 'marriage').first)
-    self.families.each do |family_name|
-      family_members = family family_name
+    self.families.each do |family|
+      family_name = family.first
+      family_members = family.last
       # try to make married couples
       males = family_members.select{ |s| s.gender == 'male'}
       females = family_members.select{ |s| s.gender == 'female'}
@@ -59,6 +72,7 @@ class Settlement
         females.each do |f|
           if Person.marriage_strategy(m, f) 
             marriage.happened_to m,f
+            logger.debug "#{m} married #{f}"
           end
         end
       end
@@ -66,13 +80,14 @@ class Settlement
       males.each do |m|
         spouse = m.find_spouse
         marriage.happened_to m, spouse if spouse
+        logger.debug "#{m} married #{spouse}"
       end
-
       # try to put the minors with families 
       minors = family_members.select{ |s| s.age < s.coming_of_age }
       minors.each do |child|
         females.select{ |s| s.married? }.try(:shuffle).try(:first).try(:beings).try(:<<, child)
       end
     end
+    true
   end
 end

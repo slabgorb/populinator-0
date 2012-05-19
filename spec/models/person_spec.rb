@@ -18,4 +18,9 @@ describe Person do
     @adam.married?.should be_false
   end
   
+  it 'can look at a king' do
+    ruler = FactoryGirl.create(:ruler)
+    lambda { @adam.surname <=> ruler.surname }.should_not raise_error
+  end
+   
 end
