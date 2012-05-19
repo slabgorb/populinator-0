@@ -55,6 +55,6 @@ class SimulationsController < ApplicationController
       # end
       @year += 1
     end
-    render :json => { settlement: @settlement.as_json, history: @output}
+    render :json => @settlement
   end
 end

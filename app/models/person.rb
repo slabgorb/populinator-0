@@ -37,7 +37,7 @@ class Person < Being
   end
   
   def find_spouse 
-    neighbors.select{ |n| n.gender != gender and not n.married? and n.age > 16}.shuffle.first
+    neighbors.select{ |n| Person.marriage_strategy(n, self) }.try(:shuffle).try(:first)
   end
   
   def name 
@@ -61,10 +61,13 @@ class Person < Being
   end
   
   def random_age!
-    age = Person.random_age
+    self.age = Person.random_age
   end
 
-  
+  def random_name!
+    self.given_name, self.surname = Person.random_name(gender)
+  end
+   
   def self.random_gender
     ['male', 'female'].shuffle.first
   end
@@ -72,19 +75,17 @@ class Person < Being
   def self.random_age
     (rand * @@old_age).floor
   end
-
-
   
   def self.random_name(sex = self.random_gender)
     [@@names[sex].shuffle.first, @@names['surname'].shuffle.first]
   end
 
-
   def randomize!
-    gender = self.random_gender
-    name = self.random_name(gender)
-    age = self.random_age
+    self.random_gender!
+    self.random_name!
+    self.random_age!
     save!
+    self
   end
 
 end

@@ -19,7 +19,7 @@ ul.report {
 	  margin:0px;
 	  padding: 0px;
 	  clear:left;
-	  font-size: 0.9em;
+	  font-size: 1.1em;
 	  li {
 		line-height: 20px;
 		margin: 0px 5px;
@@ -31,12 +31,6 @@ ul.report {
 		}
 		&.age {
 		  float: left;
-		}
-		&.name {
-		  background: {
-			image: url('icons/tree.png');
-			repeat: repeat-y;
-		  }
 		}
 		&:last_child {
 		  background-position: 3px 0px;

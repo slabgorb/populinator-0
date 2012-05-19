@@ -18,12 +18,14 @@ class Settlement
       :established => established, 
       :population => population,
       :ruler => rulers.first,   
-      :residents => beings.sort{ |a,b| a.surname <=> b.surname } }
+      :families => self.families.each { |f| Hash.new(f, self.family(f)) },
+      :residents => beings.sort{ |a,b| a.surname <=> b.surname }
+    }
   end
   
   def populate(population)
     population.to_i.times do
-      beings << Person.create(:age => Person.random_age, :gender => Person.random_gender).randomize!
+      beings << Person.create.randomize!
     end
     save
   end
@@ -38,15 +40,18 @@ class Settlement
   end
   
   
+  def family(surname)
+    beings.select{ |b| b.surname == surname }
+  end
+
   def families
-    beings.collect{ |b| b.surname }.collect{ |s| Hash.new(s, beings.select{ |b| b.surname = s })}
-    
+    beings.collect{ |b| b.surname }.uniq
   end
 
   
   def seed_original_families(marriage = Event.where(:name => 'marriage').first)
-    beings.collect{ |b| b.surname }.uniq.each do |name|
-      family_members = beings.select{ |s| s.surname == name }
+    self.families.each do |family_name|
+      family_members = family family_name
       # try to make married couples
       males = family_members.select{ |s| s.gender == 'male'}
       females = family_members.select{ |s| s.gender == 'female'}
@@ -57,10 +62,16 @@ class Settlement
           end
         end
       end
+      # now, we run through the rest of the town lookng for eligible partners
+      males.each do |m|
+        spouse = m.find_spouse
+        marriage.happened_to m, spouse if spouse
+      end
+
       # try to put the minors with families 
       minors = family_members.select{ |s| s.age < s.coming_of_age }
       minors.each do |child|
-        females.select{ |s| s.married? }.shuffle.first.beings << child
+        females.select{ |s| s.married? }.try(:shuffle).try(:first).try(:beings).try(:<<, child)
       end
     end
   end
