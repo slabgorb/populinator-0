@@ -9,8 +9,12 @@ class Event
   scope :disasters, where(category: 'disaster')
   scope :personal, where(category: 'personal')
   def affect(*args) 
-    proc = eval("Proc.new #{self.effect}")
-    proc.call(*args)
+    eval("Proc.new #{self.effect}").call(*args)
+    args.each do  |o| 
+      o.history << self if o.respond_to? :history 
+      o.save if o.respond_to? :save
+    end
+    
   end
 
   alias :happened_to :affect

@@ -61,7 +61,8 @@ class Settlement
   end
 
   
-  def seed_original_families(marriage = Event.where(:name => 'marriage').first)
+  def seed_original_families()
+    marriage = Event.where(:name => 'marriage').first || Event.new(effect:'{|a,b| a.marry b; b.surname = a.surname }', name:'marriage', description:'marriage')
     self.families.each do |family|
       family_name = family.first
       family_members = family.last
@@ -72,7 +73,7 @@ class Settlement
         females.each do |f|
           if Person.marriage_strategy(m, f) 
             marriage.happened_to m,f
-            logger.debug "#{m} married #{f}"
+            #puts "#{m} married #{f}"
           end
         end
       end
@@ -80,7 +81,7 @@ class Settlement
       males.each do |m|
         spouse = m.find_spouse
         marriage.happened_to m, spouse if spouse
-        logger.debug "#{m} married #{spouse}"
+        #puts "#{m} married #{spouse}" if spouse
       end
       # try to put the minors with families 
       minors = family_members.select{ |s| s.age < s.coming_of_age }

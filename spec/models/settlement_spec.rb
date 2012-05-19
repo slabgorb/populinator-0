@@ -4,7 +4,6 @@ describe Settlement do
   
   before :all do 
     srand(0)
-    @marriage = FactoryGirl.create(:marriage)
     @settlement = FactoryGirl.create(:settlement)
   end
   
@@ -12,13 +11,13 @@ describe Settlement do
     @settlement.population.should be(101)
   end
 
-  it 'shows the ruler' do
+  it 'shows the ruler' do     
     @settlement.rulers.first.surname.should == 'Plantagenet'
   end
   
   context 'seeding' do
     before :all do 
-      @settlement.seed_original_families(@marriage)
+      @settlement.seed_original_families
     end
 
     it 'seeds original families with married couples' do
