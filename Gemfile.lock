@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/johnbintz/guard-rails.git
+  revision: 4d7d44a07a6f59fd98a5120f129f48b9593e0fc4
+  specs:
+    guard-rails (0.1.0)
+      guard (>= 0.2.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -167,6 +174,7 @@ DEPENDENCIES
   factory_girl_rails
   growl
   guard-bundler
+  guard-rails!
   guard-rspec
   guard-spork
   haml

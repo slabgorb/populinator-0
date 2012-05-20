@@ -25,6 +25,7 @@ group :development, :test do
   gem 'spork-rails'
   gem 'guard-spork'		
   gem 'guard-rspec'
+  gem 'guard-rails', :git => 'https://github.com/johnbintz/guard-rails.git'
   gem 'guard-bundler'
 end
 
