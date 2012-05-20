@@ -134,6 +134,17 @@ $icon-padding: 16px;
     font-style: normal;
 
 }
+@font-face {
+    font-family: 'KingthingsItalique';
+    src: url('fonts/Kingthings_Italique-webfont.eot');
+    src: url('fonts/Kingthings_Italique-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Kingthings_Italique-webfont.woff') format('woff'),
+         url('fonts/Kingthings_Italique-webfont.ttf') format('truetype'),
+         url('fonts/Kingthings_Italique-webfont.svg#KingthingsCalligCalligraphica') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 
 
@@ -266,7 +277,7 @@ body {
 	margin: 0px 0px;
 	font: {
 	  weight: normal;
-	  family: KingthingsCalligraphica2Rg;
+	  family: KingthingsItalique;
 	}
 	@include outline-text(1, $color04, $color01);
   }
