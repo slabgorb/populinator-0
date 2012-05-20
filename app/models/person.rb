@@ -1,6 +1,6 @@
 require 'yaml'
 class Person < Being
-  @@names = YAML::load(File.read(File.join(Rails.root, 'words', 'names.yml')))
+  @@names = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'names.yml')))
   @@coming_of_age = 18
   @@old_age = 80
   has_and_belongs_to_many :spouses, :class_name => 'Person'
@@ -8,6 +8,7 @@ class Person < Being
   scope :other_gender, ->(sex) { where(:gender.ne => sex)}
   field :surname, :type => String
   field :given_name, :type => String
+
 
   def self.names
     @@names

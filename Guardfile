@@ -13,7 +13,7 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
 end
 
 guard 'rspec', version:2, cli:"--drb -c -fd", rspec_env:{ 'RAILS_ENV' => 'test'} do
-  watch(%r{^spec/.+_spec\.rb$})
+  watch(%r{^spec/.+5000_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
   watch(%r{^spec/.+_spec\.rb$})
@@ -30,7 +30,7 @@ guard 'bundler' do
   watch('Gemfile')
 end
 
-guard 'rails', :port => 5000 do
+guard 'rails', :port => 3001, :server => :thin do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
   watch('tmp/restart.txt')

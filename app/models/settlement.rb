@@ -1,5 +1,5 @@
 class Settlement
-  @@names = YAML::load(File.read(File.join(Rails.root, 'words', 'settlement_names.yml')))
+  @@names = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'settlement_names.yml')))
   include Mongoid::Document
   field :name, :type => String
   field :established, :type => Integer
