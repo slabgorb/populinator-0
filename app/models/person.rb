@@ -19,8 +19,10 @@ class Person < Being
       (f.age / 2 + 7) < m.age and 
       not m.married? and 
       not f.married? and 
-      f.age >> @@coming_of_age and
-      m.age >> @@coming_of_age
+      not f.gender == m.gender and
+      f.age > @@coming_of_age and
+      m.age > @@coming_of_age
+    
   end
 
   def marry(spouse)
@@ -31,7 +33,7 @@ class Person < Being
   end
   
   def spouse 
-    spouses.first
+    spouses.select{ |s| s.alive? }.first
   end
 
   
@@ -41,6 +43,10 @@ class Person < Being
   
   def find_spouse 
     neighbors.select{ |n| Person.marriage_strategy(n, self) }.try(:shuffle).try(:first)
+  end
+  
+  def adopt(child)
+    beings << child
   end
   
   def name 

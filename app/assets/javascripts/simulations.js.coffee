@@ -28,7 +28,6 @@ class Simulation
       return false
 
   loadSettlement: (settlement) ->
-    console.log settlement
     $('#settlement-id').text(settlement.name)
     $('.loader.tower').fadeOut @animationDuration, =>
       $('ul.report').fadeIn @animationDuration

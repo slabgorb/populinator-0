@@ -1,26 +1,28 @@
-%h1 Listing beings
-
-%table
-  %tr
-    %th Name
-    %th Gender
-    %th Age
-    %th Type
-    %th Settlement
-    %th
-    %th
-    %th
-
-  - @beings.try(:each) do |being|
+- if @beings.empty? 
+  %h3 No Beings
+  
+-else
+  %table
     %tr
-      %td= being.name
-      %td= being.gender
-      %td= being.age
-      %td= being._type
-      %td= link_to_if( being.settlement.present?, being.settlement.try(:name), "/settlements/#{being.settlement.try(:id)}")
-      %td= link_to 'Show', being
-      %td= link_to 'Edit', edit_being_path(being)
-      %td= link_to 'Destroy', being, :confirm => 'Are you sure?', :method => :delete
+      %th Name
+      %th Gender
+      %th Age
+      %th Type
+      %th Settlement
+      %th
+      %th
+      %th
+
+    - @beings.try(:each) do |being|
+      %tr
+        %td= being.name
+        %td= being.gender
+        %td= being.age
+        %td= being._type
+        %td= link_to_if( being.settlement.present?, being.settlement.try(:name), "/settlements/#{being.settlement.try(:id)}")
+        %td= link_to 'Show', being
+        %td= link_to 'Edit', edit_being_path(being)
+        %td= link_to 'Destroy', being, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

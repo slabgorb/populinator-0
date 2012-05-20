@@ -145,6 +145,17 @@ $icon-padding: 16px;
     font-style: normal;
 
 }
+@font-face {
+    font-family: 'KingthingsExeter';
+    src: url('fonts/Kingthings_Exeter-webfont.eot');
+    src: url('fonts/Kingthings_Exeter-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Kingthings_Exeter-webfont.woff') format('woff'),
+         url('fonts/Kingthings_Exeter-webfont.ttf') format('truetype'),
+         url('fonts/Kingthings_Exeter-webfont.svg#KingthingsCalligCalligraphica') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 
 
@@ -158,7 +169,7 @@ body {
   
   @include paper(0, 0);
   font: {
-	font-family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+	family: KingthingsExeter, 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
 
   }
   #border {
@@ -174,7 +185,7 @@ body {
   table {
 	th {
 	  font: {
-		family: KingthingsCalligraphicaItalic;
+		family: KingthingsExeter;
 		weight: normal;
 		size: 1.1em;
 	  }
@@ -183,7 +194,7 @@ body {
 
   #navigation {
 	font: {
-	  family: KingthingsCalligraphicaLight;
+	  family: KingthingsExeter;
 	  size: 1.4em;
 	}
 	
@@ -277,13 +288,20 @@ body {
 	margin: 0px 0px;
 	font: {
 	  weight: normal;
-	  family: KingthingsItalique;
 	}
 	@include outline-text(1, $color04, $color01);
   }
   
   h1 { 
-	font-size: 3em;
+	font-size: 5em;
+	font: {
+	  weight: normal;
+	  family: KingthingsItalique;
+	}
+	a { 
+	  color: #fff; 
+	  @include outline-text(1, $color04, $color01);
+	}
   }
 
   h2 { 
@@ -350,11 +368,17 @@ body {
 	  margin:0px;
 	  .selectbox-wrapper {
 		ul {
-		  margin-left: --35px;;
+		  margin-left: -38px;
+		  margin-top: -3px;
 		  li {
 			line-height: 20px;
 			font-size: 0.9em;
-			
+			border: 1px solid $color01;
+			padding: 3px 10px;
+			&:hover {
+			  color: $color05;
+			  @include engraved();
+			}
 		  }
 		}
 		
@@ -369,14 +393,14 @@ body {
 		label {
 		  display: block;
 		  color: $color05;
-		  font-size: 0.8em;
-		  padding: 3px 0px 3px 10px;
-		  font-family: georgia;
+		  font-size: 1em;
+		  padding: 3px 0px 0px 10px;
+		  font-family: KingthingsExeter;
 		  margin-left: -10px;
 		}
 		input, select {
 		  font-size: 1.3em;
-		  font-family:  KingthingsCalligraphicaLight;
+		  font-family:  KingthingsExeter;
 		  padding: 0.3em;
 		  border: 1px solid $color02;
 		  color: $color01;
@@ -404,12 +428,20 @@ body {
   left: 0px;
   width: 100%;
   height: 100%;
+  background: {
+	repeat: no-repeat;
+	position: right top;
+  }
   &.griffin_sejeant {
 	background: {
-	  repeat: no-repeat;
-	  position: right top;
 	  image: url('watermarks/griffin_sejeant.png');
 	}
+  }
+  &.fox_sejeant {
+	background-image: url('watermarks/fox_sejeant.png');
+  }
+  &.grenade {
+	background-image: url('watermarks/grenade.png');
   }
 
 }

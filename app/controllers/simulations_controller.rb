@@ -28,31 +28,33 @@ class SimulationsController < ApplicationController
     @settlement.established = 0
     @settlement.populate params[:population]
     @settlement.rulers << Ruler.create(:settlement => @settlement, :age => Person.random_age)
-    @settlement.save
-    @output = "Current population: #{@settlement.population}<br/>"
+    @settlement.seed_original_families
     @year = 1
     params[:years].to_i.times do
-      @output += "Year: #{@year}"
+      @settlement.history << Event.new(description:"Year #{@year} population: #{@settlement.population}", name:"Population in year #{@year}", category:'milestone')
       
       if rand < 0.10 then
         event = Event.disasters.shuffle.first
-        @output += "#{@settlement.name} #{event.description}"
         event.happened_to(@settlement, rand)
       end
-      @year += 1
-      # @settlement.beings.each { |b| b.age += 1 }
-      # @settlement.beings.each do |person|
+      @settlement.beings.each { |b| b.age += 1 }
+      @settlement.beings.each do |person|
       #   if rand < 0.10 and person.age > 16 and not person.married?
       #     person.marry(person.find_spouse) 
       #     @output += "#{person} was married to #{person.spouse}"
       #     @output += "#{person} reproduced"
-      #     # person.reproduce(@settlement.beings.select{|s| s.gender != person.gender }.shuffle.first) if rand < 0.01
+      #     # 
       #   end
       #   # old age check
       #   person.die! if person.age > (@old_age * (rand + 0.20))
       #   @output += "Current population: #{@settlement.population}<br/>"
       #   person.save
-      # end
+        begin
+          person.reproduce(person.spouse) if person.spouse.present? and rand < 0.10
+        rescue ReproductionException
+          logger.debug [person.gender, person.spouse.gender]
+        end
+      end
       @year += 1
     end
     render :json => @settlement

@@ -11,3 +11,13 @@ ul.family-summary {
 	margin-left: 0.5ex;
   }
 }
+
+#settlement {
+  ul.history {
+	margin: 0px;
+	padding: 0px;
+	li {
+	  list-style-type: none;
+	}
+  }
+}

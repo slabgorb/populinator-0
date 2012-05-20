@@ -15,11 +15,13 @@ ul.beings {
 
 
 .female {
-  @include icon-image('icons/female', 22px);
+  @include icon-image('icons/female', 25px);
+  background-position: left;
 }
 
 .male {
-  @include icon-image('icons/male', 22px);
+  @include icon-image('icons/male', 25px);
+  background-position: left;
 }
 
 

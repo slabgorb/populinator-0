@@ -73,7 +73,6 @@ class Settlement
         females.each do |f|
           if Person.marriage_strategy(m, f) 
             marriage.happened_to m,f
-            #puts "#{m} married #{f}"
           end
         end
       end
@@ -81,12 +80,18 @@ class Settlement
       males.each do |m|
         spouse = m.find_spouse
         marriage.happened_to m, spouse if spouse
-        #puts "#{m} married #{spouse}" if spouse
       end
       # try to put the minors with families 
       minors = family_members.select{ |s| s.age < s.coming_of_age }
-      minors.each do |child|
-        females.select{ |s| s.married? }.try(:shuffle).try(:first).try(:beings).try(:<<, child)
+      mothers = females.select{ |s| s.married? }
+      if mothers.present?
+        minors.each do |child|
+          begin
+            mothers.shuffle.first.adopt child
+          rescue Exception => e
+            logger.error e
+          end
+        end
       end
     end
     true

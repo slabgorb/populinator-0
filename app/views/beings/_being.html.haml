@@ -1,2 +1,3 @@
 %li.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'}" }
   = link_to being.name, being_path(being)
+  = being.age

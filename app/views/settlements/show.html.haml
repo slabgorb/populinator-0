@@ -3,31 +3,37 @@
   Settlement
   
 %p#notice= notice
-
-%h3= @settlement.name
-.tabs
-  %ul
-    %li
-      %a{:href => '#tab-summary'} Summary
-    %li
-      %a{:href => '#tab-rulers'} Rulers
-    %li
-      %a{:href => '#tab-population'} Population
-  #tab-summary
-    %h3
-      Population:
-      = @settlement.population
-    %h3 
-      Families:
-      = @settlement.family_names.length 
-    .clear
-  #tab-rulers
-    %ul.beings
-      = render :partial => '/beings/being', :collection => @settlement.rulers
-    .clear
-  #tab-population
-    = render :partial => 'families', :collection => @settlement.families.to_a
-    .clear
+.watermark.grenade
+#settlement
+  %h3= @settlement.name
+  .tabs
+    %ul
+      %li
+        %a{:href => '#tab-summary'} Summary
+      %li
+        %a{:href => '#tab-rulers'} Rulers
+      %li
+        %a{:href => '#tab-population'} Population
+    #tab-summary
+      %h4
+        Population:
+        = @settlement.population
+      %h4
+        History:
+      %ul.history
+        - @settlement.history.each do |h|
+          %li= h.to_s
+      %h4 
+        Families:
+        = @settlement.family_names.length 
+      .clear
+    #tab-rulers
+      %ul.beings
+        = render :partial => '/beings/being', :collection => @settlement.rulers
+      .clear
+    #tab-population
+      = render :partial => 'families', :collection => @settlement.families.to_a
+      .clear
 
 = link_to 'Edit', edit_settlement_path(@settlement), :class => 'button'
 \|
