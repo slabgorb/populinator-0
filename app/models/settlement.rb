@@ -60,37 +60,34 @@ class Settlement
     Hash[*family_names.inject([]){|n,f| n << [f, family(f).count] }.flatten]
   end
 
-  
-  def seed_original_families()
-    marriage = Event.where(:name => 'marriage').first || Event.new(effect:'{|a,b| a.marry b; b.surname = a.surname }', name:'marriage', description:'marriage')
-    self.families.each do |family|
-      family_name = family.first
-      family_members = family.last
-      # try to make married couples
-      males = family_members.select{ |s| s.gender == 'male'}
-      females = family_members.select{ |s| s.gender == 'female'}
-      males.each do |m| 
-        females.each do |f|
-          if Person.marriage_strategy(m, f) 
-            marriage.happened_to m,f
-          end
+  def marry_sets(males, females)
+    males.each do |m| 
+      females.each do |f|
+        if Person.marriage_strategy(m, f) 
+          marry_one(m,f)
         end
       end
-      # now, we run through the rest of the town lookng for eligible partners
-      males.each do |m|
-        spouse = m.find_spouse
-        marriage.happened_to m, spouse if spouse
-      end
-      # try to put the minors with families 
-      minors = family_members.select{ |s| s.age < s.coming_of_age }
-      mothers = females.select{ |s| s.married? }
-      if mothers.present?
-        minors.each do |child|
-          begin
-            mothers.shuffle.first.adopt child
-          rescue Exception => e
-            logger.error e
-          end
+    end    
+  end
+  
+  def marry_one(male, female)
+    marriage = Event.where(:name => 'marriage').first || Event.new(effect:'{|a,b| a.marry b; b.surname = a.surname }', name:'marriage', description:'marriage')
+    marriage.happened_to male, female
+  end
+
+  
+  def seed_original_families()
+    males = self.beings.select{ |s| s.gender == 'male'}
+    females = self.beings.select{ |s| s.gender == 'female'}  
+    self.marry_sets(males, females)
+    minors = self.beings.select{ |s| s.age < s.coming_of_age }
+    mothers = females.select{ |s| s.married? }
+    if mothers.present?
+      minors.each do |child|
+        begin
+          mothers.shuffle.first.adopt child
+        rescue Exception => e
+          logger.error e
         end
       end
     end
