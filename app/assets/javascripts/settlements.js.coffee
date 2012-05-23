@@ -9,10 +9,11 @@ debug = false
 Settlement = () ->
   @name = $('#settlement-name-field')
   @pop  = $('#settlement-population-field')
-  $('.randcheck.name').click =>
-    $.getJSON '/settlements/random-name', (name) =>
-      @name.val(name[0])
-      @pop.val(name[1])
+  $('.randcheck.name').click ->
+    $.get '/settlements/random-name',
+      {}
+      (data) -> $('#settlement-name-field').val(data)
+      'html'
 
   #make the selection box a pretty pretty princess
   $('select').selectbox()
