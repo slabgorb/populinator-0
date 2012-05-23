@@ -39,6 +39,9 @@ class Being
     events
   end
 
+  def genders
+    ['male', 'female', 'neuter']
+  end
 
   
   def marry(s)
