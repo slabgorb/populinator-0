@@ -28,8 +28,8 @@ class SimulationsController < ApplicationController
     @settlement.established = 0
     @settlement.populate params[:population]
     @settlement.rulers << Ruler.create(:settlement => @settlement, :age => Person.random_age)
-    @settlement.seed_original_families
-    @year = 1
+    # @settlement.seed_original_families
+    @year = 1  
     params[:years].to_i.times do
       @settlement.history << Event.new(description:"Year #{@year} population: #{@settlement.population}", name:"Population in year #{@year}", category:'milestone')
       

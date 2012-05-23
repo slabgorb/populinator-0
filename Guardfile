@@ -1,4 +1,4 @@
-guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
+guard 'spork', rspec_port: 8988, test_unit: false, :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch(%r{^config/environments/.+\.rb$})
@@ -12,7 +12,7 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch(%r{^spec/factories}) { :rspec }
 end
 
-guard 'rspec', version:2, cli:"--drb -c -fd", rspec_env:{ 'RAILS_ENV' => 'test'} do
+guard 'rspec', version:2, cli:"--drb -c -fd --drb-port 8988", rspec_env:{ 'RAILS_ENV' => 'test'} do
   watch(%r{^spec/.+5000_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }

@@ -14,6 +14,8 @@ class Being
   field :alive, :type => Boolean, :default => true
   scope :living, -> { where(:alive => true) }
   scope :adult, -> { where(:age.gt => @@coming_of_age) }
+  has_and_belongs_to_many :spouses, :class_name => 'Being'
+  
   def to_s
     "#{name}, aged #{age}"
   end
@@ -33,6 +35,36 @@ class Being
     @@coming_of_age
   end
 
+  def history
+    events
+  end
+
+
+  
+  def marry(s)
+    self.spouses.push(s) if s
+    s.spouses.push(self) if s.respond_to? :spouses
+  end
+  
+  def spouse 
+    self.spouses.select{ |s| s.alive? }.first
+  end
+
+  
+  def married?
+    not self.spouses.select{ |s| s.alive? }.empty?
+  end
+  
+  def find_spouse 
+    self.neighbors.select{ |n| Person.marriage_strategy(n, self) }.try(:shuffle).try(:first)
+  end
+  
+  def adopt(child)
+    self.beings << child
+    child.surname = self.surname
+    child.save
+    child
+  end
   
   def random_name
     unless self.name.present?

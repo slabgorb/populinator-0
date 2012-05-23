@@ -1,5 +1,6 @@
-.noaccordion
+.accordion
   %h4
-    %a{href:'#'}= escape_once "#{families.first} with #{pluralize(families.last.select{|f| f.alive}.count, 'living member')} and #{pluralize(families.last.select{|f| not f.alive}.count, 'dead member')}"
+    %a{href:'#'}= escape_once "#{families.first} with #{pluralize(families.last.select{|f| f.alive}.count + families.last.select{|f| f.married? }.count, 'living member')} and #{pluralize(families.last.select{|f| not f.alive}.count, 'dead member')}"
   %div  
-    = render partial:'family', locals:{family: families.last}
+    %p
+      = render partial:'family', locals:{family: families.last}

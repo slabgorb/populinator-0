@@ -170,7 +170,7 @@ body {
   @include paper(0, 0);
   font: {
 	family: KingthingsExeter, 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
-
+	size: 1.2em;
   }
   #border {
   	
@@ -221,7 +221,7 @@ body {
 
 
 	.ui-tabs, .ui-accordion {
-	  font-family: KingthingsCalligraphicaLight;
+	  font-family: KingthingsExeter;
 	  background: none;
 	  border: none;
 	  color: $color01;

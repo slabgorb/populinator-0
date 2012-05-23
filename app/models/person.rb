@@ -3,17 +3,26 @@ class Person < Being
   @@names = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'names.yml')))
   @@coming_of_age = 18
   @@old_age = 80
+  @@infertilty = 50
 
-  has_and_belongs_to_many :spouses, :class_name => 'Person'
   scope :neighbors, ->(person) { where(:settlement => person.settlement) }
   scope :other_gender, ->(sex) { where(:gender.ne => sex)}
   field :surname, :type => String
   field :given_name, :type => String
 
+
   def self.names
     @@names
   end
 
+  def self.infertility
+    @@infertilty
+  end
+  def self.coming_of_age
+    @@coming_of_age
+  end
+
+  
   def self.marriage_strategy (m,f) 
     (m.age / 2 + 7) < f.age and 
       (f.age / 2 + 7) < m.age and 
@@ -22,31 +31,8 @@ class Person < Being
       not f.gender == m.gender and
       f.age > @@coming_of_age and
       m.age > @@coming_of_age
-    
   end
 
-  def marry(s)
-    self.spouses << s if s
-    s.spouses << self if s
-  end
-  
-  def spouse 
-    self.spouses.select{ |s| s.alive? }.first
-  end
-
-  
-  def married?
-    not self.spouses.select{ |s| s.alive? }.empty?
-  end
-  
-  def find_spouse 
-    self.neighbors.select{ |n| Person.marriage_strategy(n, self) }.try(:shuffle).try(:first)
-  end
-  
-  def adopt(child)
-    self.beings << child
-  end
-  
   def name 
     [self.given_name, self.surname].join(' ')
   end

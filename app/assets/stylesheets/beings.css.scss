@@ -4,19 +4,30 @@
 
 @import 'common';
 
-ul.beings {
-  li.being {
+ul.family {
+  min-width: 200px;
+  margin: 0px;
+  padding: 0px;
+  li {
+	min-width: 100px;
 	list-style-type: none;
 	font-size: 1em;
-
-	
+	&.being {
+	  margin-right: 0px;
+	}
+	&.spouse {
+	  @include icon-image('icons/heart', 25px);
+	  margin-left: -20px;
+	}
   }
-}
 
+}
 
 .female {
   @include icon-image('icons/female', 25px);
   background-position: left;
+
+
 }
 
 .male {
@@ -24,6 +35,14 @@ ul.beings {
   background-position: left;
 }
 
+
+li.being-children {
+  list-style-type: none;
+  ul li {
+	list-style-type: none;
+  }
+	
+}
 
 .alive {
 }

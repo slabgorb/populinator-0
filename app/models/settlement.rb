@@ -26,7 +26,9 @@ class Settlement
   
   def populate(pop)
     pop.to_i.times do
-      beings << Person.create.randomize!
+      p = Person.create.randomize!
+      p.settlement = self
+      beings << p
     end
     save
   end
@@ -40,12 +42,12 @@ class Settlement
     top  = rand > 0.5 ? @@names['prefix'].shuffle.first : ''
     bottom = rand > 0.5 ? @@names['suffix'].shuffle.first : ''
     top += rand > 0.7 ? @@names['divider'].shuffle.first : ''
-    [[top, meat, bottom].join.capitalize, (rand * 1000).floor]
+    [top, meat, bottom].join.capitalize
   end
   
   
   def family(surname)
-    beings.select{ |b| b.surname == surname }
+    beings.select{ |b| b.surname == surname }.keep_if{ |f| not (f.gender == 'female' and f.married?) }
   end
   
   def families
@@ -81,11 +83,13 @@ class Settlement
     females = self.beings.select{ |s| s.gender == 'female'}  
     self.marry_sets(males, females)
     minors = self.beings.select{ |s| s.age < s.coming_of_age }
-    mothers = females.select{ |s| s.married? }
+    mothers = females.select{ |s| s.married? and s.age < Person.infertility}
     if mothers.present?
       minors.each do |child|
+        child.settlement = self
+        child.save!
         begin
-          mothers.shuffle.first.adopt child
+          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) }.shuffle.first.adopt child
         rescue Exception => e
           logger.error e
         end

@@ -1,3 +1,15 @@
-%li.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'}" }
+%li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'}" }
   = link_to being.name, being_path(being)
-  = being.age
+  = being.age 
+  years old
+- if being.respond_to? :spouse and being.spouse.present?
+  %li.left.spouse.being{:class=>"#{being.spouse.gender}"}
+    = link_to being.spouse.name, being_path(being.spouse)
+    = being.spouse.age
+    years old
+- if being.children.present?
+  %li.clear.being-children
+    %ul
+      - being.children.each do |child|
+        = render partial:'/beings/being', locals:{ being:child }
+.clear

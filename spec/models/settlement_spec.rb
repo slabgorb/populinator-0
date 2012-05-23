@@ -22,7 +22,7 @@ describe Settlement do
 
     it 'seeds original families with married couples' do
       @settlement.beings.select{ |s| s.married? }.empty?.should be_false
-      end
+    end
     
     it 'puts children in families' do 
       @settlement.beings.select{ |s| s.children.present? }.empty?.should be_false

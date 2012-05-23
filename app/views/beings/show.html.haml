@@ -1,14 +1,24 @@
-%p#notice= notice
+%h4= render partial:'being', locals:{ being:@being }
+- if @being.married? 
+  %h4 Spouse
+  = render partial:'being', locals:{ being:@being.spouse }
 
-%p
-  %b Name:
-  = @being.name
-%p
-  %b Gender:
-  = @being.gender
-%p
-  %b Age:
-  = @being.age
+%h4 Family
+- if @being.children.present?
+  %h5 Children
+  %ul.being-children
+    - @being.children.each do |child|
+      = render partial:'being', locals:{ being:child }
+- if @being.parent
+  %h5 Parents
+  %ul.being-parent
+    = render partial:'being', locals:{ being:@being.parent }
+
+%h4 History
+%dl.events
+  - @being.history.each do |event|
+    %dt= event.name
+    %dd= event.description
 
 = link_to 'Edit', edit_being_path(@being)
 \|
