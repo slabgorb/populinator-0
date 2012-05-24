@@ -45,15 +45,10 @@ class Person < Being
      self.write_attribute(:name, name)
   end
   
-  def neighbors 
-    settlement.beings.select{ |f| f != self }
-  end
 
-  def random_gender! 
-    unless self.gender.present?
-      self.gender = Being.random_gender
-    end
-    true
+
+  def self.genders
+    ['male', 'female']
   end
   
   def random_age!
@@ -61,7 +56,7 @@ class Person < Being
   end
 
   def random_name!
-    self.given_name, self.surname = Person.random_name(gender)
+    self.given_name, self.surname = self.class.random_name(gender)
   end
    
 
@@ -74,13 +69,4 @@ class Person < Being
     given_name = @@names[sex].shuffle.first
     [given_name, surname].join(' ')
   end
-
-  def randomize!
-    self.random_gender!
-    self.random_name!
-    self.random_age!
-    save!
-    self
-  end
-
 end

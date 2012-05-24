@@ -8,7 +8,7 @@
             %li= msg
     %ul.form
       %li.field
-        = f.select :_type, ['person', 'being']
+        = f.select :_type, ['person', 'being'], default:@being._type
 
       %li.field
         = f.label :name
@@ -16,7 +16,7 @@
         %span.randcheck.being-name= escape_once('&lsaquo; random');
       %li.field
         = f.label :gender
-        = f.select :gender, Being.genders
+        = f.select :gender, @being.class.genders
       %li.field
         = f.label :age
         = f.text_field :age

@@ -73,12 +73,15 @@ class Being
     child
   end
   
-  def random_name
-    unless self.name.present?
-      self.given_name = %w|green red yellow black|.shuffle.first.capitalize
-      self.surname = %w|dra cula franken stein were wolf shark jackal bear blob spider snake goo|.shuffle[0..((rand * 2).floor + 1)].join
-      self.write_attribute(:name, name)
-    end
+  def self.random_name(sex = self.random_gender)
+    [%w|green red yellow black|.shuffle.first.capitalize,
+     %w|dra cula franken stein were wolf shark jackal bear blob spider snake goo|.shuffle[0..((rand * 2).floor + 1)].join]
+  end
+
+  
+  def random_name!
+    self.given_name, self.surname = self.random_name
+    self.write_attribute(:name, [self.given_name, self.surname].join(' '))
     true
   end
   
@@ -186,9 +189,24 @@ class Being
   
   
   def self.random_gender
-    ['male', 'female', 'neuter'].shuffle.first
+    genders.shuffle.first
   end
-
+  
+  def random_gender
+    self.class.random_gender
+  end
+  
+  def random_gender! 
+    self.gender = random_gender
+  end
+  
+  def _type 
+    self.read_attribute(:_type)
+  end
+  
+  def neighbors 
+    settlement.beings.select{ |f| f != self }
+  end
   
   def reproduce(other = nil, child_name = nil, child_gender = nil) 
     raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
@@ -200,6 +218,12 @@ class Being
     return child
   end
   
+   def randomize!
+    self.random_gender!
+    self.random_name!
+    self.random_age!
+    self
+  end
 end
 
 
