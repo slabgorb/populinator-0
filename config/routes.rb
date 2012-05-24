@@ -2,7 +2,7 @@ Population::Application.routes.draw do
   
   get '/' => 'simulations#index'
   
-  get '/people/random-name' => 'people#random_name'
+  get '/being/random-name' => 'beings#random_name'
   get '/settlements/random-name' => 'settlements#random_name'
 
   resources :events

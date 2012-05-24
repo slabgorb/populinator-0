@@ -1,4 +1,9 @@
 class BeingsController < ApplicationController
+  def random_name 
+    gender = Being.random_gender
+    render :json => [gender, Person.random_name(gender),  Person.random_age]
+  end
+  
   # GET /beings
   # GET /beings.json
   def index

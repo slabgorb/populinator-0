@@ -21,7 +21,10 @@ class Person < Being
   def self.coming_of_age
     @@coming_of_age
   end
-
+  
+  def self.genders
+    ['male', 'female']
+  end
   
   def self.marriage_strategy (m,f) 
     (m.age / 2 + 7) < f.age and 
@@ -48,7 +51,7 @@ class Person < Being
 
   def random_gender! 
     unless self.gender.present?
-      self.gender = Person.random_gender
+      self.gender = Being.random_gender
     end
     true
   end
@@ -61,16 +64,15 @@ class Person < Being
     self.given_name, self.surname = Person.random_name(gender)
   end
    
-  def self.random_gender
-    ['male', 'female'].shuffle.first
-  end
 
   def self.random_age
     (rand * @@old_age).floor
   end
   
   def self.random_name(sex = self.random_gender)
-    [@@names[sex].shuffle.first, @@names['surname'].shuffle.first]
+    surname = @@names['surname'].shuffle.first
+    given_name = @@names[sex].shuffle.first
+    [given_name, surname].join(' ')
   end
 
   def randomize!

@@ -329,6 +329,10 @@ body {
   .bold {
 	font-weight:  bold;
   }
+  
+  .italic {
+	font-style: italic;
+  }
 
   .invisible {
 	display: none;
@@ -368,16 +372,20 @@ body {
 	  margin:0px;
 	  .selectbox-wrapper {
 		ul {
-		  margin-left: -38px;
+		  @include paper(0px,0px);
+		  width: inherit;
+		  position: absolute;
 		  margin-top: -3px;
+		  padding:0px;
 		  li {
 			line-height: 20px;
 			font-size: 0.9em;
 			border: 1px solid $color01;
-			padding: 3px 10px;
+			padding: 5px 10px 5px 5px;
 			&:hover {
 			  color: $color05;
 			  @include engraved();
+			  @include shadow(-3px, -3px, 1px, #fff);
 			}
 		  }
 		}
@@ -440,8 +448,11 @@ body {
   &.fox_sejeant {
 	background-image: url('watermarks/fox_sejeant.png');
   }
-  &.grenade {
-	background-image: url('watermarks/grenade.png');
+  &.cockatrice {
+	background-image: url('watermarks/cockatrice.png');
+  }
+  &.deer_regardant {
+	background-image: url('watermarks/deer_regardant.png');
   }
 
 }

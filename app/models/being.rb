@@ -39,8 +39,12 @@ class Being
     events
   end
 
-  def genders
+  def self.genders
     ['male', 'female', 'neuter']
+  end
+
+  def self.random_gender
+    self.genders.shuffle.first
   end
 
   
