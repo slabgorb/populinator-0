@@ -84,6 +84,7 @@ class Settlement
   def marry_one(male, female)
     marriage = Event.where(:name => 'marriage').first || Event.new(effect:'{|a,b| a.marry b; b.surname = a.surname }', name:'marriage', description:'marriage')
     marriage.happened_to male, female
+    female.surname = male.surname
   end
 
   

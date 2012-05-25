@@ -72,6 +72,7 @@ class Being
   def adopt(child)
     self.beings << child
     child.surname = self.surname
+    child.being = self
     child.save
     child
   end

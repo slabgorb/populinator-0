@@ -16,7 +16,7 @@ class Person < Being
   end
 
   def self.infertility
-    @@infertilty
+    @@infertilty = 50
   end
   def self.coming_of_age
     @@coming_of_age
@@ -41,11 +41,14 @@ class Person < Being
   end
   
   def name=(n)
-    given_name, surname = [n.split.first, n.split.last]
-     self.write_attribute(:name, name)
+    self.given_name, self.surname = [n.split.first, n.split.last]
+    self.write_attribute(:name, name)
   end
   
-
+  def surname=(s)
+    self.write_attribute(:surname, s)
+    self.write_attribute(:name, name)
+  end
 
   def self.genders
     ['male', 'female']

@@ -30,10 +30,17 @@ describe Settlement do
     
     it 'should have some families' do
       @settlement.families.present?.should be_true
+      @settlement.family_names.present?.should be_true
     end
     
     it 'should have people in the families' do
       @settlement.family_populations.should be { }
+    end
+    
+    it 'should have spouses with the same last name' do 
+      @settlement.beings.select{ |s| s.married? }.each do |someguy|
+        someguy.surname.should eq(someguy.spouse.surname)
+      end
     end
     
     it 'should not have any children to parents too old' do
