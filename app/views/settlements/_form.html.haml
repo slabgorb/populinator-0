@@ -6,17 +6,18 @@
         %ul
           - @settlement.errors.full_messages.each do |msg|
             %li= msg  %fieldset#settlement-form 
-    %ul
+    %ul.form
       %li= f.label :name
-      %li= f.text_field :name
-    %ul
+      %li
+        = f.text_field :name
+        %span.randcheck.settlement-name= escape_once('&lsaquo; random');
       %li= f.label :population
       %li= f.text_field :population
-    .random
-      %ul
-        %li
-          %label{:for => 'random-settlement-name'} random
+      %li
+        %label{:for => 'size-field'} Size
+        %select#size{:name => 'size'}
+          - Settlement.sizes.each_pair do |k,v|
+            %option{:value => v}= k
     .clear
-    %input#random-settlement-name{:type => 'checkbox', :value => 'Random Name'}
-    = link_to 'Create', '#', :id => 'create-settlement'
+    = link_to 'Submit', '#', :id => 'submit-form'
 

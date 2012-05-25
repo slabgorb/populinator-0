@@ -62,11 +62,24 @@ class SettlementsController < ApplicationController
       end
     end
   end
+  
+  def seed
+    @settlement = Settlement.find(params[:id])
+    @settlement.seed_original_families
+    flash[:notice] = "#{@settlement.name} seeded"
+    render :show
+  end
+
 
   # PUT /settlements/1
   # PUT /settlements/1.json
   def update
     @settlement = Settlement.find(params[:id])
+    # did the population change? if so, wipe and recreate from scratch
+    if @settlement.population != params[:settlement][:population]
+      @settlement.beings.delete_all
+      @settlement.populate params[:settlement][:population]
+    end
 
     respond_to do |format|
       if @settlement.update_attributes(params[:settlement])

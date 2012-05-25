@@ -13,6 +13,15 @@ class Settlement
     beings.select{ |c| c.alive? }.length + rulers.select{ |c| c.alive? }.length
   end
 
+  def self.sizes 
+    { 
+      'Hamlet' => 25,
+      'Village' => 100,
+      'Town' => 2500,
+      'City' => 10000
+    }  
+  end
+    
   def as_json(options = { })
     { name: name, 
       established: established, 
@@ -89,7 +98,7 @@ class Settlement
         child.settlement = self
         child.save!
         begin
-          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) }.shuffle.first.adopt child
+          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.first.adopt child
         rescue Exception => e
           logger.error e
         end

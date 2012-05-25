@@ -487,3 +487,8 @@ svg {
   margin: 1px;
   color: white;
 }
+
+#warning, #notice, #info {
+  color: $color05;
+  font-weight: bold;
+}

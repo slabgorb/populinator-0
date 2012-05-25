@@ -9,11 +9,17 @@ debug = false
 Settlement = () ->
   @name = $('#settlement-name-field')
   @pop  = $('#settlement-population-field')
-  $('.randcheck.name').click ->
+  $('.randcheck.settlement-name').click ->
     $.get '/settlements/random-name',
       {}
-      (data) -> $('#settlement-name-field').val(data)
+      (data) -> $('#settlement_name').val(data)
       'html'
+  $('#submit-form').click ->
+    console.log $(this).
+      parent('form').
+      eq(0).
+      trigger 'submit'
+    false
 
   #make the selection box a pretty pretty princess
   $('select').selectbox()

@@ -13,12 +13,14 @@ Population::Application.routes.draw do
     resources :things
   end
   resources :things 
-  resources :people, :controller => 'beings',  :type => 'Person'
-  resources :rulers, :controller => 'beings',  :type => 'Ruler'
+  resources :people, :controller => 'beings',  :_type => 'Person'
+  resources :rulers, :controller => 'beings',  :_type => 'Ruler'
   
   post '/run'    => 'simulations#run'
   get  '/setup'  => 'simulations#setup'
   
   get '/being/graph' => 'beings#graph'
+  
+  put '/settlement/seed/:id' => 'settlements#seed', :as => :seed
   
 end

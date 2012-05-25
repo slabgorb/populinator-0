@@ -27,5 +27,22 @@ describe Settlement do
     it 'puts children in families' do 
       @settlement.beings.select{ |s| s.children.present? }.empty?.should be_false
     end
+    
+    it 'should have some families' do
+      @settlement.families.present?.should be_true
+    end
+    
+    it 'should have people in the families' do
+      @settlement.family_populations.should be { }
+    end
+    
+    it 'should not have any children to parents too old' do
+      childbearers = @settlement.beings.select{ |s| s.children.present? }
+      childbearers.each do |parent|
+        parent.children.each do |child|
+          (child.age > (Person.infertility - parent.age)).should be_false
+        end
+      end
+    end
   end
 end
