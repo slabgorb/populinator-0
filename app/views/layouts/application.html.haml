@@ -4,6 +4,7 @@
       = [yield(:title), 'Populator'].join(' | ')
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
+    = javascript_include_tag "http://mbostock.github.com/d3/d3.js"
     = csrf_meta_tags 
     = yield(:head)
   %body

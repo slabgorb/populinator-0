@@ -472,3 +472,18 @@ body {
   }
 }
 
+line.crisp {
+  shape-rendering: crispEdges;
+}
+
+svg {
+  shape-rendering: crispEdges;
+}
+
+#being-graph div {
+  background-color: white;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}

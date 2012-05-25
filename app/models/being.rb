@@ -27,8 +27,8 @@ class Being
   end
   
   def as_json(options = { })
-    super(only:[:name, :age, :alive],
-          methods: [:children, :married?, :parent])
+    super(only:[:id, :name, :age, :alive, :_type],
+          methods: [:children, :married?,:spouse_id])
   end
 
   def coming_of_age
@@ -57,6 +57,9 @@ class Being
     self.spouses.select{ |s| s.alive? }.first
   end
 
+  def spouse_id
+    spouse.id if spouse
+  end
   
   def married?
     not self.spouses.select{ |s| s.alive? }.empty?

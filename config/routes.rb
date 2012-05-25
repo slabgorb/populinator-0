@@ -19,4 +19,6 @@ Population::Application.routes.draw do
   post '/run'    => 'simulations#run'
   get  '/setup'  => 'simulations#setup'
   
+  get '/being/graph' => 'beings#graph'
+  
 end
