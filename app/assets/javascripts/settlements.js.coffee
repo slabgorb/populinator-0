@@ -23,8 +23,8 @@ class Settlement
 
     #make the selection box a pretty pretty princess
     $('select').selectbox()
-    @pop.keyup => this.updateDrop
-    @pop.keyup => this.forceInt
+    @pop.keyup => this.updateDrop()
+    @pop.keyup => this.forceInt()
     $('#create-settlement').click -> this.createCallback
     $('.selectbox-wrapper').on 'click', =>
       this.sizeSettlement()
