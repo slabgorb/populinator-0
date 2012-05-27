@@ -18,6 +18,7 @@ class Person < Being
   def self.infertility
     @@infertilty = 50
   end
+  
   def self.coming_of_age
     @@coming_of_age
   end

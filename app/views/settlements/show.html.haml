@@ -1,7 +1,7 @@
 - content_for :title do
   = @settlement.name
   Settlement
-  
+
 .watermark.grenade
 #settlement
   %h3= @settlement.name
@@ -25,10 +25,15 @@
       %h4 
         Families:
         = @settlement.family_names.length 
+      %ul.family-names
+        - @settlement.family_names.sort.each do |f|
+          %li= f
+          
       .clear
     #tab-rulers
       %ul.beings
-        = render :partial => '/beings/being', :collection => @settlement.rulers
+        %li= "Ruler: #{@settlement.ruler}"
+        -# = render :partial => '/beings/being', :locals => {:being => @settlement.ruler}
       .clear
     #tab-population
       = render :partial => 'families', :collection => @settlement.families.to_a

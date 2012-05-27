@@ -22,11 +22,17 @@ ul.family-summary {
 	  background-color: $color03;
 	}
   }
-  ul.history {
+  ul.history, ul.family-names {
 	margin: 0px;
 	padding: 0px;
 	li {
 	  list-style-type: none;
+	  font-size: 0.9em;
 	}
   }
+  ul.family-names li {
+	float:left;
+	margin: 0px 5px;
+  }
 }
+

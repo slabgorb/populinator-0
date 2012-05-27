@@ -5,21 +5,19 @@ class Settlement
   field :established, :type => Integer
   field :area, :type => Integer
   has_many :residents, :class_name => 'Being', :dependent => :destroy   
-  has_many :rulers, :dependent => :destroy
+  has_many :rulers, :class_name => 'Being', :dependent => :destroy
   has_many :events
   accepts_nested_attributes_for :rulers
   
   def population
     residents.select{ |c| c.alive? }.length + rulers.select{ |c| c.alive? }.length
   end
-
+  
   def self.sizes 
-    { 
-      'Hamlet' => 25,
+    { 'Hamlet' => 25,
       'Village' => 100,
       'Town' => 2500,
-      'City' => 10000
-    }  
+      'City' => 10000 }  
   end
     
   def as_json(options = { })
@@ -29,8 +27,7 @@ class Settlement
       ruler: rulers.first,   
       families: families,
       residents: residents,
-      history: history
-    }
+      history: history }
   end
   
   def populate(pop)
@@ -54,8 +51,7 @@ class Settlement
     top += rand > 0.8 ? @@names['divider'].shuffle.first : ''
     [top, meat, bottom].join.capitalize
   end
-  
-  
+
   def family(surname)
     residents.select{ |b| b.surname == surname }.keep_if{ |f| not (f.gender == 'female' and f.married?) }
   end
@@ -88,7 +84,10 @@ class Settlement
     female.surname = male.surname
   end
 
-  
+  def ruler 
+    self.rulers.select { |s| s.alive? }.sort{ |a,b| b.age <=> a.age }.first
+  end
+    
   def seed!
     self.rulers << Person.create.randomize!
     males = self.residents.select { |s| s.gender == 'male' }
