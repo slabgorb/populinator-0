@@ -43,12 +43,12 @@ class SettlementsController < ApplicationController
     @settlement = Settlement.new(params[:settlement])
     @settlement.save
     params[:settlement][:population].to_i.times do
-      @settlement.beings << Person.create
+      @settlement.residents << Person.create
     end       
     params[:settlement][:population].to_i.times do
-      @settlement.beings << Person.create
+      @settlement.residents << Person.create
     end   
-    @settlement.beings.each do |b| 
+    @settlement.residents.each do |b| 
       b.settlement = @settlement 
       b.save
     end
@@ -65,8 +65,9 @@ class SettlementsController < ApplicationController
   
   def seed
     @settlement = Settlement.find(params[:id])
-    @settlement.seed_original_families
-    flash[:notice] = "#{@settlement.name} seeded"
+    @settlement.residents.delete_all
+    @settlement.seed!
+    flash[:notice] = "#{@settlement.name} seeded with families: #{@settlement.family_names.join(', ')}"
     render :show
   end
 
@@ -77,7 +78,7 @@ class SettlementsController < ApplicationController
     @settlement = Settlement.find(params[:id])
     # did the population change? if so, wipe and recreate from scratch
     if @settlement.population != params[:settlement][:population]
-      @settlement.beings.delete_all
+      @settlement.residents.delete_all
       @settlement.populate params[:settlement][:population]
     end
 

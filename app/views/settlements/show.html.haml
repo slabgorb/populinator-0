@@ -31,7 +31,7 @@
         = render :partial => '/beings/being', :collection => @settlement.rulers
       .clear
     #tab-population
-      - @settlement.beings.each do |being|
+      - @settlement.residents.each do |being|
         = render :partial => 'beings/being', :locals => {:being=> being}
       = render :partial => 'families', :collection => @settlement.families.to_a
       .clear

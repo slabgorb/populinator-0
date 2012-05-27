@@ -17,15 +17,15 @@ describe Settlement do
   
   context 'seeding' do
     before :all do 
-      @settlement.seed_original_families
+      @settlement.seed!
     end
 
     it 'seeds original families with married couples' do
-      @settlement.beings.select{ |s| s.married? }.empty?.should be_false
+      @settlement.residents.select{ |s| s.married? }.empty?.should be_false
     end
     
     it 'puts children in families' do 
-      @settlement.beings.select{ |s| s.children.present? }.empty?.should be_false
+      @settlement.residents.select{ |s| s.children.present? }.empty?.should be_false
     end
     
     it 'should have some families' do
@@ -38,13 +38,13 @@ describe Settlement do
     end
     
     it 'should have spouses with the same last name' do 
-      @settlement.beings.select{ |s| s.married? }.each do |someguy|
+      @settlement.residents.select{ |s| s.married? }.each do |someguy|
         someguy.surname.should eq(someguy.spouse.surname)
       end
     end
     
     it 'should not have any children to parents too old' do
-      childbearers = @settlement.beings.select{ |s| s.children.present? }
+      childbearers = @settlement.residents.select{ |s| s.children.present? }
       childbearers.each do |parent|
         parent.children.each do |child|
           (child.age > (Person.infertility - parent.age)).should be_false

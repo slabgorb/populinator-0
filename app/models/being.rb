@@ -3,10 +3,10 @@ class Being
   include Mongoid::Timestamps::Created
   embeds_many :damages 
   has_many :things
-  has_many :beings
+  has_many :children, :class_name => 'Being'
   has_many :events
   has_many :chromosomes
-  belongs_to :being
+  belongs_to :parent, :class_name => 'Being'
   belongs_to :settlement
   field :name, :type => String
   field :gender, :type => String, :default => nil
@@ -70,9 +70,9 @@ class Being
   end
   
   def adopt(child)
-    self.beings << child
+    self.children << child
     child.surname = self.surname
-    child.being = self
+    child.parent = self
     child.save
     child
   end
@@ -97,10 +97,6 @@ class Being
     not alive
   end
   
-  def children
-    beings
-  end
-  
   def child_of?(other)
     not other.children.index(self).nil?
   end
@@ -110,11 +106,7 @@ class Being
   end
   
   def sibling_of?(other)
-    not self.being.beings.index(other).nil? if self.being and self.being.beings
-  end
-  
-  def parent
-    being
+    not self.parent.children.index(other).nil? if self.parent and self.parent.children
   end
   
   def hurt(damage)
@@ -126,11 +118,11 @@ class Being
   end
 
   def child_sibling_of?(other)
-    self.beings.select {|c| c and c.sibling_of?(other)}.length > 0
+    self.children.select {|c| c and c.sibling_of?(other)}.length > 0
   end
 
   def aunt_or_uncle_of?(other)
-    self.siblings.collect_concat{|s| s and s.beings}.uniq.index(other) if self.siblings
+    self.siblings.collect_concat{|s| s and s.children}.uniq.index(other) if self.siblings
   end
 
   def niece_or_nephew_of?(other)
@@ -138,11 +130,11 @@ class Being
   end
   
   def cousin_of?(other)
-    self.being.siblings.collect_concat{|p| p and p.beings}.index(other) if self.being and self.being.siblings
+    self.parent.siblings.collect_concat{|p| p and p.children}.index(other) if self.parent and self.parent.siblings
   end
   
   def siblings
-    self.being.try(:beings)
+    self.parent.try(:children)
   end
 
   
@@ -216,8 +208,8 @@ class Being
     raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
     raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
     child = self.class.new(name: child_name || 'Child of#{self.name}', gender: child_gender || Being.random_gender, age: 0)
-    self.beings << child
-    other.beings << child if other
+    self.children << child
+    other.children << child if other
     self.settlement.beings << child if self.settlement
     return child
   end

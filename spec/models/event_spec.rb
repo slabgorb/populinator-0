@@ -5,11 +5,9 @@ describe Event do
     @adam = Person.new(:name => 'Adam', :gender => 'male')
     @death = Event.new(:name => 'Die', :description => "Die Adam die!", :effect => "{|b| b.die! }")
     @city = Settlement.new(:name => 'City')
-    100.times do 
-      @city.beings << Person.new()
-    end
-    @famine = Event.new({:name =>'famine',:description => 'had a famine',:effect => '{|settlement, virulence| settlement.beings.each{|b| b.die! if rand < virulence}}'})
-  end
+    @city.populate 100
+    @famine = Event.new({:name =>'famine',:description => 'had a famine',:effect => '{|settlement, virulence| settlement.residents.each{|b| b.die! if rand < virulence and b.alive? }}'})
+  end 
   
   it "affects the subject of the event" do
     @death.happened_to(@adam)

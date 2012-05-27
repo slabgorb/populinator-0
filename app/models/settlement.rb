@@ -4,13 +4,13 @@ class Settlement
   field :name, :type => String
   field :established, :type => Integer
   field :area, :type => Integer
-  has_many :beings, :dependent => :destroy   
+  has_many :residents, :class_name => 'Being', :dependent => :destroy   
   has_many :rulers, :dependent => :destroy
   has_many :events
   accepts_nested_attributes_for :rulers
   
   def population
-    beings.select{ |c| c.alive? }.length + rulers.select{ |c| c.alive? }.length
+    residents.select{ |c| c.alive? }.length + rulers.select{ |c| c.alive? }.length
   end
 
   def self.sizes 
@@ -28,7 +28,7 @@ class Settlement
       population: population,
       ruler: rulers.first,   
       families: families,
-      residents: beings,
+      residents: residents,
       history: history
     }
   end
@@ -37,7 +37,7 @@ class Settlement
     pop.to_i.times do
       p = Person.create.randomize!
       p.settlement = self
-      beings << p
+      residents << p
     end
     save
   end
@@ -56,7 +56,7 @@ class Settlement
   
   
   def family(surname)
-    beings.select{ |b| b.surname == surname }.keep_if{ |f| not (f.gender == 'female' and f.married?) }
+    residents.select{ |b| b.surname == surname }.keep_if{ |f| not (f.gender == 'female' and f.married?) }
   end
   
   def families
@@ -64,7 +64,7 @@ class Settlement
   end
 
   def family_names
-    beings.collect{ |b| b.surname }.uniq.select{ |b| b }
+    residents.collect{ |b| b.surname }.uniq.select{ |b| b }
   end
   
   def family_populations
@@ -75,6 +75,9 @@ class Settlement
     males.each do |m| 
       females.each do |f|
         if Person.marriage_strategy(m, f) 
+    5.times { Rails.logger.info '*' * 80 }
+          
+          Rails.logger.info  m.to_s, f.to_s
           marry_one(m,f)
         end
       end
@@ -82,29 +85,38 @@ class Settlement
   end
   
   def marry_one(male, female)
-    marriage = Event.where(:name => 'marriage').first || Event.new(effect:'{|a,b| a.marry b; b.surname = a.surname }', name:'marriage', description:'marriage')
+    marriage = Event.new(effect:'{|a,b| a.marry b; b.surname = a.surname }', name:'marriage', description:'marriage')
     marriage.happened_to male, female
     female.surname = male.surname
   end
 
   
-  def seed_original_families()
-    males = self.beings.select{ |s| s.gender == 'male'}
-    females = self.beings.select{ |s| s.gender == 'female'}  
+  def seed!()
+    5.times { Rails.logger.info '*' * 80 }
+    males = self.residents.where :gender => 'male'
+    females = self.residents.where :gender => 'female'
     self.marry_sets(males, females)
-    minors = self.beings.select{ |s| s.age < s.coming_of_age }
-    mothers = females.select{ |s| s.married? and s.age < Person.infertility}
-    if mothers.present?
-      minors.each do |child|
-        child.settlement = self
-        child.save!
-        begin
-          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.first.adopt child
-        rescue Exception => e
-          logger.error e
-        end
-      end
-    end
+    # minors = self.beings.select{ |s| s.age < s.coming_of_age }
+    # mothers = females.select{ |s| s.married? and s.age < Person.infertility}
+    # if mothers.present?
+    #   minors.each do |child|
+    #     child.settlement = self
+    #     child.save!
+    #     begin
+    #       mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.first.adopt child
+    #     rescue Exception => e
+    #       logger.error e
+    #     end
+    #   end
+    # end
+    # minors.each do |minor|
+    #   minor.surname = minor.parent.surname if minor.parent
+    #   minor.save
+    # end
+    # males.each do |person|
+    #   person.spouse.surname = person.surname if person.spouse
+    #   person.save
+    # end
     true
   end
 end
