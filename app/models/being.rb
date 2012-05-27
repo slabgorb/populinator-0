@@ -62,7 +62,7 @@ class Being
   end
   
   def married?
-    not self.spouses.select{ |s| s.alive? }.empty?
+    spouse.present?
   end
   
   def find_spouse 

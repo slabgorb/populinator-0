@@ -35,7 +35,8 @@ class Settlement
   
   def populate(pop)
     pop.to_i.times do
-      p = Person.create.randomize!
+      p = Person.create
+      p.randomize!
       p.settlement = self
       residents << p
     end
@@ -75,9 +76,6 @@ class Settlement
     males.each do |m| 
       females.each do |f|
         if Person.marriage_strategy(m, f) 
-    5.times { Rails.logger.info '*' * 80 }
-          
-          Rails.logger.info  m.to_s, f.to_s
           marry_one(m,f)
         end
       end
@@ -91,32 +89,31 @@ class Settlement
   end
 
   
-  def seed!()
-    5.times { Rails.logger.info '*' * 80 }
-    males = self.residents.where :gender => 'male'
-    females = self.residents.where :gender => 'female'
+  def seed!
+    males = self.residents.select { |s| s.gender == 'male' }
+    females = self.residents.select { |s| s.gender == 'female' }
     self.marry_sets(males, females)
-    # minors = self.beings.select{ |s| s.age < s.coming_of_age }
-    # mothers = females.select{ |s| s.married? and s.age < Person.infertility}
-    # if mothers.present?
-    #   minors.each do |child|
-    #     child.settlement = self
-    #     child.save!
-    #     begin
-    #       mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.first.adopt child
-    #     rescue Exception => e
-    #       logger.error e
-    #     end
-    #   end
-    # end
-    # minors.each do |minor|
-    #   minor.surname = minor.parent.surname if minor.parent
-    #   minor.save
-    # end
-    # males.each do |person|
-    #   person.spouse.surname = person.surname if person.spouse
-    #   person.save
-    # end
+    minors = self.residents.select{ |s| s.age < s.coming_of_age }
+    mothers = females.select{ |s| s.married? and s.age < Person.infertility}
+    if mothers.present?
+      minors.each do |child|
+        child.settlement = self
+        child.save!
+        begin
+          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.first.adopt child
+        rescue Exception => e
+          logger.error e
+        end
+      end
+    end
+    minors.each do |minor|
+      minor.surname = minor.parent.surname if minor.parent
+      minor.save
+    end
+    males.each do |person|
+      person.spouse.surname = person.surname if person.spouse
+      person.save
+    end
     true
   end
 end

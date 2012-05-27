@@ -29,7 +29,7 @@ class Person < Being
   def self.marriage_strategy (m,f) 
     (m.age / 2 + 7) < f.age and 
       (f.age / 2 + 7) < m.age and 
-       not m.married? and 
+      not m.married? and 
       not f.married? and 
       not f.gender == m.gender and
       f.age > @@coming_of_age and
@@ -58,8 +58,6 @@ class Person < Being
   end
   
   def self.random_name(sex = self.random_gender)
-    s = @@names['surname'].shuffle.first
-    g = @@names[sex].shuffle.first
-    [g, s].join(' ')
+    [@@names['surname'].shuffle.first, @@names[sex].shuffle.first]
   end
 end
