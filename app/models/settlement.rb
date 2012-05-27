@@ -49,9 +49,9 @@ class Settlement
   
   def self.random_name
     meat = Person.names['surname'].shuffle.first
-    top  = rand > 0.5 ? @@names['prefix'].shuffle.first : ''
-    bottom = rand > 0.5 ? @@names['suffix'].shuffle.first : ''
-    top += rand > 0.7 ? @@names['divider'].shuffle.first : ''
+    top  = rand > 0.7 ? @@names['prefix'].shuffle.first : ''
+    bottom = rand > 0.7 ? @@names['suffix'].shuffle.first : ''
+    top += rand > 0.8 ? @@names['divider'].shuffle.first : ''
     [top, meat, bottom].join.capitalize
   end
   
@@ -90,6 +90,7 @@ class Settlement
 
   
   def seed!
+    self.rulers << Person.create.randomize!
     males = self.residents.select { |s| s.gender == 'male' }
     females = self.residents.select { |s| s.gender == 'female' }
     self.marry_sets(males, females)
