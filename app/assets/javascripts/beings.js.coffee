@@ -21,13 +21,7 @@ class BeingGraph
 
 class Being
    constructor: ->
-     $('.randcheck.being-name').click ->
-      $.get '/being/random-name',
-        (data) ->
-          $('#person_name').val data[1]
-          $('#person_gender').val data[0]
-          $('#person_age').val data[2]
-        'json'
+     # nop
 
 $ ->
   window.being = new Being()

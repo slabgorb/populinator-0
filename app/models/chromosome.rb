@@ -1,43 +1,51 @@
 class Chromosome
   include Mongoid::Document
   include Mongoid::Timestamps::Created
-  field :seed, :type => String
+  @@expressions = YAML::load(File.read(File.join(Rails.root, 'genetics', 'people.yml')))
   belongs_to :being
-  attr_accessor :seed
+  embeds_many :genes
 
   def length 
-    seed.length
+    genes.length
   end
 
   def to_s
-    seed
+    genes.join(' ')
   end
 
   def [](index)
-    seed[index] == '1'
+    genes[index].code
   end
 
   def []=(index, value)
-    seed[index] = value.to_i.to_s
+    genes[index].code = value if value.is_a? String and value.length == 7
   end
   
-  def fitness
-    seed.count('1')
-  end
-
   def reproduce_with(other)
-    genome = seed.dup
-    genome.length.times do |i|
-      genome[i] = rand > 0.5 ? genome[i] : other.seed[i]
+    c = Chromosome.new
+    self.genes.length.times do |i|
+      c.genes << ((rand > 0.5) ? self.genes[i] : other.genes[i])
     end
-    seed = genome
-    Chromosome.new(:seed => seed)
+    c
   end
 
   def mutate 
     index = (rand * length).floor
-    seed[index] = seed[index] == '0' ? '1' : '0'
+    genes[index] = Chromosome.rand_hex
   end
+  
+  # generates a 7 digit hex number as a string
+  def self.rand_hex
+    ("%07x" % (rand * 268435455).floor).upcase
+  end
+
+  def walk 
+    genes.each do |gene|
+      yield gene
+    end
+  end
+
+  
 end
 
 

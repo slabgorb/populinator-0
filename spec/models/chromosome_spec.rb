@@ -2,33 +2,29 @@ require 'spec_helper'
 
 describe Chromosome do
   before :all do 
-    @c0 = FactoryGirl.create(:chromosome, :seed => '111111')
+    srand(1)
+    @c0 = FactoryGirl.create(:chromosome)
     @c1 = FactoryGirl.create(:chromosome)
-    @c2 = FactoryGirl.create(:chromosome, :seed => '000000')
+    @c2 = FactoryGirl.create(:chromosome)
   end
   
   it "should give the indexed seed" do 
-    @c0[0].should eq(true)
+    @c0[0].should eq('6AC1F43')
   end
   
-  context 'fitness' do 
-    it 'should know the fitness' do
-      @c0.fitness.should eq(6)
-      @c1.fitness.should eq(3)
-      @c2.fitness.should eq(0)
-    end
-  end
-
   context "mutation" do
     before :all do
       @m = FactoryGirl.create(:chromosome)
-      @old = @m.seed.dup
-      srand(1)
+      @old = @m.to_s
       @m.mutate
+    end
+
+    it "should generate a random seed part" do
+      Chromosome.rand_hex.should eq('47CB2D6')
     end
     
     it "should have a different genome" do
-      @old.should_not eq(@m.seed)
+      @old.should_not eq(@m.to_s)
     end
     
   end
@@ -40,7 +36,7 @@ describe Chromosome do
     end
     it 'should have a genome pattern based on the parents' do
       # NOTE: this works because of the call to srand
-      @c3.seed.should eq('010000')
+      @c3.genes.first.code.should eq('CCFD988')
     end
     
     it 'should be a chromosome' do 

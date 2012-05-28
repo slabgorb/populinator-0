@@ -1,8 +1,5 @@
 class BeingsController < ApplicationController
-  def random_name 
-    gender = Being.random_gender
-    render :json => [gender, Person.random_name(gender),  Person.random_age]
-  end
+
   
   # GET /beings
   # GET /beings.json
@@ -60,8 +57,16 @@ class BeingsController < ApplicationController
 
   # PUT /beings/1
   # PUT /beings/1.json
-  def update
+  def update 
     @being = Being.find(params[:id])
+    if params.has_key? :person
+      params[:being] = params[:person]
+    end
+    
+    if params[:being].has_key? :name
+      params[:being][:surname] = params[:being][:name].split.last
+      params[:being][:given_name] = params[:being][:name].split.first
+    end
 
     respond_to do |format|
       if @being.update_attributes(params[:being])

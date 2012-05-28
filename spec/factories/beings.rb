@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :being do
+    after_create do |t|
+      settlement = FactoryGirl.create(:settlement)
+    end
   end
 end

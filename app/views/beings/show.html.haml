@@ -1,3 +1,4 @@
+- content_for(:title){ "#{@being.name} of #{@being.settlement.name}" } if @being.settlement
 %h4= render partial:'being', locals:{ being:@being }
 - if @being.married? 
   %h4 Spouse

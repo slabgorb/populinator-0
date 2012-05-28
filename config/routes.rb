@@ -1,8 +1,8 @@
 Population::Application.routes.draw do
   
-  get '/' => 'simulations#index'
+  get '/' => 'settlements#index'
   
-  get '/being/random-name' => 'beings#random_name'
+  get '/people/random-name' => 'people#random_name'
   get '/settlements/random-name' => 'settlements#random_name'
 
   resources :events
@@ -16,8 +16,6 @@ Population::Application.routes.draw do
   resources :people, :controller => 'beings',  :_type => 'Person'
   resources :rulers, :controller => 'beings',  :_type => 'Ruler'
   
-  post '/run'    => 'simulations#run'
-  get  '/setup'  => 'simulations#setup'
   
   get '/being/graph' => 'beings#graph'
   

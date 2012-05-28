@@ -31,7 +31,7 @@ guard 'bundler' do
   watch('Gemfile')
 end
 
-guard 'rails', :port => 3001, :server => :thin do
+guard 'rails', :port => 3001, :server => :thin, :daemon => true do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
   watch('tmp/restart.txt')
