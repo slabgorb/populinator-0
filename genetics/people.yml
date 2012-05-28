@@ -1,19 +1,19 @@
 
 hair:
   brown: 
-  - 00
+    - 00
   blond: 
-  - 01
+    - 01
   light_brown: 
-  - 02
+    - 02
   brown: 
-  - 03
+    - 03
   dark_brown: 
-  - 04
+    - 04
   black: 
-  - 05
+    - 05
   red: 
-  - 06
+    - 06
 
 build: 
   heavier: 

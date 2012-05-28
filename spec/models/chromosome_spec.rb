@@ -12,6 +12,12 @@ describe Chromosome do
     @c0[0].should eq('6AC1F43')
   end
   
+  context "expression" do
+    it "should express the gene" do
+      @c0.express.should eq([])
+    end
+  end
+  
   context "mutation" do
     before :all do
       @m = FactoryGirl.create(:chromosome)

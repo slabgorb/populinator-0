@@ -13,6 +13,25 @@ class Chromosome
     genes.join(' ')
   end
 
+  def expressions
+    @@expressions
+  end
+  
+  def express
+    exp = []
+    self.walk do |gene| 
+      expressions.each_pair do |category, value|
+        value.each do |expression|
+          matches = expression.select{ |e| gene =~ e }
+          if matches.length > 0
+            exp << { match: matches.first, heading: heading, category: category}
+          end
+        end
+      end
+    end
+    exp
+  end
+  
   def [](index)
     genes[index].code
   end
