@@ -33,6 +33,10 @@ class Person < Being
       not m.married? and 
       not f.married? and 
       not f.gender == m.gender and
+      not f.sibling_of? m and
+      not f.aunt_or_uncle_of? m and
+      not f.niece_or_nephew_of? m and
+      #not f.cousin_of? m
       f.age > @@coming_of_age and
       m.age > @@coming_of_age
   end
@@ -50,7 +54,7 @@ class Person < Being
   end
 
   def random_name!
-    self.given_name, self.surname = self.class.random_name(gender)
+    self.surname, self.given_name = self.class.random_name(gender)
   end
    
 

@@ -42,16 +42,7 @@ class SettlementsController < ApplicationController
   def create
     @settlement = Settlement.new(params[:settlement])
     @settlement.save
-    params[:settlement][:population].to_i.times do
-      @settlement.residents << Person.create
-    end       
-    params[:settlement][:population].to_i.times do
-      @settlement.residents << Person.create
-    end   
-    @settlement.residents.each do |b| 
-      b.settlement = @settlement 
-      b.save
-    end
+    @settlement.populate params[:settlement][:population]
     respond_to do |format|
       if @settlement.save
         format.html { redirect_to @settlement, notice: 'Settlement was successfully created.' }
@@ -65,7 +56,6 @@ class SettlementsController < ApplicationController
   
   def seed
     @settlement = Settlement.find(params[:id])
-    @settlement.residents.delete_all
     @settlement.seed!
     flash[:notice] = "#{@settlement.name} seeded with families: #{@settlement.family_names.join(', ')}"
     render :show
