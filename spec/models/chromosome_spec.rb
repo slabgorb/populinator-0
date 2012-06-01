@@ -37,12 +37,12 @@ describe Chromosome do
   
   context "reproduction" do
     before :all do
-      srand(1)
       @c3 = @c1.reproduce_with @c2
     end
+    
     it 'should have a genome pattern based on the parents' do
       # NOTE: this works because of the call to srand
-      @c3.genes.first.code.should eq('CCFD988')
+      @c3.genes.first.code.should eq(@c1.genes.first.code)
     end
     
     it 'should be a chromosome' do 

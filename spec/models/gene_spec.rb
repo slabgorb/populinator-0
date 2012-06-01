@@ -15,5 +15,4 @@ describe Gene do
       gene.code.length.should eq(7)
     end
   end
-  
 end

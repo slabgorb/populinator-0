@@ -22,9 +22,9 @@ class Chromosome
     self.walk do |gene| 
       expressions.each_pair do |category, value|
         value.each do |expression|
-          matches = expression.select{ |e| gene =~ e }
+          matches = expression.select{ |e| pp e; gene.code =~ e }
           if matches.length > 0
-            exp << { match: matches.first, heading: heading, category: category}
+            exp << { match: matches.first, heading: heading, category: category }
           end
         end
       end

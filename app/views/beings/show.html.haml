@@ -1,14 +1,18 @@
 - content_for(:title){ "#{@being.name} of #{@being.settlement.name}" } if @being.settlement
+- content_for(:watermark) do 
+  .watermark.sun_in_splendor
+
 %h4= render partial:'being', locals:{ being:@being }
 - if @being.married? 
   %h4 Spouse
   = render partial:'being', locals:{ being:@being.spouse }
-
 %h4 Family
-- if @being.children.present?
+- if @children
+  = @children.first
   %h5 Children
   %ul.being-children
     - @being.children.each do |child|
+      = child.to_s
       = render partial:'being', locals:{ being:child }
 - if @being.parent
   %h5 Parents
