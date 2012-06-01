@@ -47,7 +47,6 @@ $icon-padding: 16px;
   border-radius: $radius;
 }
 
-
 @mixin appliqued() {
   text-shadow: 0px 1px 0px rgba(0,0,0,1);
 }
@@ -441,28 +440,45 @@ body {
 	position: right top;
   }
   &.griffin_sejeant {
-	background: {
-	  image: url('watermarks/griffin_sejeant.png');
-	}
+	background-image: url('watermarks/griffin_sejeant.png');
   }
+
   &.fox_sejeant {
 	background-image: url('watermarks/fox_sejeant.png');
   }
+
   &.cockatrice {
 	background-image: url('watermarks/cockatrice.png');
   }
+
   &.grenade {
 	background-image: url('watermarks/grenade.png');
   }
+
   &.deer_regardant {
 	background-image: url('watermarks/deer_regardant.png');
+  }
+
+  &.sun_in_splendor {
+	background-image: url('watermarks/sun_in_splendor.png');
+  }
+
+  &.wolf_rampant {
+	background-image: url('watermarks/wolf_rampant.png');
+  }
+
+  &.bull_rampant {
+	background-image: url('watermarks/bull_rampant.png');
+  }
+
+  &.ducal_coronet {
+	background-image: url('watermarks/ducal_coronet.png');
   }
 
 }
 
 .loader {
   margin: auto;
-  
   z-index: 100;
   width: 100%;
   min-height: 300px;
