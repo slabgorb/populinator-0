@@ -16,7 +16,6 @@ class BeingsController < ApplicationController
   # GET /beings/1.json
   def show
     @being = Being.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @being }

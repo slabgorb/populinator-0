@@ -74,6 +74,7 @@ class Being
     child.surname = self.surname
     child.parent = self
     child.save
+    save
     child
   end
   
@@ -149,25 +150,25 @@ class Being
   end
   
 
-  # def relation(other) 
-  #   case 
-  #   when (child_of?(other) and other.gender == :male) then :father
-  #   when (child_of?(other) and other.gender == :female) then :mother
-  #   when (child_of?(other) and other.gender == :neuter) then :parent
-  #   when (parent_of?(other) and other.gender == :neuter) then :child
-  #   when (parent_of?(other) and other.gender == :female) then :daughter
-  #   when (parent_of?(other) and other.gender == :male) then :son
-  #   when (sibling_of?(other) and other.gender == :male) then :brother
-  #   when (sibling_of?(other) and other.gender == :female) then :sister
-  #   when (niece_or_nephew_of?(other) and other.gender == :male) then :uncle
-  #   when (niece_or_nephew_of?(other) and other.gender == :female) then :aunt
-  #   when (aunt_or_uncle_of?(other) and other.gender == :male) then :nephew
-  #   when (aunt_or_uncle_of?(other) and other.gender == :female) then :niece
-  #   when (cousin_of?(other)) then :cousin
-  #   else 
-  #     :unrelated
-  #   end
-  # end  
+  def relation(other) 
+    case 
+    when (child_of?(other) and other.gender == :male) then :father
+    when (child_of?(other) and other.gender == :female) then :mother
+    when (child_of?(other) and other.gender == :neuter) then :parent
+    when (parent_of?(other) and other.gender == :neuter) then :child
+    when (parent_of?(other) and other.gender == :female) then :daughter
+    when (parent_of?(other) and other.gender == :male) then :son
+    when (sibling_of?(other) and other.gender == :male) then :brother
+    when (sibling_of?(other) and other.gender == :female) then :sister
+    when (niece_or_nephew_of?(other) and other.gender == :male) then :uncle
+    when (niece_or_nephew_of?(other) and other.gender == :female) then :aunt
+    when (aunt_or_uncle_of?(other) and other.gender == :male) then :nephew
+    when (aunt_or_uncle_of?(other) and other.gender == :female) then :niece
+    when (cousin_of?(other)) then :cousin
+    else 
+      :unrelated
+    end
+  end  
   
   def get(thing)
     raise OwnershipException if owns?(thing)

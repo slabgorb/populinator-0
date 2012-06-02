@@ -79,7 +79,7 @@ class Settlement
   end
   
   def marry_one(male, female)
-    marriage = Event.new(effect:'{|a,b| a.marry b; b.surname = a.surname }', name:'marriage', description:'marriage')
+    marriage = Event.new(effect:'{|a,b| a.marry b; b.surname = a.surname }', name:'marriage', description:'Got married')
     marriage.happened_to male, female
     female.surname = male.surname
   end

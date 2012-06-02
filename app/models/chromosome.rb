@@ -22,8 +22,8 @@ class Chromosome
     self.walk do |gene| 
       expressions.each_pair do |category, value|
         value.each do |expression|
-          matches = expression.select{ |e| pp e; gene.code =~ e }
-          if matches.length > 0
+          matches = gene.matches(expression)
+          if matches.try(:length).try(:>, 0)
             exp << { match: matches.first, heading: heading, category: category }
           end
         end

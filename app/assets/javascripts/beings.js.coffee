@@ -26,4 +26,4 @@ class Being
 $ ->
   window.being = new Being()
   window.beingGraph = new BeingGraph(200, 200, 10)
-  window.beingGraph.graphData()
+  #window.beingGraph.graphData()
