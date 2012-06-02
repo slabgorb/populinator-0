@@ -4,7 +4,7 @@ class Gene
   field :code, type:String
   
   def matches(expression)
-    self.code =~ expression
+    self.code =~ /#{expression}/
   end
 
   

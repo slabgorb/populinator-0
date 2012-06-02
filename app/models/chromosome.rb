@@ -17,19 +17,23 @@ class Chromosome
     @@expressions
   end
   
-  def express
-    exp = []
+  def express(exps = expressions)
+    result = { }
     self.walk do |gene| 
-      expressions.each_pair do |category, value|
-        value.each do |expression|
-          matches = gene.matches(expression)
-          if matches.try(:length).try(:>, 0)
-            exp << { match: matches.first, heading: heading, category: category }
+      exps.each_pair do |category, value|
+        if value.is_a? Hash 
+          result[category] = self.express(value)
+        else
+          matches = 0
+          value.each do |expression|
+            matches += 1 if gene.matches(expression)
           end
+          result[category] ||= 0
+          result[category] += matches
         end
       end
     end
-    exp
+    result
   end
   
   def [](index)

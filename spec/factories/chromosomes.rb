@@ -7,4 +7,10 @@ FactoryGirl.define do
       end
     end
   end
+  factory :labrat, :parent => :chromosome do 
+    after_create do |s|
+      s.genes << Gene.new(:code => '01020304A') 
+      s.genes << Gene.new(:code => '01CCCCCCC') 
+    end
+  end
 end
