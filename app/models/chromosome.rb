@@ -12,11 +12,26 @@ class Chromosome
   def to_s
     genes.join(' ')
   end
+  
+  # creates a random set of genes
+  def randomize!(genecount = 10)
+    genes.delete_all
+    genecount.times { self.genes << Gene.new(:code => Chromosome.rand_hex ) }
+    self
+  end
 
   def expressions
     @@expressions
   end
   
+  # walks through the genes and checks the genes against the
+  # expression table, resulting in a hash of expressed genes.
+  # for example: 
+  #
+  # {:hair=>{:blond=>2, :red=>1, :pink=>1, :plaid=>0}}
+  #
+  # This is meant to be consumed by a description engine of some kind.
+  #
   def express(exps = expressions)
     result = { }
     self.walk do |gene| 
@@ -36,10 +51,24 @@ class Chromosome
     result
   end
   
+  #
+  # gene at the supplied index value
+  #
   def [](index)
     genes[index].code
   end
 
+  #
+  # append a gene
+  #
+  def <<(gene)
+    genes << gene 
+  end
+
+  
+  #
+  # set the gene at the supplied index value
+  #
   def []=(index, value)
     genes[index].code = value if value.is_a? String and value.length == 7
   end

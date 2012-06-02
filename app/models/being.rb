@@ -216,10 +216,11 @@ class Being
   end
   
    def randomize!
-    self.random_gender!
-    self.random_name!
-    self.random_age!
-    self
+     12.times { self.chromosomes <<  Chromosome.new.randomize! }
+     self.random_gender!
+     self.random_name!
+     self.random_age!
+     self
   end
 end
 
