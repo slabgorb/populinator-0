@@ -28,12 +28,12 @@ class Being
   
   def genetic_map(ex = nil)
     ex ||= Chromosome.expressions 
-    self.genotype.map{|g| g.express }.inject{ |m, g| m.merge(g){ |k, original_value, new_value| original_value.merge(new_value){ |kp, original_value_prime, new_value_prime| [original_value_prime, new_value_prime].max } } }.symbolize_keys
+    self.genotype.map{|g| g.express(ex) }.inject{ |m, g| m.merge(g){ |k, original_value, new_value| original_value.merge(new_value){ |kp, original_value_prime, new_value_prime| [original_value_prime, new_value_prime].max } } }.symbolize_keys
   end
   
-  def description
+  def description(ex = nil)
     retval = { }
-    self.genetic_map.each_pair do |trait, value|
+    self.genetic_map(ex).each_pair do |trait, value|
       retval[trait] = value.to_a.sort{ |a,b| b.last <=> a.last } 
     end
     retval

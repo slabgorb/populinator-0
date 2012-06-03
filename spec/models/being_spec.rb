@@ -89,7 +89,7 @@ describe Being do
   context 'genetic_map' do 
     before :each do 
       srand(7)
-      expressions = {
+      @expressions = {
         hair: { 
           blond:['01'],
           red:['02'],
@@ -101,11 +101,11 @@ describe Being do
     end
     
     it 'describes the being in terms of genetics' do
-      @adam.genetic_map.should eq({:hair=>{"brown"=>2, "blond"=>1, "light_brown"=>1, "dark_brown"=>1, "black"=>0, "red"=>2}, :build=>{"heavier"=>1, "lighter"=>0}, :disposition=>{"angry"=>1, "calm"=>1}})
+      @adam.genetic_map(@expressions).should eq({:hair=>{:blond=>1, :red=>1, :pink=>2, :plaid=>1}})
     end
     
     it 'should be able to describe the person in visual terms' do
-      @adam.description.should eq({:hair=>[["brown", 2], ["red", 2], ["light_brown", 1], ["blond", 1], ["dark_brown", 1], ["black", 0]], :build=>[["heavier", 1], ["lighter", 0]], :disposition=>[["angry", 1], ["calm", 1]]})
+      @adam.description(@expressions).should eq({:hair=>[[:pink, 2], [:blond, 1], [:red, 1], [:plaid, 1]]})
     end
     
   end
