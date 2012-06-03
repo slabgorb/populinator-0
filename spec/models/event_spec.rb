@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Event do
-  before :each do
+  before :all do
     @adam = Person.new(:name => 'Adam', :gender => 'male')
     @death = Event.new(:name => 'Die', :description => "Die Adam die!", :effect => "{|b| b.die! }")
     @city = Settlement.new(:name => 'City')
-    @city.populate 100
+    @city.populate 10
     @famine = Event.new({:name =>'famine',:description => 'had a famine',:effect => '{|settlement, virulence| settlement.residents.each{|b| b.die! if rand < virulence and b.alive? }}'})
   end 
   

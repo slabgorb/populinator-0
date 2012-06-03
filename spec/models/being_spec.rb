@@ -86,6 +86,31 @@ describe Being do
     
   end
   
+  context 'genetic_map' do 
+    before :each do 
+      srand(7)
+      expressions = {
+        hair: { 
+          blond:['01'],
+          red:['02'],
+          pink:['03'],
+          plaid:['FF']
+        } 
+      }
+      5.times  { @adam.chromosomes << Chromosome.new.randomize! }
+    end
+    
+    it 'describes the being in terms of genetics' do
+      @adam.genetic_map.should eq({:hair=>{"brown"=>2, "blond"=>1, "light_brown"=>1, "dark_brown"=>1, "black"=>0, "red"=>2}, :build=>{"heavier"=>1, "lighter"=>0}, :disposition=>{"angry"=>1, "calm"=>1}})
+    end
+    
+    it 'should be able to describe the person in visual terms' do
+      @adam.description.should eq({:hair=>[["brown", 2], ["red", 2], ["light_brown", 1], ["blond", 1], ["dark_brown", 1], ["black", 0]], :build=>[["heavier", 1], ["lighter", 0]], :disposition=>[["angry", 1], ["calm", 1]]})
+    end
+    
+  end
+
+  
   context 'possessions' do
     before :each do 
       @thing = FactoryGirl.create :thing

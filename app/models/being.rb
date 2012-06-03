@@ -26,6 +26,18 @@ class Being
     chromosomes
   end
   
+  def genetic_map
+    self.genotype.map{|g| g.express }.inject{ |m, g| m.merge(g){ |k, original_value, new_value| original_value.merge(new_value){ |kp, original_value_prime, new_value_prime| [original_value_prime, new_value_prime].max } } }.symbolize_keys
+  end
+  
+  def description
+    retval = { }
+    self.genetic_map.each_pair do |trait, value|
+      retval[trait] = value.to_a.sort{ |a,b| b.last <=> a.last } 
+    end
+    retval
+  end
+  
   def as_json(options = { })
     super(only:[:id, :name, :age, :alive, :_type],
           methods: [:children, :married?,:spouse_id])
