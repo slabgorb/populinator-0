@@ -20,7 +20,7 @@ class Chromosome
     self
   end
 
-  def expressions
+  def self.expressions 
     @@expressions
   end
   
@@ -32,7 +32,7 @@ class Chromosome
   #
   # This is meant to be consumed by a description engine of some kind.
   #
-  def express(exps = expressions)
+  def express(exps = Chromosome.expressions)
     result = { }
     self.walk do |gene| 
       exps.each_pair do |category, value|

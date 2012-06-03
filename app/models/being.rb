@@ -26,7 +26,8 @@ class Being
     chromosomes
   end
   
-  def genetic_map
+  def genetic_map(ex = nil)
+    ex ||= Chromosome.expressions 
     self.genotype.map{|g| g.express }.inject{ |m, g| m.merge(g){ |k, original_value, new_value| original_value.merge(new_value){ |kp, original_value_prime, new_value_prime| [original_value_prime, new_value_prime].max } } }.symbolize_keys
   end
   
