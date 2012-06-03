@@ -9,7 +9,7 @@ describe Chromosome do
   end
   
   it "should give the indexed seed" do 
-    @c0[0].should eq('6AC1F43')
+    @c0[0].should eq('6AC1F3')
   end
   
   
@@ -37,7 +37,7 @@ describe Chromosome do
 
     it "should generate a random seed part" do
       srand(1)
-      Chromosome.rand_hex.should eq('6AC1F43')
+      Chromosome.rand_hex.should eq('6AC1F3')
     end
     
     it "should have a different genome" do

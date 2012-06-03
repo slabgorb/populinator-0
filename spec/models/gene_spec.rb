@@ -10,9 +10,9 @@ describe Gene do
     @c.genes.first.code.to_i(16).should be_a(Fixnum)
   end
 
-  it "should be a seven digit hex number" do
+  it "should be a six digit hex number" do
     @c.genes.each do |gene|
-      gene.code.length.should eq(7)
+      gene.code.length.should eq(6)
     end
   end
 end

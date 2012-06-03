@@ -88,7 +88,7 @@ describe Being do
   
   context 'genetic_map' do 
     before :each do 
-      srand(7)
+      srand(0)
       @expressions = {
         hair: { 
           blond:['01'],
@@ -97,15 +97,15 @@ describe Being do
           plaid:['FF']
         } 
       }
-      5.times  { @adam.chromosomes << Chromosome.new.randomize! }
+      20.times  { @adam.chromosomes << Chromosome.new.randomize! }
     end
     
     it 'describes the being in terms of genetics' do
-      @adam.genetic_map(@expressions).should eq({:hair=>{:blond=>1, :red=>1, :pink=>2, :plaid=>1}})
+      @adam.genetic_map(@expressions).should eq({:hair=>{:blond=>2, :red=>1, :pink=>1, :plaid=>1}})
     end
     
     it 'should be able to describe the person in visual terms' do
-      @adam.description(@expressions).should eq({:hair=>[[:pink, 2], [:blond, 1], [:red, 1], [:plaid, 1]]})
+      @adam.description(@expressions).should eq({:hair=>[[:blond, 2], [:pink, 1], [:red, 1], [:plaid, 1]]})
     end
     
   end

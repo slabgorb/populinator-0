@@ -2,6 +2,8 @@
   = link_to being.name, being_path(being)
   = being.age 
   years old
+%li.left.being
+  = being.genotype.collect{|c| c.to_s }
 - if being.respond_to? :spouse and being.spouse.present?
   %li.left.spouse.being{:class=>"#{being.spouse.gender}"}
     = link_to being.spouse.name, being_path(being.spouse)

@@ -86,9 +86,9 @@ class Chromosome
     genes[index] = Chromosome.rand_hex
   end
   
-  # generates a 7 digit hex number as a string
+  # generates a 6 digit hex number as a string
   def self.rand_hex
-    ("%07x" % (rand * 268435455).floor).upcase
+    ("%06x" % (rand * 16777215).floor).upcase
   end
 
   def walk 
