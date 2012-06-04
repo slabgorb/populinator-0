@@ -5,20 +5,33 @@ describe Being do
     @adam = FactoryGirl.create(:being, :name => 'Adam', :gender => 'male')
   end
 
-  it 'knows when it is alive' do
-    @adam.alive?.should be_true
-    @adam.dead?.should be_false
-  end
-  
-  it 'knows when it is dead' do
-    @adam.die!
-    @adam.alive?.should be_false
-    @adam.dead?.should be_true
-  end
-  
-  it 'cannot die twice' do 
-    @adam.die!
-    lambda { @adam.die! }.should raise_error(DeathException)
+  context 'life and death' do 
+    it 'should have the birth event' do
+      @adam.birth!
+      p @adam.history.first.name
+      @adam.history.where(:name => "Birth").first.should_not be_nil
+    end
+    
+    it 'knows when it is alive' do
+      @adam.alive?.should be_true
+      @adam.dead?.should be_false
+    end
+    
+    it 'knows when it is dead' do
+      @adam.die!
+      @adam.alive?.should be_false
+      @adam.dead?.should be_true
+    end
+    
+    it 'should have an event when it dies' do
+      @adam.die!
+      @adam.history.where(:name => 'Die').first.should_not be_nil
+    end
+    
+    it 'cannot die twice' do 
+      @adam.die!
+      lambda { @adam.die! }.should raise_error(DeathException)
+    end
   end
   
   context 'injuries' do
@@ -40,7 +53,16 @@ describe Being do
   context 'reproduction' do
     before :each do 
       @eve = FactoryGirl.create(:being, :name => 'Eve', :gender => 'female')
+      @adam.children.clear
       @cain = @adam.reproduce(@eve, 'Cain', 'male')
+    end
+    
+    it 'knows about children' do
+      @adam.children.first.should == @cain
+      b = Being.find(@adam.id).children
+      f = Being.where(:parent_id => @adam.id).first
+      f.should == @cain
+      b.first.should == @cain
     end
     
     it 'cannot reproduce with itself if not neuter' do 

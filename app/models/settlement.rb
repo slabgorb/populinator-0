@@ -32,8 +32,7 @@ class Settlement
   
   def populate(pop)
     pop.to_i.times do
-      p = Person.create
-      p.randomize!
+      p = Person.create.randomize!
       p.settlement = self
       residents << p
     end
@@ -69,21 +68,19 @@ class Settlement
   end
 
   def marry_sets(males, females)
+    cache = { :male => [], :female => []}
     males.each do |m| 
       females.each do |f|
+        next if cache[:male].index(m.id) or cache[:female].index(f.id) 
         if Person.marriage_strategy(m, f) 
-          marry_one(m,f)
+          m.marry f
+          cache[:male] << m.id
+          cache[:female] << f.id
         end
       end
     end    
   end
   
-  def marry_one(male, female)
-    marriage = Event.new(effect:'{|a,b| a.marry b; b.surname = a.surname }', name:'marriage', description:'Got married')
-    marriage.happened_to male, female
-    female.surname = male.surname
-  end
-
   def ruler 
     self.rulers.select { |s| s.alive? }.sort{ |a,b| b.age <=> a.age }.first
   end
@@ -97,18 +94,12 @@ class Settlement
     mothers = females.select{ |s| s.married? and s.age < Person.infertility}
     if mothers.present?
       minors.each do |child|
-        child.settlement = self
-        child.save!
         begin
-          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.first.adopt(child, true)
+          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.try(:first).try(:adopt, child, true)
         rescue Exception => e
           logger.error e
         end
       end
-    end
-    minors.each do |minor|
-      minor.surname = minor.parent.surname if minor.parent
-      minor.save
     end
     males.each do |person|
       person.spouse.surname = person.surname if person.spouse

@@ -1,29 +1,46 @@
 class Being
   include Mongoid::Document
   include Mongoid::Timestamps::Created
-  embeds_many :damages 
-  has_many :things
-  has_many :children, :class_name => 'Being'
-  has_many :events
-  has_many :chromosomes
-  belongs_to :parent, :class_name => 'Being'
-  belongs_to :settlement
+  include Mongoid::Acts::Tree
+  
   field :name, :type => String
   field :gender, :type => String, :default => nil
   field :age, :type => Fixnum, :default => 0
   field :alive, :type => Boolean, :default => true
+  
+  acts_as_tree order:[['age', 'desc']]
+
+  embeds_many :damages 
+  embeds_many :chromosomes
+  
+  has_many :things
+  has_many :events
+  
+  belongs_to :settlement
+  
+  has_and_belongs_to_many :spouses, :class_name => 'Being'
+
   scope :living, -> { where(:alive => true) }
   scope :adult, -> { where(:age.gt => @@coming_of_age) }
-  has_and_belongs_to_many :spouses, :class_name => 'Being'
-  
+
   def to_s
     "#{name}, aged #{age}"
   end
   
   @@coming_of_age = 1
- 
+  @@old_age = 80
+  @@infertilty = 50
+  
   def genotype 
     chromosomes.sort
+  end
+  
+  def self.infertility
+    @@infertilty 
+  end
+  
+  def self.coming_of_age
+    @@coming_of_age
   end
   
   def exchange_genome(other)
@@ -35,11 +52,10 @@ class Being
     end
     g_out
   end
-
   
   def genetic_map(ex = nil)
     ex ||= Chromosome.expressions 
-    self.genotype.map{|g| g.express(ex) }.inject{ |m, g| m.merge(g){ |k, original_value, new_value| original_value.merge(new_value){ |kp, original_value_prime, new_value_prime| [original_value_prime, new_value_prime].max } } }.symbolize_keys
+    self.genotype.map{|g| g.express(ex) }.inject{ |m, g| m.merge(g){ |k, original_value, new_value| original_value.merge(new_value){ |kp, original_value_prime, new_value_prime| [original_value_prime, new_value_prime].max } } }.try(:symbolize_keys)
   end
   
   def description(ex = nil)
@@ -73,8 +89,12 @@ class Being
 
   
   def marry(s)
-    self.spouses.push(s) if s
-    s.spouses.push(self) if s.respond_to? :spouses
+    self.spouses << s
+    s.spouses << self
+    s.surname = self.surname if self.respond_to?(:surname)
+    e = Event.new(:name => 'Marriage', :description => "#{name} married #{s.name}", :effect => "{|a, b| true }")
+    e.happened_to(self, s)
+    e.happened_to(s, self)
   end
   
   def spouse 
@@ -94,29 +114,42 @@ class Being
   end
   
   def adopt(child, heredity = false)
-    child.surname = self.surname
-    child.parent = self
-    if heredity 
-      child.chromosomes.delete_all
-      genome = child.parent.exchange_genome(child.parent.spouse)
-      genome.map{ |g| child.chromosomes << g }
-    end
-    child.save!
     self.children << child
-    save!
+    child.surname = self.surname if child.respond_to?(:surname)
+    if heredity 
+      child.get_genetics!(child.parent, child.parent.spouse)
+    end
+    child.save
     child
   end
-  
-  def self.random_name(sex = self.random_gender)
-    [%w|green red yellow black|.shuffle.first.capitalize,
-     %w|dra cula franken stein were wolf shark jackal bear blob spider snake goo|.shuffle[0..((rand * 2).floor + 1)].join]
+
+
+  def random_age!
+    self.age = self.class.random_age
   end
 
+
+  def self.random_name(sex = self.random_gender)
+    [%w|green red yellow black|.shuffle.first.capitalize,
+     %w|dra cula franken stein were wolf shark jackal bear blob spider snake goo|.shuffle[0..((rand * 2).floor + 1)].join.titlecase]
+  end
+
+  def random_name(sex = self.gender)
+    self.class.random_name(sex)
+  end
+
+  def self.random_age
+    (rand * @@old_age).floor
+  end
+    
+  def get_genetics!(parent1, parent2)
+    self.chromosomes.delete_all
+    parent1.exchange_genome(parent2).map{ |g| self.chromosomes << g }   
+    self
+  end
   
   def random_name!
-    self.given_name, self.surname = self.random_name
-    self.write_attribute(:name, [self.given_name, self.surname].join(' '))
-    true
+    self.name = self.random_name.join(' ')
   end
   
   def alive?
@@ -136,7 +169,7 @@ class Being
   end
   
   def sibling_of?(other)
-    not self.parent.children.index(other).nil? if self.parent and self.parent.children
+    self.siblings.find(other.id)
   end
   
   def hurt(damage)
@@ -163,19 +196,24 @@ class Being
     self.parent.siblings.collect_concat{|p| p and p.children}.index(other) if self.parent and self.parent.siblings
   end
   
-  def siblings
-    self.parent.try(:children)
-  end
-
-  
   def heal(damage)
     self.damages.delete damage
   end
   
   def die!
     raise DeathException if dead?
-    self.alive = false
-    save!
+    Event.new(:name => 'Die', :description => "#{name} died at age #{age}", :effect => "{|b| b.alive = false; b.save }").happened_to(self)
+    self
+  end
+  
+  def birth!
+    Event.new(:name => 'Birth', :description => "#{name} was born", :effect => "{|b| b.alive = true; b.save }").happened_to(self)
+    self
+  end
+  
+  def resurrect!
+    raise DeathException if alive?
+    Event.new(:name => 'Resurrection', :description => "#{name} was resurrected!", :effect => "{|b| b.alive = true; b.save }").happened_to(self)
   end
   
 
@@ -236,12 +274,20 @@ class Being
   
   def reproduce(other = nil, child_name = nil, child_gender = nil) 
     raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
-    raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
-    child = self.class.new(name: child_name || 'Child of#{self.name}', gender: child_gender || Being.random_gender, age: 0)
+    #raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
+    child = self.class.create.randomize!.birth!.get_genetics!(self, other)
+    child.age = 0
+    child.name = child_name if child_name
+    
+    # TODO: come up with a scheme to handle this more better
+    child.surname = child_name.split(' ').last if child.respond_to?(:surname)
+    child.given_name = child_name.split(' ').last if child.respond_to?(:given_name)
+    
+    Event.new(:name => 'Reproduction', :description => "#{name} had a child #{child.name} with #{other.try(:name)}!", :effect => "{|b| true }").happened_to(self)
+    Event.new(:name => 'Reproduction', :description => "#{other.try(:name)} had a child #{child.name} with #{name}!", :effect => "{|b| true }").happened_to(other) if other
     self.children << child
-    other.children << child if other
-    self.settlement.beings << child if self.settlement
-    return child
+    self.settlement.residents << child if self.settlement
+    child
   end
   
    def randomize!

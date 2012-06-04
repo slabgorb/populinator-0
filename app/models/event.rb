@@ -11,10 +11,7 @@ class Event
   scope :personal, where(category: 'personal')
   def affect(*args) 
     eval("Proc.new #{self.effect}").call(*args)
-    args.each do  |o| 
-      o.events << self if o.respond_to? :events= 
-      o.save if o.respond_to? :save
-    end
+    args.each { |o|       o.events << self if o.respond_to? :events= }
   end
   alias :happened_to :affect
 

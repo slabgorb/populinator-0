@@ -20,6 +20,7 @@ Population::Application.routes.draw do
   get '/beings/graph' => 'beings#graph'
   
   put '/beings/kill/:id' => 'beings#kill', :as => :kill
+  put '/beings/resurrect/:id' => 'beings#resurrect', :as => :resurrect
   
   get '/beings/genotype/:id' => 'beings#genotype'
   

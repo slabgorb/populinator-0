@@ -15,14 +15,6 @@ class Person < Being
     @@names
   end
 
-  def self.infertility
-    @@infertilty = 50
-  end
-  
-  def self.coming_of_age
-    @@coming_of_age
-  end
-  
   def self.genders
     ['male', 'female']
   end
@@ -33,10 +25,10 @@ class Person < Being
       not m.married? and 
       not f.married? and 
       not f.gender == m.gender and
-      not f.sibling_of? m and
-      not f.aunt_or_uncle_of? m and
-      not f.niece_or_nephew_of? m and
-      #not f.cousin_of? m
+      # not f.sibling_of? m and
+      # not f.aunt_or_uncle_of? m and
+      # not f.niece_or_nephew_of? m and
+      # not f.cousin_of? m
       f.age > @@coming_of_age and
       m.age > @@coming_of_age
   end
@@ -49,19 +41,11 @@ class Person < Being
     ['male', 'female']
   end
   
-  def random_age!
-    self.age = Person.random_age
-  end
-
   def random_name!
     self.surname, self.given_name = self.class.random_name(gender)
   end
    
 
-  def self.random_age
-    (rand * @@old_age).floor
-  end
-  
   def self.random_name(sex = self.random_gender)
     [@@names['surname'].shuffle.first, @@names[sex].shuffle.first]
   end

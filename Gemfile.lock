@@ -5,6 +5,14 @@ GIT
     guard-rails (0.1.0)
       guard (>= 0.2.2)
 
+GIT
+  remote: https://github.com/saks/mongoid_acts_as_tree.git
+  revision: e752c65fdc153b9958766d544b58b979c31d789e
+  specs:
+    mongoid_acts_as_tree (0.2.0)
+      bson (>= 0.20.1)
+      mongoid (>= 2.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -181,6 +189,7 @@ DEPENDENCIES
   haml-rails (~> 0.3)
   jquery-rails
   mongoid (~> 2.4)
+  mongoid_acts_as_tree!
   rails (= 3.1.3)
   rspec-rails
   sass

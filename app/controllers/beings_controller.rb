@@ -8,7 +8,15 @@ class BeingsController < ApplicationController
 
   def kill
     @being = Being.find(params[:id])
+    @being.die!
+    redirect_to :back
   end
+  
+  def resurrect
+    @being = Being.find(params[:id])
+    @being.resurrect!
+    redirect_to :back
+  end  
 
   
   # GET /beings

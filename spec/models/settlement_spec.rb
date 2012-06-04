@@ -9,6 +9,8 @@ describe Settlement do
   
   it 'counts the population' do
     @settlement.population.should be(101)
+    @settlement.residents.first.die!
+    @settlement.population.should be(100)
   end
 
   it 'shows the ruler' do     
@@ -25,7 +27,7 @@ describe Settlement do
     end
     
     it 'puts children in families' do 
-      @settlement.residents.select{ |s| s.children.present? }.empty?.should be_false
+      @settlement.residents.select{ |s| s.children.collect{ |c| c }.present? }.empty?.should be_false
     end
     
     it 'should have some families' do

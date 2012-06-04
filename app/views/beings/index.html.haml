@@ -13,7 +13,7 @@
       %th Settlement
       %th{ colspan:4 } 
 
-    - @beings.try(:each) do |being|
+    - @beings.collect{|c| c}.each do |being|
       %tr
         %td= being.name
         %td= being.gender
@@ -22,7 +22,11 @@
         %td= link_to_if( being.settlement.present?, being.settlement.try(:name), "/settlements/#{being.settlement.try(:id)}")
         %td= link_to 'Show', being
         %td= link_to 'Edit', edit_being_path(being)
-        %td= link_to 'Kill', kill_path(being)
+        - if being.alive?
+          %td= link_to 'Kill', kill_path(being), :confirm => 'Are you sure?', :method => :put
+        - else 
+          %td= link_to 'Resurrect', resurrect_path(being), :confirm => 'Are you sure?', :method => :put
+          
         %td= link_to 'Destroy', being, :confirm => 'Are you sure?', :method => :delete
 
 %br
