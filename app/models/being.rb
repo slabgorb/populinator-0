@@ -55,7 +55,11 @@ class Being
   
   def genetic_map(ex = nil)
     ex ||= Chromosome.expressions 
-    self.genotype.map{|g| g.express(ex) }.inject{ |m, g| m.merge(g){ |k, original_value, new_value| original_value.merge(new_value){ |kp, original_value_prime, new_value_prime| [original_value_prime, new_value_prime].max } } }.try(:symbolize_keys)
+    self.genotype.map{ |g| g.express(ex) }.inject do |m, g| 
+      m.merge(g) do |k, original_value, new_value| 
+        original_value.merge(new_value){ |kp, original_value_prime, new_value_prime| [original_value_prime, new_value_prime].max } 
+      end
+    end.symbolize_keys
   end
   
   def description(ex = nil)
@@ -291,7 +295,9 @@ class Being
   end
   
    def randomize!
-     12.times { self.chromosomes <<  Chromosome.new.randomize! }
+     save
+     10.times { self.chromosomes <<  Chromosome.new.randomize! }
+     save
      self.random_gender!
      self.random_name!
      self.random_age!

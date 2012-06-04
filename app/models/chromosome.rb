@@ -2,7 +2,7 @@ class Chromosome
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   @@expressions = YAML::load(File.read(File.join(Rails.root, 'genetics', 'people.yml')))
-  belongs_to :being
+  embedded_in :being
   embeds_many :genes
 
   def length 

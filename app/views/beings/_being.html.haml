@@ -6,7 +6,7 @@
   = being.age 
   years old
 - if being.respond_to? :spouse and being.spouse.present? and not nospouse
-  = render :partial => "being", locals: { being: being.spouse, nospouse: true }
+  = render :partial => "/beings/being", locals: { being: being.spouse, nospouse: true }
 - if being.children.present? and not nokids
   %li.clear.being-children
     %ul

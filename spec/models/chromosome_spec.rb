@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Chromosome do
   before :all do 
     srand(1) 
-    @c0 = FactoryGirl.create(:chromosome)
-    @c1 = FactoryGirl.create(:chromosome)
-    @c2 = FactoryGirl.create(:chromosome)
+    @c0 = FactoryGirl.build(:chromosome)
+    @c1 = FactoryGirl.build(:chromosome)
+    @c2 = FactoryGirl.build(:chromosome)
   end
   
   it "should give the indexed seed" do 
@@ -23,14 +23,14 @@ describe Chromosome do
           plaid:['FF']
         } 
       }
-      e = FactoryGirl.create(:labrat)
+      e = FactoryGirl.build(:labrat)
       e.express(expressions).should eq({:hair=>{:blond=>2, :red=>1, :pink=>1, :plaid=>0}})
     end
   end
   
   context "mutation" do
     before :all do
-      @m = FactoryGirl.create(:chromosome)
+      @m = FactoryGirl.build(:chromosome)
       @old = @m.to_s
       @m.mutate
     end

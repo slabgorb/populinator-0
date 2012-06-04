@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Gene do
   before :all do
     srand(1) # make random things happen consistently
-    @c = FactoryGirl.create(:chromosome)
+    @c = FactoryGirl.build(:chromosome)
   end
   
   it "should be a hex string which resolves to an integer" do
