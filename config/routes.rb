@@ -17,7 +17,11 @@ Population::Application.routes.draw do
   resources :rulers, :controller => 'beings',  :_type => 'Ruler'
   
   
-  get '/being/graph' => 'beings#graph'
+  get '/beings/graph' => 'beings#graph'
+  
+  put '/beings/kill/:id' => 'beings#kill', :as => :kill
+  
+  get '/beings/genotype/:id' => 'beings#genotype'
   
   put '/settlement/seed/:id' => 'settlements#seed', :as => :seed
   

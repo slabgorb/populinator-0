@@ -9,6 +9,10 @@ class Chromosome
     genes.length
   end
 
+  def <=>(other)
+    other.genes.map{ |g| g.value }.sum <=> self.genes.map{ |g| g.value }.sum
+  end
+  
   def to_s
     genes.join(' ')
   end

@@ -35,6 +35,12 @@ $icon-padding: 16px;
   }
 }
 
+@mixin tight($tightness:0) {
+  margin: $tightness;
+  padding: $tightness;
+  line-height: 75%;
+}
+
 @mixin shadow ($horizontal, $vertical, $blur, $color) {
   -moz-box-shadow:    inset $horizontal $vertical $blur $color;
   -webkit-box-shadow: inset $horizontal $vertical $blur $color;
@@ -83,7 +89,7 @@ $icon-padding: 16px;
 @mixin paper($offset_x, $offset_y) {
   background: {
 	position: $offset_x $offset_y;
-	image: url('backgrounds/paper.jpg');
+	image: url('backgrounds/paper.jpg') !important;
   }
 }
 
@@ -182,12 +188,21 @@ body {
   }
 
   table {
-	th {
+	border-collapse: collapse;
+	th,td  {
+	  padding: 5px;
 	  font: {
 		family: KingthingsExeter;
 		weight: normal;
-		size: 1.1em;
 	  }
+	  text-align: left;
+	  border-bottom: 1px solid $color05;
+	}
+	th { 
+	  font-size: 1.3em;
+	}
+	td {
+	  font-size: 1.2em;
 	}
   }
 
@@ -216,6 +231,7 @@ body {
   }
 
   #main-content {
+
 	margin: 20px;
 
 
@@ -510,4 +526,13 @@ svg {
 #warning, #notice, #info {
   color: $color05;
   font-weight: bold;
+}
+
+
+.ui-tooltip-content {
+  background-color: transparent !important;
+  @include paper(100,100);
+  @include shadow(-1px, -1px, 1px, $color01);
+  @include box-shadow(2px, 2px, 1px, $color01);
+  border: 1px solid $color01;
 }

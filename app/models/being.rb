@@ -21,10 +21,21 @@ class Being
   end
   
   @@coming_of_age = 1
-  
+ 
   def genotype 
-    chromosomes
+    chromosomes.sort
   end
+  
+  def exchange_genome(other)
+    g_self = genotype
+    g_other = other.genotype
+    g_out = []
+    g_self.count.times do |i|
+      g_out << g_self[i].reproduce_with(g_other[i])
+    end
+    g_out
+  end
+
   
   def genetic_map(ex = nil)
     ex ||= Chromosome.expressions 
@@ -32,11 +43,11 @@ class Being
   end
   
   def description(ex = nil)
-    retval = { }
+    sorted_map = { }
     self.genetic_map(ex).each_pair do |trait, value|
-      retval[trait] = value.to_a.sort{ |a,b| b.last <=> a.last } 
+      sorted_map[trait] = value.to_a.sort{ |a,b| b.last <=> a.last } 
     end
-    retval
+    sorted_map.to_a.collect { |c| { c.first => [c.second.first.first.to_sym, c.second.first.second] }}
   end
   
   def as_json(options = { })
@@ -82,12 +93,17 @@ class Being
     self.neighbors.select{ |n| Person.marriage_strategy(n, self) }.try(:shuffle).try(:first)
   end
   
-  def adopt(child)
-    self.children << child
+  def adopt(child, heredity = false)
     child.surname = self.surname
     child.parent = self
-    child.save
-    save
+    if heredity 
+      child.chromosomes.delete_all
+      genome = child.parent.exchange_genome(child.parent.spouse)
+      genome.map{ |g| child.chromosomes << g }
+    end
+    child.save!
+    self.children << child
+    save!
     child
   end
   

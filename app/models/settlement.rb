@@ -100,7 +100,7 @@ class Settlement
         child.settlement = self
         child.save!
         begin
-          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.first.adopt child
+          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.first.adopt(child, true)
         rescue Exception => e
           logger.error e
         end

@@ -11,9 +11,7 @@
       %th Age
       %th Type
       %th Settlement
-      %th
-      %th
-      %th
+      %th{ colspan:4 } 
 
     - @beings.try(:each) do |being|
       %tr
@@ -24,6 +22,7 @@
         %td= link_to_if( being.settlement.present?, being.settlement.try(:name), "/settlements/#{being.settlement.try(:id)}")
         %td= link_to 'Show', being
         %td= link_to 'Edit', edit_being_path(being)
+        %td= link_to 'Kill', kill_path(being)
         %td= link_to 'Destroy', being, :confirm => 'Are you sure?', :method => :delete
 
 %br

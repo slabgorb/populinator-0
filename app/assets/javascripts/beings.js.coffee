@@ -21,7 +21,26 @@ class BeingGraph
 
 class Being
    constructor: ->
-     # nop
+     $.each $('li.being'), ->
+      $b = $(this)
+      options =
+        style:
+          classes: 'ui-tooltip-plain'
+          width: '220px'
+        content:
+          text: 'Loading...'
+          ajax:
+            url: '/beings/genotype/' + $b.find('input').val()
+            type: 'GET'
+        hide:
+          fixed: true
+        position:
+          my: 'top center'
+          at: 'bottom center'
+
+      $b.qtip options
+
+
 
 $ ->
   window.being = new Being()

@@ -105,7 +105,7 @@ describe Being do
     end
     
     it 'should be able to describe the person in visual terms' do
-      @adam.description(@expressions).should eq({:hair=>[[:blond, 2], [:pink, 1], [:red, 1], [:plaid, 1]]})
+      @adam.description(@expressions).should eq([{:hair=>[:blond, 2]}])
     end
     
   end

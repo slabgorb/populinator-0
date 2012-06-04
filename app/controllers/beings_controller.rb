@@ -1,5 +1,15 @@
 class BeingsController < ApplicationController
 
+  def genotype
+    @being = Being.find(params[:id])
+    @genotype = @being.genotype
+    render :layout => false
+  end
+
+  def kill
+    @being = Being.find(params[:id])
+  end
+
   
   # GET /beings
   # GET /beings.json

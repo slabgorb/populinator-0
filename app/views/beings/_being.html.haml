@@ -1,11 +1,11 @@
 %li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'}" }
+  %input{:type => 'hidden', :value => being.id}
   = link_to being.name, being_path(being)
   = being.age 
   years old
-%li.left.being
-  = being.genotype.collect{|c| c.to_s }
 - if being.respond_to? :spouse and being.spouse.present?
   %li.left.spouse.being{:class=>"#{being.spouse.gender}"}
+    %input{:type => 'hidden', :value => being.spouse.id}
     = link_to being.spouse.name, being_path(being.spouse)
     = being.spouse.age
     years old
@@ -15,3 +15,5 @@
       - being.children.each do |child|
         = render partial:'/beings/being', locals:{ being:child }
 .clear
+
+
