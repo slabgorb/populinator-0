@@ -22,7 +22,7 @@ class Being
 
   scope :living, -> { where(:alive => true) }
   scope :adult, -> { where(:age.gt => @@coming_of_age) }
-
+  
   def to_s
     "#{name}, aged #{age}"
   end
@@ -95,10 +95,12 @@ class Being
   def marry(s)
     self.spouses << s
     s.spouses << self
-    s.surname = self.surname if self.respond_to?(:surname)
     e = Event.new(:name => 'Marriage', :description => "#{name} married #{s.name}", :effect => "{|a, b| true }")
     e.happened_to(self, s)
+    s.surname = self.surname if self.respond_to?(:surname)
     e.happened_to(s, self)
+    s.save
+    save
   end
   
   def spouse 
@@ -123,6 +125,8 @@ class Being
     if heredity 
       child.get_genetics!(child.parent, child.parent.spouse)
     end
+    Event.new(:name => 'Adoption', :description => "#{child.name} was adopted by #{name}", :effect => "{|b| b }").happened_to(child)
+    Event.new(:name => 'Adoption', :description => "#{child.name} was adopted", :effect => "{|b| b }").happened_to(self)
     child.save
     child
   end
@@ -206,7 +210,7 @@ class Being
   
   def die!
     raise DeathException if dead?
-    Event.new(:name => 'Die', :description => "#{name} died at age #{age}", :effect => "{|b| b.alive = false; b.save }").happened_to(self)
+    Event.new(:name => 'Death', :description => "#{name} died at age #{age}", :effect => "{|b| b.alive = false; b.save }").happened_to(self)
     self
   end
   

@@ -8,7 +8,6 @@ describe Being do
   context 'life and death' do 
     it 'should have the birth event' do
       @adam.birth!
-      p @adam.history.first.name
       @adam.history.where(:name => "Birth").first.should_not be_nil
     end
     
@@ -25,7 +24,7 @@ describe Being do
     
     it 'should have an event when it dies' do
       @adam.die!
-      @adam.history.where(:name => 'Die').first.should_not be_nil
+      @adam.history.where(:name => 'Death').first.should_not be_nil
     end
     
     it 'cannot die twice' do 

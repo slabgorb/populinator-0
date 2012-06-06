@@ -21,6 +21,7 @@ end
 group :development, :test do
   gem 'growl'
   gem 'rspec-rails'
+  gem 'mongoid-rspec'
   gem 'factory_girl_rails'
   gem 'haml-rails', '~> 0.3'
   gem 'spork-rails'

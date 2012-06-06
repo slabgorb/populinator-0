@@ -145,7 +145,7 @@ $icon-padding: 16px;
     src: url('fonts/Kingthings_Italique-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/Kingthings_Italique-webfont.woff') format('woff'),
          url('fonts/Kingthings_Italique-webfont.ttf') format('truetype'),
-         url('fonts/Kingthings_Italique-webfont.svg#KingthingsCalligCalligraphica') format('svg');
+         url('fonts/Kingthings_Italique-webfont.svg#KingthingsItaliqueRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -156,7 +156,18 @@ $icon-padding: 16px;
     src: url('fonts/Kingthings_Exeter-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/Kingthings_Exeter-webfont.woff') format('woff'),
          url('fonts/Kingthings_Exeter-webfont.ttf') format('truetype'),
-         url('fonts/Kingthings_Exeter-webfont.svg#KingthingsCalligCalligraphica') format('svg');
+         url('fonts/Kingthings_Exeter-webfont.svg#KingthingsExeterRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'KingthingsVersalis';
+    src: url('fonts/Kingthings_Versalis-webfont.eot');
+    src: url('fonts/Kingthings_Versalis-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Kingthings_Versalis-webfont.woff') format('woff'),
+         url('fonts/Kingthings_Versalis-webfont.ttf') format('truetype'),
+         url('fonts/Kingthings_Versalis-webfont.svg#KingthingsVersalisRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -188,6 +199,11 @@ body {
   }
 
   table {
+
+	th.headerSortUp, th.headerSortDown {
+	}
+
+
 	border-collapse: collapse;
 	th,td  {
 	  padding: 5px;
@@ -200,6 +216,14 @@ body {
 	}
 	th { 
 	  font-size: 1.3em;
+	  &.header {
+		padding-left: 14px;
+	  }
+	  &.headerSortUp, &.headerSortDown { 
+		color: $color05;
+		@include icon-image('icons/selector_12', 14px);
+		background-position: left;
+	  }
 	}
 	td {
 	  font-size: 1.2em;
@@ -308,14 +332,16 @@ body {
   }
   
   h1 { 
-	font-size: 5em;
+	opacity: .5;
+	font-size: 2em;
+	margin-bottom: -24px;
 	font: {
 	  weight: normal;
-	  family: KingthingsItalique;
+	  family: KingthingsVersalis;
 	}
 	a { 
 	  color: #fff; 
-	  @include outline-text(1, $color04, $color01);
+	  @include outline-text(1, $color05, $color01);
 	}
   }
 
@@ -536,3 +562,5 @@ svg {
   @include box-shadow(2px, 2px, 1px, $color01);
   border: 1px solid $color01;
 }
+
+

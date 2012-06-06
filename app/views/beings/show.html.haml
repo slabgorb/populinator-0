@@ -2,10 +2,11 @@
 - content_for(:watermark) do 
   .watermark.sun_in_splendor
 
-%h4= render partial:'being', locals:{ being:@being }
+%h4= render partial:'being', locals:{ being:@being, nospouse: true, nokids: true }
 - if @being.married? 
   %h4 Spouse
-  = render partial:'being', locals:{ being:@being.spouse, nospouse: true, nokids: true }
+  %ul.being-spouse
+    %li= render partial:'being', locals:{ being:@being.spouse, nospouse: true, nokids: true }
 %h4 Family
 - if @being.children or @being.spouse.children?
   %h5 Children

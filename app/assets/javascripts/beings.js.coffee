@@ -37,8 +37,9 @@ class Being
         position:
           my: 'top center'
           at: 'bottom center'
-
       $b.qtip options
+
+
 
 
 
@@ -46,3 +47,13 @@ $ ->
   window.being = new Being()
   window.beingGraph = new BeingGraph(200, 200, 10)
   #window.beingGraph.graphData()
+  $('table').tablesorter
+    headers:
+      5:
+        sorter: false
+      6:
+        sorter: false
+      7:
+        sorter: false
+      8:
+        sorter: false

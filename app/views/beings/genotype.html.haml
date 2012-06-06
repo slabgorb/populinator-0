@@ -1,12 +1,14 @@
-%h5 #{@being.name} #{@being.age}
+%h5 #{@being.given_name} #{@being.surname} #{@being.age}
 %h5 #{@being.gender.capitalize}
 .being-popup.left
   %h5 Description
-  %ul.being-description
+  %dl.being-description
     - @being.description.each do |tuple|
-      %li 
-        %span.bold #{tuple.keys.first}: 
-        #{strength(tuple)} #{tuple.values.first.first} 
+      %ul
+        %li
+          = possessive @being.gender
+          %span.bold #{tuple.keys.first} is
+          #{strength(tuple)} #{tuple.values.first.first} 
 .being-popup.left
   %h5 Genotype 
   %div{ id:"genotype#{@being.id}", :class => 'genotype' } 

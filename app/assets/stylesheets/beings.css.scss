@@ -47,12 +47,27 @@ ul.family {
 }
 
 
-li.being-children {
+li.being-children, ul.being-spouse {
   list-style-type: none;
   ul li {
 	list-style-type: none;
   }
 	
+}
+
+dl.being-description {
+  dd {
+	font-size: 0.9em;
+  }
+}
+
+dl.events {
+  dt {
+	font-weight: bold;
+  }
+  dd {
+	font-size: 0.9em;
+  }
 }
 
 .alive {

@@ -1,6 +1,7 @@
 class Settlement
   @@names = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'settlement_names.yml')))
   include Mongoid::Document
+  include Mongoid::Chronology
   field :name, :type => String
   field :established, :type => Integer
   field :area, :type => Integer
@@ -34,6 +35,7 @@ class Settlement
     pop.to_i.times do
       p = Person.create.randomize!
       p.settlement = self
+      p.events << Event.new(:name => 'Parthenogenesis', :description => "#{p.name} was magicked into existence at age #{p.age}", :effect => "{|a| true }")
       residents << p
     end
     save
@@ -90,7 +92,7 @@ class Settlement
     males = self.residents.select { |s| s.gender == 'male' }
     females = self.residents.select { |s| s.gender == 'female' }
     self.marry_sets(males, females)
-    minors = self.residents.select{ |s| s.age < s.coming_of_age }
+    minors = self.residents.select{ |s| s.age < s.coming_of_age and not s.parent }
     mothers = females.select{ |s| s.married? and s.age < Person.infertility}
     if mothers.present?
       minors.each do |child|
@@ -100,10 +102,6 @@ class Settlement
           logger.error e
         end
       end
-    end
-    males.each do |person|
-      person.spouse.surname = person.surname if person.spouse
-      person.save
     end
     true
   end

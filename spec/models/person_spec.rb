@@ -18,6 +18,13 @@ describe Person do
     @adam.married?.should be_false
   end
   
+  it 'should update the name when the surname is changed' do
+    @adam.surname = 'Rocketman'
+    @adam.name.should match(/Rocketman/)
+    @adam.surname = 'Foobooloo'
+    @adam.name.should match(/Foobooloo/)
+  end
+  
   it 'can look at a king' do
     ruler = FactoryGirl.create(:ruler)
     lambda { @adam.surname <=> ruler.surname }.should_not raise_error

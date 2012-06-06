@@ -10,5 +10,14 @@ module BeingsHelper
          when 6 then 'astonishingly'
     end
   end
+
+  def possessive(gender)
+    case gender
+      when 'male' then 'his'
+      when 'female' then 'her'
+      when 'neuter' then 'its'
+    end
+  end
+
 end
 
