@@ -2,6 +2,8 @@ class Being
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include Mongoid::Acts::Tree
+  include Mongoid::Chronology
+
   
   field :name, :type => String
   field :gender, :type => String, :default => nil

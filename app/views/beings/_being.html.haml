@@ -1,6 +1,6 @@
 - nospouse ||= false
 - nokids ||= false
-%li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'}" }
+%li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'} #{being.try(:settlement).try(:ruler) == being ? 'ruler' : ''}" }
   %input{:type => 'hidden', :value => being.id}
   = link_to being.name, being_path(being)
   = being.age 
