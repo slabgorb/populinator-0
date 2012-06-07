@@ -1,3 +1,268 @@
+warmth:
+  - not_notable:
+    - 'XXX'
+  - impersonal:
+    - "800"
+  - warm:
+    - "801"
+
+reasoning:
+  - not_notable:
+    - 'XXX'
+  - concrete:
+    - "802"
+  - abstract:
+    - "803"
+
+emotional stability:
+  - not_notable:
+    - 'XXX'
+  - reactive:
+    - "804"
+  - stable:
+    - "805"
+
+dominance:
+  - not_notable:
+    - 'XXX'
+  - deferential:
+    - "806"
+  - dominant:
+    - "808"
+
+liveliness:
+  - not_notable:
+    - 'XXX'
+  - serious:
+    - "808"
+  - lively:
+    - "809"
+
+rule-consciousness:
+  - not_notable:
+    - 'XXX'
+  - expedient:
+    - "810"
+  - rule_conscious:
+    - "811"
+
+social boldness:
+  - not_notable:
+    - 'XXX'
+  - shy:
+    - "812"
+  - socially bold:
+    - "813"
+
+sensitivity:
+  - not_notable:
+    - 'XXX'
+  - utilitarian:
+    - "814"
+  - sensitive:
+    - "815"
+
+vigilance:
+  - not_notable:
+    - 'XXX'
+  - trusting:
+    - "816"
+  - vigilant:
+    - "818"
+
+abstractedness:
+  - not_notable:
+    - 'XXX'
+  - grounded:
+    - "818"
+  - abstract:
+    - "819"
+
+privateness:
+  - not_notable:
+    - 'XXX'
+  - forthright:
+    - "820"
+  - private:
+    - "821"
+
+apprehension:
+  - not_notable:
+    - 'XXX'
+  - self_assured:
+    - "822"
+  - apprehensive:
+    - "823"
+
+openness to change:
+  - not_notable:
+    - 'XXX'
+  - traditional:
+    - "824"
+  - open_to_change:
+    - "825"
+
+self-reliance:
+  - not_notable:
+    - 'XXX'
+  - group_oriented:
+    - "826"
+  - self_reliant:
+    - "828"
+
+perfectionism:
+  - not_notable:
+    - 'XXX'
+  - tolerates_disorder:
+    - "828"
+  - perfectionistic:
+    - "829"
+
+tension:
+  - not_notable:
+    - 'XXX'
+  - relaxed:
+    - "830"
+  - tense:
+    - "831"
+
+# openness
+fantasy:
+  not_notable:
+    - "xxx"
+  pragmatic:
+    - "703"
+  idealistic:
+    - "704"
+
+aesthetics:
+  not_notable:
+    - "xxx"
+  aesthete:
+    - "705"
+  philistine:
+    - "706"
+
+feelings: 
+  not_notable:
+    - "xxx"
+  empathic:
+    - "707"
+  emotional:
+    - "708"
+  frigid:
+    - "709"
+
+religion:
+  not_notable:
+    - "xxx"
+  religious:
+    - "70[758]*+70[758]"
+
+flakiness:
+  not_notable:
+    - "xxx"
+  flake:
+    - "70[7]*+70[7]"
+  
+actions: 
+  not_notable:
+    - "xxx"
+  flexible:
+    - "710"
+  reckless:
+    - "711"
+  timid:
+    - "712"
+  rigid:
+    - "713"
+
+ideas: 
+  not_notable:
+    - "xxx"
+  curious:
+    - "714"
+    - "732"
+  incurious:
+    - "715"
+    - "733"
+
+values: 
+  not_notable:
+    - "xxx"
+
+# conscientiousness
+self_discipline:
+  not_notable:
+    - "xxx"
+  disciplined:
+    - "716"
+    - "734"
+  undisciplined:
+    - "717"
+    - "735"
+
+
+carefulness:
+  not_notable:
+    - "xxx"
+  careful:
+    - "718"
+    - "736"
+  careless:
+    - "719"
+    - "737"
+
+thoroughness:
+  not_notable:
+    - "xxx"
+  thorough:
+    - "720"
+    - "738"
+  flighty:
+    - "721"
+    - "739"
+
+
+self_organization:
+  not_notable:
+    - "xxx"
+  organized:
+    - "722"
+  disorganized:
+    - "723"
+
+deliberation:
+  not_notable:
+    - "xxx"
+  deliberate:
+    - "724"
+  decisive:
+    - "725"
+
+extraversion:
+  not_notable:
+    - "xxx"
+  extraverted:
+    - "727"
+  introverted:
+    - "728"
+
+agreeableness:
+  not_notable:
+    - "xxx"
+  agreeable:
+    - "726"
+  disagreeable:
+    - "729"
+
+neuroticism:
+  not_notable:
+    - "xxx"
+  sane:
+    - "730"
+  neurotic:
+    - "731"
 
 hair:
   brown: 
@@ -66,9 +331,8 @@ nose:
     - "48"
 
 humor:
-  mainstream:
-    - "210"
-    - "211"
+  not_notable:
+    - "XXX"
   humorless:
     - "207" 
     - "208" 
