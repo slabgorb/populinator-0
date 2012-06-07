@@ -2,6 +2,9 @@
 - content_for(:watermark) do 
   .watermark.sun_in_splendor
 
+.genome.right
+  = render partial: 'genotype', locals: { being:@being }
+
 %h4= render partial:'being', locals:{ being:@being, nospouse: true, nokids: true }
 - if @being.married? 
   %h4 Spouse
@@ -28,6 +31,8 @@
   - @being.history.each do |event|
     %dt= event.name
     %dd= event.description
+
+
 
 = link_to 'Edit', edit_being_path(@being)
 \|
