@@ -2,38 +2,48 @@
 - content_for(:watermark) do 
   .watermark.sun_in_splendor
 
-.genome.right
-  = render partial: 'genotype', locals: { being:@being }
+%ul.subnav
+  %li= link_to 'Edit', edit_being_path(@being)
+  %li= link_to 'Back', beings_path
+  - if @being.married?
+    %li= link_to 'Reproduce With Spouse', reproduction_path(parent_a: @being.id, parent_b: @being.spouse.id), method: :put
 
 %h4= render partial:'being', locals:{ being:@being, nospouse: true, nokids: true }
-- if @being.married? 
-  %h4 Spouse
-  %ul.being-spouse
-    %li= render partial:'being', locals:{ being:@being.spouse, nospouse: true, nokids: true }
-%h4 Family
-- if @being.children or @being.spouse.children?
-  %h5 Children
-  %ul.being-children
-    - @being.children.each do |child|
-      = render partial:'being', locals:{ being:child }
-    - if @being.spouse
-      - @being.spouse.children.each do |child|
+.genome.right
+  = render partial: 'genotype', locals: { being:@being }
+.description.right
+  = render partial: 'description', locals: { being:@being }
+.left
+  %h4 Family
+  - if @being.children.length > 0 or @being.try(:spouse).try(:children).try(:length).try(:>, 0)
+    %h5 Children
+    %ul.being-children
+      - @being.children.each do |child|
         = render partial:'being', locals:{ being:child }
-- if @being.parent
-  %h5 Parents
-  %ul.being-parent
-    = render partial:'being', locals:{ being:@being.parent, nospouse: true, nokids: true }
-    - if @being.parent.married?
-      = render partial:'being', locals:{ being:@being.parent.spouse, nospouse: true, nokids: true }
+      - if @being.spouse
+        - @being.spouse.children.each do |child|
+          = render partial:'being', locals:{ being:child }
+  - if @being.spouse
+    %h5 Spouse
+    %ul.being-spouse
+      %li= render partial:'being', locals:{ being:@being.spouse, nospouse: true, nokids: true }
 
-%h4 History
-%dl.events
-  - @being.history.each do |event|
-    %dt= event.name
-    %dd= event.description
+  - if @being.parent
+    %h4 Parents
+    %ul.being-parent
+      = render partial:'being', locals:{ being:@being.parent, nospouse: true, nokids: true }
+      - if @being.parent.married?
+        = render partial:'being', locals:{ being:@being.parent.spouse, nospouse: true }    
+    - if @being.married? 
+      %h5 Spouse
+      %ul.being-spouse
+        %li= render partial:'being', locals:{ being:@being.spouse, nospouse: true, nokids: true }
 
+.left
+  %h4 History
+  %dl.events
+    - @being.history.each do |event|
+      %dt= event.name
+      %dd= event.description
 
-
-= link_to 'Edit', edit_being_path(@being)
-\|
-= link_to 'Back', beings_path
+.clear

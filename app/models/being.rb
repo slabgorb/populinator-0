@@ -287,11 +287,11 @@ class Being
     #raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
     child = self.class.create.randomize!.birth!.get_genetics!(self, other)
     child.age = 0
-    child.name = child_name if child_name
+    child.name = child_name || self.class.random_name
     
     # TODO: come up with a scheme to handle this more better
-    child.surname = child_name.split(' ').last if child.respond_to?(:surname)
-    child.given_name = child_name.split(' ').last if child.respond_to?(:given_name)
+    child.surname = self.surname if child.respond_to?(:surname)
+    child.given_name = child_name.split(' ').last if child.respond_to?(:given_name) and child_name
     
     Event.new(:name => 'Reproduction', :description => "#{name} had a child #{child.name} with #{other.try(:name)}!", :effect => "{|b| true }").happened_to(self)
     Event.new(:name => 'Reproduction', :description => "#{other.try(:name)} had a child #{child.name} with #{name}!", :effect => "{|b| true }").happened_to(other) if other
@@ -299,6 +299,8 @@ class Being
     self.settlement.residents << child if self.settlement
     child
   end
+  
+  alias :reproduce_with :reproduce
   
    def randomize!
      save

@@ -1,3 +1,4 @@
-%h5 #{being.given_name} #{being.surname} #{being.age}
-%h5 #{being.gender.capitalize}
+%h5 #{@being.given_name} #{@being.surname} #{@being.age}
+%h5 #{@being.gender.capitalize}
+= render partial: 'description', locals: { being: @being }
 = render partial: 'genotype', locals: { being: @being } 

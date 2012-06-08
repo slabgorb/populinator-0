@@ -1,0 +1,14 @@
+.being-popup.left
+  %h5 Description
+  %dl.being-description
+    - being.description.each do |tuple|
+      - unless tuple.values.first.first =~ /not_notable/
+        %ul
+          %li
+            = possessive being.gender
+            - key = tuple.keys.first.to_s.humanize.downcase
+            - verb = key.pluralize == key ? 'are' : 'is'
+            %span.bold #{key} #{verb}
+            #{strength(tuple)} #{tuple.values.first.first.to_s.humanize.downcase} 
+
+

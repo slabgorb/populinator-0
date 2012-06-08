@@ -229,6 +229,22 @@ body {
 	  font-size: 1.2em;
 	}
   }
+  
+  ul.subnav {
+	margin: -20px 0px 0px 0px;
+	padding: 0px;
+	li:first-child {
+	  padding-left: 3px;
+	  border-left: 1px solid white;
+	}
+	li {
+	  list-style-type: none;
+	  display: inline;
+	  border-right: 1px solid white;
+	  padding-right: 3px;
+	}
+
+  }
 
   #navigation {
 	font: {
@@ -244,9 +260,13 @@ body {
 		float: left;
 		padding: 0px 5px;
 		border: {
-		  left: 1px dashed $color01;
 		  right: 1px dashed $color01;
 		}
+	  }
+	  li:first-child {
+		border: {
+		  left: 1px dashed $color01;
+		}	 
 	  }
 	  a:hover {
 		color: $color05;

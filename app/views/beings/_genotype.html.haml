@@ -1,14 +1,4 @@
 .being-popup.left
-  %h5 Description
-  %dl.being-description
-    - being.description.each do |tuple|
-      - unless tuple.values.first.first =~ /not_notable/
-        %ul
-          %li
-            = possessive being.gender
-            %span.bold #{tuple.keys.first} is
-            #{strength(tuple)} #{tuple.values.first.first} 
-.being-popup.left
   %h5 Genotype 
   %div{ id:"genotype#{being.id}", :class => 'genotype' } 
     - being.genotype.collect{|c| c.to_s }.sort.reverse.each do |chromosome|

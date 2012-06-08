@@ -1,132 +1,131 @@
 warmth:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - impersonal:
+  impersonal:
     - "800"
-  - warm:
+  warm:
     - "801"
 
 reasoning:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - concrete:
+  concrete:
     - "802"
-  - abstract:
+  abstract:
     - "803"
 
 emotional stability:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - reactive:
+  reactive:
     - "804"
-  - stable:
+  stable:
     - "805"
 
 dominance:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - deferential:
+  deferential:
     - "806"
-  - dominant:
+  dominant:
     - "808"
 
 liveliness:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - serious:
+  serious:
     - "808"
-  - lively:
+  lively:
     - "809"
 
 rule-consciousness:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - expedient:
+  expedient:
     - "810"
-  - rule_conscious:
+  rule_conscious:
     - "811"
 
 social boldness:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - shy:
+  shy:
     - "812"
-  - socially bold:
+  socially bold:
     - "813"
 
 sensitivity:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - utilitarian:
+  utilitarian:
     - "814"
-  - sensitive:
+  sensitive:
     - "815"
 
 vigilance:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - trusting:
+  trusting:
     - "816"
-  - vigilant:
+  vigilant:
     - "818"
 
 abstractedness:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - grounded:
+  grounded:
     - "818"
-  - abstract:
+  abstract:
     - "819"
 
 privateness:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - forthright:
+  forthright:
     - "820"
-  - private:
+  private:
     - "821"
 
 apprehension:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - self_assured:
+  self_assured:
     - "822"
-  - apprehensive:
+  apprehensive:
     - "823"
 
 openness to change:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - traditional:
+  traditional:
     - "824"
-  - open_to_change:
+  open_to_change:
     - "825"
 
 self-reliance:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - group_oriented:
+  group_oriented:
     - "826"
-  - self_reliant:
+  self_reliant:
     - "828"
 
 perfectionism:
-  - not_notable:
+  not_notable:
     - 'XXX'
-  - tolerates_disorder:
+  tolerates_disorder:
     - "828"
-  - perfectionistic:
+  perfectionistic:
     - "829"
 
 tension:
-  - not_notable:
-    - 'XXX'
-  - relaxed:
-    - "830"
-  - tense:
-    - "831"
+  not_notable:
+   - 'XXX'
+  relaxed:
+   - "830"
+  tense:
+   - "831"
 
-# openness
 fantasy:
   not_notable:
     - "xxx"
@@ -191,7 +190,6 @@ values:
   not_notable:
     - "xxx"
 
-# conscientiousness
 self_discipline:
   not_notable:
     - "xxx"
@@ -264,7 +262,7 @@ neuroticism:
   neurotic:
     - "731"
 
-hair:
+hair_color:
   brown: 
     - "00"
     - "07"
@@ -281,7 +279,7 @@ hair:
   red: 
     - "06"
 
-skin:
+skin_color:
   brown: 
     - "60"
     - "67"
@@ -296,7 +294,7 @@ skin:
     - "65"
     - "66"
 
-eyes:
+eye_color:
   brown:
     - "11"
     - "12"
@@ -315,7 +313,7 @@ eyes:
   gray:
     - "18"
 
-nose:
+nose_shape:
   plain:
     - "41"
     - "42"
@@ -330,7 +328,7 @@ nose:
   pug:
     - "48"
 
-humor:
+sense_of_humor:
   not_notable:
     - "XXX"
   humorless:

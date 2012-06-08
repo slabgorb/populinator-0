@@ -18,6 +18,12 @@ class BeingsController < ApplicationController
     redirect_to :back
   end  
 
+  def reproduce
+    @parent_a = Being.find(params[:parent_a])
+    @parent_b = Being.find(params[:parent_b])
+    @child = @parent_a.reproduce_with @parent_b
+    redirect_to :back
+  end
   
   # GET /beings
   # GET /beings.json

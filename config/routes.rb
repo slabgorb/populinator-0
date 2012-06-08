@@ -21,6 +21,7 @@ Population::Application.routes.draw do
   
   put '/beings/kill/:id' => 'beings#kill', :as => :kill
   put '/beings/resurrect/:id' => 'beings#resurrect', :as => :resurrect
+  put '/beings/reproduce/:parent_a/:parent_b' => 'beings#reproduce', :as => :reproduction
   
   get '/beings/genotype/:id' => 'beings#genotype'
   
