@@ -238,10 +238,14 @@ body {
 	  border-left: 1px solid white;
 	}
 	li {
+	  color: $color04;
 	  list-style-type: none;
 	  display: inline;
 	  border-right: 1px solid white;
 	  padding-right: 3px;
+	  a {
+		color: $color01;
+	  }
 	}
 
   }

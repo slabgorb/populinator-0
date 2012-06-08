@@ -285,13 +285,14 @@ class Being
   def reproduce(other = nil, child_name = nil, child_gender = nil) 
     raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
     #raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
+    male = other.gender == 'male' ? other : self
     child = self.class.create.randomize!.get_genetics!(self, other)
     child.age = 0
     child.name = child_name || child.name
     child.birth!
     
     # TODO: come up with a scheme to handle this more better
-    child.surname = self.surname if child.respond_to?(:surname)
+    child.surname = male.surname if child.respond_to?(:surname)
     child.given_name = child_name.split(' ').last if child.respond_to?(:given_name) and child_name
     
     Event.new(:name => 'Reproduction', :description => "#{name} had a child #{child.name} with #{other.try(:name)}!", :effect => "{|b| true }").happened_to(self)
