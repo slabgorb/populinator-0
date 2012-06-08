@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "beings/show" do
   before(:each) do
     @being = FactoryGirl.create(:being)
+    @being.randomize!
   end
 
   it "renders attributes in <p>" do
