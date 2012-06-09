@@ -19,7 +19,7 @@ class BeingsController < ApplicationController
     @being = Being.find(params[:id])
     params[:years] ||= '1'
     @being.age!(params[:years].to_i)
-    redirect_to :back
+    render :json => @being
   end
   
   # bring this being back to life

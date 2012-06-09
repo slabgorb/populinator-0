@@ -104,9 +104,56 @@ body {
   }
 
   #main-content {
-
+	.slider-wrapper {
+	  width: 500px;
+	}
 	margin: 20px;
+	.slider {
+	  width: 500px;
+	}
+	.ui-slider, .ui-widget-header {
+	  background: {
+		image: url('backgrounds/numberlinel.png');
+		color: none;
+		repeat: repeat-x;
+	  }
+	  &.ui-slider-range-min {
+	  background: {
+		image: url('backgrounds/numberline.png');
+		position: 0px -6px;
+		color: transparent !important;
+		repeat: repeat-x;
+	  }
+		
+	  }
+	}
+	.ui-slider-handle {
+	  background: {
+		image: url('icons/caret.png');
+		color: none;
+		repeat: no-repeat;
+		position: 5px 0px;
+	  }
+	  margin-top: 10px;
+	  min-height:28px;
+	  &.ui-state-default {border: 0px;}
+	  &.ui-state-active {background-color: transparent !important;}
+	}
 
+	.ui-slider.ui-widget-content { 
+	  border: none;
+	  min-height: 28px;
+	  background: {
+		image: url('backgrounds/numberline.png');
+		repeat: repeat-x;
+		position: 0px -6px;
+		color: transparent !important;
+	  }
+	}
+
+	.ui-focus {
+	  border: none !important;
+	}
 
 	.ui-tabs, .ui-accordion {
 	  font-family: KingthingsExeter;

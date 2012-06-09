@@ -35,7 +35,7 @@ class Settlement
     pop.to_i.times do
       p = Person.create.randomize!
       p.settlement = self
-      p.events << Event.new(:name => 'Parthenogenesis', :description => "#{p.name} was magicked into existence at age #{p.age}", :effect => "{|a| true }")
+      p.events << Event.new(:name => 'Parthenogenesis', :description => "#{p.name} was magicked into existence.", :age => p.age)
       residents << p
     end
     save
@@ -50,7 +50,7 @@ class Settlement
     top  = rand > 0.7 ? @@names['prefix'].shuffle.first : ''
     bottom = rand > 0.7 ? @@names['suffix'].shuffle.first : ''
     top += rand > 0.8 ? @@names['divider'].shuffle.first : ''
-    [top, meat, bottom].join.capitalize
+    [top, meat, bottom].join.titlecase
   end
 
   def family(surname)
@@ -88,8 +88,10 @@ class Settlement
   end
     
   def seed!
-    self.rulers << Person.create.randomize!
+    ruler = Ruler.create(settlement: self).randomize!
+    self.rulers << ruler
     males = self.residents.select { |s| s.gender == 'male' }
+    males << ruler # rulers pick their spouses
     females = self.residents.select { |s| s.gender == 'female' }
     self.marry_sets(males, females)
     minors = self.residents.select{ |s| s.age < s.coming_of_age and not s.parent }

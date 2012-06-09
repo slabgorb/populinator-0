@@ -89,7 +89,7 @@ $icon-padding: 16px;
 @mixin paper($offset_x, $offset_y) {
   background: {
 	position: $offset_x $offset_y;
-	image: url('backgrounds/paper.jpg') !important;
+	image: url('backgrounds/paper02.jpg') !important;
   }
 }
 

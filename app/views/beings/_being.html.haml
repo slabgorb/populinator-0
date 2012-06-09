@@ -1,9 +1,10 @@
 - nospouse ||= false
 - nokids ||= false
 - nolink ||= false
-%li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'}" }
+%li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'} #{being.class == Ruler ? 'ruler' : ''}"}
   %input{:type => 'hidden', :value => being.id}
-  = link_to_unless nolink, being.name, { controller: 'beings', action: 'show', id: being }
+  = link_to_unless nolink, [(being.class == Ruler ? being.title : ''), being.name].join(' '), { controller: 'beings', action: 'show', id: being }
+
   %span{class: 'being-age', id:"being-age-#{being._id}"}= being.age 
   years old
 - if being.respond_to? :spouse and being.spouse.present? and not nospouse

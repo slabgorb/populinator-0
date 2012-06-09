@@ -33,8 +33,8 @@ class Being
   end
   
   def age!(years = 1)
-    self.age += years
-    self.save
+    Event.new(:name => 'Age', :description => "#{name} was magically made #{years > 0 ? ' older' : ' youthful'}.", :effect => "{|b, y| b.age += y }", age: self.age + years).happened_to(self, years)
+    save
     self.age
   end
 
@@ -89,7 +89,7 @@ class Being
   
   def as_json(options = { })
     super(only:[:id, :name, :age, :alive, :_type],
-          methods: [:children, :married?,:spouse_id])
+          methods: [:children, :married?,:spouse_id, :history])
   end
 
   def coming_of_age
@@ -112,7 +112,7 @@ class Being
   def marry(s)
     self.spouses << s
     s.spouses << self
-    e = Event.new(:name => 'Marriage', :description => "#{name} married #{s.name}", :effect => "{|a, b| true }")
+    e = Event.new(:name => 'Marriage', :description => "#{name} married #{s.name}", :age => self.age)
     e.happened_to(self, s)
     s.surname = self.surname if self.respond_to?(:surname)
     e.happened_to(s, self)
@@ -142,8 +142,11 @@ class Being
     if heredity 
       child.get_genetics!(child.parent, child.parent.spouse)
     end
-    Event.new(:name => 'Adoption', :description => "#{child.name} was adopted by #{name}", :effect => "{|b| b }").happened_to(child)
-    Event.new(:name => 'Adoption', :description => "#{child.name} was adopted", :effect => "{|b| b }").happened_to(self)
+    e = Event.new(:name => 'Adoption', :description => "#{child.name} was adopted by #{name}", age: child.age)
+    e.happened_to(child)
+    e = Event.new(:name => 'Adoption', :description => "#{child.name} was adopted", age: lambda { self.age })
+    e.happened_to(self)
+    e.happened_to(self.spouse)
     child.save
     child
   end
@@ -227,18 +230,18 @@ class Being
   
   def die!
     raise DeathException if dead?
-    Event.new(:name => 'Death', :description => "#{name} died at age #{age}", :effect => "{|b| b.alive = false; b.save }").happened_to(self)
+    Event.new(:name => 'Death', :description => "#{name} died at age #{age}", :effect => "{|b| b.alive = false; b.save }", age: self.age).happened_to(self)
     self
   end
   
   def birth!
-    Event.new(:name => 'Birth', :description => "#{name} was born", :effect => "{|b| b.alive = true; b.save }").happened_to(self)
+    Event.new(:name => 'Birth', :description => "#{name} was born", :effect => "{|b| b.alive = true; b.save }", age: self.age).happened_to(self)
     self
   end
   
   def resurrect!
     raise DeathException if alive?
-    Event.new(:name => 'Resurrection', :description => "#{name} was resurrected!", :effect => "{|b| b.alive = true; b.save }").happened_to(self)
+    Event.new(:name => 'Resurrection', :description => "#{name} was resurrected!", :effect => "{|b| b.alive = true; b.save }", age: self.age).happened_to(self)
   end
   
 
@@ -310,8 +313,8 @@ class Being
     child.surname = male.surname if child.respond_to?(:surname)
     child.given_name = child_name.split(' ').last if child.respond_to?(:given_name) and child_name
     
-    Event.new(:name => 'Reproduction', :description => "#{name} had a child #{child.name} with #{other.try(:name)}!", :effect => "{|b| true }").happened_to(self)
-    Event.new(:name => 'Reproduction', :description => "#{other.try(:name)} had a child #{child.name} with #{name}!", :effect => "{|b| true }").happened_to(other) if other
+    Event.new(:name => 'Reproduction', :description => "#{name} had a child #{child.name} with #{other.try(:name)}!", :age => self.age).happened_to(self)
+    Event.new(:name => 'Reproduction', :description => "#{other.try(:name)} had a child #{child.name} with #{name}!", :age => other.age).happened_to(other) if other
     self.children << child
     self.settlement.residents << child if self.settlement
     child
