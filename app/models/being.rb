@@ -3,6 +3,7 @@ class Being
   include Mongoid::Timestamps::Created
   include Mongoid::Acts::Tree
   include Mongoid::Chronology
+  #include Mongoid::Slug
 
   
   field :name, :type => String
@@ -11,6 +12,8 @@ class Being
   field :alive, :type => Boolean, :default => true
   
   acts_as_tree order:[['age', 'desc']]
+
+  #slug :name
 
   embeds_many :damages 
   embeds_many :chromosomes
@@ -28,6 +31,13 @@ class Being
   def to_s
     "#{name}, aged #{age}"
   end
+  
+  def age!
+    self.age += 1
+    self.save
+    self.age
+  end
+
   
   @@coming_of_age = 1
   @@old_age = 80

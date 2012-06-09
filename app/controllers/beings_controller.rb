@@ -12,6 +12,12 @@ class BeingsController < ApplicationController
     redirect_to :back
   end
   
+  def age
+    @being = Being.find(params[:id])
+    @being.age!
+    redirect_to :back
+  end
+  
   def resurrect
     @being = Being.find(params[:id])
     @being.resurrect!
