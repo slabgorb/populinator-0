@@ -82,7 +82,10 @@ dl.events {
 }
 
 .dead {
-  color: white;
+  color: white !important;
+  -webkit-text-fill-color: $color05;
+  -webkit-text-stroke-color: $color04;
+  a, li { color: white }
 }
 
 .genotype {
