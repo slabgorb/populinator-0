@@ -4,7 +4,7 @@
 %li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'}" }
   %input{:type => 'hidden', :value => being.id}
   = link_to_unless nolink, being.name, { controller: 'beings', action: 'show', id: being }
-  = being.age 
+  %span{class: 'being-age', id:"being-age-#{being._id}"}= being.age 
   years old
 - if being.respond_to? :spouse and being.spouse.present? and not nospouse
   = render :partial => "/beings/being", locals: { being: being.spouse, nospouse: true }

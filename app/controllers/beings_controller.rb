@@ -17,7 +17,8 @@ class BeingsController < ApplicationController
   # age this being one year
   def age
     @being = Being.find(params[:id])
-    @being.age!
+    params[:years] ||= '1'
+    @being.age!(params[:years].to_i)
     redirect_to :back
   end
   
@@ -40,6 +41,7 @@ class BeingsController < ApplicationController
   def randomize_genetics
     @being = Being.find(params[:id])
     @being.chromosomes.each { |c| c.randomize! }
+    @being.events << Event.new(name: 'Divine Intervention', description: "#{@being.name} was touched by the gods themselves and has dramatically changed.")
     redirect_to :back
   end
 

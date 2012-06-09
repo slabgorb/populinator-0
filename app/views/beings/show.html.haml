@@ -1,13 +1,18 @@
 - content_for(:title){ "#{@being.name} of #{@being.settlement.name}" } if @being.settlement
 - content_for(:watermark) do 
   .watermark.sun_in_splendor
+%input{type: 'hidden', id:'being-age', value:@being.age}
+%input{type: 'hidden', id:'being-old-age', value:@being.class.old_age}
+%input{type: 'hidden', id:'age-change', value:0}
 %ul.subnav
   %li= link_to 'Edit', edit_being_path(@being)
   %li= link_to 'Back', beings_path
   - act = @being.alive? ? 'kill' : 'resurrect'
   %li= link_to(act.capitalize, {controller: 'beings', action: act, id: @being._id }, confirm: "Are you sure you want to #{act} #{@being.name}?", method: :put)
   %li= link_to_if((@being.married? and @being.alive?), 'Have Baby', {controller: 'beings', action: 'reproduce', parent_a: @being._id, parent_b: @being.spouse.try(:_id)}, method: :put)
-  %li= link_to_if(@being.alive?, 'Age', { controller: 'beings', action: 'age', id: @being._id }, method: :put )
+  %li
+    = link_to_if(@being.alive?, 'Age', { controller: 'beings', action: 'age', id: @being._id }, { id: 'age-link', method: :put } )
+    .slider#age-slider
   %li= link_to_if(@being.alive?, 'Randomize Genes', { controller: 'beings', action: 'randomize_genetics', id: @being._id }, method: :put )
 
 %h4{:class => @being.alive? ? 'alive' : 'dead'}= render partial:'being', locals:{ being:@being, nospouse: true, nokids: true, nolink: true }

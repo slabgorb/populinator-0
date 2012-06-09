@@ -70,8 +70,12 @@ dl.being-description {
 }
 
 dl.events {
+  width: 400px;
+  margin:10px;
+  padding: 10px;
   dt {
 	font-weight: bold;
+	font-size: 1.05em;
   }
   dd {
 	font-size: 0.9em;

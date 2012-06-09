@@ -32,8 +32,8 @@ class Being
     "#{name}, aged #{age}"
   end
   
-  def age!
-    self.age += 1
+  def age!(years = 1)
+    self.age += years
     self.save
     self.age
   end
@@ -46,6 +46,11 @@ class Being
   def genotype 
     chromosomes.sort
   end
+
+  def self.old_age
+    @@old_age
+  end
+
   
   def self.infertility
     @@infertilty 

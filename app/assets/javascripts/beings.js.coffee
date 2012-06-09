@@ -20,24 +20,35 @@ class BeingGraph
 
 
 class Being
-   constructor: ->
-     $.each $('li.being'), ->
-      $b = $(this)
-      options =
-        style:
-          classes: 'ui-tooltip-plain'
-          width: '500px'
-        content:
-          text: 'Loading...'
-          ajax:
-            url: '/beings/genotype/' + $b.find('input').val()
-            type: 'GET'
-        hide:
-          fixed: true
-        position:
-          my: 'top center'
-          at: 'bottom center'
-      $b.qtip options
+  constructor: ->
+    $('.slider').slider
+      range: 'min'
+      value: $('#being-age').val()
+      min: 0
+      max: $('#being-old-age').val() * 1.20
+      slide: (event, ui) ->
+        $('#age-change').val(ui.value - $('#being-age').val() )
+        $('.being-age').eq(0).text ui.value
+      stop: (event, ui) ->
+        $al = $('#age-link')
+        $al.attr('href', $al.attr('href').split('?')[0] + '?years=' + $('#age-change').val())
+    $.each $('li.being'), ->
+     $b = $(this)
+     options =
+       style:
+         classes: 'ui-tooltip-plain'
+         width: '500px'
+       content:
+         text: 'Loading...'
+         ajax:
+           url: '/beings/genotype/' + $b.find('input').val()
+           type: 'GET'
+       hide:
+         fixed: true
+       position:
+         my: 'top center'
+         at: 'bottom center'
+     $b.qtip options
 
 
 
