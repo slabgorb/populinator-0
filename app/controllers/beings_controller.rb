@@ -37,6 +37,11 @@ class BeingsController < ApplicationController
     redirect_to :back
   end
   
+  def randomize_genetics
+    @being = Being.find(params[:id])
+    @being.chromosomes.each { |c| c.randomize! }
+    redirect_to :back
+  end
 
   
   # GET /beings

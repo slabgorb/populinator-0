@@ -18,6 +18,7 @@ Population::Application.routes.draw do
   
   # beings
   get '/beings/graph' => 'beings#graph'
+  put '/beings/randomize_genetics/:id' => 'beings#randomize_genetics', :as => :random_genetics
   put '/beings/kill/:id' => 'beings#kill', :as => :kill
   put '/beings/resurrect/:id' => 'beings#resurrect', :as => :resurrect
   put '/beings/age/:id' => 'beings#age', :as => :age

@@ -186,10 +186,6 @@ ideas:
     - "715"
     - "733"
 
-values: 
-  not_notable:
-    - "xxx"
-
 self_discipline:
   not_notable:
     - "xxx"
@@ -199,7 +195,6 @@ self_discipline:
   undisciplined:
     - "717"
     - "735"
-
 
 carefulness:
   not_notable:
@@ -279,6 +274,14 @@ hair_color:
   red: 
     - "06"
 
+handedness:
+  right_handed:
+    - "XXX"
+  left_handed:
+    - "F01"
+    - "F02"
+    - "F03"
+
 skin_color:
   brown: 
     - "60"
@@ -351,24 +354,13 @@ sense_of_humor:
 
 build: 
   medium:
-  - "003" 
-  - "013" 
-  - "023" 
-  - "043" 
-  - "053" 
-  - "063" 
+  - "XXX" 
   heavier: 
-  - "001" 
-  - "011" 
-  - "021" 
   - "031" 
   - "041" 
   - "051" 
   - "061" 
   lighter:
-  - "002" 		
-  - "012" 		
-  - "022" 		
   - "032" 		
   - "042" 		
   - "052" 		
@@ -376,14 +368,10 @@ build:
 
 disposition:
   normal:
-  - "31" 
-  - "32" 
+  - "XXX" 
   easygoing:
-  - "33"	
   - "34" 
   angry:
-  - "35"	
   - "36"	
   calm:
-  - "37" 
   - "38" 

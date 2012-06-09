@@ -402,7 +402,9 @@ svg {
   color: $color05;
   font-weight: bold;
 }
-
+.ui-tooltip, .qtip {
+  max-width: 700px;
+}
 
 .ui-tooltip-content {
   background-color: transparent !important;

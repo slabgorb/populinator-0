@@ -26,7 +26,7 @@ class Being
       options =
         style:
           classes: 'ui-tooltip-plain'
-          width: '220px'
+          width: '500px'
         content:
           text: 'Loading...'
           ajax:
