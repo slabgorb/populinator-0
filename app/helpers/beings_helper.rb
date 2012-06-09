@@ -1,14 +1,14 @@
 module BeingsHelper
   def strength(tuple)
     case tuple.values.first.last
-         when 0 then 'barely'
-         when 1 then 'somewhat'
-         when 2 then 'definitely'
-         when 3 then 'very'
-         when 4 then 'extremely'
-         when 5 then 'ridiculously'
-         when 6 then 'astonishingly'
-    end
+         when 0 then ['']
+         when 1 then ['a bit', 'somewhat', 'rather']
+         when 2 then ['markedly', 'noticeably', 'decidedly', 'especially']
+         when 3 then ['very', 'really', 'greatly']
+         when 4 then ['extremely', 'terrifically', 'tremendously']
+         when 5 then ['ridiculously', 'uniquely', 'intensely']
+         when 6 then ['astonishingly', 'bizarrely', 'pathologically']
+    end.shuffle.first
   end
 
   def possessive(gender)

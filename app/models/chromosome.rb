@@ -36,20 +36,22 @@ class Chromosome
   #
   # This is meant to be consumed by a description engine of some kind.
   #
-  def express(exps = Chromosome.expressions)
+  def express(exps = Chromosome.expressions, set = genes.map{ |g| g.code }.join )
     result = { }
-    self.walk do |gene| 
-      exps.each_pair do |category, value|
-        if value.is_a? Hash 
-          result[category] = self.express(value)
-        else
-          matches = 0
-          value.each do |expression|
-            matches += 1 if gene.matches(expression)
+    exps.each_pair do |category, value|
+      if value.is_a? Hash 
+        result[category] = self.express(value, set)
+      elsif value.is_a? Array
+        matches = 0
+        position = 0 
+        value.each do |expression|
+          while position
+            position = set.index(expression, position + 1)
+            matches += 1 if position
           end
-          result[category] ||= 0
-          result[category] += matches
         end
+        result[category] ||= 0
+        result[category] += matches
       end
     end
     result
