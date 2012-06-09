@@ -315,7 +315,6 @@ class Being
   alias :reproduce_with :reproduce
   
    def randomize!
-     save
      10.times { self.chromosomes <<  Chromosome.new.randomize! }
      save
      self.random_gender!

@@ -1,7 +1,7 @@
 - nospouse ||= false
 - nokids ||= false
 - nolink ||= false
-%li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'} #{being.try(:settlement).try(:ruler) == being ? 'ruler' : ''}" }
+%li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'}" }
   %input{:type => 'hidden', :value => being.id}
   = link_to_unless nolink, being.name, { controller: 'beings', action: 'show', id: being }
   = being.age 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Being do
-  before :each do
+  before :all do
     @adam = FactoryGirl.create(:being, :name => 'Adam', :gender => 'male')
   end
 
@@ -20,21 +20,24 @@ describe Being do
       @adam.die!
       @adam.alive?.should be_false
       @adam.dead?.should be_true
+      @adam.resurrect!
     end
     
     it 'should have an event when it dies' do
       @adam.die!
       @adam.history.where(:name => 'Death').first.should_not be_nil
+      @adam.resurrect!
     end
     
     it 'cannot die twice' do 
       @adam.die!
       lambda { @adam.die! }.should raise_error(DeathException)
+      @adam.resurrect!
     end
   end
   
   context 'injuries' do
-    before :each do 
+    before :all do 
       @damage = FactoryGirl.create :damage
       @adam.hurt(@damage)
     end
@@ -50,7 +53,7 @@ describe Being do
   end
   
   context 'reproduction' do
-    before :each do 
+    before :all do 
       @eve = FactoryGirl.create(:being, :name => 'Eve', :gender => 'female')
       @adam.children.clear
       @cain = @adam.reproduce(@eve, 'Cain', 'male')
@@ -70,9 +73,8 @@ describe Being do
 
     
     context 'relatives' do 
-      before :each do
+      before :all do
         @abel = @adam.reproduce(@eve, 'Abel', 'male')
-        @mary = @adam.reproduce(@eve, 'Mary', 'female')
         @shirley = @adam.reproduce(@eve, 'Shirley', 'female')
         @ralph = @adam.reproduce(@eve, 'Ralph', 'male')
         @mary = @adam.reproduce(@eve, 'Mary', 'female')
@@ -108,7 +110,7 @@ describe Being do
   end
   
   context 'genetic_map' do 
-    before :each do 
+    before :all do 
       srand(0)
       @expressions = {
         hair: { 

@@ -1,35 +1,43 @@
 class BeingsController < ApplicationController
 
+  # get the genotype for this being
   def genotype
     @being = Being.find(params[:id])
     @genotype = @being.genotype
     render :layout => false
   end
 
+  # kill this being
   def kill
     @being = Being.find(params[:id])
     @being.die!
     redirect_to :back
   end
   
+  # age this being one year
   def age
     @being = Being.find(params[:id])
     @being.age!
     redirect_to :back
   end
   
+  # bring this being back to life
   def resurrect
     @being = Being.find(params[:id])
     @being.resurrect!
     redirect_to :back
   end  
 
+
+  # one being reproduces with another, creating a child
   def reproduce
     @parent_a = Being.find(params[:parent_a])
     @parent_b = Being.find(params[:parent_b])
     @child = @parent_a.reproduce_with @parent_b
     redirect_to :back
   end
+  
+
   
   # GET /beings
   # GET /beings.json
