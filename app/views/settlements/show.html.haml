@@ -3,6 +3,11 @@
   Settlement
 
 .watermark.grenade
+%ul.subnav
+  %li= link_to 'Edit', edit_settlement_path(@settlement), :class => 'button'
+  %li= link_to 'Back', settlements_path
+  %li= link_to 'Seed', seed_path(@settlement), :method => :put
+
 #settlement
   %h3= @settlement.name
   .tabs
@@ -39,6 +44,3 @@
       = render :partial => 'families', :collection => @settlement.families.to_a
       .clear
 
-= link_to 'Edit', edit_settlement_path(@settlement), :class => 'button'
-\|
-= link_to 'Back', settlements_path, :class => 'button'
