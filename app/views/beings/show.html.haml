@@ -1,11 +1,14 @@
 - content_for(:title){ "#{@being.name} of #{@being.settlement.name}" } if @being.settlement
 - content_for(:watermark) do 
-  .watermark.sun_in_splendor
+  .watermark.cockatrice
+
 %input{type: 'hidden', id:'being-alive', value:@being.alive?.to_s }
+%input{type: 'hidden', id:'being-name', value:@being.name }
 %input{type: 'hidden', id:'being-id', value:@being._id}
 %input{type: 'hidden', id:'being-age', value:@being.age}
 %input{type: 'hidden', id:'being-old-age', value:@being.class.old_age}
 %input{type: 'hidden', id:'age-change', value:0}
+
 - content_for(:navigation) do
   %li= link_to @being.settlement.name, settlement_path(@being.settlement) if @being.settlement
 
@@ -15,52 +18,18 @@
   .clear
   .slider#age-slider
 
-%h4{:class => @being.alive? ? 'alive' : 'dead'}= render partial:'being', locals:{ being:@being, nospouse: true, nokids: true, nolink: true }
-.genome.right
-  = render partial: 'genotype', locals: { being:@being }
-  %br/
-  = link_to_if(@being.alive?, 'Randomize Genes', { controller: 'beings', action: 'randomize_genetics', id: @being._id }, method: :put )
-.description.right
-  = render partial: 'description', locals: { being:@being }
-.left
-  %h4 Family
-  - if @being.children.length > 0 or @being.try(:spouse).try(:children).try(:length).try(:>, 0)
-    %h5 Children
-    %ul.being-children
-      - @being.children.each do |child|
-        = render partial:'being', locals:{ being:child }
-      - if @being.spouse
-        - @being.spouse.children.each do |child|
-          = render partial:'being', locals:{ being:child }
-  - if @being.spouse
-    %h5 Spouse
-    %ul.being-spouse
-      %li= render partial:'being', locals:{ being:@being.spouse, nospouse: true, nokids: true }
-      %li= link_to_if(@being.alive?, 'Have Baby', {controller: 'beings', action: 'reproduce', parent_a: @being._id, parent_b: @being.spouse.try(:_id)}, method: :put)
-      
+#being
+  %h4#being-title{:class => @being.alive? ? 'alive' : 'dead'}= render partial:'being', locals:{ being:@being, nospouse: true, nokids: true, nolink: true }
+  .tabs 
+    %ul 
+      %li 
+        %a{href: "/beings/family/#{@being._id}"} Family
+      %li 
+        %a{href: "/beings/history/#{@being._id}"} History
+      %li 
+        %a{href: "/beings/description/#{@being._id}"} Description
+      %li 
+        %a{href: "/beings/genotype/#{@being._id}"} Genotype
 
-  - if @being.parent
-    %h5 Parents
-    %ul.being-parent
-      = render partial:'being', locals:{ being:@being.parent, nospouse: true, nokids: true }
-      - if @being.parent.married?
-        = render partial:'being', locals:{ being:@being.parent.spouse, nospouse: true }    
-  - if @being.siblings
-    %h5 Siblings
-    %ul.being-siblings
-      - @being.siblings.select{ |s| s != self and s.parent_id.present? }.each do |sib|
-        %li= render partial:'being', locals:{ being: sib }
-        
-.left
-  %h4 History
-  - act = @being.alive? ? 'kill' : 'resurrect'
-  = link_to([act.capitalize, @being.name].join(' '), {controller: 'beings', action: act, id: @being._id }, confirm: "Are you sure you want to #{act} #{@being.name}?", method: :put)
-
-  %dl.events
-    - @being.history.each do |event|
-      %dt 
-        %span.smaller age #{event.age} 
-        \:: #{event.name}
-      %dd #{event.description}
 
 .clear

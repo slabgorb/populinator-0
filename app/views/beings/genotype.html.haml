@@ -1,4 +1,5 @@
-%h5 #{@being.given_name} #{@being.surname} #{@being.age}
-%h5 #{@being.gender.capitalize}
-= render partial: 'description', locals: { being: @being }
 = render partial: 'genotype', locals: { being: @being } 
+.clear
+= link_to_if(@being.alive?, 'Randomize Genes', { controller: 'beings', action: 'randomize_genetics', id: @being._id }, method: :put )
+
+

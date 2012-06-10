@@ -18,6 +18,8 @@
         %a{:href => '#tab-rulers'} Rulers
       %li
         %a{:href => '#tab-population'} Population
+      %li
+        %a{:href => '#tab-map'} Map
     #tab-summary
       %h4
         Population:
@@ -41,6 +43,17 @@
         -# = render :partial => '/beings/being', :locals => {:being => @settlement.ruler}
       .clear
     #tab-population
-      = render :partial => 'families', :collection => @settlement.families.to_a
+      #settlement-population.left
+        = render :partial => 'families', :collection => @settlement.families.to_a
       .clear
+    #tab-map
+      #settlement-map.left
+        %svg{xmlns: "http://www.w3.org/2000/svg", version: "1.1"}
+          - @settlement.family_names.each do |name|
+            - x = rand * 350 + 50
+            - y = rand * 350 + 50
+            %text{x: x, y: y} #{name}
+            %image{x: x, y: y, width: "25", height: "29", 'xlink:href'=>"/assets/icons/house.png"}
+      .clear
+
 

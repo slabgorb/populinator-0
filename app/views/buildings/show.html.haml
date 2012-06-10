@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Description:
+  = @building.description
+%p
+  %b X:
+  = @building.x
+%p
+  %b Y:
+  = @building.y
+
+= link_to 'Edit', edit_building_path(@building)
+\|
+= link_to 'Back', buildings_path

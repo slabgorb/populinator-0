@@ -1,5 +1,7 @@
 Population::Application.routes.draw do
   
+  resources :buildings
+
   get '/' => 'settlements#index'
   
   get '/people/random-name' => 'people#random_name'
@@ -24,6 +26,10 @@ Population::Application.routes.draw do
   put '/beings/age/:id' => 'beings#age', :as => :age
   put '/beings/reproduce/:parent_a/:parent_b' => 'beings#reproduce', :as => :reproduction
   get '/beings/genotype/:id' => 'beings#genotype'
+  get '/beings/family/:id' => 'beings#family'
+  get '/beings/description/:id' => 'beings#description'
+  get '/beings/history/:id' => 'beings#history'
+  
   
   put '/settlement/seed/:id' => 'settlements#seed', :as => :seed
   

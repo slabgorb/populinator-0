@@ -10,6 +10,16 @@ class Settlement
   constructor: ->
     @name = $('#settlement_name')
     @pop  = $('#settlement_population')
+    this.initRandcheck()
+    @pop.keyup => this.forceInt()
+    #make the selection box a pretty pretty princess
+    $('select').selectbox()
+    @pop.keyup => this.updateDrop()
+    $('#create-settlement').click -> this.createCallback
+    $('.selectbox-wrapper').on 'click', =>
+      this.sizeSettlement()
+
+  initRandcheck: ->
     $('.randcheck.settlement-name').click =>
       $.get '/settlements/random-name',
         {}
@@ -20,14 +30,6 @@ class Settlement
         eq(0).
         trigger 'submit'
       false
-
-    #make the selection box a pretty pretty princess
-    $('select').selectbox()
-    @pop.keyup => this.updateDrop()
-    @pop.keyup => this.forceInt()
-    $('#create-settlement').click -> this.createCallback
-    $('.selectbox-wrapper').on 'click', =>
-      this.sizeSettlement()
 
   sizeSettlement: () ->
     @pop.val $('#size').val()

@@ -1,22 +1,34 @@
 class BeingsController < ApplicationController
+  
+  before_filter lambda { @being = Being.find(params[:id]) if params.has_key? :id  }
 
   # get the genotype for this being
   def genotype
-    @being = Being.find(params[:id])
     @genotype = @being.genotype
     render :layout => false
   end
+  
+  # get the history for this being
+  def history
+    render :layout => false
+  end  
+  # get the family for this being
+  def family
+    render :layout => false
+  end  
+  # get the description for this being
+  def description
+    render :layout => false
+  end  
 
   # kill this being
   def kill
-    @being = Being.find(params[:id])
     @being.die!
-    redirect_to :back
+    render :json => @being
   end
   
   # age this being one year
   def age
-    @being = Being.find(params[:id])
     params[:years] ||= '1'
     @being.age!(params[:years].to_i)
     render :json => @being
@@ -24,9 +36,8 @@ class BeingsController < ApplicationController
   
   # bring this being back to life
   def resurrect
-    @being = Being.find(params[:id])
     @being.resurrect!
-    redirect_to :back
+    render :json => @being
   end  
 
 
@@ -39,7 +50,6 @@ class BeingsController < ApplicationController
   end
   
   def randomize_genetics
-    @being = Being.find(params[:id])
     @being.chromosomes.each { |c| c.randomize! }
     @being.events << Event.new(name: 'Divine Intervention', description: "#{@being.name} was touched by the gods themselves and has dramatically changed.")
     redirect_to :back
@@ -60,7 +70,6 @@ class BeingsController < ApplicationController
   # GET /beings/1
   # GET /beings/1.json
   def show
-    @being = Being.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @being }
@@ -80,7 +89,6 @@ class BeingsController < ApplicationController
 
   # GET /beings/1/edit
   def edit
-    @being = Being.find(params[:id])
   end
 
   # POST /beings
@@ -102,7 +110,6 @@ class BeingsController < ApplicationController
   # PUT /beings/1
   # PUT /beings/1.json
   def update 
-    @being = Being.find(params[:id])
     if params.has_key? :person
       params[:being] = params[:person]
     end
