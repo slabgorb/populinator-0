@@ -10,7 +10,7 @@ class Chromosome
   end
 
   def <=>(other)
-    other.genes.map{ |g| g.value }.sum <=> self.genes.map{ |g| g.value }.sum
+    other.genes.map{ |g| g.value }.sum <=> genes.map{ |g| g.value }.sum
   end
   
   def to_s
@@ -20,7 +20,7 @@ class Chromosome
   # creates a random set of genes
   def randomize!(genecount = 10)
     genes.delete_all
-    genecount.times { self.genes << Gene.new(:code => Chromosome.rand_hex ) }
+    genecount.times { genes << Gene.new(:code => Chromosome.rand_hex ) }
     self
   end
 

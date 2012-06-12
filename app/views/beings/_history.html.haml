@@ -1,12 +1,13 @@
  
-.left
-  %h4 History
-  - act = being.alive? ? 'kill' : 'resurrect'
-  %a{href: '#', 'data-method' => 'put', id: "#{act}-button"}= [act.capitalize, being.name].join(' ')
 
-  %dl.events
-    - being.history.each do |event|
-      %dt 
-        %span.smaller age #{event.age} 
-        \:: #{event.name}
-      %dd #{event.description}
+- act = being.alive? ? 'kill' : 'resurrect'
+%a{href: '#', 'data-method' => 'put', id: "#{act}-button"}= [act.capitalize, being.name].join(' ')
+
+%dl.events
+  - being.history.each do |event|
+    %dt 
+      %span.smaller age #{event.age} 
+      \:: #{event.name}
+    %dd #{event.description}
+:javascript
+  window.being.initButtons();

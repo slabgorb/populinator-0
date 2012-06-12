@@ -1,13 +1,22 @@
-- cellsize = 7
-%h5 Genotype 
-%svg{xmlns: "http://www.w3.org/2000/svg", version: "1.1"}
-  - y = 0
-  - being.genotype.collect{|c| c.to_s }.sort{|a,b| a.split.inject(0){|sum, i| i.to_i(16)} <=> b.split.inject(0){|sum, i| i.to_i(16)}}.reverse.each do |chromosome|
-    - x = 0
-    - chromosome.split.sort.reverse.each do |gene|
-      %rect{x: x, y: y, width: cellsize, height: cellsize, fill: gene, 'fill-opacity' => 0.5}
-        %title #{gene}
-      - x += cellsize
-    - y += cellsize
+- cellsize = 65
+- margin = 3
+- offset = 20
+%h5 Genotype
+#genotype-display
+  %svg{xmlns: "http://www.w3.org/2000/svg", version: "1.1"}
+    - ycounter = 1
+    - y = offset
+    - being.genotype.collect{|c| c.to_s }.sort{|a,b| a.split.inject(0){|sum, i| i.to_i(16)} <=> b.split.inject(0){|sum, i| i.to_i(16)}}.reverse.each do |chromosome|
+      - x = offset
+      %text{x: 0, y: y + (cellsize / 2) - 10} #{ycounter}
+      - ycounter += 1
+      - chromosome.split.sort.reverse.each do |gene|
+        %rect{x: x, y: y, width: cellsize, height: cellsize / 2, fill: gene, stroke: 'ffffff', 'stroke-opacity' => 0.4, 'fill-opacity' => 0.3}
+          %title #{gene}
+        %text{'font-family' =>"courier new, courier", x: x + 2, y: y + (cellsize / 2) - 10, stroke: 'ffffff', fill: gene, 'stroke-opacity' => 0.5, 'stroke-width' => 2, 'fill-opacity' => 0.5} #{gene}
+          
+        - x += (cellsize + margin)
+      - y += ((cellsize/2) + margin)
+    
 
 

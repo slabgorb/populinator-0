@@ -52,8 +52,8 @@
           - @settlement.family_names.each do |name|
             - x = rand * 350 + 50
             - y = rand * 350 + 50
-            %text{x: x, y: y} #{name}
-            %image{x: x, y: y, width: "25", height: "29", 'xlink:href'=>"/assets/icons/house.png"}
+            %text{x: x, y: y + 40} #{name}
+            %image{x: x, y: y, width: 25, height: 29, 'xlink:href'=>"/assets/icons/house.png"}
       .clear
 
 

@@ -20,7 +20,7 @@ body {
   }
 
   a { 
-	color: $base-color;
+	color: $color05;
   }
 
   table {
@@ -105,15 +105,15 @@ body {
 
   #main-content {
 	.slider-wrapper {
-	  width: 500px;
+	  width: 300px;
 	}
 	margin: 20px;
 	.slider {
-	  width: 500px;
+	  width: 300px;
 	}
-	.ui-slider, .ui-widget-header {
+	.ui-slider .ui-widget-header {
 	  background: {
-		image: url('backgrounds/numberlinel.png');
+		image: url('backgrounds/numberline.png');
 		color: none;
 		repeat: repeat-x;
 	  }
@@ -140,6 +140,11 @@ body {
 	  &.ui-state-active {background-color: transparent !important;}
 	}
 
+	.ui-widget-content {
+	  color: $font-color;
+	  background:#ffffff;
+	  border: none;
+	}
 	.ui-slider.ui-widget-content { 
 	  border: none;
 	  min-height: 28px;
@@ -150,28 +155,29 @@ body {
 		color: transparent !important;
 	  }
 	}
-
 	.ui-focus {
 	  border: none !important;
 	}
 
 	.ui-tabs, .ui-accordion {
 	  font-family: KingthingsExeter;
-	  background: none;
+	  background: {
+		color: transparent;
+	  }
+	  padding-left:10px;
 	  border: none;
 	  color: $color01;
 	  h2 a {
 		font-size: 1.5em;
 	  }
-
-
 	  .ui-widget-header, .ui-accordion-header  {
-		background: none;
-		border: none;
-	  }
-	  .ui-widget-content {
-		color: $font-color;
-		background: none;
+		background: {
+		  position: 0% 50%;
+		  color: transparent;
+		  repeat: repeat-x;
+		}
+		padding-left: 10px;
+		@include shadow(1px, 1px, 3px, #000);
 		border: none;
 	  }
 
@@ -461,3 +467,9 @@ svg {
 }
 
 
+#genotype-display svg {
+  margin: 20px;
+  font-size: 0.8em;
+  font-weight: normal;
+  color: white;
+}

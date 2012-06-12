@@ -9,7 +9,8 @@ gem 'thin', "~> 1.3"
 gem 'haml'
 gem 'sass'
 gem 'mongoid_acts_as_tree', :git => 'https://github.com/saks/mongoid_acts_as_tree.git'
-gem 'mongoid_slug'
+gem 'mongoid_orderable'
+gem 'mongoid-slugify'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,6 +21,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'ruby-prof'
   gem 'growl'
   gem 'rspec-rails'
   gem 'mongoid-rspec'

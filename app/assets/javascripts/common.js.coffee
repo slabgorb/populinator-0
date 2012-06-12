@@ -17,6 +17,19 @@ $.fn.unstash = () ->
   $(this).val($(this).attr('title'))
   $(this).removeClass('disabled').removeAttr('disabled');
 
+$.fn.selectElement = ($element) ->
+  $body = $('body')
+  if $body.createTextRange
+    range = $body.createTextRange()
+    range.moveToElementText($element);
+    range.select()
+  else if document.createRange and window.getSelection
+    range = document.createRange()
+    range.selectNodeContents($element)
+    sel = window.getSelection()
+    sel.removeAllRanges()
+    sel.addRange(range)
+
 # page setup
 $(document).ready ->
   # set up the buttons

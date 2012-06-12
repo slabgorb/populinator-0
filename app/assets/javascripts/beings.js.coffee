@@ -42,6 +42,16 @@ class Being
 
   initButtons: =>
     self = this
+
+    $('#randomize-link').click ->
+      $.ajax '/beings/randomize_genome',
+        type: 'put'
+        success: (data, textStatus, jqHXR) ->
+          $.get '/beings/genome/' + $('#being-id').val()
+            success: (data) ->
+              $('#ui-tabs-4').html data
+      false
+
     callback = ($button, act) =>
       $beingTitle = $('#being-title, #being-title li')
       $.ajax ('/beings/' + act + '/' + $('#being-id').val()),

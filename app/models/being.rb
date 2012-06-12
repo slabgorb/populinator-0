@@ -3,6 +3,7 @@ class Being
   include Mongoid::Timestamps::Created
   include Mongoid::Acts::Tree
   include Mongoid::Chronology
+  include Mongoid::Slugify
   #include Mongoid::Slug
 
   
@@ -13,8 +14,6 @@ class Being
   
   acts_as_tree order:[['age', 'desc']]
 
-  #slug :name
-
   embeds_many :damages 
   embeds_many :chromosomes
   
@@ -22,6 +21,7 @@ class Being
   has_many :events
   
   belongs_to :settlement
+  belongs_to :building
   
   has_and_belongs_to_many :spouses, :class_name => 'Being'
 
@@ -304,10 +304,11 @@ class Being
     raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
     #raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
     male = other.gender == 'male' ? other : self
-    child = self.class.create.randomize!.get_genetics!(self, other)
+    child = self.class.create
+    child.get_genetics!(self, other)
     child.age = 0
     child.name = child_name || child.name
-    child.birth!
+    child.birth! 
     
     # TODO: come up with a scheme to handle this more better
     child.surname = male.surname if child.respond_to?(:surname)
@@ -329,7 +330,14 @@ class Being
      self.random_name!
      self.random_age!
      self
-  end
+   end
+   
+
+   private
+   def generate_slug
+     name.try(:parameterize)
+   end   
+   
 end
 
 

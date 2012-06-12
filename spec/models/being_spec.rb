@@ -55,7 +55,9 @@ describe Being do
   context 'reproduction' do
     before :all do 
       @eve = FactoryGirl.create(:being, :name => 'Eve', :gender => 'female')
-      @adam.children.clear
+      @adam = FactoryGirl.create(:being, :name => 'Adam', :gender => 'male')
+      @adam.chromosomes << Chromosome.new.randomize!
+      @eve.chromosomes << Chromosome.new.randomize!
       @cain = @adam.reproduce(@eve, 'Cain', 'male')
     end
     

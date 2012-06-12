@@ -1,6 +1,6 @@
 class BeingsController < ApplicationController
   
-  before_filter lambda { @being = Being.find(params[:id]) if params.has_key? :id  }
+  before_filter lambda { @being = Being.find_by_slug_or_id(params[:id]) if params.has_key? :id  }
 
   # get the genotype for this being
   def genotype
@@ -52,7 +52,7 @@ class BeingsController < ApplicationController
   def randomize_genetics
     @being.chromosomes.each { |c| c.randomize! }
     @being.events << Event.new(name: 'Divine Intervention', description: "#{@being.name} was touched by the gods themselves and has dramatically changed.")
-    redirect_to :back
+    render :json => @being
   end
 
   
@@ -133,7 +133,6 @@ class BeingsController < ApplicationController
   # DELETE /beings/1
   # DELETE /beings/1.json
   def destroy
-    @being = Being.find(params[:id])
     @being.destroy
 
     respond_to do |format|

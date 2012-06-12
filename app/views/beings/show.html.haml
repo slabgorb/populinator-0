@@ -12,15 +12,16 @@
 - content_for(:navigation) do
   %li= link_to @being.settlement.name, settlement_path(@being.settlement) if @being.settlement
 
-.slider-wrapper.invisible
-  = image_tag('icons/dead.png', :class => 'right')
-  = image_tag('icons/birth.png', :class => 'left')
-  .clear
-  .slider#age-slider
+
 
 #being
   %h4#being-title{:class => @being.alive? ? 'alive' : 'dead'}= render partial:'being', locals:{ being:@being, nospouse: true, nokids: true, nolink: true }
   .tabs 
+    .slider-wrapper.invisible
+      = image_tag('icons/dead.png', :class => 'right')
+      = image_tag('icons/birth.png', :class => 'left')
+      .clear
+      .slider#age-slider
     %ul 
       %li 
         %a{href: "/beings/family/#{@being._id}"} Family
@@ -30,6 +31,4 @@
         %a{href: "/beings/description/#{@being._id}"} Description
       %li 
         %a{href: "/beings/genotype/#{@being._id}"} Genotype
-
-
 .clear

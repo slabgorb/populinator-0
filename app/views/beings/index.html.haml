@@ -9,30 +9,21 @@
   %table
     %thead
       %tr
-        %th Name
+        %th Surname
+        %th Given Name
         %th Gender
         %th Age
         %th Type
         %th Settlement
-        %th Edit
-        %th Kill
-        %th Destroy
     %tbody
       - @beings.collect{|c| c}.each do |being|
         %tr
-          %td= link_to being.name, being
+          %td= link_to being.surname, being
+          %td= link_to being.given_name, being
           %td= being.gender
           %td= being.age
           %td= being._type
           %td= link_to_if( being.settlement.present?, being.settlement.try(:name), "/settlements/#{being.settlement.try(:id)}")
-          %td= link_to 'Edit', edit_being_path(being)
-          - if being.alive?
-            %td= link_to 'Kill', kill_path(being), :confirm => 'Are you sure?', :method => :put
-          - else 
-            %td= link_to 'Resurrect', resurrect_path(being), :confirm => 'Are you sure?', :method => :put
-
-          %td= link_to 'Destroy', being, :confirm => 'Are you sure?', :method => :delete
-
 %br
 
 = link_to 'New Being', new_being_path

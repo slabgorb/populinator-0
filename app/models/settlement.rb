@@ -8,6 +8,7 @@ class Settlement
   has_many :residents, :class_name => 'Being', :dependent => :destroy   
   has_many :rulers, :class_name => 'Being', :dependent => :destroy
   has_many :events
+  embeds_many :buildings
   accepts_nested_attributes_for :rulers
   
   def population
@@ -83,6 +84,14 @@ class Settlement
     end    
   end
   
+  def settle(family)
+    b = Building.create(use: 'residence', description: "Residence of #{family}") 
+    self.residents.where(:surname => family).map do |m| 
+      b.residents << m
+    end
+  end
+
+  
   def ruler 
     self.rulers.select { |s| s.alive? }.sort{ |a,b| b.age <=> a.age }.first
   end
@@ -105,6 +114,14 @@ class Settlement
         end
       end
     end
+    self.family_names.each do |fname|
+      settle fname
+    end
     true
   end
+  
+   private
+   def generate_slug
+     name.try(:parameterize)
+   end     
 end
