@@ -303,7 +303,6 @@ class Being
   def reproduce(other = nil, child_name = nil, child_gender = nil) 
     raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
     #raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
-    male = other.gender == 'male' ? other : self
     child = self.class.create
     child.get_genetics!(self, other)
     child.age = 0
@@ -311,7 +310,7 @@ class Being
     child.birth! 
     
     # TODO: come up with a scheme to handle this more better
-    child.surname = male.surname if child.respond_to?(:surname)
+    child.surname = (other.gender == 'male' ? other : self).surname if child.respond_to?(:surname)
     child.given_name = child_name.split(' ').last if child.respond_to?(:given_name) and child_name
     
     Event.new(:name => 'Reproduction', :description => "#{name} had a child #{child.name} with #{other.try(:name)}!", :age => self.age).happened_to(self)
@@ -323,19 +322,19 @@ class Being
   
   alias :reproduce_with :reproduce
   
-   def randomize!
-     10.times { self.chromosomes <<  Chromosome.new.randomize! }
-     save
-     self.random_gender!
-     self.random_name!
-     self.random_age!
-     self
-   end
-   
+  def randomize!
+    10.times { self.chromosomes <<  Chromosome.new.randomize! }
+    self.random_gender!
+    self.random_name!
+    self.random_age!
+    self
+  end
+
+  alias :randomize :randomize!
 
    private
    def generate_slug
-     name.try(:parameterize)
+     name.try(:parameterize) || self.class.to_s
    end   
    
 end

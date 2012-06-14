@@ -19,8 +19,7 @@ class Chromosome
   
   # creates a random set of genes
   def randomize!(genecount = 10)
-    genes.delete_all
-    genecount.times { genes << Gene.new(:code => Chromosome.rand_hex ) }
+    genecount.times.each { genes << Gene.new(:code => Chromosome.rand_hex ) }
     self
   end
 

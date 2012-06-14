@@ -55,9 +55,6 @@ describe Being do
   context 'reproduction' do
     before :all do 
       @eve = FactoryGirl.create(:being, :name => 'Eve', :gender => 'female')
-      @adam = FactoryGirl.create(:being, :name => 'Adam', :gender => 'male')
-      @adam.chromosomes << Chromosome.new.randomize!
-      @eve.chromosomes << Chromosome.new.randomize!
       @cain = @adam.reproduce(@eve, 'Cain', 'male')
     end
     
@@ -112,7 +109,7 @@ describe Being do
   end
   
   context 'genetic_map' do 
-    before :all do 
+    before :each do 
       srand(0)
       @expressions = {
         hair: { 
@@ -124,6 +121,15 @@ describe Being do
       }
       20.times  { @adam.chromosomes << Chromosome.new.randomize! }
     end
+    
+    it 'has chromosomes' do
+      (@adam.chromosomes.length > 0).should be_true
+    end
+    
+    it 'has genes in the chromosomes' do
+      (@adam.chromosomes.first.genes.length > 0).should be_true
+    end
+    
     
     it 'describes the being in terms of genetics' do
       @adam.genetic_map(@expressions).should eq({:hair=>{:blond=>2, :red=>1, :pink=>1, :plaid=>1}})

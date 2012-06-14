@@ -46,6 +46,10 @@ class Settlement
     events
   end
   
+  # 
+  # create a random name based on the @@names glossary of prefixes,
+  # dividers, and suffixes, and person last names.
+  #
   def self.random_name
     meat = Person.names['surname'].shuffle.first
     top  = rand > 0.7 ? @@names['prefix'].shuffle.first : ''
@@ -54,6 +58,9 @@ class Settlement
     [top, meat, bottom].join.titlecase
   end
 
+  #
+  # get all the residents with a particular last name
+  #
   def family(surname)
     residents.select{ |b| b.surname == surname }.keep_if{ |f| not (f.gender == 'female' and f.married?) }
   end
@@ -63,7 +70,9 @@ class Settlement
   end
 
   def family_names
-    residents.collect{ |b| b.surname }.uniq.select{ |b| b }
+    residents.collect do |b| 
+      b.respond_to?(:surname) ? b.try(:surname) : b.try(:name).try(:split,' ').try(:last)
+    end.uniq 
   end
   
   def family_populations
