@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class Being - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/being.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Mongoid::Document</span>
+  
+  
+  
+    <li><span class="include">Mongoid::Timestamps::Created</span>
+  
+  
+  
+    <li><span class="include">Mongoid::Acts::Tree</span>
+  
+  
+  
+    <li><a class="include" href="Mongoid/Chronology.html">Mongoid::Chronology</a>
+  
+  
+  
+    <li><span class="include">Mongoid::Slugify</span>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-coming_of_age">::coming_of_age</a>
+    
+    <li><a href="#method-c-genders">::genders</a>
+    
+    <li><a href="#method-c-infertility">::infertility</a>
+    
+    <li><a href="#method-c-old_age">::old_age</a>
+    
+    <li><a href="#method-c-random_age">::random_age</a>
+    
+    <li><a href="#method-c-random_gender">::random_gender</a>
+    
+    <li><a href="#method-c-random_name">::random_name</a>
+    
+    <li><a href="#method-i-_type">#_type</a>
+    
+    <li><a href="#method-i-adopt">#adopt</a>
+    
+    <li><a href="#method-i-age-21">#age!</a>
+    
+    <li><a href="#method-i-alive-3F">#alive?</a>
+    
+    <li><a href="#method-i-as_json">#as_json</a>
+    
+    <li><a href="#method-i-aunt_or_uncle_of-3F">#aunt_or_uncle_of?</a>
+    
+    <li><a href="#method-i-birth-21">#birth!</a>
+    
+    <li><a href="#method-i-child_of-3F">#child_of?</a>
+    
+    <li><a href="#method-i-child_sibling_of-3F">#child_sibling_of?</a>
+    
+    <li><a href="#method-i-coming_of_age">#coming_of_age</a>
+    
+    <li><a href="#method-i-cousin_of-3F">#cousin_of?</a>
+    
+    <li><a href="#method-i-dead-3F">#dead?</a>
+    
+    <li><a href="#method-i-description">#description</a>
+    
+    <li><a href="#method-i-die-21">#die!</a>
+    
+    <li><a href="#method-i-exchange_genome">#exchange_genome</a>
+    
+    <li><a href="#method-i-find_spouse">#find_spouse</a>
+    
+    <li><a href="#method-i-genetic_map">#genetic_map</a>
+    
+    <li><a href="#method-i-genotype">#genotype</a>
+    
+    <li><a href="#method-i-get">#get</a>
+    
+    <li><a href="#method-i-get_genetics-21">#get_genetics!</a>
+    
+    <li><a href="#method-i-heal">#heal</a>
+    
+    <li><a href="#method-i-history">#history</a>
+    
+    <li><a href="#method-i-hurt">#hurt</a>
+    
+    <li><a href="#method-i-hurt-3F">#hurt?</a>
+    
+    <li><a href="#method-i-lose">#lose</a>
+    
+    <li><a href="#method-i-married-3F">#married?</a>
+    
+    <li><a href="#method-i-marry">#marry</a>
+    
+    <li><a href="#method-i-neighbors">#neighbors</a>
+    
+    <li><a href="#method-i-niece_or_nephew_of-3F">#niece_or_nephew_of?</a>
+    
+    <li><a href="#method-i-owns-3F">#owns?</a>
+    
+    <li><a href="#method-i-parent_of-3F">#parent_of?</a>
+    
+    <li><a href="#method-i-random_age-21">#random_age!</a>
+    
+    <li><a href="#method-i-random_gender">#random_gender</a>
+    
+    <li><a href="#method-i-random_gender-21">#random_gender!</a>
+    
+    <li><a href="#method-i-random_name">#random_name</a>
+    
+    <li><a href="#method-i-random_name-21">#random_name!</a>
+    
+    <li><a href="#method-i-randomize">#randomize</a>
+    
+    <li><a href="#method-i-randomize-21">#randomize!</a>
+    
+    <li><a href="#method-i-relation">#relation</a>
+    
+    <li><a href="#method-i-reproduce">#reproduce</a>
+    
+    <li><a href="#method-i-reproduce_with">#reproduce_with</a>
+    
+    <li><a href="#method-i-resurrect-21">#resurrect!</a>
+    
+    <li><a href="#method-i-sibling_of-3F">#sibling_of?</a>
+    
+    <li><a href="#method-i-spouse">#spouse</a>
+    
+    <li><a href="#method-i-spouse_id">#spouse_id</a>
+    
+    <li><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Mongoid.html">Mongoid</a>
+  
+    <li><a href="./Mongoid/Chronology.html">Mongoid::Chronology</a>
+  
+    <li><a href="./Mongoid/Chronology/ClassMethods.html">Mongoid::Chronology::ClassMethods</a>
+  
+    <li><a href="./Mongoid/Chronology/InstanceMethods.html">Mongoid::Chronology::InstanceMethods</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Being.html">Being</a>
+  
+    <li><a href="./BeingsController.html">BeingsController</a>
+  
+    <li><a href="./BeingsHelper.html">BeingsHelper</a>
+  
+    <li><a href="./Building.html">Building</a>
+  
+    <li><a href="./BuildingsController.html">BuildingsController</a>
+  
+    <li><a href="./BuildingsHelper.html">BuildingsHelper</a>
+  
+    <li><a href="./Chromosome.html">Chromosome</a>
+  
+    <li><a href="./Damage.html">Damage</a>
+  
+    <li><a href="./DamagesController.html">DamagesController</a>
+  
+    <li><a href="./DamagesHelper.html">DamagesHelper</a>
+  
+    <li><a href="./DeathException.html">DeathException</a>
+  
+    <li><a href="./Event.html">Event</a>
+  
+    <li><a href="./EventsController.html">EventsController</a>
+  
+    <li><a href="./EventsHelper.html">EventsHelper</a>
+  
+    <li><a href="./IndexController.html">IndexController</a>
+  
+    <li><a href="./IndexHelper.html">IndexHelper</a>
+  
+    <li><a href="./OwnershipException.html">OwnershipException</a>
+  
+    <li><a href="./PeopleController.html">PeopleController</a>
+  
+    <li><a href="./Person.html">Person</a>
+  
+    <li><a href="./ReproductionException.html">ReproductionException</a>
+  
+    <li><a href="./Ruler.html">Ruler</a>
+  
+    <li><a href="./Settlement.html">Settlement</a>
+  
+    <li><a href="./SettlementsController.html">SettlementsController</a>
+  
+    <li><a href="./SettlementsHelper.html">SettlementsHelper</a>
+  
+    <li><a href="./SimulationsController.html">SimulationsController</a>
+  
+    <li><a href="./Thing.html">Thing</a>
+  
+    <li><a href="./ThingsController.html">ThingsController</a>
+  
+    <li><a href="./ThingsHelper.html">ThingsHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Being</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-coming_of_age" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">coming_of_age</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="coming_of_age-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">coming_of_age</span>
+  <span class="ruby-identifier">@@coming_of_age</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- coming_of_age-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- coming_of_age-method -->
+
+    
+      <div id="method-c-genders" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">genders</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="genders-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">genders</span>
+  [<span class="ruby-string">'male'</span>, <span class="ruby-string">'female'</span>, <span class="ruby-string">'neuter'</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- genders-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- genders-method -->
+
+    
+      <div id="method-c-infertility" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">infertility</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="infertility-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">infertility</span>
+  <span class="ruby-identifier">@@infertilty</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- infertility-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- infertility-method -->
+
+    
+      <div id="method-c-old_age" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">old_age</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="old_age-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">old_age</span>
+  <span class="ruby-identifier">@@old_age</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- old_age-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- old_age-method -->
+
+    
+      <div id="method-c-random_age" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_age</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="random_age-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_age</span>
+  (<span class="ruby-identifier">rand</span> * <span class="ruby-identifier">@@old_age</span>).<span class="ruby-identifier">floor</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- random_age-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- random_age-method -->
+
+    
+      <div id="method-c-random_gender" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_gender</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="random_gender-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_gender</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">genders</span>.<span class="ruby-identifier">shuffle</span>.<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- random_gender-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- random_gender-method -->
+
+    
+      <div id="method-c-random_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_name</span><span
+            class="method-args">(sex = self.random_gender)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="random_name-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_name</span>(<span class="ruby-identifier">sex</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_gender</span>)
+  [<span class="ruby-node">%wgreen red yellow black|</span>.<span class="ruby-identifier">shuffle</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">capitalize</span>,
+   <span class="ruby-node">%wdra cula franken stein were wolf shark jackal bear blob spider snake goo|</span>.<span class="ruby-identifier">shuffle</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span>((<span class="ruby-identifier">rand</span> * <span class="ruby-value">2</span>).<span class="ruby-identifier">floor</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)].<span class="ruby-identifier">join</span>.<span class="ruby-identifier">titlecase</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- random_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- random_name-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_type</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_type-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 295</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">_type</span> 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read_attribute</span>(<span class="ruby-value">:_type</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- _type-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- _type-method -->
+
+    
+      <div id="method-i-adopt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adopt</span><span
+            class="method-args">(child, heredity = false)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="adopt-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 139</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">adopt</span>(<span class="ruby-identifier">child</span>, <span class="ruby-identifier">heredity</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">children</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>
+  <span class="ruby-identifier">child</span>.<span class="ruby-identifier">surname</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">surname</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:surname</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">heredity</span> 
+    <span class="ruby-identifier">child</span>.<span class="ruby-identifier">get_genetics!</span>(<span class="ruby-identifier">child</span>.<span class="ruby-identifier">parent</span>, <span class="ruby-identifier">child</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">spouse</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">e</span> = <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Adoption'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{child.name} was adopted by #{name}&quot;</span>, <span class="ruby-identifier">age</span><span class="ruby-operator">:</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">age</span>)
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">happened_to</span>(<span class="ruby-identifier">child</span>)
+  <span class="ruby-identifier">e</span> = <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Adoption'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{child.name} was adopted&quot;</span>, <span class="ruby-identifier">age</span><span class="ruby-operator">:</span> <span class="ruby-identifier">lambda</span> { <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span> })
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">happened_to</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">happened_to</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">spouse</span>)
+  <span class="ruby-identifier">child</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">child</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- adopt-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- adopt-method -->
+
+    
+      <div id="method-i-age-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">age!</span><span
+            class="method-args">(years = 1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="age-21-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">age!</span>(<span class="ruby-identifier">years</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Age'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{name} was magically made #{years &gt; 0 ? ' older' : ' youthful'}.&quot;</span>, <span class="ruby-value">:effect</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;{|b, y| b.age += y }&quot;</span>, <span class="ruby-identifier">age</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">years</span>).<span class="ruby-identifier">happened_to</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">years</span>)
+  <span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- age-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- age-21-method -->
+
+    
+      <div id="method-i-alive-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">alive?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="alive-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">alive?</span>
+  <span class="ruby-identifier">alive</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- alive-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- alive-3F-method -->
+
+    
+      <div id="method-i-as_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">as_json</span><span
+            class="method-args">(options = { })</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="as_json-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">as_json</span>(<span class="ruby-identifier">options</span> = { })
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">only</span>[[<span class="ruby-value">:id</span>, <span class="ruby-value">:name</span>, <span class="ruby-value">:age</span>, <span class="ruby-value">:alive</span>, <span class="ruby-value">:_type</span>],
+        <span class="ruby-identifier">methods</span><span class="ruby-operator">:</span> [<span class="ruby-value">:children</span>, <span class="ruby-value">:married?</span>,<span class="ruby-value">:spouse_id</span>, <span class="ruby-value">:history</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- as_json-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- as_json-method -->
+
+    
+      <div id="method-i-aunt_or_uncle_of-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">aunt_or_uncle_of?</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="aunt_or_uncle_of-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 215</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">aunt_or_uncle_of?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">siblings</span>.<span class="ruby-identifier">collect_concat</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">children</span>}.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">siblings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- aunt_or_uncle_of-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- aunt_or_uncle_of-3F-method -->
+
+    
+      <div id="method-i-birth-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">birth!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="birth-21-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 237</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">birth!</span>
+  <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Birth'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{name} was born&quot;</span>, <span class="ruby-value">:effect</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;{|b| b.alive = true; b.save }&quot;</span>, <span class="ruby-identifier">age</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span>).<span class="ruby-identifier">happened_to</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- birth-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- birth-21-method -->
+
+    
+      <div id="method-i-child_of-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">child_of?</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="child_of-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">child_of?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">not</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">index</span>(<span class="ruby-keyword">self</span>).<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- child_of-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- child_of-3F-method -->
+
+    
+      <div id="method-i-child_sibling_of-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">child_sibling_of?</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="child_sibling_of-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 211</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">child_sibling_of?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">sibling_of?</span>(<span class="ruby-identifier">other</span>)}.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- child_sibling_of-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- child_sibling_of-3F-method -->
+
+    
+      <div id="method-i-coming_of_age" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">coming_of_age</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="coming_of_age-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">coming_of_age</span>
+  <span class="ruby-identifier">@@coming_of_age</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- coming_of_age-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- coming_of_age-method -->
+
+    
+      <div id="method-i-cousin_of-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cousin_of?</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cousin_of-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 223</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cousin_of?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">siblings</span>.<span class="ruby-identifier">collect_concat</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">children</span>}.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">siblings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- cousin_of-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- cousin_of-3F-method -->
+
+    
+      <div id="method-i-dead-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dead?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dead-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dead?</span> 
+  <span class="ruby-keyword">not</span> <span class="ruby-identifier">alive</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- dead-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dead-3F-method -->
+
+    
+      <div id="method-i-description" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">description</span><span
+            class="method-args">(ex = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="description-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">description</span>(<span class="ruby-identifier">ex</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">sorted_map</span> = { }
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">genetic_map</span>(<span class="ruby-identifier">ex</span>).<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">trait</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">sorted_map</span>[<span class="ruby-identifier">trait</span>] = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">sort</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">last</span> } 
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">sorted_map</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> { <span class="ruby-identifier">c</span>.<span class="ruby-identifier">first</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-identifier">c</span>.<span class="ruby-identifier">second</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">second</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">second</span>] }}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- description-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- description-method -->
+
+    
+      <div id="method-i-die-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">die!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="die-21-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 231</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">die!</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">DeathException</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">dead?</span>
+  <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Death'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{name} died at age #{age}&quot;</span>, <span class="ruby-value">:effect</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;{|b| b.alive = false; b.save }&quot;</span>, <span class="ruby-identifier">age</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span>).<span class="ruby-identifier">happened_to</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- die-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- die-21-method -->
+
+    
+      <div id="method-i-exchange_genome" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exchange_genome</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="exchange_genome-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exchange_genome</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">g_self</span> = <span class="ruby-identifier">genotype</span>
+  <span class="ruby-identifier">g_other</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">genotype</span>
+  <span class="ruby-identifier">g_out</span> = []
+  <span class="ruby-identifier">g_self</span>.<span class="ruby-identifier">count</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">g_out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">g_self</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">reproduce_with</span>(<span class="ruby-identifier">g_other</span>[<span class="ruby-identifier">i</span>])
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">g_out</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exchange_genome-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exchange_genome-method -->
+
+    
+      <div id="method-i-find_spouse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_spouse</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_spouse-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_spouse</span> 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">neighbors</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-constant">Person</span>.<span class="ruby-identifier">marriage_strategy</span>(<span class="ruby-identifier">n</span>, <span class="ruby-keyword">self</span>) }.<span class="ruby-identifier">try</span>(<span class="ruby-value">:shuffle</span>).<span class="ruby-identifier">try</span>(<span class="ruby-value">:first</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_spouse-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_spouse-method -->
+
+    
+      <div id="method-i-genetic_map" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">genetic_map</span><span
+            class="method-args">(ex = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="genetic_map-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">genetic_map</span>(<span class="ruby-identifier">ex</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">ex</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Chromosome</span>.<span class="ruby-identifier">expressions</span> 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">genotype</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">express</span>(<span class="ruby-identifier">ex</span>) }.<span class="ruby-identifier">inject</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span>, <span class="ruby-identifier">g</span><span class="ruby-operator">|</span> 
+    <span class="ruby-identifier">m</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">g</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">original_value</span>, <span class="ruby-identifier">new_value</span><span class="ruby-operator">|</span> 
+      <span class="ruby-identifier">original_value</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">new_value</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">kp</span>, <span class="ruby-identifier">original_value_prime</span>, <span class="ruby-identifier">new_value_prime</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">original_value_prime</span>, <span class="ruby-identifier">new_value_prime</span>].<span class="ruby-identifier">max</span> } 
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">symbolize_keys</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- genetic_map-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- genetic_map-method -->
+
+    
+      <div id="method-i-genotype" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">genotype</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="genotype-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">genotype</span> 
+  <span class="ruby-identifier">chromosomes</span>.<span class="ruby-identifier">sort</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- genotype-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- genotype-method -->
+
+    
+      <div id="method-i-get" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get</span><span
+            class="method-args">(thing)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 268</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">thing</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">OwnershipException</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">owns?</span>(<span class="ruby-identifier">thing</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">things</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">thing</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get-method -->
+
+    
+      <div id="method-i-get_genetics-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_genetics!</span><span
+            class="method-args">(parent1, parent2)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_genetics-21-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 173</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_genetics!</span>(<span class="ruby-identifier">parent1</span>, <span class="ruby-identifier">parent2</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">chromosomes</span>.<span class="ruby-identifier">delete_all</span>
+  <span class="ruby-identifier">parent1</span>.<span class="ruby-identifier">exchange_genome</span>(<span class="ruby-identifier">parent2</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">chromosomes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">g</span> }   
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_genetics-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_genetics-21-method -->
+
+    
+      <div id="method-i-heal" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">heal</span><span
+            class="method-args">(damage)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="heal-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 227</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">heal</span>(<span class="ruby-identifier">damage</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">damages</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">damage</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- heal-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- heal-method -->
+
+    
+      <div id="method-i-history" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">history</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="history-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">history</span>
+  <span class="ruby-identifier">events</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- history-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- history-method -->
+
+    
+      <div id="method-i-hurt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hurt</span><span
+            class="method-args">(damage)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="hurt-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 203</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hurt</span>(<span class="ruby-identifier">damage</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">damages</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">damage</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- hurt-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- hurt-method -->
+
+    
+      <div id="method-i-hurt-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hurt?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="hurt-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 207</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hurt?</span> 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">damages</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- hurt-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- hurt-3F-method -->
+
+    
+      <div id="method-i-lose" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lose</span><span
+            class="method-args">(thing)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="lose-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 277</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">lose</span>(<span class="ruby-identifier">thing</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">OwnershipException</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">owns?</span>(<span class="ruby-identifier">thing</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">things</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">thing</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- lose-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- lose-method -->
+
+    
+      <div id="method-i-married-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">married?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="married-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">married?</span>
+  <span class="ruby-identifier">spouse</span>.<span class="ruby-identifier">present?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- married-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- married-3F-method -->
+
+    
+      <div id="method-i-marry" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">marry</span><span
+            class="method-args">(s)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="marry-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">marry</span>(<span class="ruby-identifier">s</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">spouses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">s</span>
+  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">spouses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>
+  <span class="ruby-identifier">e</span> = <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Marriage'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{name} married #{s.name}&quot;</span>, <span class="ruby-value">:age</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span>)
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">happened_to</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">s</span>)
+  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">surname</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">surname</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:surname</span>)
+  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">happened_to</span>(<span class="ruby-identifier">s</span>, <span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- marry-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- marry-method -->
+
+    
+      <div id="method-i-neighbors" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">neighbors</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="neighbors-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 299</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">neighbors</span> 
+  <span class="ruby-identifier">settlement</span>.<span class="ruby-identifier">beings</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- neighbors-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- neighbors-method -->
+
+    
+      <div id="method-i-niece_or_nephew_of-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">niece_or_nephew_of?</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="niece_or_nephew_of-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 219</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">niece_or_nephew_of?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">aunt_or_uncle_of?</span> <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- niece_or_nephew_of-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- niece_or_nephew_of-3F-method -->
+
+    
+      <div id="method-i-owns-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">owns?</span><span
+            class="method-args">(thing)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="owns-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 273</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">owns?</span>(<span class="ruby-identifier">thing</span>)
+  <span class="ruby-keyword">not</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">things</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">thing</span>).<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- owns-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- owns-3F-method -->
+
+    
+      <div id="method-i-parent_of-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parent_of?</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parent_of-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parent_of?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">not</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">other</span>).<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- parent_of-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- parent_of-3F-method -->
+
+    
+      <div id="method-i-random_age-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_age!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="random_age-21-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">random_age!</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">random_age</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- random_age-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- random_age-21-method -->
+
+    
+      <div id="method-i-random_gender" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_gender</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="random_gender-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 287</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">random_gender</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">random_gender</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- random_gender-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- random_gender-method -->
+
+    
+      <div id="method-i-random_gender-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_gender!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="random_gender-21-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 291</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">random_gender!</span> 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">gender</span> = <span class="ruby-identifier">random_gender</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- random_gender-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- random_gender-21-method -->
+
+    
+      <div id="method-i-random_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_name</span><span
+            class="method-args">(sex = self.gender)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="random_name-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">random_name</span>(<span class="ruby-identifier">sex</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">gender</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">random_name</span>(<span class="ruby-identifier">sex</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- random_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- random_name-method -->
+
+    
+      <div id="method-i-random_name-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_name!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="random_name-21-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 179</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">random_name!</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_name</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">' '</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- random_name-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- random_name-21-method -->
+
+    
+      <div id="method-i-randomize" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Being.html#method-i-randomize-21">randomize!</a>
+        </div>
+        
+      </div><!-- randomize-method -->
+
+    
+      <div id="method-i-randomize-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="randomize-21-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 325</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">randomize!</span>
+  <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">'*'</span> * <span class="ruby-value">80</span>
+  <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">'in randomize'</span>
+  <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-string">'*'</span> * <span class="ruby-value">80</span>
+  <span class="ruby-value">10</span>.<span class="ruby-identifier">times</span> { <span class="ruby-keyword">self</span>.<span class="ruby-identifier">chromosomes</span> <span class="ruby-operator">&lt;&lt;</span>  <span class="ruby-constant">Chromosome</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">randomize!</span> }
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_gender!</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_name!</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_age!</span>
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- randomize-21-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Being.html#method-i-randomize">randomize</a>
+        </div>
+        
+
+        
+      </div><!-- randomize-21-method -->
+
+    
+      <div id="method-i-relation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">relation</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="relation-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 248</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">relation</span>(<span class="ruby-identifier">other</span>) 
+  <span class="ruby-keyword">case</span> 
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">child_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:male</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:father</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">child_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:female</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:mother</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">child_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:neuter</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:parent</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">parent_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:neuter</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:child</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">parent_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:female</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:daughter</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">parent_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:male</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:son</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">sibling_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:male</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:brother</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">sibling_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:female</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:sister</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">niece_or_nephew_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:male</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:uncle</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">niece_or_nephew_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:female</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:aunt</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">aunt_or_uncle_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:male</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:nephew</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">aunt_or_uncle_of?</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-value">:female</span>) <span class="ruby-keyword">then</span> <span class="ruby-value">:niece</span>
+  <span class="ruby-keyword">when</span> (<span class="ruby-identifier">cousin_of?</span>(<span class="ruby-identifier">other</span>)) <span class="ruby-keyword">then</span> <span class="ruby-value">:cousin</span>
+  <span class="ruby-keyword">else</span> 
+    <span class="ruby-value">:unrelated</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- relation-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- relation-method -->
+
+    
+      <div id="method-i-reproduce" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reproduce</span><span
+            class="method-args">(other = nil, child_name = nil, child_gender = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reproduce-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 303</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reproduce</span>(<span class="ruby-identifier">other</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">child_name</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">child_gender</span> = <span class="ruby-keyword">nil</span>) 
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ReproductionException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">'Cannot reproduce with self unless neuter'</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">other</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">gender</span> <span class="ruby-operator">!=</span> <span class="ruby-string">'neuter'</span>)
+  <span class="ruby-comment">#raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')</span>
+  <span class="ruby-identifier">child</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">create</span>
+  <span class="ruby-identifier">child</span>.<span class="ruby-identifier">get_genetics!</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">child</span>.<span class="ruby-identifier">age</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">child_name</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">child</span>.<span class="ruby-identifier">birth!</span> 
+  
+  <span class="ruby-comment"># TODO: come up with a scheme to handle this more better</span>
+  <span class="ruby-identifier">child</span>.<span class="ruby-identifier">surname</span> = (<span class="ruby-identifier">other</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-string">'male'</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">other</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>).<span class="ruby-identifier">surname</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:surname</span>)
+  <span class="ruby-identifier">child</span>.<span class="ruby-identifier">given_name</span> = <span class="ruby-identifier">child_name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">' '</span>).<span class="ruby-identifier">last</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:given_name</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">child_name</span>
+  
+  <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Reproduction'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{name} had a child #{child.name} with #{other.try(:name)}!&quot;</span>, <span class="ruby-value">:age</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span>).<span class="ruby-identifier">happened_to</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Reproduction'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{other.try(:name)} had a child #{child.name} with #{name}!&quot;</span>, <span class="ruby-value">:age</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">age</span>).<span class="ruby-identifier">happened_to</span>(<span class="ruby-identifier">other</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">other</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">children</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">settlement</span>.<span class="ruby-identifier">residents</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">settlement</span>
+  <span class="ruby-identifier">child</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reproduce-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Being.html#method-i-reproduce_with">reproduce_with</a>
+        </div>
+        
+
+        
+      </div><!-- reproduce-method -->
+
+    
+      <div id="method-i-reproduce_with" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">reproduce_with</span><span
+            class="method-args">(other = nil, child_name = nil, child_gender = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Being.html#method-i-reproduce">reproduce</a>
+        </div>
+        
+      </div><!-- reproduce_with-method -->
+
+    
+      <div id="method-i-resurrect-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">resurrect!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="resurrect-21-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 242</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">resurrect!</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">DeathException</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">alive?</span>
+  <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Resurrection'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{name} was resurrected!&quot;</span>, <span class="ruby-value">:effect</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;{|b| b.alive = true; b.save }&quot;</span>, <span class="ruby-identifier">age</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">age</span>).<span class="ruby-identifier">happened_to</span>(<span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- resurrect-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- resurrect-21-method -->
+
+    
+      <div id="method-i-sibling_of-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sibling_of?</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sibling_of-3F-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 199</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sibling_of?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">siblings</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">other</span>.<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sibling_of-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sibling_of-3F-method -->
+
+    
+      <div id="method-i-spouse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">spouse</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="spouse-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">spouse</span> 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">spouses</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">alive?</span> }.<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- spouse-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- spouse-method -->
+
+    
+      <div id="method-i-spouse_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">spouse_id</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="spouse_id-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">spouse_id</span>
+  <span class="ruby-identifier">spouse</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">spouse</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- spouse_id-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- spouse_id-method -->
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File app/models/being.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-node">&quot;#{name}, aged #{age}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_s-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_s-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

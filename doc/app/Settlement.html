@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class Settlement - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/settlement.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Mongoid::Document</span>
+  
+  
+  
+    <li><a class="include" href="Mongoid/Chronology.html">Mongoid::Chronology</a>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-random_name">::random_name</a>
+    
+    <li><a href="#method-c-sizes">::sizes</a>
+    
+    <li><a href="#method-i-as_json">#as_json</a>
+    
+    <li><a href="#method-i-families">#families</a>
+    
+    <li><a href="#method-i-family">#family</a>
+    
+    <li><a href="#method-i-family_names">#family_names</a>
+    
+    <li><a href="#method-i-family_populations">#family_populations</a>
+    
+    <li><a href="#method-i-history">#history</a>
+    
+    <li><a href="#method-i-marry_sets">#marry_sets</a>
+    
+    <li><a href="#method-i-populate">#populate</a>
+    
+    <li><a href="#method-i-population">#population</a>
+    
+    <li><a href="#method-i-ruler">#ruler</a>
+    
+    <li><a href="#method-i-seed-21">#seed!</a>
+    
+    <li><a href="#method-i-settle">#settle</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Mongoid.html">Mongoid</a>
+  
+    <li><a href="./Mongoid/Chronology.html">Mongoid::Chronology</a>
+  
+    <li><a href="./Mongoid/Chronology/ClassMethods.html">Mongoid::Chronology::ClassMethods</a>
+  
+    <li><a href="./Mongoid/Chronology/InstanceMethods.html">Mongoid::Chronology::InstanceMethods</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Being.html">Being</a>
+  
+    <li><a href="./BeingsController.html">BeingsController</a>
+  
+    <li><a href="./BeingsHelper.html">BeingsHelper</a>
+  
+    <li><a href="./Building.html">Building</a>
+  
+    <li><a href="./BuildingsController.html">BuildingsController</a>
+  
+    <li><a href="./BuildingsHelper.html">BuildingsHelper</a>
+  
+    <li><a href="./Chromosome.html">Chromosome</a>
+  
+    <li><a href="./Damage.html">Damage</a>
+  
+    <li><a href="./DamagesController.html">DamagesController</a>
+  
+    <li><a href="./DamagesHelper.html">DamagesHelper</a>
+  
+    <li><a href="./DeathException.html">DeathException</a>
+  
+    <li><a href="./Event.html">Event</a>
+  
+    <li><a href="./EventsController.html">EventsController</a>
+  
+    <li><a href="./EventsHelper.html">EventsHelper</a>
+  
+    <li><a href="./IndexController.html">IndexController</a>
+  
+    <li><a href="./IndexHelper.html">IndexHelper</a>
+  
+    <li><a href="./OwnershipException.html">OwnershipException</a>
+  
+    <li><a href="./PeopleController.html">PeopleController</a>
+  
+    <li><a href="./Person.html">Person</a>
+  
+    <li><a href="./ReproductionException.html">ReproductionException</a>
+  
+    <li><a href="./Ruler.html">Ruler</a>
+  
+    <li><a href="./Settlement.html">Settlement</a>
+  
+    <li><a href="./SettlementsController.html">SettlementsController</a>
+  
+    <li><a href="./SettlementsHelper.html">SettlementsHelper</a>
+  
+    <li><a href="./SimulationsController.html">SimulationsController</a>
+  
+    <li><a href="./Thing.html">Thing</a>
+  
+    <li><a href="./ThingsController.html">ThingsController</a>
+  
+    <li><a href="./ThingsHelper.html">ThingsHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Settlement</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-random_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_name</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>create a random name based on the @@names glossary of prefixes, dividers,
+and suffixes, and person last names.</p>
+          
+
+          
+          <div class="method-source-code" id="random_name-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">random_name</span>
+  <span class="ruby-identifier">meat</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">names</span>[<span class="ruby-string">'surname'</span>].<span class="ruby-identifier">shuffle</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">top</span>  = <span class="ruby-identifier">rand</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0.7</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">@@names</span>[<span class="ruby-string">'prefix'</span>].<span class="ruby-identifier">shuffle</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-string">''</span>
+  <span class="ruby-identifier">bottom</span> = <span class="ruby-identifier">rand</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0.7</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">@@names</span>[<span class="ruby-string">'suffix'</span>].<span class="ruby-identifier">shuffle</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-string">''</span>
+  <span class="ruby-identifier">top</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">rand</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0.8</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">@@names</span>[<span class="ruby-string">'divider'</span>].<span class="ruby-identifier">shuffle</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-string">''</span>
+  [<span class="ruby-identifier">top</span>, <span class="ruby-identifier">meat</span>, <span class="ruby-identifier">bottom</span>].<span class="ruby-identifier">join</span>.<span class="ruby-identifier">titlecase</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- random_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- random_name-method -->
+
+    
+      <div id="method-c-sizes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sizes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sizes-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sizes</span> 
+  { <span class="ruby-string">'Hamlet'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">25</span>,
+    <span class="ruby-string">'Village'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>,
+    <span class="ruby-string">'Town'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2500</span>,
+    <span class="ruby-string">'City'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10000</span> }  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sizes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sizes-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-as_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">as_json</span><span
+            class="method-args">(options = { })</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="as_json-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">as_json</span>(<span class="ruby-identifier">options</span> = { })
+  { <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>, 
+    <span class="ruby-identifier">established</span><span class="ruby-operator">:</span> <span class="ruby-identifier">established</span>, 
+    <span class="ruby-identifier">population</span><span class="ruby-operator">:</span> <span class="ruby-identifier">population</span>,
+    <span class="ruby-identifier">ruler</span><span class="ruby-operator">:</span> <span class="ruby-identifier">rulers</span>.<span class="ruby-identifier">first</span>,   
+    <span class="ruby-identifier">families</span><span class="ruby-operator">:</span> <span class="ruby-identifier">families</span>,
+    <span class="ruby-identifier">residents</span><span class="ruby-operator">:</span> <span class="ruby-identifier">residents</span>,
+    <span class="ruby-identifier">history</span><span class="ruby-operator">:</span> <span class="ruby-identifier">history</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- as_json-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- as_json-method -->
+
+    
+      <div id="method-i-families" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">families</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="families-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">families</span>
+  <span class="ruby-constant">Hash</span>[*<span class="ruby-identifier">family_names</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">s</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">family</span>(<span class="ruby-identifier">s</span>)] }.<span class="ruby-identifier">flatten</span>(<span class="ruby-value">1</span>)]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- families-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- families-method -->
+
+    
+      <div id="method-i-family" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">family</span><span
+            class="method-args">(surname)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get all the residents with a particular last name</p>
+          
+
+          
+          <div class="method-source-code" id="family-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">family</span>(<span class="ruby-identifier">surname</span>)
+  <span class="ruby-identifier">residents</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">surname</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">surname</span> }.<span class="ruby-identifier">keep_if</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-keyword">not</span> (<span class="ruby-identifier">f</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-string">'female'</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">married?</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- family-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- family-method -->
+
+    
+      <div id="method-i-family_names" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">family_names</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="family_names-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">family_names</span>
+  <span class="ruby-identifier">residents</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> 
+    <span class="ruby-identifier">b</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:surname</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:surname</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:name</span>).<span class="ruby-identifier">try</span>(<span class="ruby-value">:split</span>,<span class="ruby-string">' '</span>).<span class="ruby-identifier">try</span>(<span class="ruby-value">:last</span>)
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">uniq</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- family_names-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- family_names-method -->
+
+    
+      <div id="method-i-family_populations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">family_populations</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="family_populations-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">family_populations</span>
+  <span class="ruby-constant">Hash</span>[*<span class="ruby-identifier">family_names</span>.<span class="ruby-identifier">inject</span>([]){<span class="ruby-operator">|</span><span class="ruby-identifier">n</span>,<span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">f</span>, <span class="ruby-identifier">family</span>(<span class="ruby-identifier">f</span>).<span class="ruby-identifier">count</span>] }.<span class="ruby-identifier">flatten</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- family_populations-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- family_populations-method -->
+
+    
+      <div id="method-i-history" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">history</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="history-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">history</span>
+  <span class="ruby-identifier">events</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- history-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- history-method -->
+
+    
+      <div id="method-i-marry_sets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">marry_sets</span><span
+            class="method-args">(males, females)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="marry_sets-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">marry_sets</span>(<span class="ruby-identifier">males</span>, <span class="ruby-identifier">females</span>)
+  <span class="ruby-identifier">cache</span> = { <span class="ruby-value">:male</span> =<span class="ruby-operator">&gt;</span> [], <span class="ruby-value">:female</span> =<span class="ruby-operator">&gt;</span> []}
+  <span class="ruby-identifier">males</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> 
+    <span class="ruby-identifier">females</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">cache</span>[<span class="ruby-value">:male</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">m</span>.<span class="ruby-identifier">id</span>) <span class="ruby-keyword">or</span> <span class="ruby-identifier">cache</span>[<span class="ruby-value">:female</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">f</span>.<span class="ruby-identifier">id</span>) 
+      <span class="ruby-keyword">if</span> <span class="ruby-constant">Person</span>.<span class="ruby-identifier">marriage_strategy</span>(<span class="ruby-identifier">m</span>, <span class="ruby-identifier">f</span>) 
+        <span class="ruby-identifier">m</span>.<span class="ruby-identifier">marry</span> <span class="ruby-identifier">f</span>
+        <span class="ruby-identifier">cache</span>[<span class="ruby-value">:male</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">id</span>
+        <span class="ruby-identifier">cache</span>[<span class="ruby-value">:female</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>    
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- marry_sets-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- marry_sets-method -->
+
+    
+      <div id="method-i-populate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">populate</span><span
+            class="method-args">(pop)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="populate-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">populate</span>(<span class="ruby-identifier">pop</span>)
+  <span class="ruby-identifier">pop</span>.<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">p</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">create</span>.<span class="ruby-identifier">randomize!</span>
+    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">settlement</span> = <span class="ruby-keyword">self</span>
+    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">events</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Parthenogenesis'</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{p.name} was magicked into existence.&quot;</span>, <span class="ruby-value">:age</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">age</span>)
+    <span class="ruby-identifier">residents</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">p</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- populate-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- populate-method -->
+
+    
+      <div id="method-i-population" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">population</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="population-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">population</span>
+  <span class="ruby-identifier">residents</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">alive?</span> }.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rulers</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">alive?</span> }.<span class="ruby-identifier">length</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- population-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- population-method -->
+
+    
+      <div id="method-i-ruler" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ruler</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ruler-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ruler</span> 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">rulers</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">alive?</span> }.<span class="ruby-identifier">sort</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">age</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">age</span> }.<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- ruler-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- ruler-method -->
+
+    
+      <div id="method-i-seed-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">seed!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="seed-21-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">seed!</span>
+  <span class="ruby-identifier">ruler</span> = <span class="ruby-constant">Ruler</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">settlement</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>).<span class="ruby-identifier">randomize!</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">rulers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ruler</span>
+  <span class="ruby-identifier">males</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">residents</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-string">'male'</span> }
+  <span class="ruby-identifier">males</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ruler</span> <span class="ruby-comment"># rulers pick their spouses</span>
+  <span class="ruby-identifier">females</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">residents</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">gender</span> <span class="ruby-operator">==</span> <span class="ruby-string">'female'</span> }
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">marry_sets</span>(<span class="ruby-identifier">males</span>, <span class="ruby-identifier">females</span>)
+  <span class="ruby-identifier">minors</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">residents</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">age</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">coming_of_age</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">parent</span> }
+  <span class="ruby-identifier">mothers</span> = <span class="ruby-identifier">females</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">married?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">age</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Person</span>.<span class="ruby-identifier">infertility</span>}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">mothers</span>.<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">minors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">mothers</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">age</span> <span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">child</span>.<span class="ruby-identifier">age</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Person</span>.<span class="ruby-identifier">coming_of_age</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">age</span> <span class="ruby-operator">&lt;</span> (<span class="ruby-constant">Person</span>.<span class="ruby-identifier">infertility</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">age</span>) }.<span class="ruby-identifier">shuffle</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:first</span>).<span class="ruby-identifier">try</span>(<span class="ruby-value">:adopt</span>, <span class="ruby-identifier">child</span>, <span class="ruby-keyword">true</span>)
+      <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">family_names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fname</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">settle</span> <span class="ruby-identifier">fname</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- seed-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- seed-21-method -->
+
+    
+      <div id="method-i-settle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">settle</span><span
+            class="method-args">(family)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="settle-source">
+            <pre><span class="ruby-comment"># File app/models/settlement.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">settle</span>(<span class="ruby-identifier">family</span>)
+  <span class="ruby-identifier">b</span> = <span class="ruby-constant">Building</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">use</span><span class="ruby-operator">:</span> <span class="ruby-string">'residence'</span>, <span class="ruby-identifier">description</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;Residence of #{family}&quot;</span>) 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">residents</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:surname</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">family</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> 
+    <span class="ruby-identifier">b</span>.<span class="ruby-identifier">residents</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">m</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- settle-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- settle-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

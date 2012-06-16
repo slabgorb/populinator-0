@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class Chromosome - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/chromosome.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Mongoid::Document</span>
+  
+  
+  
+    <li><span class="include">Mongoid::Timestamps::Created</span>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-expressions">::expressions</a>
+    
+    <li><a href="#method-c-rand_hex">::rand_hex</a>
+    
+    <li><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    
+    <li><a href="#method-i-3C-3D-3E">#&lt;=&gt;</a>
+    
+    <li><a href="#method-i-5B-5D">#[]</a>
+    
+    <li><a href="#method-i-5B-5D-3D">#[]=</a>
+    
+    <li><a href="#method-i-express">#express</a>
+    
+    <li><a href="#method-i-length">#length</a>
+    
+    <li><a href="#method-i-mutate">#mutate</a>
+    
+    <li><a href="#method-i-randomize-21">#randomize!</a>
+    
+    <li><a href="#method-i-reproduce_with">#reproduce_with</a>
+    
+    <li><a href="#method-i-to_i">#to_i</a>
+    
+    <li><a href="#method-i-to_s">#to_s</a>
+    
+    <li><a href="#method-i-value">#value</a>
+    
+    <li><a href="#method-i-walk">#walk</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Mongoid.html">Mongoid</a>
+  
+    <li><a href="./Mongoid/Chronology.html">Mongoid::Chronology</a>
+  
+    <li><a href="./Mongoid/Chronology/ClassMethods.html">Mongoid::Chronology::ClassMethods</a>
+  
+    <li><a href="./Mongoid/Chronology/InstanceMethods.html">Mongoid::Chronology::InstanceMethods</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Being.html">Being</a>
+  
+    <li><a href="./BeingsController.html">BeingsController</a>
+  
+    <li><a href="./BeingsHelper.html">BeingsHelper</a>
+  
+    <li><a href="./Building.html">Building</a>
+  
+    <li><a href="./BuildingsController.html">BuildingsController</a>
+  
+    <li><a href="./BuildingsHelper.html">BuildingsHelper</a>
+  
+    <li><a href="./Chromosome.html">Chromosome</a>
+  
+    <li><a href="./Damage.html">Damage</a>
+  
+    <li><a href="./DamagesController.html">DamagesController</a>
+  
+    <li><a href="./DamagesHelper.html">DamagesHelper</a>
+  
+    <li><a href="./DeathException.html">DeathException</a>
+  
+    <li><a href="./Event.html">Event</a>
+  
+    <li><a href="./EventsController.html">EventsController</a>
+  
+    <li><a href="./EventsHelper.html">EventsHelper</a>
+  
+    <li><a href="./IndexController.html">IndexController</a>
+  
+    <li><a href="./IndexHelper.html">IndexHelper</a>
+  
+    <li><a href="./OwnershipException.html">OwnershipException</a>
+  
+    <li><a href="./PeopleController.html">PeopleController</a>
+  
+    <li><a href="./Person.html">Person</a>
+  
+    <li><a href="./ReproductionException.html">ReproductionException</a>
+  
+    <li><a href="./Ruler.html">Ruler</a>
+  
+    <li><a href="./Settlement.html">Settlement</a>
+  
+    <li><a href="./SettlementsController.html">SettlementsController</a>
+  
+    <li><a href="./SettlementsHelper.html">SettlementsHelper</a>
+  
+    <li><a href="./SimulationsController.html">SimulationsController</a>
+  
+    <li><a href="./Thing.html">Thing</a>
+  
+    <li><a href="./ThingsController.html">ThingsController</a>
+  
+    <li><a href="./ThingsHelper.html">ThingsHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Chromosome</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-expressions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">expressions</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="expressions-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">expressions</span> 
+  <span class="ruby-identifier">@@expressions</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- expressions-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- expressions-method -->
+
+    
+      <div id="method-c-rand_hex" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rand_hex</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>generates a 6 digit hex number as a string</p>
+          
+
+          
+          <div class="method-source-code" id="rand_hex-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">rand_hex</span>
+  (<span class="ruby-string">&quot;%06x&quot;</span> <span class="ruby-operator">%</span> (<span class="ruby-identifier">rand</span> * <span class="ruby-value">16777215</span>).<span class="ruby-identifier">floor</span>).<span class="ruby-identifier">upcase</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- rand_hex-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- rand_hex-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-3C-3C" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">&lt;&lt;</span><span
+            class="method-args">(gene)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>append a gene</p>
+          
+
+          
+          <div class="method-source-code" id="3C-3C-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;&lt;</span>(<span class="ruby-identifier">gene</span>)
+  <span class="ruby-identifier">genes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">gene</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- 3C-3C-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- 3C-3C-method -->
+
+    
+      <div id="method-i-3C-3D-3E" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">&lt;=&gt;</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Compare operator - compare the base 10 values  @see value @param other <a
+href="Chromosome.html">Chromosome</a></p>
+          
+
+          
+          <div class="method-source-code" id="3C-3D-3E-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">value</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">value</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- 3C-3D-3E-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- 3C-3D-3E-method -->
+
+    
+      <div id="method-i-5B-5D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]</span><span
+            class="method-args">(index)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>gene at the supplied index value</p>
+          
+
+          
+          <div class="method-source-code" id="5B-5D-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">index</span>)
+  <span class="ruby-identifier">genes</span>[<span class="ruby-identifier">index</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- 5B-5D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- 5B-5D-method -->
+
+    
+      <div id="method-i-5B-5D-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]=</span><span
+            class="method-args">(index, value)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>set the gene at the supplied index value</p>
+          
+
+          
+          <div class="method-source-code" id="5B-5D-3D-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">index</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">genes</span>[<span class="ruby-identifier">index</span>] = <span class="ruby-identifier">value</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- 5B-5D-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- 5B-5D-3D-method -->
+
+    
+      <div id="method-i-express" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">express</span><span
+            class="method-args">(exps = Chromosome.expressions, set = genes.join )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>walks through the genes and checks the genes against the expression table,
+resulting in a hash of expressed genes. for example:</p>
+
+<p>{:hair=&gt;{:blond=&gt;2, :red=&gt;1, :pink=&gt;1, :plaid=&gt;0}}</p>
+
+<p>This is meant to be consumed by a description engine of some kind.</p>
+          
+
+          
+          <div class="method-source-code" id="express-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">express</span>(<span class="ruby-identifier">exps</span> = <span class="ruby-constant">Chromosome</span>.<span class="ruby-identifier">expressions</span>, <span class="ruby-identifier">set</span> = <span class="ruby-identifier">genes</span>.<span class="ruby-identifier">join</span> )
+  <span class="ruby-identifier">result</span> = { }
+  <span class="ruby-identifier">exps</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">category</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span> 
+      <span class="ruby-identifier">result</span>[<span class="ruby-identifier">category</span>] = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">express</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">set</span>)
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>
+      <span class="ruby-identifier">matches</span> = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">position</span> = <span class="ruby-value">0</span> 
+      <span class="ruby-identifier">value</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">expression</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">while</span> <span class="ruby-identifier">position</span>
+          <span class="ruby-identifier">position</span> = <span class="ruby-identifier">set</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">expression</span>, <span class="ruby-identifier">position</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+          <span class="ruby-identifier">matches</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">position</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">result</span>[<span class="ruby-identifier">category</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">result</span>[<span class="ruby-identifier">category</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">matches</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- express-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- express-method -->
+
+    
+      <div id="method-i-length" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">length</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>length represents the length of the gene array.</p>
+          
+
+          
+          <div class="method-source-code" id="length-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">genes</span>.<span class="ruby-identifier">length</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- length-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- length-method -->
+
+    
+      <div id="method-i-mutate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mutate</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Change one of the genes to a random value.</p>
+          
+
+          
+          <div class="method-source-code" id="mutate-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mutate</span> 
+  <span class="ruby-identifier">index</span> = (<span class="ruby-identifier">rand</span> * <span class="ruby-identifier">length</span>).<span class="ruby-identifier">floor</span>
+  <span class="ruby-identifier">genes</span>[<span class="ruby-identifier">index</span>] = <span class="ruby-constant">Chromosome</span>.<span class="ruby-identifier">rand_hex</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- mutate-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- mutate-method -->
+
+    
+      <div id="method-i-randomize-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize!</span><span
+            class="method-args">(genecount = 10)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>creates a random set of genes</p>
+          
+
+          
+          <div class="method-source-code" id="randomize-21-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">randomize!</span>(<span class="ruby-identifier">genecount</span> = <span class="ruby-value">10</span>)
+  <span class="ruby-identifier">genecount</span>.<span class="ruby-identifier">times</span>.<span class="ruby-identifier">each</span> { <span class="ruby-keyword">self</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Chromosome</span>.<span class="ruby-identifier">rand_hex</span>  }
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- randomize-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- randomize-21-method -->
+
+    
+      <div id="method-i-reproduce_with" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reproduce_with</span><span
+            class="method-args">(other)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Exchange genetic material with another chromosome. The strategy is to loop
+through the gene arrays of this and the other chromosome and randomly
+exchange at the gene level</p>
+          
+
+          
+          <div class="method-source-code" id="reproduce_with-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reproduce_with</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">c</span> = <span class="ruby-constant">Chromosome</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">c</span>  <span class="ruby-operator">&lt;&lt;</span> ((<span class="ruby-identifier">rand</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0.5</span>) <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">:</span> <span class="ruby-identifier">other</span>[<span class="ruby-identifier">i</span>])
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">c</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reproduce_with-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reproduce_with-method -->
+
+    
+      <div id="method-i-to_i" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_i</span><span
+            class="method-args">(index)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>to integer</p>
+          
+
+          
+          <div class="method-source-code" id="to_i-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_i</span>(<span class="ruby-identifier">index</span>) 
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">genes</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, <span class="ruby-identifier">gene</span><span class="ruby-operator">|</span> <span class="ruby-identifier">memo</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">gene</span>.<span class="ruby-identifier">to_i</span>(<span class="ruby-value">16</span>)}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_i-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_i-method -->
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">genes</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">' '</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_s-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_s-method -->
+
+    
+      <div id="method-i-value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">value</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Calculates the sum of base 10 values for the array of genes.</p>
+          
+
+          
+          <div class="method-source-code" id="value-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">value</span> 
+  <span class="ruby-identifier">genes</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, <span class="ruby-identifier">g</span><span class="ruby-operator">|</span> <span class="ruby-identifier">memo</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">to_i</span>(<span class="ruby-value">16</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- value-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- value-method -->
+
+    
+      <div id="method-i-walk" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">walk</span><span
+            class="method-args">() { |gene| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="walk-source">
+            <pre><span class="ruby-comment"># File app/models/chromosome.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">walk</span> 
+  <span class="ruby-identifier">genes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gene</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">yield</span> <span class="ruby-identifier">gene</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- walk-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- walk-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
