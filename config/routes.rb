@@ -1,24 +1,17 @@
 Population::Application.routes.draw do
   
   resources :buildings
-
-  get '/' => 'settlements#index'
-  
-  get '/people/random-name' => 'people#random_name'
-  get '/settlements/random-name' => 'settlements#random_name'
-
-  resources :events
-
-  resources :settlements
+  resources :things
   resources :damages
-  resources :beings do
-    resources :things
-  end
-  resources :things 
-  resources :people, :controller => 'beings',  :_type => 'Person'
-  resources :rulers, :controller => 'beings',  :_type => 'Ruler'
+  resources :events
   
-  # beings
+  # settlements
+  put '/settlement/seed/:id' => 'settlements#seed', :as => :seed
+  resources :rulers, :controller => 'beings',  :_type => 'Ruler'
+  get '/' => 'settlements#index'
+  get '/settlements/random-name' => 'settlements#random_name'
+  resources :settlements
+
   get '/beings/graph' => 'beings#graph'
   put '/beings/randomize_genetics/:id' => 'beings#randomize_genetics', :as => :random_genetics
   put '/beings/kill/:id' => 'beings#kill', :as => :kill
@@ -29,8 +22,11 @@ Population::Application.routes.draw do
   get '/beings/family/:id' => 'beings#family'
   get '/beings/description/:id' => 'beings#description'
   get '/beings/history/:id' => 'beings#history'
-  
-  
-  put '/settlement/seed/:id' => 'settlements#seed', :as => :seed
+  get '/people/random-name' => 'people#random_name'
+  resources :people, :controller => 'beings',  :_type => 'Person'
+  # beings
+  resources :beings do
+    resources :things
+  end
   
 end

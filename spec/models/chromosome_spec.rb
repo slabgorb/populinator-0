@@ -44,6 +44,10 @@ describe Chromosome do
       @old.should_not eq(@m.to_s)
     end
     
+    it "should generate a value of the genome" do
+      @m.value.should be(78313645)
+    end
+    
   end
   
   context "reproduction" do
@@ -54,7 +58,7 @@ describe Chromosome do
     
     it 'should have a genome pattern based on the parents' do
       # NOTE: this works because of the call to srand
-      @c3.genes.first.code.should eq(@c2.genes.first.code)
+      @c3[0].should eq(@c2[0])
     end
     
     it 'should be a chromosome' do 

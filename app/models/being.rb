@@ -323,6 +323,9 @@ class Being
   alias :reproduce_with :reproduce
   
   def randomize!
+    Rails.logger.debug '*' * 80
+    Rails.logger.debug 'in randomize'
+    Rails.logger.debug '*' * 80
     10.times { self.chromosomes <<  Chromosome.new.randomize! }
     self.random_gender!
     self.random_name!

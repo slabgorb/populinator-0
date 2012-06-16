@@ -39,7 +39,6 @@ class Settlement
       p.events << Event.new(:name => 'Parthenogenesis', :description => "#{p.name} was magicked into existence.", :age => p.age)
       residents << p
     end
-    save
   end
 
   def history
