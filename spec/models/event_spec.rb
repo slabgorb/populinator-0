@@ -16,7 +16,7 @@ describe Event do
   
   it "kills off people" do
     @famine.happened_to(@city, 1)
-    @city.population.should == 1
+    @city.population.should == 0
   end
 
 end

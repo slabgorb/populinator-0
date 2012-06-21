@@ -14,7 +14,7 @@ describe Settlement do
   end
 
   it 'shows the ruler' do     
-    @settlement.rulers.first.surname.should == 'Plantagenet'
+    @settlement.ruler.surname.should == 'Plantagenet'
   end
   
   context 'seeding' do
