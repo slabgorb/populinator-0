@@ -9,7 +9,7 @@ FactoryGirl.define do
                                                  surname:%w|Green Red Blue|.shuffle.first, 
                                                  given_name:%w|Pat Bobby Shawn|.shuffle.first, 
                                                  gender:['male','female'].shuffle.first) }
-      t.rulers << FactoryGirl.create(:ruler)
+      t.residents << FactoryGirl.create(:ruler)
     end
   
   end
