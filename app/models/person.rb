@@ -10,7 +10,7 @@ class Person < Being
   field :surname, :type => String
   field :given_name, :type => String
 
-  before_save lambda{ name = [given_name, surname].join(' ') }
+  before_update lambda{ name = [given_name, surname].join(' ') }
 
   def self.names
     @@names

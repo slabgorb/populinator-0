@@ -104,15 +104,20 @@ class Being
     ['male', 'female', 'neuter']
   end
 
+  ##
+  # Returns a random gender from the set of available genders.
+  #
   def self.random_gender
     self.genders.shuffle.first
   end
 
-  
+  ##
+  # Marry another being.
+  #
   def marry(s)
     self.spouses << s
     s.spouses << self
-    e = Event.new(:name => 'Marriage', :description => "#{name} married #{s.name}", :age => self.age)
+    e = Event.new(:name => 'Marriage', :description => "#{name} married #{s.name}.", :age => self.age)
     e.happened_to(self, s)
     s.surname = self.surname if self.respond_to?(:surname)
     e.happened_to(s, self)
@@ -120,10 +125,17 @@ class Being
     save
   end
   
+  ##
+  # Returns the first living spouse, sorted by age.
+  #
   def spouse 
-    self.spouses.select{ |s| s.alive? }.first
+    self.spouses.select{ |s| s.alive? }.sort{|a,b| a.age <=> b.age}.first
   end
-
+  
+  ##
+  # Returns the id of the first living spouse. 
+  # @see spouse
+  #
   def spouse_id
     spouse.id if spouse
   end
@@ -136,9 +148,14 @@ class Being
     self.neighbors.select{ |n| Person.marriage_strategy(n, self) }.try(:shuffle).try(:first)
   end
   
+  ##
+  # Adopts a child into the family. Optionally re-sequence the
+  # genetics of the child to match the parents.
+  #
   def adopt(child, heredity = false)
     self.children << child
     child.surname = self.surname if child.respond_to?(:surname)
+    child.save
     if heredity 
       child.get_genetics!(child.parent, child.parent.spouse)
     end
@@ -151,31 +168,52 @@ class Being
     child
   end
 
-
+  ##
+  # Sets the age randomly.
+  #
   def random_age!
     self.age = self.class.random_age
   end
 
 
+  ## 
+  # Returns a random name.
+  # 
+  # = Example
+  #    Being.random_name('male')
+  # > Greendrastein
+  #   
   def self.random_name(sex = self.random_gender)
     [%w|green red yellow black|.shuffle.first.capitalize,
      %w|dra cula franken stein were wolf shark jackal bear blob spider snake goo|.shuffle[0..((rand * 2).floor + 1)].join.titlecase]
   end
-
+  
+  ## 
+  # Instance level copy of Being.random_name
+  #
   def random_name(sex = self.gender)
     self.class.random_name(sex)
   end
 
+  ## 
+  # Returns a random age.
+  #
   def self.random_age
     (rand * @@old_age).floor
   end
     
+  ##
+  # Sets the genetics to be an inheritance from the two parents.
+  #
   def get_genetics!(parent1, parent2)
     self.chromosomes.delete_all
     parent1.exchange_genome(parent2).map{ |g| self.chromosomes << g }   
     self
   end
   
+  ## 
+  # Changes the name to a random name.
+  #
   def random_name!
     self.name = self.random_name.join(' ')
   end
@@ -230,7 +268,7 @@ class Being
   
   def die!
     raise DeathException if dead?
-    Event.new(:name => 'Death', :description => "#{name} died at age #{age}", :effect => "{|b| b.alive = false; b.save }", age: self.age).happened_to(self)
+    Event.new(:name => 'Death', :description => "#{name} died.", :effect => "{|b| b.alive = false; b.save }", age: self.age).happened_to(self)
     self
   end
   
@@ -241,7 +279,7 @@ class Being
   
   def resurrect!
     raise DeathException if alive?
-    Event.new(:name => 'Resurrection', :description => "#{name} was resurrected!", :effect => "{|b| b.alive = true; b.save }", age: self.age).happened_to(self)
+    Event.new(:name => 'Resurrection', :description => "#{name} was resurrected.", :effect => "{|b| b.alive = true; b.save }", age: self.age).happened_to(self)
   end
   
 
