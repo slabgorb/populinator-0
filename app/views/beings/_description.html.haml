@@ -7,7 +7,7 @@
           = possessive being.gender
           - key = tuple.keys.first.to_s.humanize.downcase
           - verb = key.pluralize == key ? 'are' : 'is'
-          %span.bold #{key} #{verb}
-          #{strength(tuple)} #{tuple.values.first.first.to_s.humanize.downcase} 
+          %span.bold #{key} 
+          #{verb} #{strength(tuple)} #{tuple.values.first.first.to_s.humanize.downcase} 
 
 

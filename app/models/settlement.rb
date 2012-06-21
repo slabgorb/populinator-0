@@ -6,13 +6,12 @@ class Settlement
   field :established, :type => Integer
   field :area, :type => Integer
   has_many :residents, :class_name => 'Being', :dependent => :destroy   
-  has_many :rulers, :class_name => 'Being', :dependent => :destroy
   has_many :events
   embeds_many :buildings
   accepts_nested_attributes_for :rulers
   
   def population
-    residents.select{ |c| c.alive? }.length + rulers.select{ |c| c.alive? }.length
+    residents.select{ |c| c.alive? }.length 
   end
   
   def self.sizes 
@@ -101,12 +100,11 @@ class Settlement
 
   
   def ruler 
-    self.rulers.select { |s| s.alive? }.sort{ |a,b| b.age <=> a.age }.first
+    self.residents.select { |s| s.alive? and s.is_a?(Ruler) }.sort{ |a,b| b.age <=> a.age }.first
   end
     
   def seed!
-    ruler = Ruler.create(settlement: self).randomize!
-    self.rulers << ruler
+    self.residents << Ruler.create(settlement: self).randomize!
     males = self.residents.select { |s| s.gender == 'male' }
     males << ruler # rulers pick their spouses
     females = self.residents.select { |s| s.gender == 'female' }
