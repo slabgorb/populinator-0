@@ -63,10 +63,8 @@ li.being-children, ul.being-spouse, ul.being-siblings, ul.being-parent {
 	
 }
 
-dl.being-description {
-  dd {
-	font-size: 0.9em;
-  }
+.being-description {
+  width: 500px;
 }
 
 dl.events {
