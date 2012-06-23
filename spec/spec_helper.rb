@@ -12,7 +12,6 @@ Spork.prefork do
   # in spec/support/ and its subdirectories.
   RSpec.configure do |config|
     config.include Haml::Helpers
-    config.include ActionView::Helpers  
     config.before :all do
       Mongoid.master.collections.select {|c| c.name !~ /system/ }.each(&:drop)
     end
