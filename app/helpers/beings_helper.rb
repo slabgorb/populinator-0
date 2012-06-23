@@ -1,3 +1,13 @@
+module StringExtensions
+  def possessive
+    self + ('s' == self[-1,1] ? "'" : "'s")
+  end
+end
+
+class String
+  include StringExtensions
+end
+
 module BeingsHelper
   
   ## 
@@ -18,8 +28,8 @@ module BeingsHelper
   ##
   # Gender specific possessive 
   #
-  def possessive(gender)
-    case gender
+  def possessive_pronoun(being)
+    case being.gender
       when 'male' then 'his'
       when 'female' then 'her'
       when 'neuter' then 'its'
@@ -32,12 +42,16 @@ module BeingsHelper
   def describe(being)
     desc = ''
     being.description.each do |tuple|
-      next if tuple.values.first.first =~ /not_notable/
-      desc += [possessive(being.gender), 
+      quality = tuple.values.first.first.to_s.humanize.downcase
+      next if quality =~ /not notable/
+      key = tuple.keys.first.to_s.humanize.downcase
+      desc += [rand > 0.333 ? possessive_pronoun(being).capitalize : being.name.split.first.possessive,
+               key,
                key.pluralize == key ? 'are' : 'is', 
                strength(tuple),
-               tuple.keys.first.to_s.humanize.downcase].join(' ') + '.'
+               quality].join(' ') + '. '
     end
+    desc.strip
   end
 
   
