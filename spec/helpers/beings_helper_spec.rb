@@ -26,13 +26,13 @@ describe BeingsHelper do
       srand 1
     end
     it 'returns a strength string' do
-      helper.strength({ :hay => ['no',2]}).should == 'especially'
+      helper.strength(2).should == 'especially'
     end
   end
   
   describe 'describe' do
     it 'returns a descriptive string' do
-      helper.send(:describe, @male).should == "Black's reasoning is somewhat concrete. His hair color is markedly brown. His handedness is rather left handed. His skin color is decidedly black. Black's eye color is a bit purple. Black's nose shape is somewhat upturned. Black's build is  medium. His disposition is a bit calm."
+      helper.send(:describe_paragraph, @male).should == "Red's reasoning is  concrete. His hair color is especially brown. Red's handedness is  left handed. Red's skin color is noticeably black. His eye color is  purple. His nose shape is rather upturned. His build is marginally medium. Red's disposition is  calm."
     end
   end
   
