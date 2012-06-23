@@ -3,7 +3,7 @@ require 'spec_helper'
 describe BeingsHelper do
   before :all do
     srand(1)
-    @male = FactoryGirl.create(:being, gender: 'male')
+    @male = FactoryGirl.create(:being, gender: 'male', name: 'Red Buttons')
     3.times { @male.chromosomes << Chromosome.new.randomize! }
     @female = FactoryGirl.create(:being, gender: 'female')
     @neuter = FactoryGirl.create(:being, gender: 'neuter')
