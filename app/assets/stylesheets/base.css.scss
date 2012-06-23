@@ -192,7 +192,7 @@ body {
 	  .ui-state-active, .ui-state-hover, .ui-state-default  {
 		border: none;
 	  }
-	  .ui-state-active {
+	  .tabs .ui-state-active {
 		@include icon-image('icons/selector_12', 12px);
 		background-position: left;
 	  }
