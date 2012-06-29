@@ -73,15 +73,14 @@ class MarkovChain
   constructor: (corpora, dictionary, lookback = 2) ->
     @content = ""
     @loadCorpora corpora
-    $.get dictionary, {}, (data) => @dictionary = data
+    $.get dictionary, {}, (data) => @dictionary = data if dictionary
     @lookback = lookback
     @words = {}
     @chain = new Chain(@lookback)
     @makeWords()
 
-  # loads the corpora as a series of
   loadCorpora: (corpora) =>
-    $.get(corpus, {}, (data) -> @content += data)  for corpus in corpora
+    $.get('/language/corpus/load', {corpus: corpus}, (data) => @content += data)  for corpus in corpora
 
   makeWords: =>
     (english, madeUp) ->  @words[english] = madeUp for english, madeUp in [].push [word, @makeWord()] for word of @dictionary
@@ -89,8 +88,7 @@ class MarkovChain
 
   makeWord: =>
     word = ""
-
-      key = []
+    key = []
     key.push new StartWord for i in [lookback..0]
     while true
       char = @chain[key].choice()
