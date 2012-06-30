@@ -29,4 +29,6 @@ Population::Application.routes.draw do
     resources :things
   end
   
+  get 'language/corpus/load' => 'language#load_corpus'
+  resources :language, only:[:new, :create, :show] 
 end
