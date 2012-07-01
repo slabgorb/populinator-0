@@ -1,4 +1,7 @@
 
+startWord = '^'
+endWord = '$'
+
 ##
 # Models the list of characters in the chain. The characters each have
 # a corresponding int value, which is the proportion of those
@@ -66,8 +69,9 @@ class Chain
   #
   add: (string) =>
     @key = []
-    @key.push ' ' for i in [@lookback..1]
-    @addChar char for char in string.replace(/[0-9\.,-\/#!$%\^&\*;:{}=\-_~()]/g," ").replace(/[ \t\n]+/, ' ').toLowerCase()
+    string = string + endWord
+    @key.push startWord for i in [@lookback..1]
+    @addChar char for char in string
 
 
   ##
@@ -113,7 +117,8 @@ class MarkovChain
       {corpus: corpora[0]},
       (data) =>
         @progress()
-        @chain.add data
+        console.log corpora[0]
+        @chain.add word for word in data.toLowerCase().replace(/[0-9\.,-\/#!$%\^&\*;:{}=\-_~()\[\]»«"?\n\t„]/g," ").replace(/[0-9]/g,' ').split(' ')
         if corpora.length > 1
           @loadCorpora(corpora[1..])
         else
@@ -134,11 +139,11 @@ class MarkovChain
   makeWord: (original) =>
     word = ""
     key = []
-    key.push ' ' for i in [@lookback..1]
+    key.push startWord for i in [@lookback..1]
     while not char and char != ' '
       char = @chain.store[key].choice()
-    while @chain.store[key] and char != ' ' and typeof char != 'undefined'
-      word += char
+    while @chain.store[key] and char != endWord
+      word += char unless char == startWord
       key.push char
       key.shift()
       char = if @chain.store[key] then @chain.store[key].choice() else undefined
@@ -160,10 +165,19 @@ $ ->
 
 
   $('#language-process').click (e) ->
-    $output = $('dl#language-output')
+    $output = $('#language-output')
+    $name = $('#language-name')
+    $output.prepend('<h4>' + $name.val() + '</h4>')
     callback = (markovchain) ->
-      $output.append("<dt>#{newword[0]}</dt><dd>#{newword[1]}</dd>") for newword in markovchain.words
+      $output.find('tbody').append("<tr><td>#{newword[0]}</td><td>#{newword[1]}</td></tr>") for newword in markovchain.words
       markovchain.progress()
+      $.post '/language/create'
+        name: $name.val()
+        glossary: markovchain.words.to_json
+        description: $('#language-description').val()
+        (event) =>
+          console.log 'success'
+
     try
       markovChain = new MarkovChain(
         $(corpus).val() for corpus in $('.language-corpus') when $(corpus).val() != '',
