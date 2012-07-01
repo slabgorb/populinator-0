@@ -5,11 +5,13 @@
         %li
           %label{ for: 'language-name' }
             Name:
-          %input#language-name{ type: 'text', value: 'Slang' }
+          %input#language-name{ type: 'text', value: Settlement.random_name }
         %li
           %label{ for: 'language-corpus' }
             Corpus:
-          %input#language-corpus{ type: 'text', value: 'www.gutenberg.org/cache/epub/40069/pg40069.txt', size: 45 }
+          %input.language-corpus{ type: 'text', value: 'www.gutenberg.org/cache/epub/40069/pg40069.txt', size: 45 }
+          = link_to "+", "#"
+          %input.language-corpus{ type: 'text', value: 'www.gutenberg.org/cache/epub/40069/pg40069.txt', size: 45 }
           = link_to "+", "#"
         %li
           %label{ for: 'language-lookback' }
@@ -17,3 +19,7 @@
           %input#language-lookback{ type: 'text', value: '2', size: 1, maxlength: 1 }
         %li
           %input#language-process{ type: 'submit' }
+
+#progressbar
+      
+%dl#language-output

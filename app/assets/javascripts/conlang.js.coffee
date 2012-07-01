@@ -1,15 +1,18 @@
 
-
+##
 # Models the list of characters in the chain. The characters each have
 # a corresponding int value, which is the proportion of those
 # characters which follow the key pattern.
+#
 class CharList
 
   constructor: ->
     @chars = {}
     @total = 0
 
+  ##
   # add a single character
+  #
   add: (char) =>
     @chars[char] ||= 0
     @chars[char] += 1
@@ -18,10 +21,13 @@ class CharList
   chars:
     @chars
 
-  # sum up all the character values
+  ##
+  # sum of all the character values
+  #
   total: =>
     @total
 
+  ##
   # select a character based on a random value compared with the
   # character probability factorposition
   #
@@ -41,11 +47,13 @@ class CharList
     chars = {}
     sum = 0
     chars[char] = sum += count for char, count of @chars
-    console.log (((position >= selection) ? char : false) for char, position of chars)
-
-
+    for char, position of chars
+      return char if position >= selection
+    return false
+##
 # The histogram of letter probabilities. It is keyed by tuples, the
 # length of which is defined by the lookback parameter.
+#
 class Chain
 
   constructor: (lookback = 2) ->
@@ -53,65 +61,95 @@ class Chain
     @store = {}
     @key = []
 
+  ##
+  # Add a string to the store
+  #
   add: (string) =>
     @key = []
-    @key.push new StartWord() for i in [@lookback..0]
-    @addChar char for char in string.replace(/[0-9\.,-\/#!$%\^&\*;:{}=\-_~()]/g,"").toLowerCase()
+    @key.push ' ' for i in [@lookback..1]
+    @addChar char for char in string.replace(/[0-9\.,-\/#!$%\^&\*;:{}=\-_~()]/g," ").replace(/[ \t\n]+/, ' ').toLowerCase()
 
+
+  ##
+  # Add a char to the store- if the char is a space, mark the
+  # beginning and end of a word.
+  #
   addChar: (char) =>
     @store[@key] ||= new CharList()
     @store[@key].add char
     @key.push(char)
     @key.shift()
 
+##
 # Markov chain representation using a Markov Chain implementation to
 # make fantasy words from list of corpora.
+#
 class MarkovChain
 
-  constructor: (corpora, dictionary, lookback = 2) ->
-    @content = ""
+  constructor: (corpora, callback, dictionary = '/dict.txt', lookback = 2) ->
+    @callback = callback
+    @progressbar = $('#progressbar')
+    @steps = Math.ceil(100 / (corpora.length + 2))
+    @output = $('#output')
+    @words = {}
     @lookback = lookback
     @chain = new Chain(@lookback)
-    @loadCorpora corpora
-    #$.get dictionary, {}, (data) => @dictionary = data if dictionary
-    @dictionary = ['alpha', 'bravo', 'charlie', 'delta']
-    @words = {}
-    @makeWords()
+    $.get dictionary, {}, (data) =>
+      @dictionary = data.split('\n') if dictionary
+      this.progress()
+      @loadCorpora corpora
 
+  ##
+  # Update the progress bar
+  #
+  progress: =>
+    @progressbar.progressbar("value",  @progressbar.progressbar("value") + @steps)
+
+  ##
+  # Load the corpora set.
+  #
   loadCorpora: (corpora) =>
-    $.get('/language/corpus/load', {corpus: corpus}, (data) => @chain.add data)  for corpus in corpora
+    $.get '/language/corpus/load',
+      {corpus: corpora[0]},
+      (data) =>
+        @progress()
+        @chain.add data
+        if corpora.length > 1
+          @loadCorpora(corpora[1..])
+        else
+          @makeWords()
 
+  ##
+  # Make the words out of the digested corpora.
+  #
   makeWords: =>
-    (english, madeUp) =>  @words[english] = madeUp for english, madeUp in ([].push [word, @makeWord()] for word of @dictionary)
+    @words =  (@makeWord(word) for word in @dictionary)
+    this.progress()
+    @callback(this)
     @words
 
-  makeWord: =>
+  ##
+  # Make a single word.
+  #
+  makeWord: (original) =>
     word = ""
     key = []
-    key.push new StartWord for i in [@lookback..0]
-    while @chain.store[key]
+    key.push ' ' for i in [@lookback..1]
+    while not char and char != ' '
       char = @chain.store[key].choice()
-      if typeof char == 'EndWord'
-        break
+    while @chain.store[key] and char != ' ' and typeof char != 'undefined'
       word += char
       key.push char
       key.shift()
-    return word
-
-
-# Stub class to provide a start of word marker
-class StartWord
-# nop
-
-# Stub class to provide an end of word marker
-class EndWord
-#nop
-
+      char = if @chain.store[key] then @chain.store[key].choice() else undefined
+    [original, word]
 
 $ ->
   window.CharList = CharList
   window.Chain = Chain
   window.MarkovChain = MarkovChain
+
+  $('#progressbar').progressbar()
 
   $('#language-lookback').change (e) ->
     val = $(this).val()
@@ -120,5 +158,21 @@ $ ->
     val = 1 if val < 1
     $(this).val(val)
 
+
   $('#language-process').click (e) ->
-    markovChain = new MarkovChain $('#language-corpus').val(), $('#language-lookback').val()
+    $output = $('dl#language-output')
+    callback = (markovchain) ->
+      $output.append("<dt>#{newword[0]}</dt><dd>#{newword[1]}</dd>") for newword in markovchain.words
+      markovchain.progress()
+    try
+      markovChain = new MarkovChain(
+        $(corpus).val() for corpus in $('.language-corpus') when $(corpus).val() != '',
+        callback,
+        '/dict.txt',
+        $('#language-lookback').val()
+      )
+    catch e
+      console.log e
+    finally
+      false
+    false
