@@ -97,6 +97,7 @@ class MarkovChain
     @output = $('#output')
     @words = {}
     @lookback = lookback
+    @name = $('#corpora-name')
     @chain = new Chain(@lookback)
     $.get dictionary, {}, (data) =>
       @dictionary = data.split('\n') if dictionary
@@ -122,7 +123,15 @@ class MarkovChain
         if corpora.length > 1
           @loadCorpora(corpora[1..])
         else
-          @makeWords()
+          @saveCorpora
+
+  ##
+  # Sends the corpora set to the back end
+  #
+  saveCorpora: () =>
+    $.post '/histogram/create',
+      chain: @chain
+      name: @name.value
 
   ##
   # Make the words out of the digested corpora.
@@ -138,12 +147,14 @@ class MarkovChain
   #
   makeWord: (original) =>
     word = ""
+    char = startWord
     key = []
     key.push startWord for i in [@lookback..1]
-    while not char and char != ' '
+    while not char and char is not ' '
       char = @chain.store[key].choice()
-    while @chain.store[key] and char != endWord
-      word += char unless char == startWord
+    while typeof char is not 'undefined'
+      break if char is endWord
+      word += char unless char is startWord
       key.push char
       key.shift()
       char = if @chain.store[key] then @chain.store[key].choice() else undefined
@@ -176,8 +187,7 @@ $ ->
         glossary: markovchain.words.to_json
         description: $('#language-description').val()
         (event) =>
-          console.log 'success'
-
+          # nop
     try
       markovChain = new MarkovChain(
         $(corpus).val() for corpus in $('.language-corpus') when $(corpus).val() != '',
