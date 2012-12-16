@@ -10,7 +10,9 @@ body {
   
   @include paper(0, 0);
   font: {
-	family: KingthingsExeter, 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+	// family: KingthingsExeter, 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+    family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+	
 	size: 1.2em;
   }
   #border {
@@ -46,7 +48,9 @@ body {
 	th,td  {
 	  padding: 5px;
 	  font: {
-		family: KingthingsExeter;
+		family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+	
+		// family: KingthingsExeter;
 		weight: normal;
 	  }
 	  text-align: left;
@@ -89,9 +93,12 @@ body {
   }
 
   #navigation {
+	padding-top: 10px;
 	font: {
-	  family: KingthingsExeter;
-	  size: 1.4em;
+	  family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+	  size: 1em;
+	  // family: KingthingsExeter;
+	  //size: 1.4em;
 	}
 	
 	ul {
@@ -173,7 +180,8 @@ body {
 	}
 
 	.ui-tabs, .ui-accordion {
-	  font-family: KingthingsExeter;
+	  // font-family: KingthingsExeter;
+	  font-family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
 	  background: {
 		color: transparent;
 	  }
@@ -249,10 +257,10 @@ body {
   h1 { 
 	opacity: .5;
 	font-size: 2em;
-	margin-bottom: -24px;
+	margin-bottom: -11px;
 	font: {
 	  weight: normal;
-	  family: KingthingsVersalis;
+	  // family: KingthingsVersalis;
 	}
 	a { 
 	  color: #fff; 
@@ -359,12 +367,16 @@ body {
 		  color: $color05;
 		  font-size: 1em;
 		  padding: 3px 0px 0px 10px;
-		  font-family: KingthingsExeter;
+		  // font-family: KingthingsExeter;
+		  font-family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+
 		  margin-left: -10px;
 		}
 		input, select, textarea {
 		  font-size: 1.3em;
-		  font-family:  KingthingsExeter;
+		  // font-family:  KingthingsExeter;
+		  font-family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
+	  
 		  padding: 0.3em;
 		  border: 1px solid $color02;
 		  color: $color01;

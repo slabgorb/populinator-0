@@ -4,9 +4,12 @@
 
 
 table.dict {
+  background-color: rgba(255, 255, 255, 0.2);
   tr {
 	td {
-	  font-family: consolas, courier new, courier;
+	  font-size: 0.9em;
+	  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+	  
 	}
   }
 }
