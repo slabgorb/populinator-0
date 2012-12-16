@@ -1,0 +1,30 @@
+#language-form
+  %fieldset
+    %form
+      %ul.form
+        %li
+          %label{ for: 'histogram-name' }
+            Name:
+          %input#language-name{ type: 'text', name:'histogram[:name]' }
+        %li
+          %label{ for: 'language-corpus' }
+            Corpus:
+          %input.histogram-corpus{ type: 'text', value: 'www.gutenberg.org/files/16846/16846-0.txt', size: 45 }
+        %li
+          %label{ for: 'histogram-lookback' }
+            Lookback:
+          %input#language-lookback{ type: 'text', value: '2', size: 1, maxlength: 1 }
+        %li
+          %input#language-process{ type: 'submit' }
+
+#progressbar
+      
+#language-output
+  %table.dict{style: "font-family: consolas, courier new, courier !important;"}
+    %thead
+      %tr
+        %th Original
+        %th New
+    %tbody
+      
+    
