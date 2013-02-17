@@ -46,7 +46,7 @@ class CharList
   # > 'd'
   #
   choice: (selection) =>
-    selection = Math.ceil(Math.random() * @total) unless selection
+    selection = Math.floor(Math.random() * @total) unless selection
     chars = {}
     sum = 0
     chars[char] = sum += count for char, count of @chars
