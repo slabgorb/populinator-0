@@ -80,7 +80,7 @@ module BeingsHelper
                key,
                key.pluralize == key ? 'are' : 'is', 
                strength(amount),
-               quality].join(' ') + '. '
+               quality].join(' ') + '.\n '
     end
     desc.strip
   end
