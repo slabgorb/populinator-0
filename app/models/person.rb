@@ -38,9 +38,6 @@ class Person < Being
     [self.given_name, self.surname].join(' ')
   end
   
-  def self.genders
-    ['male', 'female']
-  end
   
   def random_name!
     self.surname, self.given_name = self.class.random_name(gender)
