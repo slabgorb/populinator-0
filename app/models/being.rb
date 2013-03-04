@@ -76,15 +76,19 @@ class Being
       m.merge(g) do |k, original_value, new_value| 
         original_value.merge(new_value){ |kp, original_value_prime, new_value_prime| [original_value_prime, new_value_prime].max } 
       end
-    end.symbolize_keys
+    end.try(:symbolize_keys)
   end
   
   def description(ex = nil)
     sorted_map = { }
-    self.genetic_map(ex).each_pair do |trait, value|
-      sorted_map[trait] = value.to_a.sort{ |a,b| b.last <=> a.last } 
+    begin
+      self.genetic_map(ex).each_pair do |trait, value|
+        sorted_map[trait] = value.to_a.sort{ |a,b| b.last <=> a.last } 
+      end
+      return sorted_map.to_a.collect { |c| { c.first => [c.second.first.first.to_sym, c.second.first.second] }}
+    rescue
+      []
     end
-    sorted_map.to_a.collect { |c| { c.first => [c.second.first.first.to_sym, c.second.first.second] }}
   end
   
   def as_json(options = { })
@@ -316,7 +320,39 @@ class Being
     raise OwnershipException unless owns?(thing)
     self.things.delete thing
   end
-  
+
+  def describe(&block)
+    description.each do |tuple|
+      quality = tuple.values.first.first.to_s.humanize.downcase
+      next if quality =~ /not notable/
+      yield(quality, 
+            tuple.keys.first.to_s.humanize.downcase, 
+            tuple.values.first.last)
+    end
+  end  
+  def self.strength(val)
+    case val
+         when 0 then ['a bit', 'somewhat', 'marginally']
+         when 1 then ['', '', '', 'rather']
+         when 2 then ['markedly', 'noticeably', 'decidedly', 'especially']
+         when 3 then ['very', 'really', 'greatly']
+         when 4 then ['extremely', 'terrifically', 'tremendously']
+         when 5 then ['ridiculously', 'uniquely', 'intensely']
+         when 6 then ['astonishingly', 'bizarrely', 'pathologically']
+    end.shuffle.first
+  end
+  def bio
+    out = ""
+    describe do |quality, key, amount|
+      # NESTED TERNARY OPERATORS ARE GOOD FOR THE CONSTITUTION
+      out += [rand > 0.333 ? (gender == 'male' ? 'his' : 'hers').capitalize : "#{name.split.first}'s",
+               key,
+               key.pluralize == key ? 'are' : 'is', 
+               Being.strength(amount),
+               quality].join(' ') + ".\n "
+    end
+    out.strip
+  end
   
   def self.random_gender
     genders.shuffle.first
