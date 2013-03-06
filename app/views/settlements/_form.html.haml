@@ -14,6 +14,9 @@
       %li= f.label :population
       %li= f.text_field :population
       %li
+        %label{:for => 'years-field'} Years to Run Simulation
+        %input#years-field{:name => 'years', :value => 1}        
+      %li
         %label{:for => 'size-field'} Size
         %select#size{:name => 'size'}
           - Settlement.sizes.each_pair do |k,v|
