@@ -345,7 +345,7 @@ class Being
     out = ""
     describe do |quality, key, amount|
       # NESTED TERNARY OPERATORS ARE GOOD FOR THE CONSTITUTION
-      out += [rand > 0.333 ? (gender == 'male' ? 'his' : 'hers').capitalize : "#{name.split.first}'s",
+      out += [rand > 0.333 ? (gender == 'male' ? 'his' : 'her').capitalize : "#{name.split.first}'s",
                key,
                key.pluralize == key ? 'are' : 'is', 
                Being.strength(amount),
