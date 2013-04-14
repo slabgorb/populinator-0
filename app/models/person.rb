@@ -16,6 +16,10 @@ class Person < Being
   def self.names
     @@names
   end
+  
+  def family_name
+    surname || name.try(:split).try(:last) || id 
+  end
 
   def self.genders
     ['male', 'female']
