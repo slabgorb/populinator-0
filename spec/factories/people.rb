@@ -5,5 +5,6 @@ FactoryGirl.define do
     sequence(:gender){ |n| Person.random_gender }
     sequence(:name) { |n| Being.random_name(Person.random_gender) }
     sequence(:age){ |n|  Person.random_age }
+    alive true
   end
 end

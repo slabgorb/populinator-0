@@ -1,6 +1,9 @@
 FactoryGirl.define do
   factory :being do
-    name Being.random_name.join(' ')
+    name'Bob Being'
+    alive true
+    age 1
+    gender 'male'
   end
   
   factory :being_with_settlement, :parent => :being do
