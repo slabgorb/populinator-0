@@ -30,9 +30,9 @@ module BeingsHelper
   #
   def possessive_pronoun(being)
     case being.gender
-      when 'male' then 'his'
-      when 'female' then 'her'
-      else 'its'
+    when 'male' then 'his'
+    when 'female' then 'her'
+    else 'its'
     end
   end
 
