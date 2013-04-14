@@ -10,8 +10,9 @@ class Settlement
   embeds_many :buildings
   accepts_nested_attributes_for :rulers
   
+  
   def population
-    residents.select{ |c| c.alive? }.length 
+    residents.living.count
   end
   
   def self.sizes 
