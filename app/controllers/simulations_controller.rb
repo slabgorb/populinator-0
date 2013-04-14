@@ -39,12 +39,10 @@ class SimulationsController < ApplicationController
       end
       @settlement.beings.each { |b| b.age += 1 }
       @settlement.beings.each do |person|
-      #   if rand < 0.10 and person.age > 16 and not person.married?
-      #     person.marry(person.find_spouse) 
-      #     @output += "#{person} was married to #{person.spouse}"
-      #     @output += "#{person} reproduced"
-      #     # 
-      #   end
+        if rand < 0.10 and person.age > 16 and not person.married?
+          person.marry(person.find_spouse) 
+          @output += "#{person} was married to #{person.spouse}"
+        end
       #   # old age check
       #   person.die! if person.age > (@old_age * (rand + 0.20))
       #   @output += "Current population: #{@settlement.population}<br/>"
