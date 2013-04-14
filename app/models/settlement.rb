@@ -61,17 +61,15 @@ class Settlement
   # get all the residents with a particular last name
   #
   def family(surname)
-    residents.select{ |b| b.surname == surname }.keep_if{ |f| not (f.gender == 'female' and f.married?) }
+    residents.family(surname)
   end
   
   def families
-    Hash[*family_names.sort.collect{ |s| [s, self.family(s)] }.flatten(1)]
+    Hash[*family_names.sort.collect{ |s| [s, family(s)] }.flatten(1)]
   end
 
   def family_names
-    residents.collect do |b| 
-      b.respond_to?(:surname) ? b.try(:surname) : b.try(:name).try(:split,' ').try(:last)
-    end.uniq 
+    residents.distinct(:surname)
   end
   
   def family_populations
