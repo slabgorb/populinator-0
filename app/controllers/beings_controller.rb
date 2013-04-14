@@ -113,6 +113,9 @@ class BeingsController < ApplicationController
     if params.has_key? :person
       params[:being] = params[:person]
     end
+    if params.has_key? :ruler
+      params[:being] = params[:ruler]
+    end
     
     if params[:being].has_key? :name
       params[:being][:surname] = params[:being][:name].split.last
