@@ -28,6 +28,9 @@ class Being
   scope :living, -> { where(:alive => true) }
   scope :adult, -> { where(:age.gt => @@coming_of_age) }
   
+  scope :males, -> { where(:gender => 'male')}
+  scope :females, -> {  where(:gender => 'female')}
+
   def to_s
     "#{name}, aged #{age}"
   end
@@ -150,6 +153,10 @@ class Being
   
   def find_spouse 
     self.neighbors.select{ |n| Person.marriage_strategy(n, self) }.try(:shuffle).try(:first)
+  end
+  
+  def parent?
+    children.present?
   end
   
   ##
