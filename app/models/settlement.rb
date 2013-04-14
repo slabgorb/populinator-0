@@ -61,19 +61,19 @@ class Settlement
   # get all the residents with a particular last name
   #
   def family(surname)
-    residents.family(surname)
+    residents.all_of(surname: surname, alive: true)
   end
   
   def families
-    Hash[*family_names.sort.collect{ |s| [s, family(s)] }.flatten(1)]
+    Hash[*family_names.map{ |m| [m, family(m)] }]
   end
 
   def family_names
-    residents.distinct(:surname)
+    residents.distinct(:surname).sort
   end
   
   def family_populations
-    Hash[*family_names.inject([]){|n,f| n << [f, family(f).count] }.flatten]
+    Hash[family_names.map{ |m| [m, family(m).count ]}]
   end
 
   def marry_sets(males, females)
