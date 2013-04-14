@@ -40,11 +40,10 @@
     #tab-rulers
       %ul.ruler-name
         %li= "Ruler: #{@settlement.ruler}"
-        -# = render :partial => '/beings/being', :locals => {:being => @settlement.ruler}
       .clear
     #tab-population
       #settlement-population.left
-        = render :partial => 'families', :collection => @settlement.families.to_a
+        = render :partial => 'families', :collection => @settlement.families.map{|k,v| [k,  v.all]}
       .clear
     #tab-map
       #settlement-map.left
