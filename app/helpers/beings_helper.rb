@@ -15,13 +15,13 @@ module BeingsHelper
   #
   def strength(val)
     case val
-         when 0 then ['a bit', 'somewhat', 'marginally']
-         when 1 then ['', '', '', 'rather']
-         when 2 then ['markedly', 'noticeably', 'decidedly', 'especially']
-         when 3 then ['very', 'really', 'greatly']
-         when 4 then ['extremely', 'terrifically', 'tremendously']
-         when 5 then ['ridiculously', 'uniquely', 'intensely']
-         when 6 then ['astonishingly', 'bizarrely', 'pathologically']
+    when 0 then ['a bit', 'somewhat', 'marginally', 'a little']
+    when 1 then ['', '', 'certainly', 'rather']
+    when 2 then ['markedly', 'noticeably', 'decidedly', 'especially']
+    when 3 then ['very', 'really', 'greatly', 'truly']
+    when 4 then ['extremely', 'terrifically', 'tremendously']
+    when 5 then ['ridiculously', 'uniquely', 'intensely']
+    else ['astonishingly', 'bizarrely', 'pathologically', 'impossibly', 'astoundingly']
     end.shuffle.first
   end
 
