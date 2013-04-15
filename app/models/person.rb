@@ -7,8 +7,6 @@ class Person < Being
 
   scope :neighbors, ->(person) { where(:settlement => person.settlement) }
   scope :other_gender, ->(sex) { where(:gender.ne => sex)}
-  scope :males, -> { where(:gender => 'male')}
-  scope :females, -> {  where(:gender => 'female')}
   scope :family_members, ->(name) {  where(:surname => name) }
   field :surname, :type => String
   field :given_name, :type => String
