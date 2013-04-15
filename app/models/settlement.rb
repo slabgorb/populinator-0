@@ -39,6 +39,7 @@ class Settlement
       p.events << Event.new(:name => 'Parthenogenesis', :description => "#{p.name} was magicked into existence.", :age => p.age)
       residents << p
     end
+    self
   end
 
   def history
@@ -65,7 +66,7 @@ class Settlement
   end
   
   def families
-    Hash[*family_names.map{ |m| [m, family(m)] }]
+    Hash[family_names.map{ |m| [m, family(m)] }]
   end
 
   def family_names
@@ -77,14 +78,14 @@ class Settlement
   end
 
   def marry_sets(males, females)
-    cache = { :male => [], :female => []}
+    married = { :male => [], :female => []}
     males.each do |m| 
       females.each do |f|
-        next if cache[:male].index(m.id) or cache[:female].index(f.id) 
+        next if married[:male].index(m.id) or married[:female].index(f.id) 
         if Person.marriage_strategy(m, f) 
           m.marry f
-          cache[:male] << m.id
-          cache[:female] << f.id
+          married[:male] << m.id
+          married[:female] << f.id
         end
       end
     end    
@@ -104,9 +105,9 @@ class Settlement
     
   def seed!
     self.residents << Ruler.create(settlement: self).randomize!
-    males = self.residents.select { |s| s.gender == 'male' }
+    males = self.residents.males
     males << ruler # rulers pick their spouses
-    females = self.residents.select { |s| s.gender == 'female' }
+    females = self.residents.females
     self.marry_sets(males, females)
     minors = self.residents.select{ |s| s.age < s.coming_of_age and not s.parent }
     mothers = females.select{ |s| s.married? and s.age < Person.infertility}
@@ -122,7 +123,7 @@ class Settlement
     self.family_names.each do |fname|
       settle fname
     end
-    true
+    self
   end
   
    private
