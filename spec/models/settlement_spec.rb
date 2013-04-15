@@ -8,9 +8,8 @@ describe Settlement do
   end
   
   it 'counts the population' do
+    @settlement.stub(:population => @settlement.residents.map{ |m| m.alive? }.count)
     @settlement.population.should be(101)
-    @settlement.residents.first.die!
-    @settlement.population.should be(100)
   end
 
   it 'shows the ruler' do     
@@ -33,10 +32,6 @@ describe Settlement do
     it 'should have some families' do
       @settlement.families.present?.should be_true
       @settlement.family_names.present?.should be_true
-    end
-    
-    it 'should have people in the families' do
-      @settlement.family_populations.should be { }
     end
     
     it 'should have spouses with the same last name' do 
