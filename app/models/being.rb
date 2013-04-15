@@ -26,7 +26,8 @@ class Being
   has_and_belongs_to_many :spouses, :class_name => 'Being'
 
   scope :living, -> { where(:alive => true) }
-  scope :adult, -> { where(:age.gt => @@coming_of_age) }
+  scope :adults, -> { where(:age.gte => @@coming_of_age) }
+  scope :children, ->{ where(:age.lt => @@coming_of_age )}
   
   scope :males, -> { where(:gender => 'male')}
   scope :females, -> {  where(:gender => 'female')}
