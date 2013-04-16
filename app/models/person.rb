@@ -43,6 +43,12 @@ class Person < Being
     [self.given_name, self.surname].join(' ')
   end
   
+  def reproduce(other = nil, child_name = nil, child_gender = nil) 
+    child = super
+    sex = random_gender
+    child.update_attributes({  gender:sex, given_name:@@names[sex].shuffle.first })
+    child
+  end
   
   def random_name!
     self.surname, self.given_name = self.class.random_name(gender)
