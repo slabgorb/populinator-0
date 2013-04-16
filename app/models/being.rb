@@ -24,6 +24,8 @@ class Being
   belongs_to :building
   
   has_and_belongs_to_many :spouses, :class_name => 'Being'
+  has_many :children, :class_name => 'Being'
+  has_many :parents, :class_name => 'Being'
 
   scope :living, -> { where(:alive => true) }
   scope :adults, -> { where(:age.gte => @@coming_of_age) }
@@ -184,7 +186,7 @@ class Being
   # Sets the age randomly.
   #
   def random_age!
-    self.age = self.class.random_age
+    update_attribute(:age, self.class.random_age)
   end
 
 
@@ -227,7 +229,7 @@ class Being
   # Changes the name to a random name.
   #
   def random_name!
-    self.name = self.random_name.join(' ')
+    update_attribute(:name, self.random_name.join(' '))
   end
   
   def alive?
@@ -371,7 +373,7 @@ class Being
   end
   
   def random_gender! 
-    self.gender = random_gender
+    update_attribute(:gender, self.class.random_gender)
   end
   
   def _type 
