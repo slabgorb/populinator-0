@@ -158,7 +158,7 @@ class Being
   # Search the neighborhood for a potential mate
   #
   def find_spouse 
-    self.neighbors.select{ |n| Person.marriage_strategy(n, self) }.try(:shuffle).try(:first)
+    self.neighbors.select{ |n| self.class.marriage_strategy(n, self) }.try(:shuffle).try(:first)
   end
   
   ##
@@ -173,9 +173,9 @@ class Being
   # genetics of the child to match the parents.
   #
   def adopt(child, heredity = false)
-    self.children << child
-    child.surname = self.surname if child.respond_to?(:surname)
-    child.save
+    children << child
+    spouse.children << child if married?
+    child.update_attribute(:surname, self.surname) if child.respond_to?(:surname)
     if heredity 
       child.get_genetics!(child.parent, child.parent.spouse)
     end
@@ -271,7 +271,7 @@ class Being
   end
 
   def aunt_or_uncle_of?(other)
-    self.siblings.collect_concat{|s| s and s.children}.uniq.index(other) if self.siblings
+    self.siblings.flat_map{|s| s and s.children}.uniq.index(other) if self.siblings
   end
 
   def niece_or_nephew_of?(other)
@@ -279,7 +279,7 @@ class Being
   end
   
   def cousin_of?(other)
-    self.parent.siblings.collect_concat{|p| p and p.children}.index(other) if self.parent and self.parent.siblings
+    self.parents.map(&:siblings).flat_map{|p| p and p.children}.index(other) if self.parents && self.parents.reject(&:nil?).map(&:siblings)
   end
   
   def heal(damage)
@@ -392,7 +392,6 @@ class Being
   
   def reproduce(other = nil, child_name = nil, child_gender = nil) 
     raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
-    #raise ReproductionException.new('Cannot reproduce with identical gender') if (other and other.gender == gender and gender != 'neuter')
     child = self.class.create
     child.get_genetics!(self, other)
     child.age = 0
@@ -405,7 +404,9 @@ class Being
     
     Event.new(:name => 'Reproduction', :description => "#{name} had a child #{child.name} with #{other.try(:name)}!", :age => self.age).happened_to(self)
     Event.new(:name => 'Reproduction', :description => "#{other.try(:name)} had a child #{child.name} with #{name}!", :age => other.age).happened_to(other) if other
-    self.children << child
+    children << child
+    child.parents << self
+    other.children << child
     self.settlement.residents << child if self.settlement
     child
   end

@@ -18,6 +18,11 @@ describe Person do
     @adam.married?.should be_false
   end
   
+  it 'should give the child a first name' do
+    child = @adam.reproduce @eve
+    child.given_name.should_not be_nil
+  end
+  
   it 'should update the name when the surname is changed' do
     @adam.surname = 'Rocketman'
     @adam.name.should match(/Rocketman/)
