@@ -57,7 +57,8 @@ class Person < Being
   # Change the name.
   #
   def random_name!
-    self.surname, self.given_name = self.class.random_name(gender)
+    name = self.class.random_name(gender)
+    update_attributes({ surname:name.last, given_name:name.first })
   end
   
   ##
