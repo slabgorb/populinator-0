@@ -238,30 +238,51 @@ class Being
     update_attribute(:name, self.random_name.join(' '))
   end
   
+  ##
+  # Is the being alive?
+  #
   def alive?
     alive
   end
 
+  ##
+  # Is the being dead?
+  #
   def dead? 
     not alive
   end
   
+  ##
+  # Is this a child of the other being?
+  #
   def child_of?(other)
     not other.children.index(self).nil?
   end
 
+  ##
+  # Is this the parent of the other being?
+  #
   def parent_of?(other)
     not self.children.index(other).nil?
   end
   
+  ##
+  # Is this the sibling of the other being?
+  #
   def sibling_of?(other)
     self.siblings.find(other.id)
   end
   
+  ##
+  # Ow
+  #
   def hurt(damage)
     self.damages << damage
   end
   
+  ##
+  # Ow?
+  #
   def hurt? 
     self.damages.length > 0
   end
