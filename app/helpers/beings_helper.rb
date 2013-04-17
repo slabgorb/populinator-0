@@ -75,12 +75,20 @@ module BeingsHelper
   #
   def describe_paragraph(being)
     desc = ''
+    continued = false
     describe(being) do |quality, key, amount|
-      desc += [rand > 0.333 ? possessive_pronoun(being).capitalize : being.name.split.first.possessive,
+      pronoun = possessive_pronoun(being)
+      pronoun.capitalize! unless continued
+      conjunction = continued ? ['and', 'but', 'although'].shuffle.pop : ''
+      desc += [conjunction,
+               rand > 0.333 ? pronoun : possessive(being),
                key,
                key.pluralize == key ? 'are' : 'is', 
                strength(amount),
-               quality].join(' ') + ".\n "
+               quality].join(' ') 
+      continued = rand < 0.333 && !continued
+      desc += "." unless continued
+      desc += "\n"
     end
     desc.strip
   end
