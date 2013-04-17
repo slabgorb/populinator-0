@@ -348,6 +348,11 @@ class Being
             tuple.values.first.last)
     end
   end  
+  
+  ##
+  # Used for descriptions- 
+  # TODO: probably better in a helper!
+  #
   def self.strength(val)
     case val
          when 0 then ['a bit', 'somewhat', 'marginally']
@@ -359,6 +364,11 @@ class Being
          when 6 then ['astonishingly', 'bizarrely', 'pathologically']
     end.shuffle.first
   end
+  
+  ##
+  # Used for descriptions- 
+  # TODO: probably better in a helper!
+  # 
   def bio
     out = ""
     describe do |quality, key, amount|
