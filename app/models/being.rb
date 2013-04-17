@@ -398,10 +398,16 @@ class Being
     self.read_attribute(:_type)
   end
   
+  ##
+  # Neighbors selector
+  #
   def neighbors 
-    settlement.beings.select{ |f| f != self }
+    settlement.residents.where(:id.ne => id )
   end
   
+  ##
+  # Make baby! 
+  #
   def reproduce(other = nil, child_name = nil, child_gender = nil) 
     raise ReproductionException.new('Cannot reproduce with self unless neuter') if (other.nil? and gender != 'neuter')
     child = self.class.create
