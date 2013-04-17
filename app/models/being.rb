@@ -4,15 +4,12 @@ class Being
   include Mongoid::Acts::Tree
   include Mongoid::Chronology
   include Mongoid::Slugify
-  #include Mongoid::Slug
-
   
   field :name, :type => String
   field :gender, :type => String, :default => nil
   field :age, :type => Fixnum, :default => 0
   field :alive, :type => Boolean, :default => true
   
-  acts_as_tree order:[['age', 'desc']]
 
   embeds_many :damages 
   embeds_many :chromosomes
@@ -37,6 +34,7 @@ class Being
   def to_s
     "#{name}, aged #{age}"
   end
+  
   
   def age!(years = 1)
     Event.new(:name => 'Age', :description => "#{name} was magically made #{years > 0 ? ' older' : ' youthful'}.", :effect => "{|b, y| b.age += y }", age: self.age + years).happened_to(self, years)
