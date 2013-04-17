@@ -70,6 +70,10 @@ module BeingsHelper
   end
 
   
+  def possessive(being)
+    being.name.split.first.possessive
+  end
+  
   ##
   # Provides a description based on the genetics of the being.
   #
