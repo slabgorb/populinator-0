@@ -24,8 +24,8 @@ class Being
   belongs_to :building
   
   has_and_belongs_to_many :spouses, :class_name => 'Being'
-  has_many :children, :class_name => 'Being'
-  has_many :parents, :class_name => 'Being'
+  has_and_belongs_to_many :children, :class_name => 'Being'
+  has_and_belongs_to_many :parents, :class_name => 'Being'
 
   scope :living, -> { where(:alive => true) }
   scope :adults, -> { where(:age.gte => @@coming_of_age) }
