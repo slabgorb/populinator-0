@@ -125,11 +125,11 @@ class Being
   # Marry another being.
   #
   def marry(s)
-    self.spouses << s
+    spouses << s
     s.spouses << self
     e = Event.new(:name => 'Marriage', :description => "#{name} married #{s.name}.", :age => self.age)
     e.happened_to(self, s)
-    s.surname = self.surname if self.respond_to?(:surname)
+    s.surname = surname if self.respond_to?(:surname)
     e.happened_to(s, self)
     s.save
     save
@@ -139,7 +139,7 @@ class Being
   # Returns the first living spouse, sorted by age.
   #
   def spouse 
-    self.spouses.select{ |s| s.alive? }.sort{|a,b| a.age <=> b.age}.first
+    spouses.select{ |s| s.alive? }.sort{|a,b| a.age <=> b.age}.first
   end
   
   ##
@@ -158,7 +158,7 @@ class Being
   # Search the neighborhood for a potential mate
   #
   def find_spouse 
-    self.neighbors.select{ |n| self.class.marriage_strategy(n, self) }.try(:shuffle).try(:first)
+    neighbors.select{ |n| self.class.marriage_strategy(n, self) }.try(:shuffle).try(:first)
   end
   
   ##
@@ -175,7 +175,7 @@ class Being
   def adopt(child, heredity = false)
     children << child
     spouse.children << child if married?
-    child.update_attribute(:surname, self.surname) if child.respond_to?(:surname)
+    child.update_attribute(:surname, surname) if child.respond_to?(:surname)
     if heredity 
       child.get_genetics!(child.parent, child.parent.spouse)
     end
@@ -211,7 +211,7 @@ class Being
   ## 
   # Instance level copy of Being.random_name
   #
-  def random_name(sex = self.gender)
+  def random_name(sex = gender)
     self.class.random_name(sex)
   end
 
@@ -226,8 +226,8 @@ class Being
   # Sets the genetics to be an inheritance from the two parents.
   #
   def get_genetics!(parent1, parent2)
-    self.chromosomes.delete_all
-    parent1.exchange_genome(parent2).map{ |g| self.chromosomes << g }   
+    chromosomes.delete_all
+    parent1.exchange_genome(parent2).map{ |g| chromosomes << g }   
     self
   end
   
