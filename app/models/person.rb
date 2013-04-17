@@ -43,6 +43,9 @@ class Person < Being
     [self.given_name, self.surname].join(' ')
   end
   
+  ##
+  # Overrides the Being#reproduce method.
+  #
   def reproduce(other = nil, child_name = nil, child_gender = nil) 
     child = super
     sex = random_gender
@@ -50,11 +53,17 @@ class Person < Being
     child
   end
   
+  ##
+  # Change the name.
+  #
   def random_name!
     self.surname, self.given_name = self.class.random_name(gender)
   end
-   
-
+  
+  ##
+  # Return a random name based on the gender of the being- names are
+  # loaded from a file.
+  #
   def self.random_name(sex = self.random_gender)
     [@@names['surname'].shuffle.first, @@names[sex].shuffle.first]
   end

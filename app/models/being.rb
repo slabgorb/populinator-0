@@ -154,10 +154,16 @@ class Being
     spouse.present?
   end
   
+  ##
+  # Search the neighborhood for a potential mate
+  #
   def find_spouse 
     self.neighbors.select{ |n| Person.marriage_strategy(n, self) }.try(:shuffle).try(:first)
   end
   
+  ##
+  # Checks to see if this being has children.
+  #
   def parent?
     children.present?
   end
