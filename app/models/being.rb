@@ -302,7 +302,9 @@ class Being
     Event.new(:name => 'Resurrection', :description => "#{name} was resurrected.", :effect => "{|b| b.alive = true; b.save }", age: self.age).happened_to(self)
   end
   
-
+  ##
+  # Returns the type of relationship between two beings
+  #
   def relation(other) 
     case 
     when (child_of?(other) and other.gender == :male) then :father
