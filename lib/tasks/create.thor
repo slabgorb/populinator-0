@@ -6,7 +6,7 @@ class Creator < Thor
   desc "settlement", "create a new settlement"
   def settlement
     puts "Making a new settlement."
-    Benchmark.bm do
+    Benchmark.measure do
       settlement = Settlement.create(name:options[:name])
       settlement.populate options[:population].to_i
       settlement.seed!
