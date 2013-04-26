@@ -61,9 +61,12 @@ describe Being do
     it 'knows about children' do
       @adam.children.first.should == @cain
       b = Being.find(@adam.id).children
-      f = Being.where(:parent_id => @adam.id).first
-      f.should == @cain
       b.first.should == @cain
+    end
+
+    it 'knows when it is a parent' do
+      @adam.parent?.should be_true
+      @eve.parent?.should be_true
     end
     
     it 'cannot reproduce with itself if not neuter' do 
@@ -81,6 +84,10 @@ describe Being do
         @alice  = @shirley.reproduce(@ralph, 'Alice', 'female')
       end
 
+      it 'should get the name right' do
+        @abel.name.should eq("Abel")
+      end
+      
       it 'knows about children' do
         @cain.child_of?(@adam).should be_true
       end
