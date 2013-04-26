@@ -55,6 +55,13 @@ class Being
     @@old_age
   end
 
+  ##
+  # Returns the siblings of the being as the children of the parent
+  # except the being
+  #
+  def siblings
+    parents.flat_map(&:children).reject{ |r| r.id = id }
+  end
   
   def self.infertility
     @@infertilty 
@@ -290,7 +297,7 @@ class Being
   end
 
   def aunt_or_uncle_of?(other)
-    self.siblings.flat_map{|s| s and s.children}.uniq.index(other) if self.siblings
+    parents.map(&:siblings).index(other)
   end
 
   def niece_or_nephew_of?(other)
@@ -443,6 +450,7 @@ class Being
     Event.new(:name => 'Reproduction', :description => "#{other.try(:name)} had a child #{child.name} with #{name}!", :age => other.age).happened_to(other) if other
     children << child
     child.parents << self
+    child.parents << other
     other.children << child
     self.settlement.residents << child if self.settlement
     child
