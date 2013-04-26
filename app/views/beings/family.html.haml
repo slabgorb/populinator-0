@@ -15,12 +15,10 @@
       %li= link_to_if(@being.alive?, 'Have Baby', {controller: 'beings', action: 'reproduce', parent_a: @being._id, parent_b: @being.spouse.try(:_id)}, method: :put)
       
 
-  - if @being.parent
+  - if @being.parents
     %h5 Parents
     %ul.being-parent
-      = render partial:'being', locals:{ being:@being.parent, nospouse: true, nokids: true }
-      - if @being.parent.married?
-        = render partial:'being', locals:{ being:@being.parent.spouse, nospouse: true }    
+      = render partial:'being', collection:@being.parents, locals:{ nospouse: true, nokids: true }
   - if @being.siblings
     %h5 Siblings
     %ul.being-siblings
