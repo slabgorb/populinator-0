@@ -21,7 +21,11 @@ class Settlement
       'Town' => 2500,
       'City' => 10000 }  
   end
-    
+  
+  def to_s
+    name
+  end
+  
   def as_json(options = { })
     { name: name, 
       established: established, 
@@ -109,8 +113,8 @@ class Settlement
     males << ruler # rulers pick their spouses
     females = self.residents.females
     self.marry_sets(males, females)
-    minors = self.residents.select{ |s| s.age < s.coming_of_age and not s.parent }
-    mothers = females.select{ |s| s.married? and s.age < Person.infertility}
+    minors = self.residents.children
+    mothers = females.adults
     if mothers.present?
       minors.each do |child|
         begin
