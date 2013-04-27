@@ -1,10 +1,10 @@
 Population::Application.routes.draw do
-  
+
   resources :buildings
   resources :things
   resources :damages
   resources :events
-  
+
   # settlements
   put '/settlement/seed/:id' => 'settlements#seed', :as => :seed
   resources :rulers, :controller => 'beings',  :_type => 'Ruler'
@@ -28,9 +28,10 @@ Population::Application.routes.draw do
   resources :beings do
     resources :things
   end
-  
+
   get 'histogram/corpus/load' => 'histogram#load_corpus'
+  get 'languages/corpus/load' => 'histogram#load_corpus'
   resources :histogram, only:[:create, :show]
-  resources :language, only:[:new, :create, :show] 
-  
+  resources :language, only:[:new, :create, :show]
+
 end
