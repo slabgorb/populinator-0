@@ -1,22 +1,22 @@
 Population::Application.routes.draw do
 
+  match '/' => 'index#homepage'
 
   resources :things
   resources :damages
   resources :events
   resources :languages do
-    resources :corpora
     resources :histograms, only: [:show]
+    resources :corpora
   end
 
   resources :settlements do
     resources :buildings
+    resources :rulers, :controller => 'beings', _type:'Ruler'
   end
-  resources :rulers, :controller => 'beings', _type:'Ruler'
 
   # settlements
   put '/settlement/seed/:id' => 'settlements#seed', as: :seed
-  get '/' => 'settlements#index'
   get '/settlements/random-name' => 'settlements#random_name'
 
   get '/beings/graph' => 'beings#graph'
