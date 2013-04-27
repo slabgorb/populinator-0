@@ -9,9 +9,9 @@ class String
 end
 
 module BeingsHelper
-  
-  ## 
-  # Returns a random adjective based on the intensity 
+
+  ##
+  # Returns a random adjective based on the intensity
   #
   def strength(val)
     case val
@@ -22,11 +22,11 @@ module BeingsHelper
     when 4 then ['extremely', 'terrifically', 'tremendously']
     when 5 then ['ridiculously', 'uniquely', 'intensely']
     else ['astonishingly', 'bizarrely', 'pathologically', 'impossibly', 'astoundingly']
-    end.shuffle.first
+    end.shuffle.first.strip
   end
 
   ##
-  # Gender specific possessive 
+  # Gender specific possessive
   #
   def possessive_pronoun(being)
     case being.gender
@@ -36,18 +36,22 @@ module BeingsHelper
     end
   end
 
+  def possessive_name_or_pronoun(being)
+    rand > 0.333 ? possessive_pronoun(being) : possessive(being)
+  end
+
   def describe(being, &block)
     being.description.each do |tuple|
       quality = tuple.values.first.first.to_s.humanize.downcase
       next if quality =~ /not notable/
-      yield(quality, 
-            tuple.keys.first.to_s.humanize.downcase, 
+      yield(quality,
+            tuple.keys.first.to_s.humanize.downcase,
             tuple.values.first.last)
     end
   end
 
   def describe_table(being)
-    capture_haml do 
+    capture_haml do
       haml_tag :table do
         haml_tag :thead do
           haml_tag :tr do
@@ -56,12 +60,12 @@ module BeingsHelper
             haml_tag(:th){ haml_concat "Amount" }
           end
         end
-        haml_tag :tbody do 
+        haml_tag :tbody do
           describe(being) do |quality, key, amount|
-            haml_tag :tr do 
+            haml_tag :tr do
               haml_tag(:th){ haml_concat key }
               haml_tag(:th){ haml_concat quality }
-              haml_tag(:th){ haml_concat amount }          
+              haml_tag(:th){ haml_concat amount }
             end
           end
         end
@@ -69,11 +73,15 @@ module BeingsHelper
     end
   end
 
-  
+
   def possessive(being)
     being.name.split.first.possessive
   end
-  
+
+  def conjunction(continued)
+    continued ? [' and ', ' but ', ' although ', ' even if ', ' even though ', '; '].shuffle.pop : ''
+  end
+
   ##
   # Provides a description based on the genetics of the being.
   #
@@ -81,21 +89,19 @@ module BeingsHelper
     desc = ''
     continued = false
     describe(being) do |quality, key, amount|
-      pronoun = possessive_pronoun(being)
-      pronoun.capitalize! unless continued
-      conjunction = continued ? ['and', 'but', 'although'].shuffle.pop : ''
-      desc += [conjunction,
-               rand > 0.333 ? pronoun : possessive(being),
+      possessive = possessive_name_or_pronoun(being)
+      possessive.capitalize! unless continued
+      desc += [conjunction(continued),
+               possessive,
                key,
-               key.pluralize == key ? 'are' : 'is', 
+               key.pluralize == key ? 'are' : 'is',
                strength(amount),
-               quality].join(' ') 
+               quality].join(' ')
       continued = rand < 0.333 && !continued
       desc += "." unless continued
-      desc += "\n"
     end
     desc.strip
   end
-  
+
 end
 
