@@ -52,7 +52,7 @@ class SettlementsController < ApplicationController
       end
     end
   end
-  
+
   def seed
     @settlement = Settlement.find(params[:id])
     @settlement.seed!
@@ -74,10 +74,10 @@ class SettlementsController < ApplicationController
     respond_to do |format|
       if @settlement.update_attributes(params[:settlement])
         format.html { redirect_to @settlement, notice: 'Settlement was successfully updated.' }
-        format.json { head :ok }
+        format.json { respond_with_bip(@settlement) }
       else
         format.html { render action: "edit" }
-        format.json { render json: @settlement.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@settlement) }
       end
     end
   end
@@ -93,10 +93,10 @@ class SettlementsController < ApplicationController
       format.json { head :ok }
     end
   end
-  
-  def random_name 
+
+  def random_name
      render :json => Settlement.random_name.as_json
   end
 
-  
+
 end
