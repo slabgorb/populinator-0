@@ -5,37 +5,37 @@ class Settlement
   field :name, :type => String
   field :established, :type => Integer
   field :area, :type => Integer
-  has_many :residents, :class_name => 'Being', :dependent => :destroy   
+  has_many :residents, :class_name => 'Being', :dependent => :destroy
   has_many :events
   embeds_many :buildings
   accepts_nested_attributes_for :rulers
-  
-  
+
+
   def population
     residents.living.count
   end
-  
-  def self.sizes 
+
+  def self.sizes
     { 'Hamlet' => 25,
       'Village' => 100,
       'Town' => 2500,
-      'City' => 10000 }  
+      'City' => 10000 }
   end
-  
+
   def to_s
     name
   end
-  
+
   def as_json(options = { })
-    { name: name, 
-      established: established, 
+    { name: name,
+      established: established,
       population: population,
-      ruler: rulers.first,   
+      # ruler: rulers.first,
       families: families,
       residents: residents,
       history: history }
   end
-  
+
   def populate(pop)
     pop.to_i.times do
       p = Person.create.randomize!
@@ -49,8 +49,8 @@ class Settlement
   def history
     events
   end
-  
-  # 
+
+  #
   # create a random name based on the @@names glossary of prefixes,
   # dividers, and suffixes, and person last names.
   #
@@ -68,7 +68,7 @@ class Settlement
   def family(surname)
     residents.all_of(surname: surname, alive: true)
   end
-  
+
   def families
     Hash[family_names.map{ |m| [m, family(m)] }]
   end
@@ -76,37 +76,37 @@ class Settlement
   def family_names
     residents.distinct(:surname).sort
   end
-  
+
   def family_populations
     Hash[family_names.map{ |m| [m, family(m).count ]}]
   end
 
   def marry_sets(males, females)
     married = { :male => [], :female => []}
-    males.each do |m| 
+    males.each do |m|
       females.each do |f|
-        next if married[:male].index(m.id) or married[:female].index(f.id) 
-        if Person.marriage_strategy(m, f) 
+        next if married[:male].index(m.id) or married[:female].index(f.id)
+        if Person.marriage_strategy(m, f)
           m.marry f
           married[:male] << m.id
           married[:female] << f.id
         end
       end
-    end    
+    end
   end
-  
+
   def settle(family)
-    b = Building.create(use: 'residence', description: "Residence of #{family}") 
-    self.residents.where(:surname => family).map do |m| 
+    b = Building.create(use: 'residence', description: "Residence of #{family}")
+    self.residents.where(:surname => family).map do |m|
       b.residents << m
     end
   end
 
-  
-  def ruler 
+
+  def ruler
     self.residents.select { |s| s.alive? and s.is_a?(Ruler) }.sort{ |a,b| b.age <=> a.age }.first
   end
-    
+
   def seed!
     self.residents << Ruler.create(settlement: self).randomize!
     males = self.residents.males
@@ -129,9 +129,9 @@ class Settlement
     end
     self
   end
-  
+
    private
    def generate_slug
      name.try(:parameterize)
-   end     
+   end
 end
