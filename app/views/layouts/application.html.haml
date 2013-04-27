@@ -5,37 +5,38 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = javascript_include_tag "http://mbostock.github.com/d3/d3.js"
-    = csrf_meta_tags 
+    = csrf_meta_tags
     = yield(:head)
   %body
-    %h1 
-      = link_to 'The Populinator', '/'
-    = yield :watermark
-    #border
-      = yield :top
-      #navigation
-        %ul
-          %li= link_to "Settlements", settlements_path
-          %li= link_to "Beings", beings_path
-          %li= link_to "New Language", new_language_path
-          = yield :navigation
-      .clear
-      #notice= flash[:notice]
-      #warning= flash[:warning]
-      #info= flash[:info]    
-      #main-content
-        = yield
-      #sidebar 
-        = yield :sidebar
-    #footer 
-      = yield :footer
-      %ul.credits      
-        %li 
-          Fonts from 
-          = link_to 'Fontsquirrel', 'http://www.fontsquirrel.com/'
-        %li 
-          Art from 
-          = link_to 'Heraldry Clipart', 'http://www.heraldicclipart.com/'
-    #dialogs.invisible
-      = yield(:dialogs)
+    #wrapper
+      #header
+        #title= link_to 'The Populinator', '/'
+        #blurb A tool for game masters to make generic on-the-fly villages, towns and cities.
+      #border
+        = yield :top
+        #navigation
+          %ul
+            %li= link_to "Settlements", settlements_path
+            %li= link_to "Beings", beings_path
+            %li= link_to "New Language", new_language_path
+            = yield :navigation
+        .clear
+        #notice= flash[:notice]
+        #warning= flash[:warning]
+        #info= flash[:info]
+        #main-content
+          = yield
+        #sidebar
+          = yield :sidebar
+      #footer
+        = yield :footer
+        %ul.credits
+          %li
+            Fonts from
+            = link_to 'Fontsquirrel', 'http://www.fontsquirrel.com/'
+          %li
+            Art from
+            = link_to 'Heraldry Clipart', 'http://www.heraldicclipart.com/'
+      #dialogs.invisible
+        = yield(:dialogs)
 
