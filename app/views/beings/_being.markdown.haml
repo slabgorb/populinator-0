@@ -1,15 +1,17 @@
 :plain
-  ### #{being.name}[#{being.slug}]
 
-  age:  #{being.age}
-- if being.married?
-  :plain
-
-    spouse:  [#{being.spouse.name}][#{being.spouse.slug}]
-- if being.parent?
-  :plain
-    children: #{being.children.map{ |m| "+ [#{m.name}][#{m.slug}]"}.join("\n")}
 :plain
-  description:  #{describe_paragraph(being)}
+  ### #{being.name} [#{being.slug}]
+
+  #{being.given_name} is #{being.age.to_words} years old.
+
+  #{describe_paragraph(being)}
+
+  #{being.married? ? "Married to [#{being.spouse.name}][#{being.spouse.slug}]" : 'Unmarried.'}
+
+  Has #{being.children.count.to_words.gsub('zero', 'no')} children#{being.children.count == 0 ? '.' : ','} #{being.children.map{ |m| "\n+ [#{m.name}][#{m.slug}]"}.to_sentence}
+
+  ___
+
 
 
