@@ -11,6 +11,7 @@ gem 'sass'
 gem 'mongoid_acts_as_tree', :git => 'https://github.com/saks/mongoid_acts_as_tree.git'
 gem 'mongoid_orderable'
 gem 'mongoid-slugify'
+gem 'best_in_place'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -28,7 +29,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'haml-rails', '~> 0.3'
   gem 'spork-rails'
-  gem 'guard-spork'		
+  gem 'guard-spork'
   gem 'guard-rspec'
   gem 'guard-rails', :git => 'https://github.com/johnbintz/guard-rails.git'
   gem 'guard-bundler'
