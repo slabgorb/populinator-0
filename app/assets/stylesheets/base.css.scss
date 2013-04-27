@@ -136,15 +136,7 @@ body {
       li {
         list-style-type: none;
         float: left;
-        padding: 0px 5px;
-        border: {
-          right: 1px dashed $color01;
-        }
-      }
-      li:first-child {
-        border: {
-          left: 1px dashed $color01;
-        }
+        width: 10em;
       }
       a:hover {
         color: $color05;
