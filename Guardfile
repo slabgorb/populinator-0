@@ -27,11 +27,11 @@ guard 'rspec', version:2, cli:"--drb -c -fd --drb-port 8988", rspec_env:{ 'RAILS
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
 end
 
-guard 'bundler' do 
+guard 'bundler' do
   watch('Gemfile')
 end
 
-guard 'rails', :port => 3001, :server => :thin, :daemon => true do
+guard 'rails', :port => 3000, :server => :thin, :daemon => true do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
   watch('tmp/restart.txt')
