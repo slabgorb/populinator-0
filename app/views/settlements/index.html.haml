@@ -1,6 +1,3 @@
-
-- content_for :watermark do
-  .watermark.fox_sejeant
 - content_for :title do
   Settlements
 - unless @settlements.empty?
@@ -22,7 +19,7 @@
         %td= link_to 'Show', settlement
         %td= link_to 'Edit', edit_settlement_path(settlement)
         %td= link_to 'Destroy', settlement, :confirm => 'Are you sure?', :method => :delete
-- else 
+- else
   %h3 No Settlements
 %br
 
