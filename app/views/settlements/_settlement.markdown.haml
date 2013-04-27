@@ -1,0 +1,15 @@
+Title: #{settlement}
+:plain
+  ***
+
+  # #{settlement.name}
+
+- settlement.families.each do |family|
+  :plain
+
+    ***
+
+    ## #{family.first}
+
+  - family.second.each do |member|
+    = render 'beings/being', being: member
