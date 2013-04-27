@@ -1,7 +1,6 @@
 Population::Application.routes.draw do
 
 
-  resources :buildings
   resources :things
   resources :damages
   resources :events
@@ -10,12 +9,15 @@ Population::Application.routes.draw do
     resources :histograms, only: [:show]
   end
 
+  resources :settlements do
+    resources :buildings
+  end
+  resources :rulers, :controller => 'beings', _type:'Ruler'
+
   # settlements
   put '/settlement/seed/:id' => 'settlements#seed', as:seed
-  resources :rulers, :controller => 'beings', _type:'Ruler'
   get '/' => 'settlements#index'
   get '/settlements/random-name' => 'settlements#random_name'
-  resources :settlements
 
   get '/beings/graph' => 'beings#graph'
   put '/beings/randomize_genetics/:id' => 'beings#randomize_genetics', as:random_genetics
