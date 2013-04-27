@@ -1,0 +1,19 @@
+= form_for @corpus do |f|
+  -if @corpus.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@corpus.errors.count, "error")} prohibited this corpus from being saved:"
+      %ul
+        - @corpus.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :url
+    = f.text_field :url
+  .field
+    = f.label :description
+    = f.text_area :description
+  .actions
+    = f.submit 'Save'

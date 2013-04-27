@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe LanguageController do
+describe LanguagesController do
 
 end

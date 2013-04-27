@@ -1,0 +1,13 @@
+
+%ul.corpora
+  %li
+  - @corpora.each do |corpus|
+    %ul.corpus.row
+      %li.field= best_in_place corpus, :name
+      %li.field= corpus.url
+      %li.field= best_in_place corpus, :description
+      %li.link= link_to 'Show', corpus
+      %li.link= link_to 'Edit', edit_corpus_path(corpus)
+      %li.link= link_to 'Destroy', corpus, :confirm => 'Are you sure?', :method => :delete
+
+= link_to 'New Corpus', new_corpus_path

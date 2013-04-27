@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @corpus.name
+%p
+  %b Url:
+  = @corpus.url
+%p
+  %b Description:
+  = @corpus.description
+
+= link_to 'Edit', edit_corpus_path(@corpus)
+\|
+= link_to 'Back', corpora_path
