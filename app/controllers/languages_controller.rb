@@ -1,4 +1,4 @@
-class LanguagessController < ApplicationController
+class LanguagesController < ApplicationController
   # GET /languages
   # GET /languages.json
   def index
