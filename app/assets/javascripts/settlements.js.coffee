@@ -18,6 +18,8 @@ class Settlement
     $('#create-settlement').click -> this.createCallback
     $('.selectbox-wrapper').on 'click', =>
       this.sizeSettlement()
+    $('li.export').click ->
+      $(this).find($('ul.export-menu')).slideToggle(200)
 
   initRandcheck: ->
     $('.randcheck.settlement-name').click =>
