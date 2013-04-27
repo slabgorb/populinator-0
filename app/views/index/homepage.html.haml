@@ -1,0 +1,9 @@
+- content_for :title do
+  A tool for making imaginary townsfolk with imaginary names.
+#homepage
+  %h1 The Populinator
+  %h4 Current Settlements
+  = render partial: '/settlements/settlement', collection: @settlements
+
+
+
