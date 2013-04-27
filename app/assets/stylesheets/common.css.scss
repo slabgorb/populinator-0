@@ -1,16 +1,16 @@
 $color01: #29271E;
 $color02: #590A10;
-$color03: #C3AB7E;
+$color03: #FFF;
 $color04: #B2AA94;
 $color05: #AE2514;
 
-$page-background:	$color03;
-$label-background:	$color04;	
-$base-color:		$color01;			
-$secondary-fill:	$color04;		
-$primary-fill:		$color05;		
-$border-color:		$color01;		
-$highlight-color:	$color04;		
+$page-background:   $color03;
+$label-background:  $color04;
+$base-color:        $color01;
+$secondary-fill:    $color04;
+$primary-fill:      $color05;
+$border-color:      $color01;
+$highlight-color:   $color04;
 $glow: #888;
 
 $disabled: $color04;
@@ -24,14 +24,14 @@ $icon-padding: 16px;
 
 @mixin box-shadow($horizontal, $vertical, $blur, $color, $offset: "") {
   @if $offset == "" {
-	-moz-box-shadow: $horizontal $vertical $blur $color;
-	-webkit-box-shadow: $horizontal $vertical $blur $color;
-	box-shadow: $horizontal $vertical $blur $color;
+    -moz-box-shadow: $horizontal $vertical $blur $color;
+    -webkit-box-shadow: $horizontal $vertical $blur $color;
+    box-shadow: $horizontal $vertical $blur $color;
   }
   @else {
-	-moz-box-shadow: $horizontal $vertical $blur $offset $color;
-	-webkit-box-shadow: $horizontal $vertical $blur $offset $color;
-	box-shadow: $horizontal $vertical $blur $offset $color;
+    -moz-box-shadow: $horizontal $vertical $blur $offset $color;
+    -webkit-box-shadow: $horizontal $vertical $blur $offset $color;
+    box-shadow: $horizontal $vertical $blur $offset $color;
   }
 }
 
@@ -62,8 +62,8 @@ $icon-padding: 16px;
 }
 
 @mixin rotate($angle) {
-  -webkit-transform: rotate($angle); 
-  -moz-transform: rotate($angle);	  
+  -webkit-transform: rotate($angle);
+  -moz-transform: rotate($angle);
 }
 
 @mixin outline-text($stroke_width, $font_color, $stroke_color) {
@@ -78,26 +78,19 @@ $icon-padding: 16px;
   -webkit-border-top-right-radius: $tr;
   -webkit-border-bottom-left-radius: $bl;
   -webkit-border-bottom-right-radius: $br;
-  
+
   -moz-border-radius-top-left: $tl;
   -moz-border-radius-top-right: $tr;
   -moz-border-radius-bottom-left: $bl;
   -moz-border-radius-bottom-right: $br;
-  
-}
 
-@mixin paper($offset_x, $offset_y) {
-  background: {
-	position: $offset_x $offset_y;
-	image: url('backgrounds/paper02.jpg') !important;
-  }
 }
 
 
 @mixin icon-image($icon, $padding) {
   background: {
-	image: url('/assets/#{$icon}.png');
-	repeat: no-repeat;
+    image: url('/assets/#{$icon}.png');
+    repeat: no-repeat;
   }
   padding: 0px $padding;
 }
