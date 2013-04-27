@@ -5,8 +5,9 @@ class SettlementsController < ApplicationController
     @settlements = Settlement.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @settlements }
+      format.markdown # index.markdown.haml
     end
   end
 
@@ -15,7 +16,7 @@ class SettlementsController < ApplicationController
   def show
     @settlement = Settlement.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @settlement }
     end
   end
@@ -26,7 +27,7 @@ class SettlementsController < ApplicationController
     @settlement = Settlement.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @settlement }
     end
   end
