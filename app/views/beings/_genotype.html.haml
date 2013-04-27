@@ -11,12 +11,12 @@
       %text{x: 0, y: y + (cellsize / 2) - 10} #{ycounter}
       - ycounter += 1
       - chromosome.split.sort.reverse.each do |gene|
-        %rect{x: x, y: y, width: cellsize, height: cellsize / 2, fill: gene, stroke: 'ffffff', 'stroke-opacity' => 0.4, 'fill-opacity' => 0.3}
+        %rect{x: x, y: y, width: cellsize, height: cellsize / 2, fill:"##{gene}", stroke: '#ffffff', 'stroke-opacity' => 0.4, 'fill-opacity' => 0.3}
           %title #{gene}
-        %text{'font-family' =>"courier new, courier", x: x + 2, y: y + (cellsize / 2) - 10, stroke: 'ffffff', fill: gene, 'stroke-opacity' => 0.5, 'stroke-width' => 2, 'fill-opacity' => 0.5} #{gene}
-          
+        %text{'font-family' =>"courier new, courier", x: x + 2, y: y + (cellsize / 2) - 10, stroke: '#000000', fill: gene, 'stroke-opacity' => 0.5, 'stroke-width' => 2, 'fill-opacity' => 0.5} #{gene}
+
         - x += (cellsize + margin)
       - y += ((cellsize/2) + margin)
-    
+
 
 
