@@ -9,3 +9,5 @@
 //= require jquery_ujs
 //= require_tree ../../../vendor/assets/javascripts
 //= require_tree .
+//= require best_in_place
+//= require best_in_place.purr
