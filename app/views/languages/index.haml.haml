@@ -1,0 +1,19 @@
+- content_for :title do
+  Languages
+- if @languages.empty?
+  %h3 No Languages
+
+-else
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Description
+    %tbody
+      - @languages.collect{|c| c}.each do |language|
+        %tr
+          %td= best_in_place language, :name
+          %td= best_in_place language, :description, :nil => 'add description'
+%br
+
+= link_to 'New Being', new_being_path
