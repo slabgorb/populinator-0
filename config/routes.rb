@@ -1,9 +1,14 @@
 Population::Application.routes.draw do
 
+
   resources :buildings
   resources :things
   resources :damages
   resources :events
+  resources :languages do
+    resources :corpora
+    resources :histograms
+  end
 
   # settlements
   put '/settlement/seed/:id' => 'settlements#seed', :as => :seed
@@ -31,7 +36,5 @@ Population::Application.routes.draw do
 
   get 'histogram/corpus/load' => 'histogram#load_corpus'
   get 'languages/corpus/load' => 'histogram#load_corpus'
-  resources :histogram, only:[:create, :show]
-  resources :language, only:[:new, :create, :show]
 
 end
