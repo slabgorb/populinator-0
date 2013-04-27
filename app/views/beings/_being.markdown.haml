@@ -1,0 +1,15 @@
+:plain
+  ### #{being.name}[#{being.slug}]
+
+  age:  #{being.age}
+- if being.married?
+  :plain
+
+    spouse:  [#{being.spouse.name}][#{being.spouse.slug}]
+- if being.parent?
+  :plain
+    children: #{being.children.map{ |m| "+ [#{m.name}][#{m.slug}]"}.join("\n")}
+:plain
+  description:  #{describe_paragraph(being)}
+
+
