@@ -1,8 +1,11 @@
-.settlement
-  %ul.settlement
-    %li.name= link_to settlement.name, settlement_path(settlement)
-    %li.population
-      %label population
-      = settlement.population
+.settlement.hero-unit.span4.sidebar-link-switcher
+  %h4= settlement.name
+  %dl
+    %dt population
+    %dd= settlement.population
+    %dt ruler
+    %dd= settlement.ruler
+  %ul.sidelinks.hidden
     %li.export= link_to "export markdown", "/settlements/#{settlement.id}.markdown"
     %li.delete= link_to 'X', settlement, :confirm => 'Are you sure?', :method => :delete
+    %li.seed=   link_to 'seed', seed_path(settlement)
