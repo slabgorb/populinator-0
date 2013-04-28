@@ -27,7 +27,7 @@ class Settlement
         {}
         (data) => @name.val(data)
         'html'
-    $('#submit-form').click ->
+    $('.submit-form').click ->
         $(this).parent('form').
         eq(0).
         trigger 'submit'

@@ -5,9 +5,9 @@
         %h2= "#{pluralize(@settlement.errors.count, "error")} prohibited this settlement from being saved:"
         %ul
           - @settlement.errors.full_messages.each do |msg|
-            %li= msg  %fieldset#settlement-form 
+            %li= msg  %fieldset#settlement-form
     %ul.form
-      %li= f.label :name
+      %li= f.label :name, required: true
       %li
         = f.text_field :name
         %span.randcheck.settlement-name= escape_once('&lsaquo; random');
@@ -15,12 +15,12 @@
       %li= f.text_field :population
       %li
         %label{:for => 'years-field'} Years to Run Simulation
-        %input#years-field{:name => 'years', :value => 1}        
+        %input#years-field{:name => 'years', :value => 1}
       %li
         %label{:for => 'size-field'} Size
         %select#size{:name => 'size'}
           - Settlement.sizes.each_pair do |k,v|
             %option{:value => v}= k
     .clear
-    = link_to 'Submit', '#', :id => 'submit-form'
+    = link_to 'Submit', '#', :class => 'submit-form'
 
