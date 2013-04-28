@@ -3,12 +3,14 @@
 
   # #{settlement.name}
 
+  ## Residents
+
 - settlement.families.each do |family|
   :plain
 
     ***
 
-    ## Family: #{family.first}
+    ### Family: #{family.first}
 
   - family.second.each do |member|
-    = render 'beings/being', being: member
+    = render 'beings/being', being: member, nested: true
