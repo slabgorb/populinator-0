@@ -1,11 +1,8 @@
-%ul.settlement
-  %li.name= best_in_place settlement, :name, activator: '#edit_#{settlement.id}'
-  %li.population
-    %label population
-    = settlement.population
-  %li.export
-    export
-    %ul.export-menu
-      = link_to 'export csv', settlement, format: 'csv'
-      = link_to 'export text', settlement, format: 'txt'
-      = link_to 'export markdown', settlement, format: 'md'
+.settlement
+  %ul.settlement
+    %li.name= link_to settlement.name, settlement_path(settlement)
+    %li.population
+      %label population
+      = settlement.population
+    %li.export= link_to "export markdown", "/settlements/#{settlement.id}.markdown"
+
