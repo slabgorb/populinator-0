@@ -23,7 +23,7 @@ class Settlement
 
   initRandcheck: ->
     $('.randcheck.settlement-name').click =>
-      $.get '/settlements/random-name',
+      $.get '/random/name/settlement',
         {}
         (data) => @name.val(data)
         'html'
