@@ -18,6 +18,7 @@ class SettlementsController < ApplicationController
     respond_to do |format|
       format.html # show.html.haml
       format.json { render json: @settlement }
+      format.markdown { render markdown:@settlement,  stream: true }
     end
   end
 
