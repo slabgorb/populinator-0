@@ -1,12 +1,22 @@
 - content_for :title do
   A tool for making imaginary townsfolk with imaginary names.
+- content_for :sidebar do
+  %li.nav-header Settlements
+  - @settlements.each do |settlement|
+    %li= link_to settlement.name, '#'
+  %li.nav-header Languages
+  - @languages.each do |language|
+    %li= link_to language.name, '#'
+
 #homepage
-  %h1 The Populinator
-  #current-settlements
-    %h4 Current Settlements
+
+  .container-fluid
     = render partial: '/settlements/settlement', collection: @settlements
-  #create-settlement
+  #create-settlement.clear
     %h4 New Settlement
     = render partial: '/settlements/form'
+  #create-language.clear
+    %h4 New Language
+    = render partial: '/languages/form'
 
 
