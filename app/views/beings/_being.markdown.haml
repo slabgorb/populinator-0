@@ -1,7 +1,14 @@
-:plain
+- if :nested
+  :plain
+
+    #### #{being.name}
+
+- else
+  :plain
+    Title: #{being.name}
+    # #{being.name}
 
 :plain
-  ### #{being.name} [#{being.slug}]
 
   #{being.given_name} is #{being.age.to_words} years old.
 
