@@ -5,15 +5,8 @@ Population::Application.routes.draw do
   resources :things
   resources :damages
   resources :events
-  resources :languages do
-    resources :histograms, only: [:show]
-    resources :corpora
-  end
-
-  resources :settlements do
-    resources :buildings
-    resources :rulers, :controller => 'beings', _type:'Ruler'
-  end
+  resources :languages
+  resources :settlements
 
   # settlements
   put '/settlement/seed/:id' => 'settlements#seed', as: :seed
