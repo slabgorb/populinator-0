@@ -91,7 +91,7 @@ class SettlementsController < ApplicationController
     @settlement.destroy
 
     respond_to do |format|
-      format.html { redirect_to settlements_url }
+      format.html { redirect_to '/' }
       format.json { head :ok }
     end
   end
