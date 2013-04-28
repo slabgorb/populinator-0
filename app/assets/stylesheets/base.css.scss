@@ -393,11 +393,9 @@ body {
           margin-left: -10px;
         }
         input, select, textarea {
-          font-size: 1.3em;
-          // font-family:  KingthingsExeter;
+          font-size: 0.8em;
           font-family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
-
-          padding: 0.3em;
+          padding: 0.2em;
           border: 1px solid $color02;
           color: $color01;
           @include appliqued();
