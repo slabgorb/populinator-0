@@ -8,49 +8,13 @@ body {
   margin:0px;
   color: $font-color;
   background: {
-    image: url('hero/homepage_01.png');
-    repeat: no-repeat;
-    position: -100px -280px;
+    /* image: url('hero/homepage_01.png'); */
+    /* repeat: no-repeat; */
+    /* position: -100px -280px; */
   }
   font: {
     family: 'Palatino Linotype', 'Book Antiqua3', Palatino, serif;
     size: 1em;
-  }
-
-  #wrapper {
-    width: 1080px;
-    margin: auto;
-    #header {
-      background-color: #A55B48;
-      height: 27px;
-      padding: {
-        top: 3px;
-        right: 5px;
-        bottom:3px;
-        left: 5px;
-      }
-      #title {
-        float: left;
-        a {
-          color: white;
-        }
-      }
-      #blurb {
-        float: right;
-        color: #D1A560;
-        font-size: 0.7em;
-      }
-    }
-
-    #border {
-      border: 1px solid $color01;
-      padding:10px;
-      background: {
-        color: #EED6AF;
-      }
-      height: 700px;
-      overflow: scroll;
-    }
   }
 
 

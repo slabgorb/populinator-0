@@ -3,32 +3,30 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'common';
 
-body {
-  #wrapper {
-    #border {
-      h4 {
-        clear: left;
+
+.settlement {
+  ul.settlement {
+    display: inline;
+    float: left;
+    border: 1px solid #DBBB91;
+    padding: {
+      left: 5px;
+      top: 5px;
+      right: 5px;
+      bottom:5px;
+      margin:5px;
+    }
+    li {
+      list-style-type: none;
+      &.name {
+        font-size: 1.3em;
       }
-      .settlement {
-        ul.settlement {
-          display: inline;
-          float: left;
-          border: 1px solid #DBBB91;
-          padding: 5px;
-          margin:5px;
-          li {
-            list-style-type: none;
-            &.name {
-              font-size: 1.3em;
-            }
-            &.export {
-              ul.export-menu {
-                display:none;
-              }
-            }
-          }
+      &.export {
+        ul.export-menu {
+          display:none;
         }
       }
+
     }
   }
 }
