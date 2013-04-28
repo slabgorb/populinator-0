@@ -78,6 +78,14 @@ module BeingsHelper
     being.name.split.first.possessive
   end
 
+  def pronoun(being)
+    case being.gender.to_sym
+    when :male then 'he'
+    when :female then 'she'
+    else 'its'
+    end
+  end
+
   def conjunction(continued)
     continued ? [' and ', ' but ', ' although ', ' even if ', ' even though ', '; '].shuffle.pop : ''
   end
