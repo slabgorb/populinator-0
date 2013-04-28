@@ -17,7 +17,8 @@ Population::Application.routes.draw do
 
   # settlements
   put '/settlement/seed/:id' => 'settlements#seed', as: :seed
-  get '/settlements/random-name' => 'settlements#random_name'
+  get '/random/name/settlement/(:language)' => 'settlements#random_name'
+  get '/random/name/given/(:language)' => 'beings#random_name'
 
   get '/beings/graph' => 'beings#graph'
   put '/beings/randomize_genetics/:id' => 'beings#randomize_genetics', as: :random_genetics
