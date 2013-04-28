@@ -5,39 +5,39 @@ class BeingsController < ApplicationController
   # get the genotype for this being
   def genotype
     @genotype = @being.genotype
-    render :layout => false
+    render layout: false
   end
   
   # get the history for this being
   def history
-    render :layout => false
+    render layout: false
   end  
   # get the family for this being
   def family
-    render :layout => false
+    render layout: false
   end  
   # get the description for this being
   def description
-    render :layout => false
+    render layout: false
   end  
 
   # kill this being
   def kill
     @being.die!
-    render :json => @being
+    render json: @being
   end
   
   # age this being one year
   def age
     params[:years] ||= '1'
     @being.age!(params[:years].to_i)
-    render :json => @being
+    render json: @being
   end
   
   # bring this being back to life
   def resurrect
     @being.resurrect!
-    render :json => @being
+    render json: @being
   end  
 
 
@@ -52,7 +52,7 @@ class BeingsController < ApplicationController
   def randomize_genetics
     @being.chromosomes.each { |c| c.randomize! }
     @being.events << Event.new(name: 'Divine Intervention', description: "#{@being.name} was touched by the gods themselves and has dramatically changed.")
-    render :json => @being
+    render json: @being
   end
 
   

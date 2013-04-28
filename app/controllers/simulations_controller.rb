@@ -24,10 +24,10 @@ class SimulationsController < ApplicationController
     
     logger.debug '*' * 80
     logger.debug params
-    @settlement = Settlement.create(:name => params[:name])
+    @settlement = Settlement.create(name: params[:name])
     @settlement.established = 0
     @settlement.populate params[:population]
-    @settlement.rulers << Ruler.create(:settlement => @settlement, :age => Person.random_age)
+    @settlement.rulers << Ruler.create(settlement: @settlement, age: Person.random_age)
     # @settlement.seed_original_families
     @year = 1  
     params[:years].to_i.times do
@@ -55,6 +55,6 @@ class SimulationsController < ApplicationController
       end
       @year += 1
     end
-    render :json => @settlement
+    render json: @settlement
   end
 end

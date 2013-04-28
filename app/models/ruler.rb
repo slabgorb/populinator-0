@@ -1,6 +1,6 @@
 class Ruler < Person
   @@titles = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'titles.yml')))
-  field :title, :type => String
+  field :title, type: String
   belongs_to :settlement
   after_create :set_title
   def set_title

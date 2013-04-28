@@ -5,11 +5,11 @@ class Person < Being
   @@old_age = 80
   @@infertilty = 50
 
-  scope :neighbors, ->(person) { where(:settlement => person.settlement) }
+  scope :neighbors, ->(person) { where(settlement: person.settlement) }
   scope :other_gender, ->(sex) { where(:gender.ne => sex)}
-  scope :family_members, ->(name) {  where(:surname => name) }
-  field :surname, :type => String
-  field :given_name, :type => String
+  scope :family_members, ->(name) {  where(surname: name) }
+  field :surname, type: String
+  field :given_name, type: String
 
   before_update lambda{ name = [given_name, surname].join(' ') }
 

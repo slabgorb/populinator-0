@@ -4,10 +4,10 @@ class Being
   include Mongoid::Chronology
   include Mongoid::Slugify
 
-  field :name, :type => String
-  field :gender, :type => String, :default => nil
-  field :age, :type => Fixnum, :default => 0
-  field :alive, :type => Boolean, :default => true
+  field :name, type: String
+  field :gender, type: String, default: nil
+  field :age, type: Fixnum, default: 0
+  field :alive, type: Boolean, default: true
 
 
   embeds_many :damages
@@ -19,16 +19,16 @@ class Being
   belongs_to :settlement
   belongs_to :building
 
-  has_and_belongs_to_many :spouses, :class_name => 'Being'
-  has_and_belongs_to_many :children, :class_name => 'Being'
-  has_and_belongs_to_many :parents, :class_name => 'Being'
+  has_and_belongs_to_many :spouses, class_name: 'Being'
+  has_and_belongs_to_many :children, class_name: 'Being'
+  has_and_belongs_to_many :parents, class_name: 'Being'
 
-  scope :living, -> { where(:alive => true) }
+  scope :living, -> { where(alive: true) }
   scope :adults, -> { where(:age.gte => @@coming_of_age) }
   scope :children, ->{ where(:age.lt => @@coming_of_age )}
 
-  scope :males, -> { where(:gender => 'male')}
-  scope :females, -> {  where(:gender => 'female')}
+  scope :males, -> { where(gender: 'male')}
+  scope :females, -> {  where(gender: 'female')}
 
   def to_s
     "#{name}, aged #{age}"
@@ -36,7 +36,7 @@ class Being
 
 
   def age!(years = 1)
-    Event.new(:name => 'Age', :description => "#{name} was magically made #{years > 0 ? ' older' : ' youthful'}.", :effect => "{|b, y| b.age += y }", age: self.age + years).happened_to(self, years)
+    Event.new(name: 'Age', description: "#{name} was magically made #{years > 0 ? ' older' : ' youthful'}.", effect: "{|b, y| b.age += y }", age: self.age + years).happened_to(self, years)
     save
     self.age
   end
@@ -131,7 +131,7 @@ class Being
   def marry(s)
     spouses << s
     s.spouses << self
-    e = Event.new(:name => 'Marriage', :description => "#{name} married #{s.name}.", :age => self.age)
+    e = Event.new(name: 'Marriage', description: "#{name} married #{s.name}.", age: self.age)
     e.happened_to(self, s)
     s.surname = surname if self.respond_to?(:surname)
     e.happened_to(s, self)
@@ -183,9 +183,9 @@ class Being
     if heredity
       child.get_genetics!(child.parent, child.parent.spouse)
     end
-    e = Event.new(:name => 'Adoption', :description => "#{child.name} was adopted by #{name}", age: child.age)
+    e = Event.new(name: 'Adoption', description: "#{child.name} was adopted by #{name}", age: child.age)
     e.happened_to(child)
-    e = Event.new(:name => 'Adoption', :description => "#{child.name} was adopted", age: lambda { self.age })
+    e = Event.new(name: 'Adoption', description: "#{child.name} was adopted", age: lambda { self.age })
     e.happened_to(self)
     e.happened_to(self.spouse)
     child.save
@@ -313,18 +313,18 @@ class Being
 
   def die!
     raise DeathException if dead?
-    Event.new(:name => 'Death', :description => "#{name} died.", :effect => "{|b| b.alive = false; b.save }", age: self.age).happened_to(self)
+    Event.new(name: 'Death', description: "#{name} died.", effect: "{|b| b.alive = false; b.save }", age: self.age).happened_to(self)
     self
   end
 
   def birth!
-    Event.new(:name => 'Birth', :description => "#{name} was born", :effect => "{|b| b.alive = true; b.save }", age: self.age).happened_to(self)
+    Event.new(name: 'Birth', description: "#{name} was born", effect: "{|b| b.alive = true; b.save }", age: self.age).happened_to(self)
     self
   end
 
   def resurrect!
     raise DeathException if alive?
-    Event.new(:name => 'Resurrection', :description => "#{name} was resurrected.", :effect => "{|b| b.alive = true; b.save }", age: self.age).happened_to(self)
+    Event.new(name: 'Resurrection', description: "#{name} was resurrected.", effect: "{|b| b.alive = true; b.save }", age: self.age).happened_to(self)
   end
 
   ##
@@ -445,8 +445,8 @@ class Being
     child.surname = (other.gender == 'male' ? other : self).surname if child.respond_to?(:surname)
     child.given_name = child_name.split(' ').last if child.respond_to?(:given_name) and child_name
 
-    Event.new(:name => 'Reproduction', :description => "#{name} had a child #{child.name} with #{other.try(:name)}!", :age => self.age).happened_to(self)
-    Event.new(:name => 'Reproduction', :description => "#{other.try(:name)} had a child #{child.name} with #{name}!", :age => other.age).happened_to(other) if other
+    Event.new(name: 'Reproduction', description: "#{name} had a child #{child.name} with #{other.try(:name)}!", age: self.age).happened_to(self)
+    Event.new(name: 'Reproduction', description: "#{other.try(:name)} had a child #{child.name} with #{name}!", age: other.age).happened_to(other) if other
     children << child
     child.parents << self
     child.parents << other

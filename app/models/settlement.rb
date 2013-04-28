@@ -2,11 +2,11 @@ class Settlement
   @@names = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'settlement_names.yml')))
   include Mongoid::Document
   include Mongoid::Chronology
-  field :name, :type => String
-  field :established, :type => Integer
-  field :area, :type => Integer
-  field :icon, :type => String
-  has_many :residents, :class_name => 'Being', :dependent => :destroy
+  field :name, type: String
+  field :established, type: Integer
+  field :area, type: Integer
+  field :icon, type: String
+  has_many :residents, class_name: 'Being', dependent: :destroy
   has_many :events
   embeds_many :buildings
   accepts_nested_attributes_for :rulers
@@ -41,7 +41,7 @@ class Settlement
     pop.to_i.times do
       p = Person.create.randomize!
       p.settlement = self
-      p.events << Event.new(:name => 'Parthenogenesis', :description => "#{p.name} was magicked into existence.", :age => p.age)
+      p.events << Event.new(name: 'Parthenogenesis', description: "#{p.name} was magicked into existence.", age: p.age)
       residents << p
     end
     self
@@ -83,7 +83,7 @@ class Settlement
   end
 
   def marry_sets(males, females)
-    married = { :male => [], :female => []}
+    married = { male: [], female: []}
     males.each do |m|
       females.each do |f|
         next if married[:male].index(m.id) or married[:female].index(f.id)
@@ -98,7 +98,7 @@ class Settlement
 
   def settle(family)
     b = Building.create(use: 'residence', description: "Residence of #{family}")
-    self.residents.where(:surname => family).map do |m|
+    self.residents.where(surname: family).map do |m|
       b.residents << m
     end
   end
