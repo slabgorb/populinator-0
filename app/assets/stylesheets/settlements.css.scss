@@ -6,15 +6,25 @@
 body {
   #wrapper {
     #border {
-      ul.settlement {
-        li {
-          list-style-type: none;
-          &.name {
-            font-size: 1.3em;
-          }
-          &.export {
-            ul.export-menu {
-              display:none;
+      h4 {
+        clear: left;
+      }
+      .settlement {
+        ul.settlement {
+          display: inline;
+          float: left;
+          border: 1px solid #DBBB91;
+          padding: 5px;
+          margin:5px;
+          li {
+            list-style-type: none;
+            &.name {
+              font-size: 1.3em;
+            }
+            &.export {
+              ul.export-menu {
+                display:none;
+              }
             }
           }
         }

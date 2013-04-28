@@ -2,8 +2,11 @@
   A tool for making imaginary townsfolk with imaginary names.
 #homepage
   %h1 The Populinator
-  %h4 Current Settlements
-  = render partial: '/settlements/settlement', collection: @settlements
-  = render partial: '/settlements/form'
+  #current-settlements
+    %h4 Current Settlements
+    = render partial: '/settlements/settlement', collection: @settlements
+  #create-settlement
+    %h4 New Settlement
+    = render partial: '/settlements/form'
 
 
