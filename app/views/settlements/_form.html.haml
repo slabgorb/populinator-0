@@ -5,7 +5,7 @@
     .control-group
       %label.control-label Name
       .controls
-        %input#settlement_name.input-xlarge{:name => "name", :placeholder => "leave blank for random", :required => "", :type => "text"}/
+        %input#settlement-name.input-xlarge{:name => "settlement[name]", :placeholder => "leave blank for random", :required => "", :type => "text"}/
     .control-group
       %label.control-label Language
       .controls
@@ -18,7 +18,7 @@
     .control-group
       %label.control-label Population
       .controls
-        %input#settlement_population.input-xlarge{:name => "population", :placeholder => "choose size", :required => "", :type => "text"}/
+        %input#settlement-population.input-xlarge{:name => "population", :placeholder => "choose size", :required => "", :type => "text"}/
     / Select Basic
     .control-group
       %label.control-label Size
@@ -28,6 +28,10 @@
           %option Village
           %option Town
           %option City
+    .control-group
+      %label.control-label Description
+      .controls
+        %textarea#settlement-description{:name => "settlement[description]"}
     / Button
     .control-group
       %label.control-label
