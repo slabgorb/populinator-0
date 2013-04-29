@@ -4,6 +4,7 @@ class IndexController < ApplicationController
     @settlement = Settlement.new
     @languages = Language.all
     @language = Language.new
+    @corpus = Corpus.new
   end
 
 end
