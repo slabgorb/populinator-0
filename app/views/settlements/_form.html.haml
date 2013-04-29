@@ -1,26 +1,35 @@
-%fieldset
-  = form_for @settlement do |f|
-    - if @settlement.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@settlement.errors.count, "error")} prohibited this settlement from being saved:"
-        %ul
-          - @settlement.errors.full_messages.each do |msg|
-            %li= msg  %fieldset#settlement-form
-    %ul.form
-      %li= f.label :name, required: true
-      %li
-        = f.text_field :name
-        %span.randcheck.settlement-name= escape_once('&lsaquo; random');
-      %li= f.label :population
-      %li= f.text_field :population
-      %li
-        %label{:for => 'years-field'} Years to Run Simulation
-        %input#years-field{:name => 'years', :value => 1}
-      %li
-        %label{:for => 'size-field'} Size
-        %select#size{:name => 'size'}
-          - Settlement.sizes.each_pair do |k,v|
-            %option{:value => v}= k
-    .clear
-    = link_to 'Submit', '#', :class => 'submit-form'
+=form_for :settlement do |f|
+  %legend Settlement #{@settlement.try(:name)}
+  %fieldset
+    / Text input
+    .control-group
+      %label.control-label Name
+      .controls
+        %input#settlement_name.input-xlarge{:name => "name", :placeholder => "leave blank for random", :required => "", :type => "text"}/
+    .control-group
+      %label.control-label Language
+      .controls
+        %select#language_id{name: 'language'}
+          %op
+          - Language.all.each do |language|
+            %option{value: language.id}= language.name
 
+    / Text input
+    .control-group
+      %label.control-label Population
+      .controls
+        %input#settlement_population.input-xlarge{:name => "population", :placeholder => "choose size", :required => "", :type => "text"}/
+    / Select Basic
+    .control-group
+      %label.control-label Size
+      .controls
+        %select#size.input-xlarge{:name => "size"}
+          %option Hamlet
+          %option Village
+          %option Town
+          %option City
+    / Button
+    .control-group
+      %label.control-label
+      .controls
+        %button#submit.btn.btn-success{:name => "submit"} Submit
