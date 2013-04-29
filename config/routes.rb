@@ -7,6 +7,7 @@ Population::Application.routes.draw do
   resources :events
   resources :languages
   resources :settlements
+  resources :corpora
 
   # settlements
   put '/settlement/seed/:id' => 'settlements#seed', as: :seed
