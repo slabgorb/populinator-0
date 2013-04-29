@@ -40,7 +40,10 @@ class CorporaController < ApplicationController
   # POST /corpora
   # POST /corpora.json
   def create
-    @corpus = Corpus.new(params[:corpus])
+    @corpus = Corpus.new(name: params[:name],
+                         url: 'http://' + params[:url],
+                         description: params[:description],
+                         lookback: params[:lookback])
 
     respond_to do |format|
       if @corpus.save

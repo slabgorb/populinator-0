@@ -1,19 +1,44 @@
-= form_for @corpus do |f|
-  -if @corpus.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@corpus.errors.count, "error")} prohibited this corpus from being saved:"
-      %ul
-        - @corpus.errors.full_messages.each do |msg|
-          %li= msg
+= form_for @corpus, class:'.form-horizontal' do |f|
+  %legend Corpus #{@corpus.try(:name)}
+  %fieldset
+    .control-group
+      %label.control-label Name
+      .controls
+        %input#name.input-xlarge{:name => "name", :placeholder => "leave blank to guess", :required => "", :type => "text"}/
+    / Multiple Radios (inline)
+    .control-group
+      %label.control-label Randomness
+      .controls
+        %label.radio.inline
+          %input{:name => "lookback", :type => "radio", :value => "5"}/
+          Least
+        %label.radio.inline
+          %input{:name => "lookback", :type => "radio", :value => "4"}/
+          Less
+        %label.radio.inline
+          %input{:name => "lookback", :type => "radio", :value => "3"}/
+          Loose
+        %label.radio.inline
+          %input{:name => "lookback", :type => "radio", :value => "2", :checked => "checked"}/
+          Normal
+        %label.radio.inline
+          %input{:name => "lookback", :type => "radio", :value => "1"}/
+          Tight
+      %p.help-block
+        amount of letters to look back in the corpus as the histogram is created
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :url
-    = f.text_field :url
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions
-    = f.submit 'Save'
+    .control-group
+      %label.control-label Corpus URL
+      .controls
+        .input-prepend
+          %span.add-on http://
+          %input#url{:name => "url", :placeholder => "www.gutenberg.org/", :required => "", :type => "text"}/
+        %p.help-block URL of a body of text to use for the corpus
+    .control-group
+      %label.control-label Description
+      .controls
+        %textarea#description{:name => "description"} 0kb Foo Language
+    .control-group
+      %label.control-label
+      .controls
+        %button#submit.btn.btn-success{:name => "submit"} Submit
