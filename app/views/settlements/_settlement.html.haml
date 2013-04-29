@@ -1,11 +1,18 @@
-.settlement.hero-unit.span4.sidebar-link-switcher
+.hero-unit
   %h4= settlement.name
   %dl
     %dt population
     %dd= settlement.population
     %dt ruler
     %dd= settlement.ruler
-  %ul.sidelinks.hidden
-    %li.export= link_to "export markdown", "/settlements/#{settlement.id}.markdown"
-    %li.delete= link_to 'X', settlement, :confirm => 'Are you sure?', :method => :delete
+  .row-fluid
+    .span1
+      %a{href:"/settlements/#{settlement.id}.markdown"}
+        %i.icon-download
+    .span1
+      %a{ confirm: 'Cannot undo!', href: settlement_path(settlement) , confirm:  'Are you sure?', method: :delete}
+        %i.icon-delete
+    - unless settlement.families.length
+      %li.seed
+        %a{ href: seed_path(settlement)}
     %li.seed=   link_to 'seed', seed_path(settlement)
