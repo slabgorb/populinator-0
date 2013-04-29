@@ -31,17 +31,13 @@
               %li= link_to "Settlements", settlements_path
               %li= link_to "Languages", languages_path
 
-    .container-fluid
 
-      .row-fluid
-        .span3
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              = yield :sidebar
         .span9
           = bootstrap_flash
           = yield
 
       %footer
-        %p &copy; Company 2013
+        %p.cc
+          = link_to image_tag('cc_by.png', width: '80px'), 'http://creativecommons.org/licenses/by/3.0/us/'
     = javascript_include_tag "application"
+
