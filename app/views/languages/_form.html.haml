@@ -5,19 +5,19 @@
     .control-group
       %label.control-label Name
       .controls
-        %input#name.input-xlarge{:name => "name", :placeholder => "leave blank for random", :type => "text"}/
+        %input#language-name.input-xlarge{:name => "language[name]", :placeholder => "leave blank for random", :type => "text"}/
     .control-group
       %label.control-label Corpora
       .controls
         - Corpus.all.each do |corpus|
           %label.checkbox
-            %input{:name => "corpora[]", :type => "checkbox", :value => corpus.id, :title => "#{corpus.name}: #{corpus.description}"}/
+            %input{:name => "language[corpora][]", :type => "checkbox", :value => corpus.id, :title => "#{corpus.name}: #{corpus.description}"}/
             = link_to corpus.name, corpus.url, target: '_blank'
     / Textarea
     .control-group
       %label.control-label Description
       .controls
-        %textarea#description{:name => "description"}
+        %textarea#description{:name => "language[description]"}
     / Button
     .control-group
       .controls
