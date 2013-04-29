@@ -1,0 +1,11 @@
+.language.hero_unit.span4
+  %h4= language.name
+  %dl
+    %dt description
+    %dd= language.description
+    %dt glossary
+    %dd
+      %span.show-hide
+        show &raquo;
+      %dl.glossary{id: language.slug}
+

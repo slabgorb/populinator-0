@@ -40,8 +40,7 @@ class LanguagesController < ApplicationController
   # POST /languages
   # POST /languages.json
   def create
-    @language = Language.new(params[:language])
-
+    @language = Language.new( corpora: params[:corpus], name: params[:name],  description: params[:description])
     respond_to do |format|
       if @language.save
         format.html { redirect_to @language, notice: 'Language was successfully created.' }

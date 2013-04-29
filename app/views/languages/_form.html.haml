@@ -1,34 +1,24 @@
-#language-form
+=form_for @language, html:  {class: 'form-inline'} do |f|
   %fieldset
-    %form
-      %ul.form
-        %li
-          %label{ for: 'language-name' }
-            Name:
-          %input#language-name{ type: 'text', name:'language[:name]', value: Settlement.random_name }
-        %li
-          %label{ for: 'language-description' }
-            Description:
-          %textarea#language-description{  name:'language[:name]', value: Settlement.random_name }
-        %li
-          %label{ for: 'language-corpus' }
-            Corpus:
-          %input.language-corpus{ type: 'text', value: 'www.gutenberg.org/files/16846/16846-0.txt', size: 45 }
-        %li
-          %label{ for: 'language-lookback' }
-            Lookback:
-          %input#language-lookback{ type: 'text', value: '2', size: 1, maxlength: 1 }
-        %li
-          %input#language-process{ type: 'submit' }
-
-#progressbar
-      
-#language-output
-  %table.dict{style: "font-family: consolas, courier new, courier !important;"}
-    %thead
-      %tr
-        %th Original
-        %th New
-    %tbody
-      
-    
+    %legend Language #{@language.try(:name)}
+    / Text input
+    .control-group
+      %label.control-label Name
+      .controls
+        %input#name.input-xlarge{:name => "name", :placeholder => "leave blank for random", :type => "text"}/
+    .control-group
+      %label.control-label Corpora
+      .controls
+        - Corpus.all.each do |corpus|
+          %label.checkbox
+            %input{:name => "corpora[]", :type => "checkbox", :value => corpus.id, :title => "#{corpus.name}: #{corpus.description}"}/
+            = link_to corpus.name, corpus.url, target: '_blank'
+    / Textarea
+    .control-group
+      %label.control-label Description
+      .controls
+        %textarea#description{:name => "description"}
+    / Button
+    .control-group
+      .controls
+        %submit#language-submit.btn.btn-success Submit
