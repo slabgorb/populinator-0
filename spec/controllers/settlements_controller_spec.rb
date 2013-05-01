@@ -26,7 +26,7 @@ describe SettlementsController do
   def valid_attributes
     {}
   end
-  
+
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # SettlementsController. Be sure to keep this updated too.
@@ -157,7 +157,7 @@ describe SettlementsController do
     it "redirects to the settlements list" do
       settlement = Settlement.create! valid_attributes
       delete :destroy, {:id => settlement.to_param}, valid_session
-      response.should redirect_to(settlements_url)
+      response.should redirect_to('/')
     end
   end
 
