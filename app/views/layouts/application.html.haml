@@ -19,6 +19,9 @@
 
   %body
     .navbar.navbar-fluid-top
+      %form.navbar-search.pull-right
+        %i.icon-search
+        %input{type: 'text', name: 'search', placeholder: 'search'}
       .navbar-inner
         .container-fluid
           %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
@@ -32,7 +35,7 @@
               %li= link_to "Languages", languages_path
 
 
-        .span9
+        .span8
           = bootstrap_flash
           = yield
 
