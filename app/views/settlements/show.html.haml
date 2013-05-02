@@ -10,17 +10,17 @@
 
 #settlement
   %h3= @settlement.name
-  .tabs
-    %ul
-      %li
-        %a{:href => '#tab-summary'} Summary
-      %li
-        %a{:href => '#tab-rulers'} Rulers
-      %li
-        %a{:href => '#tab-population'} Population
-      %li
-        %a{:href => '#tab-map'} Map
-    #tab-summary
+  %ul.nav-pills.nav.span6
+    %li
+      %a{:href => '#summary', 'data-toggle' => "tab"} Summary
+    %li
+      %a{:href => '#rulers', 'data-toggle' => "tab"} Rulers
+    %li
+      %a{:href => '#population', 'data-toggle' => "tab"} Population
+    %li
+      %a{:href => '#map', 'data-toggle' => "tab"} Map
+  .tab-content.span6
+    #summary.tab-pane.fade
       %h4
         Population:
         = @settlement.population
@@ -29,30 +29,26 @@
       %ul.history
         - @settlement.history.each do |h|
           %li= h.to_s
-      %h4 
+      %h4
         Families:
-        = @settlement.family_names.length 
+        = @settlement.family_names.length
       %ul.family-names
         - @settlement.family_names.sort.each do |f|
           %li= f
-          
-      .clear
-    #tab-rulers
-      %ul.ruler-name
+
+    #rulers.tab-pane.fade
+      %ul.unstyled
         %li= "Ruler: #{@settlement.ruler}"
       .clear
-    #tab-population
-      #settlement-population.left
+    #population.tab-pane
+      %ul.unstyled.thumbnails
         = render :partial => 'families', :collection => @settlement.families.map{|k,v| [k,  v.all]}
-      .clear
-    #tab-map
-      #settlement-map.left
-        %svg{xmlns: "http://www.w3.org/2000/svg", version: "1.1"}
-          - @settlement.family_names.each do |name|
-            - x = rand * 350 + 50
-            - y = rand * 350 + 50
-            %text{x: x, y: y + 40} #{name}
-            %image{x: x, y: y, width: 25, height: 29, 'xlink:href'=>"/assets/icons/house.png"}
-      .clear
+    #tab-map.tab-pane
+      %svg{xmlns: "http://www.w3.org/2000/svg", version: "1.1"}
+        - @settlement.family_names.each do |name|
+          - x = rand * 350 + 50
+          - y = rand * 350 + 50
+          %text{x: x, y: y + 40} #{name}
+          %image{x: x, y: y, width: 25, height: 29, 'xlink:href'=>"/assets/icons/house.png"}
 
 

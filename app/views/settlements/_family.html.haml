@@ -1,4 +1,3 @@
-%ul.family
-  - family.each do |family_member|
-    = render partial:'family_members', locals:{ :family_member => family_member }
+- family.each do |family_member|
+  %li.span2= render partial:'family_members', locals:{ :family_member => family_member }
 
