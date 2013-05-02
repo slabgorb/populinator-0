@@ -1,19 +1,12 @@
-- nospouse ||= false
-- nokids ||= false
 - nolink ||= false
-%li.left.being{:class=>"#{being.gender} #{being.alive? ? 'alive' : 'dead'} #{being.class == Ruler ? 'ruler' : ''}"}
-  %input{:type => 'hidden', :value => being.id}
+.thumbnail
   = link_to_unless nolink, [(being.class == Ruler ? being.title : ''), being.name].join(' '), { controller: 'beings', action: 'show', id: being }
-
-  %span{class: 'being-age', id:"being-age-#{being._id}"}= being.age 
-  years old
-- if being.respond_to? :spouse and being.spouse.present? and not nospouse
-  = render :partial => "/beings/being", locals: { being: being.spouse, nospouse: true }
-- if being.children.present? and not nokids
-  %li.clear.being-children
-    %ul
+  - if being.respond_to?(:married?)  && being.married?
+    = being.spouse.to_s
+  - if being.parent?
+    children:
+    %ul.unstyled
       - being.children.each do |child|
-        = render partial:'/beings/being', locals:{ being:child }
-.clear
+        %li= child.to_s
 
 
