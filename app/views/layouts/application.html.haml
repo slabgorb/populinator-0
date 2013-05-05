@@ -35,12 +35,13 @@
               %li= link_to "Languages", languages_path
 
 
-        .span8
-          = bootstrap_flash
-          = yield
+      .span8
+        = bootstrap_flash
+        = yield
 
-      %footer
-        %p.cc
-          = link_to image_tag('cc_by.png', width: '80px'), 'http://creativecommons.org/licenses/by/3.0/us/'
-    = javascript_include_tag "application"
+  .footer.navbar.navbar-fixed-bottom
+    .cc.right
+      = link_to image_tag('cc_by.png', width: '80px'), 'http://creativecommons.org/licenses/by/3.0/us/'
+
+= javascript_include_tag "application"
 

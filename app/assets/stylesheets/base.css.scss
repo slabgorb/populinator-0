@@ -282,111 +282,111 @@ body {
     font: {
       weight: normal;
       // family: KingthingsVersalis;
+    }
 
 
-
-      .watermark {
-        position: absolute;
-        z-index: -999;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-        background: {
-          repeat: no-repeat;
-          position: right top;
-        }
-        &.griffin_sejeant {
-          background-image: url('watermarks/griffin_sejeant.png');
-        }
-
-        &.fox_sejeant {
-          background-image: url('watermarks/fox_sejeant.png');
-        }
-
-        &.cockatrice {
-          background-image: url('watermarks/cockatrice.png');
-        }
-
-        &.grenade {
-          background-image: url('watermarks/grenade.png');
-        }
-
-        &.deer_regardant {
-          background-image: url('watermarks/deer_regardant.png');
-        }
-
-        &.sun_in_splendor {
-          background-image: url('watermarks/sun_in_splendor.png');
-        }
-
-        &.wolf_rampant {
-          background-image: url('watermarks/wolf_rampant.png');
-        }
-
-        &.bull_rampant {
-          background-image: url('watermarks/bull_rampant.png');
-        }
-
-        &.ducal_coronet {
-          background-image: url('watermarks/ducal_coronet.png');
-        }
-
+    .watermark {
+      position: absolute;
+      z-index: -999;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background: {
+        repeat: no-repeat;
+        position: right top;
+      }
+      &.griffin-sejeant {
+        background-image: image-url('watermarks/griffin_sejeant.png');
       }
 
-      .loader {
-        margin: auto;
-        z-index: 100;
-        width: 100%;
-        min-height: 300px;
-        &.tower {
-          background: {
-            image: url('loaders/tower.gif');
-            repeat: no-repeat;
-          }
-          margin-left: 460px;
-        }
+      &.fox-sejeant {
+        background-image: image-url('watermarks/fox_sejeant.png');
       }
 
-      line.crisp {
-        shape-rendering: crispEdges;
+      &.cockatrice {
+        background-image: image-url('watermarks/cockatrice.png');
       }
 
-      svg {
-        shape-rendering: crispEdges;
+      &.grenade {
+        background-image: image-url('watermarks/grenade.png');
       }
 
-      #being-graph div {
-        background-color: white;
-        text-align: right;
-        padding: 3px;
-        margin: 1px;
-        color: white;
+      &.deer-regardant {
+        background-image: image-url('watermarks/deer_regardant.png');
       }
 
-      #warning, #notice, #info {
-        color: $color05;
-        font-weight: bold;
-      }
-      .ui-tooltip, .qtip {
+      &.sun-in-splendor {
+        background-image: image-url('watermarks/sun_in_splendor.png');
       }
 
-      .ui-tooltip-content {
-        background-color: transparent !important;
-        @include shadow(-1px, -1px, 1px, $color01);
-        @include box-shadow(2px, 2px, 1px, $color01);
-        border: 1px solid $color01;
+      &.wolf-rampant {
+        background-image: image-url('watermarks/wolf_rampant.png');
       }
 
+      &.bull-rampant {
+        background-image: image-url('watermarks/bull_rampant.png');
+      }
 
-      #genotype-display svg {
-        margin: 20px;
-        font-size: 0.8em;
-        font-weight: normal;
-        color: white;
+      &.ducal-coronet {
+        background-image: image-url('watermarks/ducal_coronet.png');
       }
 
     }
 
+    .loader {
+      margin: auto;
+      z-index: 100;
+      width: 100%;
+      min-height: 300px;
+      &.tower {
+        background: {
+          image: image-url('loaders/tower.gif');
+          repeat: no-repeat;
+        }
+        margin-left: 460px;
+      }
+    }
+
+    line.crisp {
+      shape-rendering: crispEdges;
+    }
+
+    svg {
+      shape-rendering: crispEdges;
+    }
+
+    #being-graph div {
+      background-color: white;
+      text-align: right;
+      padding: 3px;
+      margin: 1px;
+      color: white;
+    }
+
+    #warning, #notice, #info {
+      color: $color05;
+      font-weight: bold;
+    }
+    .ui-tooltip, .qtip {
+    }
+
+    .ui-tooltip-content {
+      background-color: transparent !important;
+      @include shadow(-1px, -1px, 1px, $color01);
+      @include box-shadow(2px, 2px, 1px, $color01);
+      border: 1px solid $color01;
+    }
+
+
+    #genotype-display svg {
+      margin: 20px;
+      font-size: 0.8em;
+      font-weight: normal;
+      color: white;
+    }
+
   }
+
 }
+
