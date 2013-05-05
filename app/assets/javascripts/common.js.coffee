@@ -30,14 +30,5 @@ $.fn.selectElement = ($element) ->
     sel.removeAllRanges()
     sel.addRange(range)
 
-# page setup
-$(document).ready ->
-  # set up the buttons
-  # $( "input:submit, .button").button()
-  # set up any tabs
-  $('.tabs').tabs();
-  $('.accordion h4').click ->
-    $(this).next().toggle('slow')
-    false
-  $('.accordion h4').next().hide()
+
 
