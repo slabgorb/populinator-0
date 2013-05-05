@@ -4,6 +4,7 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
+//= require twitter/bootstrap
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
@@ -11,4 +12,3 @@
 //= require_tree .
 //= require best_in_place
 //= require best_in_place.purr
-//= require twitter/bootstrap
