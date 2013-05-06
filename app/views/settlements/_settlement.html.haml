@@ -1,20 +1,22 @@
-.hero-unit
-  %h4= settlement.name
-  %dl
-    %dt population
-    %dd= settlement.population
-    %dt ruler
-    %dd= settlement.ruler
-  %ul.nav.nav-pills
-    %li
-      %a{href:"/settlements/#{settlement.id}"}
-        %i.icon-eye-open
-    %li
-      %a{href:"/settlements/#{settlement.id}.markdown"}
-        %i.icon-download
-    %li
-      %a{ confirm: 'Cannot undo!', href: settlement_path(settlement) , confirm:  'Are you sure?', method: :delete}
-        %i.icon-trash
-  - unless settlement.families.length
-    %li.seed
-      %a{ href: seed_path(settlement)}
+%li.media.well
+  %img.media-object.pull-left{src: 'http://lorempixel.com/100/100'}
+  .media-body
+    %h4.media-heading= settlement.name
+    %dl
+      %dt population
+      %dd= settlement.population
+      %dt ruler
+      %dd= settlement.ruler
+    %ul.nav.nav-pills
+      %li
+        %a{href:"/settlements/#{settlement.id}"}
+          %i.icon-eye-open
+      %li
+        %a{href:"/settlements/#{settlement.id}.markdown"}
+          %i.icon-download
+      %li
+        %a{ confirm: 'Cannot undo!', href: settlement_path(settlement) , confirm:  'Are you sure?', method: :delete}
+          %i.icon-trash
+    - unless settlement.families.length
+      %li.seed
+        %a{ href: seed_path(settlement)}
