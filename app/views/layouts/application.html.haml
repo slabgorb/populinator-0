@@ -34,28 +34,29 @@
             %ul.nav
               %li= link_to "Settlements", settlements_path
               %li= link_to "Languages", languages_path
+
+    .watermark= yield :watermark
     = bootstrap_flash
     .container-fluid
       %ul.nav-list.nav.span2.well
         %li.nav-header Settlements
         %li
-          %a{href: '#new-settlement-modal', role: 'button', 'data-toggle' => 'modal'} new settlement
+          %a{href: new_settlement_path, role: 'button'} new settlement
+        %li
+          %a{href: settlements_path, role: 'button'} list settlements
         %li.nav-header Languages
         %li
-          %a{href: '#new-language-modal', role: 'button', 'data-toggle' => 'modal'} new language
+          %a{href: new_language_path, role: 'button' } new language
         %li
-          %a{href: '#new-corpus-modal', role: 'button', 'data-toggle' => 'modal'} new corpus
+          %a{href: languages_path, role: 'button' } list languages
+        %li
+          %a{href: new_corpus_path, role: 'button'} new corpus
+        %li
+          %a{href: corpora_path, role: 'button'} list corpora
         %li
           = link_to image_tag('cc_by.png', width: '80px'), 'http://creativecommons.org/licenses/by/3.0/us/'
           = link_to image_tag('badges/mongo.png'), 'http://www.mongodb.org'
       = yield
 
-  .container-fluid.span8
-    #new-settlement-modal.modal.hide.fade{role: 'dialog'}
-      = render partial: '/settlements/form'
-    #new-language-modal.modal.hide.fade{role: 'dialog'}
-      = render partial: '/languages/form'
-    #new-corpus-modal.modal.hide.fade{role: 'dialog'}
-      = render partial: '/corpora/form'
 = javascript_include_tag "application"
 
