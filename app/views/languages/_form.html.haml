@@ -6,7 +6,8 @@
       .control-group
         %label.control-label Name
         .controls
-          %input#language-name.input-xlarge{:name => "language[name]", :placeholder => "leave blank for random", :type => "text"}/
+          %input#language-name.input-xlarge{:name => "language[name]", :type => "text"}/
+          %button#random-name.btn Random
       .control-group
         %label.control-label Corpora
         .controls
@@ -21,5 +22,5 @@
           %textarea#description{:name => "language[description]"}
     .modal-footer
       .control-group
-        %button.btn{'data-dismiss' => 'modal', 'aria-hidden' => true} Close
-        %button.btn.btn-primary{'data-dismiss' => 'modal', 'aria-hidden' => true} Save Changes
+        %button.btn Cancel
+        %button.btn.btn-primary Save Changes

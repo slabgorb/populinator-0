@@ -1,4 +1,4 @@
-=form_for @settlement do |f|
+=form_for :settlement do |f|
   .modal-header
     %h3 Settlement #{@settlement.try(:name)}
   .modal-body
@@ -8,7 +8,9 @@
         .control-group
           %label.control-label Name
           .controls
-            %input#settlement-name.input-xlarge{:name => "settlement[name]", :placeholder => "leave blank for random", :required => "", :type => "text"}/
+            %input#settlement-name.input-large{:value => @settlement.try(:name), :name => "settlement[name]", :required => "", :type => "text"}/
+            %button#random-name.btn.btn-mini Random
+
         .control-group
           %label.control-label Language
           .controls
@@ -20,11 +22,12 @@
         .control-group
           %label.control-label Population
           .controls
-            %input#settlement-population.input-xlarge{:name => "population", :placeholder => "choose size", :required => "", :type => "text"}/
+            %input#settlement-population.input-xlarge{:value => @settlement.try(:population), :name => "population", :placeholder => "choose size", :required => "", :type => "text"}/
         .control-group
           %label.control-label Description
           .controls
             %textarea#settlement-description{:name => "settlement[description]"}
+              = @settlement.try(:description)
       / Button
     .modal-footer
       .control-group
