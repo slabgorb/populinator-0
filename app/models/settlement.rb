@@ -6,6 +6,7 @@ class Settlement
   field :established, type: Integer
   field :area, type: Integer
   field :icon, type: String
+  field :description, type: String
   has_many :residents, class_name: 'Being', dependent: :destroy
   has_many :events
   embeds_many :buildings
