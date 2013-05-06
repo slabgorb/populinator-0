@@ -1,15 +1,16 @@
-%p#notice= notice
+%p#notice
+%ul.unstyled
+  %li
+    %h4= @corpus.name
+  %li= @corpus.url
+  %li= @corpus.description
+  %li= JSON.parse(@corpus.histogram).inspect
+  %li
+    %ul.nav.nav-pills
+      %li
+        %a{ href: edit_corpus_path(@corpus) }
+          %i.icon-edit
+      %li
+        %a{ href: corpora_path }
+          %i.icon-arrow-left
 
-%p
-  %b Name:
-  = @corpus.name
-%p
-  %b Url:
-  = @corpus.url
-%p
-  %b Description:
-  = @corpus.description
-
-= link_to 'Edit', edit_corpus_path(@corpus)
-\|
-= link_to 'Back', corpora_path

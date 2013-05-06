@@ -1,13 +1,23 @@
 
-%ul.corpora
-  %li
-  - @corpora.each do |corpus|
-    %ul.corpus.row
-      %li.field= best_in_place corpus, :name
-      %li.field= corpus.url
-      %li.field= best_in_place corpus, :description
-      %li.link= link_to 'Show', corpus
-      %li.link= link_to 'Edit', edit_corpus_path(corpus)
-      %li.link= link_to 'Destroy', corpus, :confirm => 'Are you sure?', :method => :delete
 
-= link_to 'New Corpus', new_corpus_path
+%ul.media-list.span6
+  %li.media
+  - @corpora.each do |corpus|
+    %ul.corpus.row.media-list
+      %li= corpus.name
+      %li= corpus.url
+      %li= corpus.description
+      %li= corpus.histogram.inspect
+      %li
+        %ul.nav.nav-pills
+          %li
+            %a{href: corpus_path(corpus)}
+              %i.icon-eye-open
+          %li
+            %a{ href: edit_corpus_path(corpus) }
+              %i.icon-edit
+          %li
+            %a{ href: corpora_path }
+              %i.icon-arrow-left
+
+

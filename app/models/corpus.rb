@@ -3,11 +3,9 @@ class Corpus
   field :name, type: String
   field :url, type: String
   field :description, type: String
-  field :histogram, type: Hash
+  field :histogram, type: String
   field :lookback, type: Integer
   belongs_to :language
-
-  after_create :compile_histogram
 
   @@start_token = '^'.bytes.first
   @@end_token = '$'.bytes.first
@@ -16,8 +14,7 @@ class Corpus
   #
   def add_char(byte)
     @key ||= Array(1..lookback).map{ @@start_token }
-    hsh = eval "@histo" + @key.map{ |k| "[#{k}]"}
-    @histo[@key.pack('c*').force_encoding('UTF-8')] += 1
+    @histo[@key.pack('c*')] += 1
     @key.push(byte)
     @key.shift
   end
@@ -27,13 +24,13 @@ class Corpus
   # TODO: make this work even if pointed to a large file
   #
   def compile_histogram
-    @histo = Hash.new([])
-    Net::HTTP.get(URI(url)).split(/[^[:alpha:]]|\s/).reject(&:blank?).each do |word|
+    @histo = Hash.new(0)
+    Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).split(/[^[:alpha:]]|\s/).map(&:strip).reject(&:blank?).each do |word|
       add_char(@@start_token)
       word.downcase.bytes.each { |char| add_char char }
       add_char(@@end_token)
     end
-    update_attribute(:histogram, @histo)
+    update_attribute(:histogram, @histo.to_json)
   end
 end
 
