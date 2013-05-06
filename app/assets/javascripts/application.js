@@ -4,10 +4,12 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require twitter/bootstrap
 //= require jquery
+//= require twitter/bootstrap
 //= require jquery-ui
 //= require jquery_ujs
+//= require highcharts
+//= require highcharts-more
 //= require_tree ../../../vendor/assets/javascripts
 //= require_tree .
 //= require best_in_place
