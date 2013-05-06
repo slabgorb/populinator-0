@@ -1,26 +1,10 @@
 - content_for :title do
   Settlements
+
 - unless @settlements.empty?
-
-  %h3 Listing settlements
-
-  %table
-    %tr
-      %th Name
-      %th Population
-      %th
-      %th
-      %th
-
-    - @settlements.each do |settlement|
-      %tr
-        %td= settlement.name
-        %td= settlement.population
-        %td= link_to 'Show', settlement
-        %td= link_to 'Edit', edit_settlement_path(settlement)
-        %td= link_to 'Destroy', settlement, :confirm => 'Are you sure?', :method => :delete
+  %h3 Settlements
+  %ul.media-list.span10
+    = render partial: 'settlement', collection: @settlements
 - else
   %h3 No Settlements
-%br
 
-= link_to 'New Settlement', new_settlement_path

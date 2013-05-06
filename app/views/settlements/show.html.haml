@@ -2,7 +2,9 @@
   = @settlement.name
   Settlement
 
-.watermark.grenade
+- content_for :watermark do
+  .grenade
+
 %ul.subnav
   %li= link_to 'Edit', edit_settlement_path(@settlement), :class => 'button'
   %li= link_to 'Back', settlements_path
