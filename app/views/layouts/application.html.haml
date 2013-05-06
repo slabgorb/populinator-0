@@ -34,26 +34,28 @@
             %ul.nav
               %li= link_to "Settlements", settlements_path
               %li= link_to "Languages", languages_path
-    %ul.nav-list.nav.span2.well
-      %li.nav-header Settlements
-      %li
-        %a{href: '#new-settlement-modal', role: 'button', 'data-toggle' => 'modal'} new settlement
-      %li.nav-header Languages
-      %li
-        %a{href: '#new-language-modal', role: 'button', 'data-toggle' => 'modal'} new language
-      %li
-        %a{href: '#new-corpus-modal', role: 'button', 'data-toggle' => 'modal'} new corpus
-      %li
-        = link_to image_tag('cc_by.png', width: '80px'), 'http://creativecommons.org/licenses/by/3.0/us/'
-        = link_to image_tag('badges/mongo.png'), 'http://www.mongodb.org'
-
-
-
-
-    .span8
-      = bootstrap_flash
+    = bootstrap_flash
+    .container-fluid
+      %ul.nav-list.nav.span2.well
+        %li.nav-header Settlements
+        %li
+          %a{href: '#new-settlement-modal', role: 'button', 'data-toggle' => 'modal'} new settlement
+        %li.nav-header Languages
+        %li
+          %a{href: '#new-language-modal', role: 'button', 'data-toggle' => 'modal'} new language
+        %li
+          %a{href: '#new-corpus-modal', role: 'button', 'data-toggle' => 'modal'} new corpus
+        %li
+          = link_to image_tag('cc_by.png', width: '80px'), 'http://creativecommons.org/licenses/by/3.0/us/'
+          = link_to image_tag('badges/mongo.png'), 'http://www.mongodb.org'
       = yield
 
-  .footer.navbar.navbar-fixed-bottom
+  .container-fluid.span8
+    #new-settlement-modal.modal.hide.fade{role: 'dialog'}
+      = render partial: '/settlements/form'
+    #new-language-modal.modal.hide.fade{role: 'dialog'}
+      = render partial: '/languages/form'
+    #new-corpus-modal.modal.hide.fade{role: 'dialog'}
+      = render partial: '/corpora/form'
 = javascript_include_tag "application"
 
