@@ -19,11 +19,12 @@
 
   %body
     .navbar.navbar-fluid-top
-      %form.navbar-search.pull-right
-        %i.icon-search
-        %input{type: 'text', name: 'search', placeholder: 'search'}
       .navbar-inner
         .container-fluid
+          %form.navbar-search.pull-right
+            %i.icon-search
+            %input{type: 'text', name: 'search', placeholder: 'search'}
+
           %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
             %span.icon-bar
             %span.icon-bar
@@ -33,6 +34,20 @@
             %ul.nav
               %li= link_to "Settlements", settlements_path
               %li= link_to "Languages", languages_path
+    %ul.nav-list.nav.span2.well
+      %li.nav-header Settlements
+      %li
+        %a{href: '#new-settlement-modal', role: 'button', 'data-toggle' => 'modal'} new settlement
+      %li.nav-header Languages
+      %li
+        %a{href: '#new-language-modal', role: 'button', 'data-toggle' => 'modal'} new language
+      %li
+        %a{href: '#new-corpus-modal', role: 'button', 'data-toggle' => 'modal'} new corpus
+      %li
+        = link_to image_tag('cc_by.png', width: '80px'), 'http://creativecommons.org/licenses/by/3.0/us/'
+        = link_to image_tag('badges/mongo.png'), 'http://www.mongodb.org'
+
+
 
 
     .span8
@@ -40,8 +55,5 @@
       = yield
 
   .footer.navbar.navbar-fixed-bottom
-    .cc.right
-      = link_to image_tag('cc_by.png', width: '80px'), 'http://creativecommons.org/licenses/by/3.0/us/'
-
 = javascript_include_tag "application"
 

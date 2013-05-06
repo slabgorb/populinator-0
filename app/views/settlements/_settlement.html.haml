@@ -5,14 +5,16 @@
     %dd= settlement.population
     %dt ruler
     %dd= settlement.ruler
-  .row-fluid
-    .span1
+  %ul.nav.nav-pills
+    %li
+      %a{href:"/settlements/#{settlement.id}"}
+        %i.icon-eye-open
+    %li
       %a{href:"/settlements/#{settlement.id}.markdown"}
         %i.icon-download
-    .span1
+    %li
       %a{ confirm: 'Cannot undo!', href: settlement_path(settlement) , confirm:  'Are you sure?', method: :delete}
-        %i.icon-delete
-    - unless settlement.families.length
-      %li.seed
-        %a{ href: seed_path(settlement)}
-    %li.seed=   link_to 'seed', seed_path(settlement)
+        %i.icon-trash
+  - unless settlement.families.length
+    %li.seed
+      %a{ href: seed_path(settlement)}

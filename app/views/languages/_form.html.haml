@@ -1,24 +1,25 @@
 =form_for @language, html:  {class: 'form-inline'} do |f|
-  %fieldset
-    %legend Language #{@language.try(:name)}
-    / Text input
-    .control-group
-      %label.control-label Name
-      .controls
-        %input#language-name.input-xlarge{:name => "language[name]", :placeholder => "leave blank for random", :type => "text"}/
-    .control-group
-      %label.control-label Corpora
-      .controls
-        - Corpus.all.each do |corpus|
-          %label.checkbox
-            %input{:name => "language[corpora][]", :type => "checkbox", :value => corpus.id, :title => "#{corpus.name}: #{corpus.description}"}/
-            = link_to corpus.name, corpus.url, target: '_blank'
-    / Textarea
-    .control-group
-      %label.control-label Description
-      .controls
-        %textarea#description{:name => "language[description]"}
-    / Button
-    .control-group
-      .controls
-        %submit#language-submit.btn.btn-success Submit
+  .modal-title
+    %h3 Language #{@language.try(:name)}
+  .modal-body
+    %fieldset
+      .control-group
+        %label.control-label Name
+        .controls
+          %input#language-name.input-xlarge{:name => "language[name]", :placeholder => "leave blank for random", :type => "text"}/
+      .control-group
+        %label.control-label Corpora
+        .controls
+          - Corpus.all.each do |corpus|
+            %label.checkbox
+              %input{:name => "language[corpora][]", :type => "checkbox", :value => corpus.id, :title => "#{corpus.name}: #{corpus.description}"}/
+              = link_to corpus.name, corpus.url, target: '_blank'
+      / Textarea
+      .control-group
+        %label.control-label Description
+        .controls
+          %textarea#description{:name => "language[description]"}
+    .modal-footer
+      .control-group
+        %button.btn{'data-dismiss' => 'modal', 'aria-hidden' => true} Close
+        %button.btn.btn-primary{'data-dismiss' => 'modal', 'aria-hidden' => true} Save Changes

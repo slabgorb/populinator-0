@@ -1,39 +1,37 @@
 =form_for @settlement do |f|
-  %legend Settlement #{@settlement.try(:name)}
-  %fieldset
-    / Text input
-    .control-group
-      %label.control-label Name
-      .controls
-        %input#settlement-name.input-xlarge{:name => "settlement[name]", :placeholder => "leave blank for random", :required => "", :type => "text"}/
-    .control-group
-      %label.control-label Language
-      .controls
-        %select#language_id{name: 'language'}
-          %op
-          - Language.all.each do |language|
-            %option{value: language.id}= language.name
-
-    / Text input
-    .control-group
-      %label.control-label Population
-      .controls
-        %input#settlement-population.input-xlarge{:name => "population", :placeholder => "choose size", :required => "", :type => "text"}/
-    / Select Basic
-    .control-group
-      %label.control-label Size
-      .controls
-        %select#size.input-xlarge{:name => "size"}
-          %option Hamlet
-          %option Village
-          %option Town
-          %option City
-    .control-group
-      %label.control-label Description
-      .controls
-        %textarea#settlement-description{:name => "settlement[description]"}
-    / Button
-    .control-group
-      %label.control-label
-      .controls
-        %button#submit.btn.btn-success{:name => "submit"} Submit
+  .modal-header
+    %h3 Settlement #{@settlement.try(:name)}
+  .modal-body
+    .container-fluid
+      / Text input
+      .row-fluid
+        .control-group
+          %label.control-label Name
+          .controls
+            %input#settlement-name.input-xlarge{:name => "settlement[name]", :placeholder => "leave blank for random", :required => "", :type => "text"}/
+        .control-group
+          %label.control-label Language
+          .controls
+            %select#language_id{name: 'language'}
+              %op
+              - Language.all.each do |language|
+                %option{value: language.id}= language.name
+      .row-fluid
+        .control-group
+          %label.control-label Population
+          .controls
+            %input#settlement-population.input-xlarge{:name => "population", :placeholder => "choose size", :required => "", :type => "text"}/
+        .control-group
+          %label.control-label Description
+          .controls
+            %textarea#settlement-description{:name => "settlement[description]"}
+      / Button
+    .modal-footer
+      .control-group
+        %label.control-label
+        .controls
+          %button#submit.btn.btn-success{:name => "submit"}
+            - if action_name == 'edit'
+              Edit
+            - else
+              Create
