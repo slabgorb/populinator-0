@@ -6,26 +6,15 @@
       .control-group
         %label.control-label Name
         .controls
-          %input#name.input-xlarge{:name => "name", :placeholder => "leave blank to guess", :required => "", :type => "text"}/
-      / Multiple Radios (inline)
+          %input#name.input-xlarge{:name => "corpus[name]", value: @corpus.name, :required => "", :type => "text"}
       .control-group
         %label.control-label Randomness
         .controls
-          %label.radio.inline
-            %input{:name => "lookback", :type => "radio", :value => "5"}/
-            Least
-          %label.radio.inline
-            %input{:name => "lookback", :type => "radio", :value => "4"}/
-            Less
-          %label.radio.inline
-            %input{:name => "lookback", :type => "radio", :value => "3"}/
-            Loose
-          %label.radio.inline
-            %input{:name => "lookback", :type => "radio", :value => "2", :checked => "checked"}/
-            Normal
-          %label.radio.inline
-            %input{:name => "lookback", :type => "radio", :value => "1"}/
-            Tight
+          - %w|Tight Normal Loose Less Least|.each_with_index do |label, i|
+            %label.radio.inline
+              = label
+            %input{:name => "corpus[lookback]", checked: @corpus.lookback == i ? 'checked' : '', :type => "radio", :value => i + 1}
+
         %p.help-block
           amount of letters to look back in the corpus as the histogram is created
 
@@ -34,13 +23,13 @@
         .controls
           .input-prepend
             %span.add-on http://
-            %input#url{:name => "url", :placeholder => "www.gutenberg.org/", :required => "", :type => "text"}/
+            %input#url{:name => "corpus[url]", value: @corpus.url, :placeholder => "www.gutenberg.org/", :required => "", :type => "text"}/
           %p.help-block URL of a body of text to use for the corpus
       .control-group
         %label.control-label Description
         .controls
-          %textarea#description{:name => "description"} 0kb Foo Language
+          %textarea#description{:name => "corpus[description]"} 0kb Foo Language
     .modal-footer
       .control-group
-        %button.btn{'data-dismiss' => 'modal', 'aria-hidden' => true} Close
-        %button.btn.btn-primary{'data-dismiss' => 'modal', 'aria-hidden' => true} Save Changes
+        %button.btn Cancel
+        %button.btn.btn-primary Save Changes

@@ -40,13 +40,14 @@ class CorporaController < ApplicationController
   # POST /corpora
   # POST /corpora.json
   def create
-    @corpus = Corpus.new(name: params[:name],
-                         url: 'http://' + params[:url],
-                         description: params[:description],
-                         lookback: params[:lookback])
+
+    @corpus = Corpus.new(params[:corpus])
+
+    saved = @corpus.save
+    @corpus.compile_histogram if saved
 
     respond_to do |format|
-      if @corpus.save
+      if saved
         format.html { redirect_to @corpus, notice: 'Corpus was successfully created.' }
         format.json { render json: @corpus, status: :created, location: @corpus }
       else
@@ -60,9 +61,12 @@ class CorporaController < ApplicationController
   # PUT /corpora/1.json
   def update
     @corpus = Corpus.find(params[:id])
+    saved = @corpus.update_attributes(params[:corpus])
+
+    @corpus.compile_histogram if saved
 
     respond_to do |format|
-      if @corpus.update_attributes(params[:corpus])
+      if saved
         format.html { redirect_to @corpus, notice: 'Corpus was successfully updated.' }
         format.json { head :ok }
       else
