@@ -1,8 +1,10 @@
 - content_for :title do
   A tool for making imaginary townsfolk with imaginary names.
+- content_for :watermark do
+  .watermark.bull-rampant
 
 #homepage
-  .watermark.bull-rampant
+  .row-fluid.span8.push-right
     .container-fluid.span4
       = render partial: '/settlements/settlement', collection: @settlements
     .container-fluid.span4
