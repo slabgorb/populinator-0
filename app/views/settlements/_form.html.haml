@@ -1,16 +1,25 @@
-=form_for :settlement do |f|
+=form_for @settlement do |f|
   .modal-header
+    - url = image_path("heraldry/#{@settlement.icon}.png")
+    #icon-preview.span2{ style: "background-color: #{@settlement.try(:color)}; background-image: url(#{url});"}
     %h3 Settlement #{@settlement.try(:name)}
   .modal-body
     .container-fluid
-      / Text input
       .row-fluid
         .control-group
           %label.control-label Name
           .controls
             %input#settlement-name.input-large{:value => @settlement.try(:name), :name => "settlement[name]", :required => "", :type => "text"}/
-            %button#random-name.btn.btn-mini Random
+            %i.icon-random#random-name.icon2x
+        %ul.control-group.row-fluid
 
+          %li.controls.pull-left.span2
+            .input-append.color{'data-color-format'=> 'hex'}
+              %input#settlement-color.input-small{:value => @settlement.try(:color), :name => "settlement[color]", :type => "text"}/
+          %li.controls.pull-left.span2
+            %input#settlement-icon.input-medium{'data-provide' => 'typeahead', :value => @settlement.try(:icon), :name => "settlement[icon]", :type => "text"}/
+            %i.icon-random#random-icon.icon2x
+          %li
         .control-group
           %label.control-label Language
           .controls
@@ -22,7 +31,10 @@
         .control-group
           %label.control-label Population
           .controls
-            %input#settlement-population.input-xlarge{:value => @settlement.try(:population), :name => "population", :placeholder => "choose size", :required => "", :type => "text"}/
+            - if
+              %input#settlement-population.input-small{:disabled => (@settlement.try(:population).to_i > 0) ? 'disabled' : '', :value => @settlement.try(:population), :name => "settlement[population]", :placeholder => "choose size", :required => "", :type => "text"}/
+
+
         .control-group
           %label.control-label Description
           .controls
@@ -33,7 +45,7 @@
       .control-group
         %label.control-label
         .controls
-          %button#submit.btn.btn-success{:name => "submit"}
+          %button#submit.btn.btn-success{:type => 'submit', :name => "submit"}
             - if action_name == 'edit'
               Edit
             - else
