@@ -11,7 +11,7 @@
           .controls
             %input#settlement-name.input-large{:value => @settlement.try(:name), :name => "settlement[name]", :required => "", :type => "text"}/
             %i.icon-random#random-name.icon2x
-        %ul.control-group.row-fluid
+        %ul.control-group.row-fluid.unstyled
 
           %li.controls.pull-left.span2
             .input-append.color{'data-color-format'=> 'hex'}
