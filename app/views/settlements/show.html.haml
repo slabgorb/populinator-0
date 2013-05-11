@@ -2,17 +2,18 @@
   = @settlement.name
   Settlement
 
-- content_for :watermark do
-  .grenade
+%ul.nav.nav-pills.span2
+  %li
+    %a{ href: edit_settlement_path(@settlement)}
+      %i.icon-edit
 
-%ul.subnav
-  %li= link_to 'Edit', edit_settlement_path(@settlement), :class => 'button'
-  %li= link_to 'Back', settlements_path
-  %li= link_to 'Seed', seed_path(@settlement), :method => :put
+  %li
+    %a{ href: seed_path(@settlement), :method => :put, 'data-toggle' =>"tooltip", title: 'Seed the settlement with family groups' }
+      %i.icon-magic
 
 #settlement
   %h3= @settlement.name
-  %ul.nav-pills.nav.span6
+  %ul.nav-pills.nav.span4.well
     %li
       %a{:href => '#summary', 'data-toggle' => "tab"} Summary
     %li
