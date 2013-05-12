@@ -5,31 +5,33 @@ class Person < Being
   @@old_age = 80
   @@infertilty = 50
 
-  scope :neighbors, ->(person) { where(settlement: person.settlement) }
+  scope :from, ->(settlement) { where(settlement_id: settlement.id) }
+  scope :neighbors, ->(person) { where(settlement_id: person.settlement_id) }
   scope :other_gender, ->(sex) { where(:gender.ne => sex)}
   scope :family_members, ->(name) {  where(surname: name) }
   field :surname, type: String
   field :given_name, type: String
+
 
   before_update lambda{ name = [given_name, surname].join(' ') }
 
   def self.names
     @@names
   end
-  
+
   def family_name
-    surname || name.try(:split).try(:last) || id 
+    surname || name.try(:split).try(:last) || id
   end
 
   def self.genders
     ['male', 'female']
   end
-  
-  def self.marriage_strategy (m,f) 
-    (m.age / 2 + 7) < f.age and 
-      (f.age / 2 + 7) < m.age and 
-      not m.married? and 
-      not f.married? and 
+
+  def self.marriage_strategy (m,f)
+    (m.age / 2 + 7) < f.age and
+      (f.age / 2 + 7) < m.age and
+      not m.married? and
+      not f.married? and
       not f.gender == m.gender and
       # not f.sibling_of? m and
       # not f.aunt_or_uncle_of? m and
@@ -39,20 +41,20 @@ class Person < Being
       m.age > @@coming_of_age
   end
 
-  def name 
+  def name
     [self.given_name, self.surname].join(' ')
   end
-  
+
   ##
   # Overrides the Being#reproduce method.
   #
-  def reproduce(other = nil, child_name = nil, child_gender = nil) 
+  def reproduce(other = nil, child_name = nil, child_gender = nil)
     child = super
     sex = random_gender
     child.update_attributes({  gender:sex, given_name:@@names[sex].shuffle.first })
     child
   end
-  
+
   ##
   # Change the name.
   #
@@ -60,7 +62,7 @@ class Person < Being
     name = self.class.random_name(gender)
     update_attributes({ surname:name.last, given_name:name.first })
   end
-  
+
   ##
   # Return a random name based on the gender of the being- names are
   # loaded from a file.
