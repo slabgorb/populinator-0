@@ -60,3 +60,53 @@
     margin-left: 460px;
   }
 }
+
+.nav .icon {
+  float: left;
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  margin: {
+    right: 50px;
+  }
+  a { color: black; }
+  object {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+
+#homepage {
+  background: {
+    color: #F2E6D6;
+  }
+  .heading {
+    padding: 1rem;
+    font-size: 3rem;
+    color:white;
+    background-color: black;
+
+  }
+  p {
+    font-size: 1.3rem;
+    margin: 30px;
+  }
+  #explain { float: left; }
+  #tower-hero {
+    background: {
+      image: image-path('/assets/hero/tower.png');
+    }
+    width: 432px;
+    height: 670px;
+    float: left;
+  }
+  #quill-hero {
+    background: {
+      image: image-path('/assets/hero/quill.png');
+    }
+    width: 418px;
+    height: 681x;
+    float: left;
+  }
+}

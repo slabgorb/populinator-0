@@ -21,42 +21,15 @@
     .navbar.navbar-fluid-top
       .navbar-inner
         .container-fluid
-          %form.navbar-search.pull-right
-            %i.icon-search
-            %input{type: 'text', name: 'search', placeholder: 'search'}
-
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand(href="/") The Populinator
           .container.nav-collapse
+            %a.brand{href:'/'} Populinator
             %ul.nav
-              %li= link_to "Settlements", settlements_path
-              %li= link_to "Languages", languages_path
+              %li= flat_button 'tower', '/settlements', '#FFFFFF', 'settlements'
+              %li= flat_button 'quill', '/languages', '#FFFFFF', 'languages'
 
     .watermark= yield :watermark
     = bootstrap_flash
-    .container-fluid
-      %ul.nav-list.nav.span2.well
-        %li.nav-header Settlements
-        %li
-          %a{href: new_settlement_path, role: 'button'} new settlement
-        %li
-          %a{href: settlements_path, role: 'button'} list settlements
-        %li.nav-header Languages
-        %li
-          %a{href: new_language_path, role: 'button' } new language
-        %li
-          %a{href: languages_path, role: 'button' } list languages
-        %li
-          %a{href: new_corpus_path, role: 'button'} new corpus
-        %li
-          %a{href: corpora_path, role: 'button'} list corpora
-        %li
-          = link_to image_tag('cc_by.png', width: '80px'), 'http://creativecommons.org/licenses/by/3.0/us/'
-          = link_to image_tag('badges/mongo.png'), 'http://www.mongodb.org'
-      = yield
+    = yield
 
 = javascript_include_tag "application"
 
