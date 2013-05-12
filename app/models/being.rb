@@ -26,12 +26,14 @@ class Being
   scope :living, -> { where(alive: true) }
   scope :adults, -> { where(:age.gte => @@coming_of_age) }
   scope :children, ->{ where(:age.lt => @@coming_of_age )}
-
+  scope :married, -> { where(:spouse_ids.ne => [])}
+  scope :unmarried, -> { where(:spouse_ids => [])}
   scope :males, -> { where(gender: 'male')}
   scope :females, -> {  where(gender: 'female')}
+  scope :orphans, -> {  where(:parent_ids => [])}
 
   def to_s
-    "#{name}, aged #{age}"
+    "#{name}, #{gender}, aged #{age}"
   end
 
 
