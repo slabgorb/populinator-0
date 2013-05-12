@@ -9,7 +9,5 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap-colorpicker
-//= require highcharts
-//= require highcharts-more
 //= require_tree ../../../vendor/assets/javascripts
 //= require_tree .
