@@ -7,7 +7,7 @@ FactoryGirl.define do
       Array(1..100).map { FactoryGirl.create(:person,
                                      surname:%w|Green Red Blue|.shuffle.first,
                                      given_name:%w|Pat Bobby Shawn|.shuffle.first,
-                                     gender:['male','female'].shuffle.first) } << FactoryGirl.create(:ruler)
+                                     gender:['male','female'].shuffle.first) }
     }
   end
 end
