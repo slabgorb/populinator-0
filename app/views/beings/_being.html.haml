@@ -1,12 +1,13 @@
 - nolink ||= false
-.thumbnail
-  = link_to_unless nolink, [(being.class == Ruler ? being.title : ''), being.name].join(' '), { controller: 'beings', action: 'show', id: being }
-  - if being.respond_to?(:married?)  && being.married?
-    = being.spouse.to_s
-  - if being.parent?
-    children:
-    %ul.unstyled
-      - being.children.each do |child|
-        %li= child.to_s
+- if being.respond_to?(:married?)  && being.married?
+  - t = "#{being.name} (#{being.gender[0]}, #{being.age}) + #{being.spouse.name} (#{being.spouse.gender[0]}, #{being.spouse.age})"
+- else
+  - t = "#{being.name} (#{being.gender[0]}, #{being.age})"
+= link_to_unless nolink, t, being_path(being)
+- if being.parent?
+  %ul.unstyled
+    - being.children.each do |child|
+      %li
+        = render partial: 'beings/being', locals: { being: child }
 
 

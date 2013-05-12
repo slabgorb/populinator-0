@@ -1,57 +1,32 @@
 - content_for :title do
   = @settlement.name
   Settlement
-
-%ul.nav.nav-pills.span2
-  %li
-    %a{ href: edit_settlement_path(@settlement)}
-      %i.icon-edit
-
-  %li
-    %a{ href: seed_path(@settlement), :method => :put, 'data-toggle' =>"tooltip", title: 'Seed the settlement with family groups' }
-      %i.icon-magic
-
-#settlement
-  %h3= @settlement.name
-  %ul.nav-pills.nav.span4.well
-    %li
-      %a{:href => '#summary', 'data-toggle' => "tab"} Summary
-    %li
-      %a{:href => '#rulers', 'data-toggle' => "tab"} Rulers
-    %li
-      %a{:href => '#population', 'data-toggle' => "tab"} Population
-    %li
-      %a{:href => '#map', 'data-toggle' => "tab"} Map
-  .tab-content.span6
-    #summary.tab-pane.fade
-      %h4
-        Population:
-        = @settlement.population
-      %h4
-        History:
-      %ul.history
-        - @settlement.history.each do |h|
-          %li= h.to_s
-      %h4
-        Families:
-        = @settlement.family_names.length
-      %ul.family-names
-        - @settlement.family_names.sort.each do |f|
-          %li= f
-
-    #rulers.tab-pane.fade
-      %ul.unstyled
-        %li= "Ruler: #{@settlement.ruler}"
-      .clear
-    #population.tab-pane
-      %ul.unstyled.thumbnails
-        = render :partial => 'families', :collection => @settlement.families.map{|k,v| [k,  v.all]}
-    #tab-map.tab-pane
-      %svg{xmlns: "http://www.w3.org/2000/svg", version: "1.1"}
-        - @settlement.family_names.each do |name|
-          - x = rand * 350 + 50
-          - y = rand * 350 + 50
-          %text{x: x, y: y + 40} #{name}
-          %image{x: x, y: y, width: 25, height: 29, 'xlink:href'=>"/assets/icons/house.png"}
+- icon = image_path("heraldry/90/#{@settlement.icon}.png")
+#settlement.container-fluid
+  .page-header
+    %h1
+      = @settlement.name
+      %small= "population #{@settlement.population}"
+    .heraldry.right.img-circle{style: "margin-top: -30px; width: 90px; height: 90px; background-color: #{@settlement.color}"}
+      %img{src: icon}/
+  .span3.right
+  .span2
+    %p= @settlement.description
+  %ul.unstyled.thumbnails
+    - @settlement.families.each do |family|
+      %li.thumbnail.span12
+        %h5=family.first
+        - selector = Person.from(@settlement).family_members(family.first)
+        - selector.males.married.all.each do |member|
+          .tree
+            %ul.unstyled
+              %li= render partial:'/beings/being', locals:{ :being => member }
+        - selector.males.unmarried.orphans.each do |member|
+          .tree
+            %ul.unstyled
+              %li= render partial:'/beings/being', locals:{ :being => member }
 
 
+
+
+  `

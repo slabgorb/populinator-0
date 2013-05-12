@@ -9,9 +9,11 @@
     %p Ever find your intrepid band of players wandering out of your little sandbox? Tired of completely railroading them?
     %p Now you can whip up a new town!
     %p The townspeople are generated using a simple genetic simulation, using exchange of hex codes in lieu of genes. So children resemble their parents!
-    %p.control-group
-      %button.btn.btn-success Instant Town
-      %button.btn.btn-primary New Town
+    %ul.row-fluid.unstyled
+      %li.left{role: 'button'}= flat_button 'elephant-and-castle', random_settlement_path, color: '#DCCEAC', label: 'quick'
+      %li.left{role: 'button'}= flat_button 'tower', new_settlement_path, color: '#DCCEAC', label: 'new'
+      %li.left{role: 'button'}= flat_button 'tower-triple', advanced_settlement_path, color: '#DCCEAC', label: 'advanced'
+
 
   .hero-unit
     %h1
@@ -23,5 +25,5 @@
     %p Grab one or two more, in different languages.
     %p Mix them together and create a new glossary based on the languages.
     %p
-      %button.btn.btn-primary New Language
+      %a.btn.btn-primary New Language
 

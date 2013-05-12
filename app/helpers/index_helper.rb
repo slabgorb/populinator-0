@@ -1,8 +1,13 @@
 module IndexHelper
-  def flat_button(img, link, color='#FF0000', label='')
+  def flat_button(img, link, options = { })
+    background_color = options[:color] || '#FFFFFF'
+    label = options[:label] || ''
+    size = options[:size] || 60
     %Q|
-       <div class='icon' rel='#{link}' style='background-color:#{color};'>
-          <a  href='#{link}'>#{label}</a>
-          <a  href='#{link}'><img src='/assets/icons/#{img}.png'/></a></div>|.html_safe
+        <div class='flat-button' rel='#{link}' style='background-color:#{background_color};'>
+          <a  href='#{link}'><div class='flat-button-label'>#{label}<div></a>
+          <a  href='#{link}'><img src='/assets/heraldry/#{size}/#{img}.png'/></a>
+        </div>
+      |.html_safe
   end
 end

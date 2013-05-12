@@ -24,8 +24,8 @@
           .container.nav-collapse
             %a.brand{href:'/'} Populinator
             %ul.nav
-              %li= flat_button 'tower', '/settlements', '#FFFFFF', 'settlements'
-              %li= flat_button 'quill', '/languages', '#FFFFFF', 'languages'
+              %li= flat_button 'tower', '/settlements', background_color: '#FFFFFF', label: 'settlements'
+              %li= flat_button 'quill', '/languages', background_color: '#FFFFFF', label: 'languages'
 
     .watermark= yield :watermark
     = bootstrap_flash
