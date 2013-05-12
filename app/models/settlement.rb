@@ -8,11 +8,12 @@ class Settlement
   field :icon, type: String
   field :color, type: String
   field :description, type: String
+  field :initial_population, type: Integer
   has_many :residents, class_name: 'Being', dependent: :destroy
   has_many :events
   embeds_many :buildings
   accepts_nested_attributes_for :rulers
-
+  after_create [:populate, :seed!]
 
   def population
     residents.living.count
@@ -39,7 +40,7 @@ class Settlement
       history: history }
   end
 
-  def populate(pop)
+  def populate(pop = initial_population)
     pop.to_i.times do
       p = Person.create.randomize!
       p.settlement = self
@@ -63,6 +64,22 @@ class Settlement
     bottom = rand > 0.7 ? @@names['suffix'].shuffle.first : ''
     top += rand > 0.8 ? @@names['divider'].shuffle.first : ''
     [top, meat, bottom].join.titlecase
+  end
+
+  def self.random_icon
+    list = Dir.glob(File.join(Rails.root, 'app', 'assets', 'images', 'heraldry', '60', '*.png'))
+    File.basename(list.shuffle.pop).gsub(/\.png/,'')
+  end
+
+  def self.random_color
+    "#%06x" % (rand * 0xffffff)
+  end
+
+  def self.random
+    Settlement.new(name: random_name,
+                   color: random_color,
+                   icon: random_icon,
+                   initial_population: rand(100) + 50)
   end
 
   #

@@ -185,15 +185,15 @@ class Being
       spouse.adopt(child, false)
     end
     if heredity
-      child.get_genetics!(child.parent, child.parent.spouse)
     end
     spouse.events << Event.new(name: 'Adoption', description: "adopted #{child.name}", age: spouse.age,  category: 'personal') if spouse
     events << Event.new(name: 'Adoption', description: "adopted #{child.name}", age: age,  category: 'personal')
-    child.be_adopted
+    child.be_adopted(self, spouse)
   end
 
-  def be_adopted(parental_units)
+  def be_adopted(*parental_units)
     parental_units.each{ |p| parents << p }
+    child.get_genetics!(*parental_units)
     events <<  Event.new(name: 'Adoption', description: "#{child.name} was adopted by #{parental_units.map(&:to_s).to_sentence}", age: child.age)
     update_attribute(:surname, parental_units.first.surname) if respond_to? :surname
     self
@@ -319,7 +319,6 @@ class Being
   end
 
   def die!
-    raise DeathException.new("Already dead!") if dead?
     events << Event.new(name: 'Death', description: "#{name} died.", category: 'Personal', age: self.age)
     update_attribute(:alive, false)
     self

@@ -31,7 +31,6 @@ describe Being do
 
     it 'cannot die twice' do
       @adam.die!
-      lambda { @adam.die! }.should raise_error(DeathException)
       @adam.resurrect!
     end
   end
