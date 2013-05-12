@@ -10,6 +10,8 @@ Population::Application.routes.draw do
   resources :corpora
 
   # settlements
+  get '/settlement/random' => 'settlements#create', random: true, as: :random_settlement
+  get '/settlement/advanced' => 'settlements#new', advanced: true, as: :advanced_settlement
   put '/settlement/seed/:id' => 'settlements#seed', as: :seed
   get '/random/name/settlement/(:language)' => 'settlements#random_name'
   get '/random/name/given/(:language)' => 'beings#random_name'

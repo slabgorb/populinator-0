@@ -41,9 +41,11 @@ class SettlementsController < ApplicationController
   # POST /settlements
   # POST /settlements.json
   def create
-    @settlement = Settlement.new(params[:settlement])
-    @settlement.save
-    @settlement.populate params[:settlement][:population]
+    if params[:random]
+      @settlement = Settlement.random
+    else
+      @settlement = Settlement.new(params[:settlement])
+    end
     respond_to do |format|
       if @settlement.save
         format.html { redirect_to @settlement, notice: 'Settlement was successfully created.' }
