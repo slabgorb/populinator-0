@@ -1,6 +1,6 @@
 module IndexHelper
   def flat_button(img, link, options = { })
-    background_color = options[:color] || '#FFFFFF'
+    background_color = options[:color] || 'rgba(255,255,255,0)'
     label = options[:label] || ''
     size = options[:size] || 60
     %Q|

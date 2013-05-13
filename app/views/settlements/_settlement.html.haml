@@ -1,8 +1,11 @@
 - icon = image_path("heraldry/60/#{settlement.icon}.png")
 %li.media.well.span3
-  %img.img-circle.media-object.pull-left{src: icon, style: "width:60px; height: 60px; background-color: #{settlement.color};"}
+  %a{href: settlement_path(settlement)}
+    %img.img-circle.media-object.pull-left{src: icon, style: "width:60px; height: 60px; background-color: #{settlement.color};"}
   .media-body
-    %h4.media-heading= settlement.name
+    %h4.media-heading
+      %a{ href: settlement_path(settlement)}
+        = settlement.name
     %dl
       %dt population
       %dd= settlement.population

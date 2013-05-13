@@ -10,19 +10,19 @@
     %p Now you can whip up a new town!
     %p The townspeople are generated using a simple genetic simulation, using exchange of hex codes in lieu of genes. So children resemble their parents!
     %ul.row-fluid.unstyled
-      %li.left{role: 'button'}= flat_button 'elephant-and-castle', random_settlement_path, color: '#DCCEAC', label: 'quick'
-      %li.left{role: 'button'}= flat_button 'tower', new_settlement_path, color: '#DCCEAC', label: 'new'
-      %li.left{role: 'button'}= flat_button 'tower-triple', advanced_settlement_path, color: '#DCCEAC', label: 'advanced'
+      %li.left{role: 'button'}= flat_button 'elephant-and-castle', random_settlement_path, label: 'quick'
+      %li.left{role: 'button'}= flat_button 'tower', new_settlement_path,  label: 'new'
+      %li.left{role: 'button'}= flat_button 'tower-triple', advanced_settlement_path,  label: 'advanced'
 
 
   .hero-unit
     %h1
       languages
-      %small instant language
+      %small made up words for your maps
     %img.right{:src => image_path('hero/quill.png')}
     %p Want a new language to name your towns, and make nice consistent-sounding names.
     %p Point the language generator at a nice body of text in a foreign (to you) language, and it will suck it down, and determine letter combination probabilities.
     %p Grab one or two more, in different languages.
     %p Mix them together and create a new glossary based on the languages.
     %ul.row-fluid.unstyled
-      %li.left{role: 'button'}= flat_button 'quill', new_language_path, color: '#DCCEAC', label: 'new'
+      %li.left{role: 'button'}= flat_button 'quill', new_language_path, label: 'new'
