@@ -10,21 +10,21 @@
 // Grays
 // -------------------------
 $black:                 #000 !default;
-$grayDarker:            #222 !default;
-$grayDark:              #333 !default;
-$gray:                  #555 !default;
-$grayLight:             #999 !default;
-$grayLighter:           #eee !default;
-$white:                 #fff !default;
+$grayDarker:            #1A1918 !default;
+$grayDark:              #3F352D !default;
+$gray:                  #574C43 !default;
+$grayLight:             #988C81 !default;
+$grayLighter:           #EEDCCC !default;
+$white:                 #FFF !default;
 
 
 // Accent colors
 // -------------------------
-$blue:                  #049cdb !default;
-$blueDark:              #0064cd !default;
+$blue:                  #406473 !default;
+$blueDark:              #2A454F !default;
 $green:                 #46a546 !default;
-$red:                   #9d261d !default;
-$yellow:                #ffc40d !default;
+$red:                   #F2785F !default;
+$yellow:                #F1D96A !default;
 $orange:                #f89406 !default;
 $pink:                  #c3325f !default;
 $purple:                #7a43b6 !default;
@@ -44,8 +44,8 @@ $linkColorHover:        darken($linkColor, 15%) !default;
 
 // Typography
 // -------------------------
-$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
+$sansFontFamily:        Cambria, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$serifFontFamily:       Palatino, Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
 $baseFontSize:          14px !default;
@@ -180,8 +180,8 @@ $wellBackground:                  #f5f5f5 !default;
 $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
-$navbarHeight:                    40px !default;
-$navbarBackgroundHighlight:       #ffffff !default;
+$navbarHeight:                    20px !default;
+$navbarBackgroundHighlight:       $grayLighter !default;
 $navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
 $navbarBorder:                    darken($navbarBackground, 12%) !default;
 
@@ -224,8 +224,8 @@ $paginationActiveBackground:          #f5f5f5 !default;
 // Hero unit
 // -------------------------
 $heroUnitBackground:              $grayLighter !default;
-$heroUnitHeadingColor:            inherit !default;
-$heroUnitLeadColor:               inherit !default;
+$heroUnitHeadingColor:            $grayDark !default;
+$heroUnitLeadColor:               $grayLight !default;
 
 
 // Form states and alerts

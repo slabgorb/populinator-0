@@ -35,5 +35,6 @@
  *= require _hero-unit
  *= require _utilities
  *= require_tree ../../../vendor/assets/stylesheets
+ *= require_tree .
  */
 */
