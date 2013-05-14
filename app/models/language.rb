@@ -60,8 +60,8 @@ class Language
   end
 
   private
-   def generate_slug
-     name || id
-   end
+  def generate_slug
+    name || id
+  end
 
 end

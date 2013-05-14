@@ -13,7 +13,6 @@
               %label.checkbox
               %input{:name => "language[corpora][]", :type => "checkbox", :value => corpus.id, :title => "#{corpus.name}: #{corpus.description}"}/
               = link_to corpus.name, corpus.url, target: '_blank'
-    / Textarea
     .control-group
       %label.control-label Description
       .controls
