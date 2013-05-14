@@ -44,7 +44,8 @@ input,
 button,
 select,
 textarea {
-  @include font-shorthand($baseFontSize, normal, $baseLineHeight); // Set size, weight, line-height here
+
+  @include font-shorthand(1.4rem, normal, 1.4rem); // Set size, weight, line-height here
 }
 input,
 button,

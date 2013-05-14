@@ -12,10 +12,13 @@
 .btn {
   display: inline-block;
   @include ie7-inline-block();
-  padding: 4px 12px;
+  padding: 12px 12px;
+  margin: 24px;
   margin-bottom: 0; // For input.btn
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
+  text-transform: uppercase;
+
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
