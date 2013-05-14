@@ -7,16 +7,15 @@ class Corpus
   field :lookback, type: Integer
   belongs_to :language
 
-  @@start_token = '^'.bytes.first
-  @@end_token = '$'.bytes.first
+  @@start_token = :start
+  @@end_token = :end
   ##
-  # add the bytecode of a char to the histogram
+  # add a char to the histogram
   #
-  def add_char(byte)
-    @key ||= Array(1..lookback).map{ @@start_token }
-    @histo[@key.pack('c*')] += 1
-    @key.push(byte)
+  def add_char(char)
+    @key.push([char.to_sym])
     @key.shift
+    @histo[@key] += 1
   end
 
   ##
@@ -25,13 +24,21 @@ class Corpus
   #
   def compile_histogram
     @histo = Hash.new(0)
-    Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).split(/[^[:alpha:]]|\s/).map(&:strip).reject(&:blank?).each do |word|
+    @key = [@@start_token] * lookback
       add_char(@@start_token)
-      word.downcase.bytes.each { |char| add_char char }
+      word.downcase.split(//).each { |char| add_char char }
       add_char(@@end_token)
     end
-    update_attribute(:histogram, @histo.to_json)
+    histogram = @histo.to_json
+    p @histo
+    save
   end
+
+  def get_text(url, &block)
+    Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).split(/[^[:alpha:]]|\s/).map(&:strip).reject(&:blank?).each do |word|
+
+  end
+
 end
 
 module Markov

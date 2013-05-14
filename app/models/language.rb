@@ -39,16 +39,16 @@ class Language
   end
 
   def make_word
-    char = ''
-    key = ['^']
+    char = Markov::StartToken
+    key = []
     word = ''
-    while char != '$'
-      char =
-        word += char if char.is_a?(String)
+    @lookback.times { key.push Markov::StartToken.new }
+    while !char.is_a?(EndToken)
+      char = @chain.store(key)
+      word += char if char.is_a?(String)
     end
     word
   end
-
   def make_glossary
     gloss = { }
     File.open(dictionary_file, 'r') do |f|
