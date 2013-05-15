@@ -4,12 +4,18 @@ class Language
 
   field :name, type: String
   field :description, type: String
-  field :glossary, type: Hash
+  field :glossary_json, type: String
   field :dictionary_file, type: String, default: File.join(Rails.root, 'words', 'dict.txt')
   has_many :corpora
 
   def histogram
-    @histogram ||= corpora.map(&:histogram).inject(Hash.new(0)){ |m,k,v| m[k] += v }
+    h = { }
+    corpora.map(&:data).map{ |m| m.each_pair{ |k, v| h[k] = v }}
+    h
+  end
+
+  def glossary
+    JSON.parse glossary_json
   end
 
   ##
