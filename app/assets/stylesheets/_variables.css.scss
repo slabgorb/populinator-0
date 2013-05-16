@@ -84,15 +84,15 @@ $tableBorder:                       #ddd !default; // table and cell border
 
 // Buttons
 // -------------------------
-$btnBackground:                     $grayLighter !default;
-$btnBackgroundHighlight:            $grayLighter !default;
+$btnBackground:                     $white !default;
+$btnBackgroundHighlight:            $white !default;
 $btnBorder:                         $grayLighter !default;
 
-$btnPrimaryBackground:              $gray !default;
-$btnPrimaryBackgroundHighlight:     $gray !default;
+$btnPrimaryBackground:              $white !default;
+$btnPrimaryBackgroundHighlight:     $white !default;
 
-$btnInfoBackground:                 #5bc0de !default;
-$btnInfoBackgroundHighlight:        #2f96b4 !default;
+$btnInfoBackground:                 $white !default;
+$btnInfoBackgroundHighlight:        $white !default;
 
 $btnSuccessBackground:              #62c462 !default;
 $btnSuccessBackgroundHighlight:     #51a351 !default;
