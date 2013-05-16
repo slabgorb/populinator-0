@@ -31,8 +31,7 @@
         .control-group
           %label.control-label Population
           .controls
-            - if
-              %input#settlement-population.input-small{:disabled => (@settlement.try(:population).to_i > 0) ? 'disabled' : '', :value => @settlement.try(:population), :name => "settlement[population]", :placeholder => "choose size", :required => "", :type => "text"}/
+            %input#settlement-population.input-small{:value => @settlement.try(:population), :name => "settlement[population]", :placeholder => "choose size", :required => "", :type => "text"}/
 
 
         .control-group

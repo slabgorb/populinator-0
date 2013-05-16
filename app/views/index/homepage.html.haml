@@ -1,11 +1,10 @@
 - content_for :title do
   Populinator: A tool for making imaginary townsfolk with imaginary names.
 #homepage.container-fluid
-  .hero-unit
+  .hero-unit.span4
     %h1
       towns
       %small instant town
-    %img.right{:src => image_path('hero/tower.png')}
     %p Ever find your intrepid band of players wandering out of your little sandbox? Tired of completely railroading them?
     %p Now you can whip up a new town!
     %p The townspeople are generated using a simple genetic simulation, using exchange of hex codes in lieu of genes. So children resemble their parents!
@@ -15,12 +14,11 @@
       %li.left{role: 'button'}= flat_button 'tower-triple', advanced_settlement_path,  label: 'advanced'
 
 
-  .hero-unit
+  .hero-unit.span4
     %h1
       languages
-      %small made up words for your maps
-    %img.right{:src => image_path('hero/quill.png')}
-    %p Want a new language to name your towns, and make nice consistent-sounding names.
+      %small made up words
+    %p Want a new language to name your towns, and make nice consistent-sounding names?
     %p Point the language generator at a nice body of text in a foreign (to you) language, and it will suck it down, and determine letter combination probabilities.
     %p Grab one or two more, in different languages.
     %p Mix them together and create a new glossary based on the languages.
