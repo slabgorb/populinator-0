@@ -16,14 +16,16 @@ class Corpus
   #
   def compile_histogram
     text = Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).gsub(/[!@#\$%^&*\(\)-_=+{}\[\]|\\?\/.,0-9]/,' ').downcase
-    histo = Hash.new(0)
+    histo = Hash.new {|h,k| h[k] = []}
     key = [@@start_token] * lookback
     text.split(//).each do |char|
       key.push(char).shift
-      histo[key.join.to_sym] += 1
+      histo[key] ||= Hash.new(0)
+      histo[key][char] += 1
     end
     update_attribute(:histogram, histo.to_json)
   end
+
 
   def data
     JSON.parse(histogram)
@@ -32,7 +34,7 @@ class Corpus
   def +(histo)
     h = data
     histo.each_pair do |k,v|
-      h[k] += v
+      h[k.split(//)] += v
     end
     h
   end

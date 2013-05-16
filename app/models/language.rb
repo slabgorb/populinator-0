@@ -1,6 +1,5 @@
 class Language
   include Mongoid::Document
-  include Mongoid::Slugify
 
   field :name, type: String
   field :description, type: String
