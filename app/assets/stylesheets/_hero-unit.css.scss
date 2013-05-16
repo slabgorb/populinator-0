@@ -6,24 +6,30 @@
 
 
 .hero-unit {
-  padding: 60px;
-  margin-bottom: 30px;
+  padding: 10px;
+  margin: 10px;
   font-size: 18px;
-  font-weight: 200;
-  line-height: $baseLineHeight * 1.5;
+  font-weight: 100;
+  line-height: $baseLineHeight * 1.2;
   color: $heroUnitLeadColor;
   background-color: $heroUnitBackground;
   @include border-radius(6px);
   h1 {
     margin-bottom: 0;
     font-size: 60px;
-    line-height: 1;
+    line-height: .2ex;
     color: $heroUnitHeadingColor;
-    letter-spacing: 1px;
+    letter-spacing: -2px;
     small {
+      display: block;
+      text-transform: uppercase;
+      margin-top: 20px;
+      letter-spacing: 3px;
+      font-size: 1rem;
 
     }
   }
+
   li {
     line-height: $baseLineHeight * 1.5; // Reset since we specify in type.scss
   }

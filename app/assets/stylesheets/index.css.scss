@@ -4,6 +4,12 @@
 @import "variables";
 @import "mixins";
 
+#homepage {
+  background: {
+    image: url(image-path('hero/homepage-hero.jpg'));
+  }
+  min-height: 900px;
+}
 
 .flat-button {
   &:hover {
