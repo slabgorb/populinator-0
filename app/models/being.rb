@@ -38,7 +38,6 @@ class Being
     "#{name}, #{gender}, aged #{age}"
   end
 
-
   def age!(years = 1)
     Event.new(name: 'Age', description: "#{name} was magically made #{years > 0 ? ' older' : ' youthful'}.", effect: "{|b, y| b.age += y }", age: self.age + years).happened_to(self, years)
     save
@@ -195,7 +194,7 @@ class Being
     parental_units.each{ |p| parents << p }
     child.get_genetics!(*parental_units)
     events <<  Event.new(name: 'Adoption', description: "#{child.name} was adopted by #{parental_units.map(&:to_s).to_sentence}", age: child.age)
-    update_attribute(:surname, parental_units.first.surname) if respond_to? :surname
+    update_attribute(:surname, parental_units.first.surname)
     self
   end
 

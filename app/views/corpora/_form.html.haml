@@ -7,16 +7,6 @@
         %label.control-label Name
         .controls
           %input#name.input-xlarge{:name => "corpus[name]", value: @corpus.name, :required => "", :type => "text"}
-      .control-group
-        %label.control-label Randomness
-        .controls
-          - %w|Tight Normal Loose Less Least|.each_with_index do |label, i|
-            %label.radio.inline
-              = label
-            %input{:name => "corpus[lookback]", checked: @corpus.lookback == i ? 'checked' : '', :type => "radio", :value => i + 1}
-
-        %p.help-block
-          amount of letters to look back in the corpus as the histogram is created
 
       .control-group
         %label.control-label Corpus URL

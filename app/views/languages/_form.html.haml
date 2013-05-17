@@ -5,13 +5,25 @@
       .controls
         %input#language-name.input-xlarge{:name => "language[name]", :type => "text"}/
     .control-group
+      %label.control-label Randomness
+      .controls
+        - %w|Tight Normal Loose Less Least|.each_with_index do |label, i|
+          %ul.unstyled.clear
+            %li.left
+              %label.radio.inline
+                = label
+              %input{:name => "language[lookback]", checked: @language.lookback == i ? 'checked' : '', :type => "radio", :value => i + 1}
+
+      %p.help-block.clear
+        amount of letters to look back in the corpus as the histogram is created
+    .control-group
       %label.control-label Sources
       .controls
         %ul.unstyled.larger
           - Corpus.all.each do |corpus|
             %li
               %label.checkbox
-              %input{:name => "language[corpora][]", :type => "checkbox", :value => corpus.id, :title => "#{corpus.name}: #{corpus.description}"}/
+              %input{:name => "language[corpora][]", :type => "checkbox", :value => corpus.id, :title => "#{corpus.name}"}/
               = link_to corpus.name, corpus.url, target: '_blank'
     .control-group
       %label.control-label Description

@@ -1,7 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
 
 $ ->
   $nav_list = $('.well.sidebar-nav ul.nav.nav-list')
@@ -13,3 +9,8 @@ $ ->
 $ ->
   $('#language-submit').click ->
     $(this).closest('form').trigger 'submit'
+
+
+$ ->
+  $('.tip').tooltip(placement: 'bottom', )
+
