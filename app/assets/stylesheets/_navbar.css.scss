@@ -24,12 +24,7 @@
   min-height: $navbarHeight;
   padding-left:  20px;
   padding-right: 20px;
-  // @include gradient-vertical($navbarBackgroundHighlight, $navbarBackground);
   border: 1px solid $navbarBorder;
-  // @include border-radius($baseBorderRadius);
-  // @include box-shadow(0 1px 4px rgba(0,0,0,.065));
-
-  // Prevent floats from breaking the navbar
   @include clearfix();
 }
 
@@ -54,7 +49,7 @@
   // Vertically center the text given $navbarHeight
   padding: (($navbarHeight - $baseLineHeight) / 2) 20px (($navbarHeight - $baseLineHeight) / 2);
   margin-left: -20px; // negative indent to left-align the text down the page
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 200;
   color: $navbarBrandColor;
   text-shadow: 0 1px 0 $navbarBackgroundHighlight;
@@ -276,11 +271,11 @@
 .navbar .btn-navbar {
   display: none;
   float: right;
-  padding: 7px 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  @include buttonBackground(darken($navbarBackgroundHighlight, 5%), darken($navbarBackground, 5%));
-  @include box-shadow(inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075));
+  /* padding: 7px 10px; */
+  /* margin-left: 5px; */
+  /* margin-right: 5px; */
+  /* @include buttonBackground(darken($navbarBackgroundHighlight, 5%), darken($navbarBackground, 5%)); */
+  /* @include box-shadow(inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075)); */
 }
 .navbar .btn-navbar .icon-bar {
   display: block;
