@@ -19,11 +19,13 @@
         .container-fluid
           .container.nav-collapse
             %a.brand{href:'/'} Populinator
-            %ul.nav
-              %li= link_to 'town gallery', settlements_path
-              %li= link_to 'language gallery', languages_path
-              %li.divider
-              %li= link_to 'quick town', random_settlement_path
+            %ul.nav.main-nav
+              %li{title: 'Quick Town'}= flat_button 'elephant-and-castle', random_settlement_path, size: 30
+              %li{title: 'New Town'}= flat_button 'tower', new_settlement_path,   size: 30
+              %li{title: 'Towns'}= flat_button 'tower-triple', new_settlement_path,   size: 30
+              %li{title: 'New Language'}= flat_button 'quill', new_language_path,  size: 30
+              %li{title: 'Languages'}= flat_button 'popinjay', languages_path,  size: 30
+
 
     = bootstrap_flash
     = yield
