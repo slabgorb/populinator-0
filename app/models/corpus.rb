@@ -2,9 +2,6 @@ class Corpus < Hash
   include Mongoid::Document
   field :name, type: String
   field :url, type: String
-  field :description, type: String
-  field :histogram, type: String
-  field :lookback, type: Integer
   belongs_to :language
 
   @@start_token = '^'
@@ -13,7 +10,7 @@ class Corpus < Hash
   ##
   # Compiles the letter probability data structure.
   #
-  def compile_histogram
+  def histogram(lookback)
     histo = Hash.new
     key = [@@start_token] * lookback
     get_text.each do |char|
@@ -21,7 +18,7 @@ class Corpus < Hash
       histo[key.clone][char] += 1
       key.push(char).shift
     end
-    update_attribute(:histogram, histo.to_json)
+    histo
   end
 
   ##
@@ -30,19 +27,7 @@ class Corpus < Hash
   # TODO: make this work even if pointed to a large file
   #
   def get_text
-    Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).gsub(/[ !@#\$%^&*\(\)-_=+{}\[\]|\\?\/.,0-9]/,' ').downcase.gsub(/\s/, @@end_token).split(//)
-  end
-
-  ##
-  # Deserialize the json-format histogram
-  #
-  def data(force = false)
-    @data = nil if force
-    @data ||= JSON.parse(histogram)
-  end
-
-  def +(corpus)
-    data.deep_merge(corpus.data)
+    Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).gsub(/[[:[punct]:]:]/, '').downcase.gsub(/\s/, @@end_token).split(//)
   end
 
 end
