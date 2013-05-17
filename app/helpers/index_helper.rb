@@ -4,8 +4,7 @@ module IndexHelper
     label = options[:label] || ''
     size = options[:size] || 60
     %Q|
-        <div class='flat-button' rel='#{link}' style='background-color:#{background_color};'>
-          <a  href='#{link}'><div class='flat-button-label'>#{label}<div></a>
+        <div class='flat-button tip' rel='.tooltip' href='#{link}' title='#{label}' style='background-color:#{background_color};'>
           <a  href='#{link}'><img src='/assets/heraldry/#{size}/#{img}.png'/></a>
         </div>
       |.html_safe
