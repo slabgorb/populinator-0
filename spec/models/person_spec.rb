@@ -5,6 +5,7 @@ describe Person do
     @adam = FactoryGirl.create(:person, :name => 'Adam', surname: 'Man', :gender => 'male')
     @eve = FactoryGirl.create(:person, :name => 'Eve', surname: 'Man', :gender => 'female')
     @adam.marry @eve
+    @abel = @adam.reproduce @eve
   end
 
   it 'recognizes spouses' do
@@ -27,6 +28,8 @@ describe Person do
     @baby = FactoryGirl.create(:person, name: 'Baby', surname: 'Baby')
     @adam.adopt @baby
     @baby.surname.should eq('Man')
+    @abel.surname.should eq @eve.surname
+    @abel.surname.should eq @adam.surname
   end
 
   it 'should update the name when the surname is changed' do
