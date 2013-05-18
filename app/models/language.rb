@@ -14,8 +14,9 @@ class Language
   def histogram(force = false)
     @histogram = nil if force
     @histogram ||= corpora.inject({ }) do |m, c|
-      m.deep_merge! c.histogram
+      m.deep_merge!(c.histogram(lookback))
     end
+    @histogram
   end
 
   ##
@@ -32,12 +33,12 @@ class Language
     char = '^'
     key = ['^'] * lookback
     word = ''
-    while !char == '$'
+    while char.first != '$'
       char = choice(key)
-      word += char unless char == '$'
-      key.push(char).shift
+      word += char.first if char
+      key.push(char.first).shift if char
     end
-    word
+    word.gsub(/[^[:[alpha]:]]/, '')
   end
 
   ##
@@ -55,12 +56,13 @@ class Language
   # c.choice(25)
   # > 'd'
   #
-  def choice(key, selection = nil)
-    selection = rand(@histogram[key].map(&:length).sum) if selection == nil
+  def choice(key)
+    selection = rand(@histogram[key].map(&:length).sum)
+    position = 0
     @histogram[key].each_with_index do |index, count|
       return index if (position += count) > selection
     end
-    nil
+    @histogram[key].first
   end
 
   def make_glossary
