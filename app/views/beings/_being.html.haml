@@ -1,9 +1,10 @@
 - nolink ||= false
 - if being.respond_to?(:married?)  && being.married?
-  - t = "#{being.name} (#{being.gender[0]}, #{being.age}) + #{being.spouse.name} (#{being.spouse.gender[0]}, #{being.spouse.age})"
+  - t = { url_for(being) => "#{being.name} (#{being.gender[0]}, #{being.age})", url_for(being.spouse) => "#{being.spouse.name} (#{being.spouse.gender[0]}, #{being.spouse.age})"}
 - else
-  - t = "#{being.name} (#{being.gender[0]}, #{being.age})"
-= link_to_unless nolink, t, being_path(being)
+  - t = {url_for(being) => "#{being.name} (#{being.gender[0]}, #{being.age})"}
+- t.each_pair do |v,k|
+  = link_to_unless_current(k,v)
 - if being.parent?
   %ul.unstyled
     - being.children.each do |child|

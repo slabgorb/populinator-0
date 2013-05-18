@@ -1,5 +1,5 @@
 .clear
-= link_to_if(@being.alive?, 'Randomize Genes', '#', method: :put, id: 'randomize-link' )
-= render partial: 'genotype', locals: { being: @being } 
+= link_to_if(@being.alive?, 'Randomize Genes', random_genotype_path(being), method: :put, id: 'randomize-link' )
+= render partial: 'genotype', locals: { being: @being }
 
 
