@@ -235,6 +235,15 @@ textarea {
   margin-left: -20px;
 }
 
+.radio-group {
+
+    text-align: right;
+    margin: 5px;
+    label {
+      margin-right: 1em;
+    }
+}
+
 // Move the options list down to align with labels
 .controls > .radio:first-child,
 .controls > .checkbox:first-child {
