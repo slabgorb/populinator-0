@@ -1,13 +1,8 @@
-- cellsize = 65
-- margin = 3
-- offset = 20
-
 #genotype
   - being.genotype.collect{|c| c.to_s }.sort{|a,b| a.split.inject(0){|sum, i| i.to_i(16)} <=> b.split.inject(0){|sum, i| i.to_i(16)}}.reverse.each do |chromosome|
     .row-fluid
       - chromosome.split.sort.reverse.each do |gene|
-        .gene.span1{ style: "text-align: center; margin-bottom: 5px; background-color: ##{gene};"}
-          = gene
+        .gene.tip.span1{ title: gene, style: "background-color: ##{gene};"}
 
 
 
