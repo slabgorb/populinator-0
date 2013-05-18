@@ -4,18 +4,18 @@
       %label.control-label Name
       .controls
         %input#language-name.input-xlarge{:name => "language[name]", :type => "text"}/
-    .control-group
+    %fieldset.control-group.span3
       %label.control-label Randomness
       .controls
-        - %w|Tight Normal Loose Less Least|.each_with_index do |label, i|
-          %ul.unstyled.clear
-            %li.left
-              %label.radio.inline
+        %ul.unstyled.radio-group
+          - %w|Tight Normal Loose Less Least|.each_with_index do |label, i|
+            %li
+              %label.radio
                 = label
               %input{:name => "language[lookback]", checked: @language.lookback == i ? 'checked' : '', :type => "radio", :value => i + 1}
 
-      %p.help-block.clear
-        amount of letters to look back in the corpus as the histogram is created
+        %p.help-block.left
+          amount of letters to look back in the corpus as the histogram is created
     .control-group
       %label.control-label Sources
       .controls
