@@ -100,16 +100,6 @@ describe Being do
         @abel.sibling_of?(@cain).should be_true
       end
 
-      # it 'knows about uncles' do
-      #   @bob.niece_or_nephew_of?(@cain).should be_true
-      #   @cain.aunt_or_uncle_of?(@bob).should be_true
-      # end
-
-      # it 'knows about cousins' do
-      #   @alice.cousin_of?(@bob).should be_true
-      # end
-
-
     end
 
   end
