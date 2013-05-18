@@ -1,7 +1,7 @@
 - content_for(:title){ "#{@being.name} of #{@being.settlement.name}" } if @being.settlement
 %h1
   = @being.to_s
-  %small "from #{@being.settlement.name}, speaks #{@being.settlement.language }"
+  %small= "from #{@being.settlement.name}, speaks #{@being.settlement.languages.to_sentence }"
 
 %input{type: 'hidden', id:'being-alive', value:@being.alive?.to_s }
 %input{type: 'hidden', id:'being-name', value:@being.name }
@@ -15,8 +15,8 @@
     .accordion-group
       .accordion-heading
         %a.accordion-toggle{"data-parent" => "#being", "data-toggle" => "collapse", :href => "##{section}"}
-          %h5= section
-    %div.accordion-body.collapse.in{ id: section }
+          %h5= section.upcase
+    %div.accordion-body.collapse{ id: section }
       .accordion-inner
         = render partial: section, :locals => {being: @being}
 
