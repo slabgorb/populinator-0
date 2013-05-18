@@ -447,6 +447,7 @@ class Being
     child.get_genetics!(self, other)
     child.age = 0
     child.name = child_name || child.name
+    child.gender = self.class.random_gender
     child.birth!
 
     # TODO: come up with a scheme to handle this more better

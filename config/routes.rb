@@ -23,7 +23,7 @@ Population::Application.routes.draw do
   put '/beings/kill/:id' => 'beings#kill', as: :kill
   put '/beings/resurrect/:id' => 'beings#resurrect', as: :resurrect
   put '/beings/age/:id' => 'beings#age', as: :age
-  put '/beings/reproduce/:parent_a/:parent_b' => 'beings#reproduce', as: :reproduction
+  match '/beings/reproduce/:parent_a/:parent_b' => 'beings#reproduce', as: :reproduction
   get '/beings/genotype/:id' => 'beings#genotype'
   get '/beings/family/:id' => 'beings#family'
   get '/beings/description/:id' => 'beings#description'

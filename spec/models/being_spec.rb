@@ -55,6 +55,7 @@ describe Being do
     before :all do
       @eve = FactoryGirl.create(:being, :name => 'Eve', :gender => 'female')
       @cain = @adam.reproduce(@eve, 'Cain', 'male')
+      @abel = @adam.reproduce(@eve, 'Abel')
     end
 
     it 'knows about children' do
@@ -62,6 +63,11 @@ describe Being do
       b = Being.find(@adam.id).children
       b.first.should == @cain
     end
+
+    it 'should have a gender' do
+      @abel.gender.should_not be_nil
+    end
+
 
     it 'knows when it is a parent' do
       @adam.parent?.should be_true

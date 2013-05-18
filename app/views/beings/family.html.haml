@@ -12,8 +12,8 @@
     %h5 Spouse
     %ul.being-spouse
       %li= render partial:'being', locals:{ being:@being.spouse, nospouse: true, nokids: true }
-      %li= link_to_if(@being.alive?, 'Have Baby', {controller: 'beings', action: 'reproduce', parent_a: @being._id, parent_b: @being.spouse.try(:_id)}, method: :put)
-      
+      %li= link_to_if(@being.alive?, 'Have Baby', reproduction_path(@being._id, @being.spouse._id))
+
 
   - if @being.parents
     %h5 Parents
@@ -24,4 +24,4 @@
     %ul.being-siblings
       - @being.siblings.select{ |s| s != self and s.parent_id.present? }.each do |sib|
         %li= render partial:'being', locals:{ being: sib }
-         
+
