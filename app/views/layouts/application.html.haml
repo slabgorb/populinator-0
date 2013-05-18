@@ -14,30 +14,21 @@
     %link{href:"/assets/favicon.ico", rel:"shortcut icon"}
 
   %body
-    .navbar.navbar-fluid-top
-      .navbar-inner
-        .container-fluid
-          %a.brand{href:'/'} Populinator
-
-          %ul.btn-navbar{'data-toggle' => 'collapse', 'data-target' => '.nav-collapse'}
-            %li= flat_button 'catherine-wheel', '#'
-          %ul.nav.nav-collapse.collapse
-            %li.span1{rel: 'tooltip', title: 'Quick Town'}
-              = flat_button 'elephant-and-castle', random_settlement_path, size: 30
-              = link_to 'Quick Town', random_settlement_path
-            %li.span1{title: 'New Town'}
-              = flat_button 'tower', new_settlement_path,   size: 30
-              = link_to 'New Town', new_settlement_path
-            %li.span1{title: 'Towns'}
-              = flat_button 'tower-triple', settlements_path,   size: 30
-              = link_to 'Towns', settlements_path
-            %li.nav-divider
-            %li.span1{title: 'New Language'}
-              = flat_button 'quill', new_language_path,  size: 30
-              = link_to 'New Language', new_language_path
-            %li.span1{ title: 'Languages'}
-              = flat_button 'popinjay', languages_path,  size: 30
-              = link_to 'Languages', languages_path
+    .navbar-fluid-top
+      .navbar-inner.navbar
+        %a.brand{href:'/'} Populinator
+        %ul.nav.span5
+          %li.tip.span1{rel: 'tooltip', title: 'Quick Town'}
+            = flat_button 'elephant-and-castle', random_settlement_path, size: 30
+          %li.tip.span1{title: 'New Town'}
+            = flat_button 'tower', new_settlement_path,   size: 30
+          %li.tip.span1{title: 'Towns'}
+            = flat_button 'tower-triple', settlements_path,   size: 30
+        %ul.nav.span4
+          %li.tip.span1{title: 'New Language'}
+            = flat_button 'quill', new_language_path,  size: 30
+          %li.tip.span1{ title: 'Languages'}
+            = flat_button 'popinjay', languages_path,  size: 30
     = bootstrap_flash
     = yield
 = javascript_include_tag "application"
