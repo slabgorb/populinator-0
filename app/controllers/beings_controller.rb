@@ -1,5 +1,5 @@
 class BeingsController < ApplicationController
-  
+
   before_filter lambda { @being = Being.find_by_slug_or_id(params[:id]) if params.has_key? :id  }
 
   # get the genotype for this being
@@ -7,38 +7,38 @@ class BeingsController < ApplicationController
     @genotype = @being.genotype
     render layout: false
   end
-  
+
   # get the history for this being
   def history
     render layout: false
-  end  
+  end
   # get the family for this being
   def family
     render layout: false
-  end  
+  end
   # get the description for this being
   def description
     render layout: false
-  end  
+  end
 
   # kill this being
   def kill
     @being.die!
     render json: @being
   end
-  
+
   # age this being one year
   def age
     params[:years] ||= '1'
     @being.age!(params[:years].to_i)
     render json: @being
   end
-  
+
   # bring this being back to life
   def resurrect
     @being.resurrect!
     render json: @being
-  end  
+  end
 
 
   # one being reproduces with another, creating a child
@@ -48,14 +48,14 @@ class BeingsController < ApplicationController
     @child = @parent_a.reproduce_with @parent_b
     redirect_to :back
   end
-  
+
   def randomize_genetics
     @being.chromosomes.each { |c| c.randomize! }
     @being.events << Event.new(name: 'Divine Intervention', description: "#{@being.name} was touched by the gods themselves and has dramatically changed.")
     render json: @being
   end
 
-  
+
   # GET /beings
   # GET /beings.json
   def index
@@ -70,6 +70,7 @@ class BeingsController < ApplicationController
   # GET /beings/1
   # GET /beings/1.json
   def show
+    Chromosome.expressions
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @being }
@@ -109,14 +110,14 @@ class BeingsController < ApplicationController
 
   # PUT /beings/1
   # PUT /beings/1.json
-  def update 
+  def update
     if params.has_key? :person
       params[:being] = params[:person]
     end
     if params.has_key? :ruler
       params[:being] = params[:ruler]
     end
-    
+
     if params[:being].has_key? :name
       params[:being][:surname] = params[:being][:name].split.last
       params[:being][:given_name] = params[:being][:name].split.first

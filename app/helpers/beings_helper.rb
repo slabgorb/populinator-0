@@ -41,7 +41,7 @@ module BeingsHelper
   end
 
   def describe(being, &block)
-    being.description.each do |tuple|
+    being.description.sort{ |a,b| a.keys.first <=> b.keys.first }.each do |tuple|
       quality = tuple.values.first.first.to_s.humanize.downcase
       next if quality =~ /not notable/
       yield(quality,
@@ -52,7 +52,7 @@ module BeingsHelper
 
   def describe_table(being)
     capture_haml do
-      haml_tag :table do
+      haml_tag :table, { class:'table table-striped table-bordered table-condensed'} do
         haml_tag :thead do
           haml_tag :tr do
             haml_tag(:th){ haml_concat "Trait" }
