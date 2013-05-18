@@ -1,26 +1,24 @@
-- icon = image_path("heraldry/60/#{settlement.icon}.png")
+- icon = image_path("heraldry/180/#{settlement.icon}.png")
 %li.media.well.span12
   %a{href: settlement_path(settlement)}
-    %img.img-circle.media-object.pull-left{src: icon, style: "width:60px; height: 60px; background-color: #{settlement.color};"}
+    %img.img-circle.media-object.pull-left{src: icon, style: "width:180px; height: 180px; background-color: #{settlement.color};"}
   .media-body
-    %h4.media-heading
-      %a{ href: settlement_path(settlement)}
-        = settlement.name
-    %dl
-      %dt population
-      %dd= settlement.population
-      %dt ruler
-      %dd= settlement.ruler
+    %h1.media-heading
+      = settlement.name
+    .span2
+      %dl
+        %dt population
+        %dd= settlement.population
+        %dt ruler
+        %dd= link_to settlement.ruler, being_path(settlement.ruler)
     %ul.nav.nav-pills
       %li
-        %a{href:"/settlements/#{settlement.id}"}
-          %i.icon-eye-open
+        %a.btn{href:"/settlements/#{settlement.id}.markdown"}
+          export markdown
+
       %li
-        %a{href:"/settlements/#{settlement.id}.markdown"}
-          %i.icon-download
-      %li
-        %a{ confirm: 'Cannot undo!', href: settlement_path(settlement) , confirm:  'Are you sure?', method: :delete}
-          %i.icon-trash
+        %a.btn.btn-warning{ confirm: 'Cannot undo!', href: settlement_path(settlement) , confirm:  'Are you sure?', method: :delete}
+          delete
     - unless settlement.families.length
       %li.seed
         %a{ href: seed_path(settlement)}
