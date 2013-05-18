@@ -27,7 +27,7 @@ class Corpus < Hash
   # TODO: make this work even if pointed to a large file
   #
   def get_text
-    Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).gsub(/[[:[punct]:]:]/, '').downcase.gsub(/\s/, @@end_token).split(//)
+    Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).gsub(/[ \S[:[punct]:]:]/,  @@end_token).downcase.gsub(/\s/, @@end_token).split(//)
   end
 
 end
