@@ -97,7 +97,7 @@ $btnInfoBackgroundHighlight:        $white !default;
 $btnSuccessBackground:              #62c462 !default;
 $btnSuccessBackgroundHighlight:     #51a351 !default;
 
-$btnWarningBackground:              lighten($orange, 15%) !default;
+$btnWarningBackground:              $orange !default;
 $btnWarningBackgroundHighlight:     $orange !default;
 
 $btnDangerBackground:               #ee5f5b !default;
