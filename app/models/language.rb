@@ -7,6 +7,7 @@ class Language
   field :glossary_json, type: String
   field :dictionary_file, type: String, default: File.join(Rails.root, 'words', 'dict.txt')
   has_many :corpora
+  has_and_belongs_to_many :settlement
 
   ##
   # Combines the histograms of the related corpora

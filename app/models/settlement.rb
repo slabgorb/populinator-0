@@ -9,6 +9,7 @@ class Settlement
   field :color, type: String
   field :description, type: String
   field :initial_population, type: Integer
+  has_and_belongs_to_many :languages
   has_many :residents, class_name: 'Being', dependent: :destroy
   has_many :events
   embeds_many :buildings
