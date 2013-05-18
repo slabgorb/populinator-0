@@ -192,8 +192,8 @@ class Being
 
   def be_adopted(*parental_units)
     parental_units.each{ |p| parents << p }
-    child.get_genetics!(*parental_units)
-    events <<  Event.new(name: 'Adoption', description: "#{child.name} was adopted by #{parental_units.map(&:to_s).to_sentence}", age: child.age)
+    get_genetics!(*parental_units)
+    events <<  Event.new(name: 'Adoption', description: "#{name} was adopted by #{parental_units.map(&:to_s).to_sentence}", age: age)
     update_attribute(:surname, parental_units.first.surname)
     self
   end
