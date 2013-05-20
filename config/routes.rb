@@ -8,7 +8,6 @@ Population::Application.routes.draw do
   resources :languages
   resources :settlements
   resources :corpora
-  resources :rulers, path: 'beings'
 
   # settlements
   get '/settlement/random' => 'settlements#create', random: true, as: :random_settlement

@@ -1,3 +1,0 @@
-class RulersController < PeopleController
-
-end

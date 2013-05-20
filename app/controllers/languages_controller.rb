@@ -40,10 +40,11 @@ class LanguagesController < ApplicationController
   # POST /languages
   # POST /languages.json
   def create
-    params[:language][:corpora] = params[:language][:corpora].to_a.map{ |id| Corpus.find(id)}
+    params[:language][:corpora].map!{ |id| Corpus.find(id) }
     @language = Language.new(params[:language])
     respond_to do |format|
       if @language.save
+        params[:language][:corpora].each { |c| @language.corpora << c }
         format.html { redirect_to @language, notice: 'Language was successfully created.' }
         format.json { render json: @language, status: :created, location: @language }
       else
