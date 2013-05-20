@@ -2,6 +2,7 @@ class SettlementsController < ApplicationController
   # GET /settlements
   # GET /settlements.json
   def index
+    Chromosome.expressions
     @settlements = Settlement.all
 
     respond_to do |format|

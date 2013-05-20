@@ -17,7 +17,7 @@
           export markdown
 
       %li
-        %a.btn.btn-warning{ confirm: 'Cannot undo!', href: settlement_path(settlement) , confirm:  'Are you sure?', method: :delete}
+        %a.btn.btn-warning{ confirm: 'Cannot undo!', href: settlement_path(settlement), 'data-method'=> :delete}
           delete
     - unless settlement.families.length
       %li.seed
