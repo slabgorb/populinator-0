@@ -17,8 +17,8 @@ Population::Application.routes.draw do
   get '/random/name/given/(:language)' => 'beings#random_name'
   get '/icon-list' => 'index#icon_list'
 
-
-  get '/beings/graph' => 'beings#graph'
+  # beings
+  resources :beings
   put '/beings/kill/:id' => 'beings#kill', as: :kill
   put '/beings/resurrect/:id' => 'beings#resurrect', as: :resurrect
   put '/beings/age/:id' => 'beings#age', as: :age
@@ -28,13 +28,7 @@ Population::Application.routes.draw do
   get '/beings/family/:id' => 'beings#family'
   get '/beings/description/:id' => 'beings#description'
   get '/beings/history/:id' => 'beings#history'
-  get '/beings/name/random' => 'people#random_name'
-  get '/people/random-name' => 'people#random_name'
-  resources :people, :controller => 'beings',  _type:'Person'
-  # beings
-  resources :beings do
-    resources :things
-  end
+  get '/beings/name/random' => 'being#random_name'
 
   get 'histogram/corpus/load' => 'histogram#load_corpus'
   get 'languages/corpus/load' => 'histogram#load_corpus'
