@@ -7,4 +7,11 @@ FactoryGirl.define do
     sequence(:age){ |n|  Person.random_age }
     alive true
   end
+
+  factory :ruler do
+    title "King"
+    surname "Plantagenet"
+    given_name "Richard"
+  end
+
 end
