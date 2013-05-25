@@ -26,7 +26,6 @@ describe BeingsController do
     it "routes to #update" do
       put("/beings/1").should route_to("beings#update", :id => "1")
     end
-
     it "routes to #destroy" do
       delete("/beings/1").should route_to("beings#destroy", :id => "1")
     end
@@ -42,9 +41,6 @@ describe BeingsController do
       put("/beings/reproduce/1/2").should route_to("beings#reproduce", parent_a: "1", parent_b: "2")
     end
 
-    it "routes to #random_name" do
-      get("/people/random-name").should route_to("people#random_name")
-    end
     it "routes to #history" do
       get("/beings/history/1").should route_to("beings#history", id: "1")
     end
