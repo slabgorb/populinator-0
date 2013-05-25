@@ -11,9 +11,21 @@ class Person < Being
   scope :family_members, ->(name) {  where(surname: name) }
   field :surname, type: String
   field :given_name, type: String
+  @@titles = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'titles.yml')))
 
 
   before_update lambda{ name = [given_name, surname].join(' ') }
+
+  def set_title
+    unless self.title.present?
+      if self.settlement.present?
+        pop = settlement.population
+        @@titles.each{ |k,v| self.title = v.capitalize if k < pop }
+        self.title = @@titles.to_a.last unless self.title.present?
+      end
+      save
+    end
+  end
 
   def self.names
     @@names
