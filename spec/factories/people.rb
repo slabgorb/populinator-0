@@ -8,10 +8,4 @@ FactoryGirl.define do
     alive true
   end
 
-  factory :ruler do
-    title "King"
-    surname "Plantagenet"
-    given_name "Richard"
-  end
-
 end

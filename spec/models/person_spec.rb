@@ -39,9 +39,4 @@ describe Person do
     @adam.name.should match(/Foobooloo/)
   end
 
-  it 'can look at a king' do
-    ruler = FactoryGirl.create(:ruler)
-    lambda { @adam.surname <=> ruler.surname }.should_not raise_error
-  end
-
 end
