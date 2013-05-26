@@ -14,7 +14,7 @@ class Being
            $('#being_name').val data[1]
              .reverse()
              .join(' ')
-           $('#being_gender_input').val data[0]
+           $('#being_gender').val data[0]
            $('#being_age').val data[2]
          'json'
 
