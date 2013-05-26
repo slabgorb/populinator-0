@@ -4,9 +4,22 @@ class Being
   constructor: ->
     this.initSlider()
     this.initButtons()
+    this.initForm
+
+  initForm: =>
+    $('.randcheck.being-name').click ->
+       $.get '/being/random-name',
+         (data) ->
+           console.log data
+           $('#person_name').val data[1]
+             .reverse()
+             .join(' ')
+           $('#person_gender_input').val data[0]
+           $('#person_age').val data[2]
+         'json'
+
 
   addHistoricalEvent: (historical_event) =>
-
     "<dt>
        <span class='smaller'>age #{historical_event['age']}</span> :: #{historical_event['name']}
      </dt>
@@ -14,7 +27,6 @@ class Being
         #{historical_event['description']}
      </dd>
     "
-
 
   updateHistory: (history) =>
     $('dl.events').html =>

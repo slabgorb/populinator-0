@@ -1,4 +1,8 @@
 class Being
+  @@coming_of_age = 1
+  @@old_age = 80
+  @@infertilty = 50
+
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include Mongoid::Chronology
@@ -43,11 +47,6 @@ class Being
     save
     self.age
   end
-
-
-  @@coming_of_age = 1
-  @@old_age = 80
-  @@infertilty = 50
 
   def genotype
     chromosomes.sort

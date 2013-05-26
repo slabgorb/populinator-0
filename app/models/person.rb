@@ -4,6 +4,7 @@ class Person < Being
   @@coming_of_age = 18
   @@old_age = 80
   @@infertilty = 50
+  @@description = 'A generic person'
 
   scope :from, ->(settlement) { where(settlement_id: settlement.id) }
   scope :neighbors, ->(person) { where(settlement_id: person.settlement_id) }
@@ -11,6 +12,7 @@ class Person < Being
   scope :family_members, ->(name) {  where(surname: name) }
   field :surname, type: String
   field :given_name, type: String
+  field :title, type: String
   @@titles = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'titles.yml')))
 
 
@@ -25,6 +27,7 @@ class Person < Being
       end
       save
     end
+    self
   end
 
   def self.names

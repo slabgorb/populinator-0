@@ -35,7 +35,6 @@ class Settlement
     { name: name,
       established: established,
       population: population,
-      # ruler: rulers.first,
       families: families,
       residents: residents,
       history: history }
@@ -123,15 +122,14 @@ class Settlement
     end
   end
 
-
   def ruler
-    self.residents.select { |s| s.alive? and s.is_a?(Ruler) }.sort{ |a,b| b.age <=> a.age }.first
+    residents.where(:alive => true, :title.ne => '').sort{ |a,b| a.age <=> b.age }.first
   end
 
   def seed!
-    self.residents << Ruler.create(settlement: self).randomize!
     males = self.residents.males
-    males << ruler # rulers pick their spouses
+    # rulers pick their spouses
+    males << Person.create(settlement: self).randomize!.set_title
     females = self.residents.females
     self.marry_sets(males, females)
     minors = self.residents.children

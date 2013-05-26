@@ -55,7 +55,6 @@ class BeingsController < ApplicationController
     render json: @being
   end
 
-
   # GET /beings
   # GET /beings.json
   def index
@@ -77,11 +76,12 @@ class BeingsController < ApplicationController
     end
   end
 
+
+
   # GET /beings/new
   # GET /beings/new.json
   def new
     @being = Being.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @being }
@@ -114,9 +114,6 @@ class BeingsController < ApplicationController
     if params.has_key? :person
       params[:being] = params[:person]
     end
-    if params.has_key? :ruler
-      params[:being] = params[:ruler]
-    end
 
     if params[:being].has_key? :name
       params[:being][:surname] = params[:being][:name].split.last
@@ -144,4 +141,10 @@ class BeingsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def random_name
+    gender = Person.random_gender
+    render json: [gender, Person.random_name(gender),  Person.random_age]
+  end
+
 end
