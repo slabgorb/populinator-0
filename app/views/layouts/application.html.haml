@@ -19,13 +19,13 @@
     .navbar-fluid-top
       .navbar-inner.navbar
         %a.brand{href:'/'} Populinator
-        %ul.nav.span4
-          %li.tip.span1{rel: 'tooltip', title: 'New Being'}
-            = flat_button 'chevalier-on-horseback', new_being_path, size: 30
-          %li.tip.span1{rel: 'tooltip', title: 'New Family'}
-            = flat_button 'oak-tree', new_being_path, size: 30
-          %li.tip.span1{rel: 'tooltip', title: 'Beings'}
-            = flat_button 'mermaid', beings_path, size: 30
+        -# %ul.nav.span4
+        -#   %li.tip.span1{rel: 'tooltip', title: 'New Being'}
+        -#     = flat_button 'chevalier-on-horseback', new_being_path, size: 30
+        -#   %li.tip.span1{rel: 'tooltip', title: 'New Family'}
+        -#     = flat_button 'oak-tree', new_being_path, size: 30
+        -#   %li.tip.span1{rel: 'tooltip', title: 'Beings'}
+        -#     = flat_button 'mermaid', beings_path, size: 30
         %ul.nav.span4
           %li.tip.span1{rel: 'tooltip', title: 'Quick Town'}
             = flat_button 'elephant-and-castle', random_settlement_path, size: 30
@@ -33,11 +33,11 @@
             = flat_button 'tower', new_settlement_path,   size: 30
           %li.tip.span1{title: 'Towns'}
             = flat_button 'tower-triple', settlements_path,   size: 30
-        %ul.nav.span4
-          %li.tip.span1{title: 'New Language'}
-            = flat_button 'quill', new_language_path,  size: 30
-          %li.tip.span1{ title: 'Languages'}
-            = flat_button 'popinjay', languages_path,  size: 30
+        -# %ul.nav.span4
+        -#   %li.tip.span1{title: 'New Language'}
+        -#     = flat_button 'quill', new_language_path,  size: 30
+        -#   %li.tip.span1{ title: 'Languages'}
+        -#     = flat_button 'popinjay', languages_path,  size: 30
     = bootstrap_flash
     = yield
 = javascript_include_tag "application"
