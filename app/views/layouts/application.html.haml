@@ -19,7 +19,11 @@
     .navbar-fluid-top
       .navbar-inner.navbar
         %a.brand{href:'/'} Populinator
-        %ul.nav.span5
+        %ul.nav.span6
+          %li.tip.span1{rel: 'tooltip', title: 'New Being'}
+            = flat_button 'chevalier-on-horseback', new_being_path, size: 30
+          %li.tip.span1{rel: 'tooltip', title: 'Beings'}
+            = flat_button 'mermaid', beings_path, size: 30
           %li.tip.span1{rel: 'tooltip', title: 'Quick Town'}
             = flat_button 'elephant-and-castle', random_settlement_path, size: 30
           %li.tip.span1{title: 'New Town'}
@@ -34,3 +38,4 @@
     = bootstrap_flash
     = yield
 = javascript_include_tag "application"
+
