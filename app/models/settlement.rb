@@ -42,7 +42,7 @@ class Settlement
 
   def populate(pop = initial_population)
     pop.to_i.times do
-      p = Person.create.randomize!
+      p = Being.create.randomize!
       p.settlement = self
       p.events << Event.new(name: 'Parthenogenesis', description: "#{p.name} was magicked into existence.", age: p.age)
       residents << p
@@ -56,10 +56,10 @@ class Settlement
 
   #
   # create a random name based on the @@names glossary of prefixes,
-  # dividers, and suffixes, and person last names.
+  # dividers, and suffixes, and being last names.
   #
   def self.random_name
-    meat = Person.names['surname'].shuffle.first
+    meat = Being.names['surname'].shuffle.first
     top  = rand > 0.7 ? @@names['prefix'].shuffle.first : ''
     bottom = rand > 0.7 ? @@names['suffix'].shuffle.first : ''
     top += rand > 0.8 ? @@names['divider'].shuffle.first : ''
@@ -106,7 +106,7 @@ class Settlement
     males.each do |m|
       females.each do |f|
         next if married[:male].index(m.id) or married[:female].index(f.id)
-        if Person.marriage_strategy(m, f)
+        if Being.marriage_strategy(m, f)
           m.marry f
           married[:male] << m.id
           married[:female] << f.id
@@ -129,7 +129,7 @@ class Settlement
   def seed!
     males = self.residents.males
     # rulers pick their spouses
-    males << Person.create(settlement: self).randomize!.set_title
+    males << Being.create(settlement: self).randomize!.set_title
     females = self.residents.females
     self.marry_sets(males, females)
     minors = self.residents.children
@@ -137,7 +137,7 @@ class Settlement
     if mothers.present?
       minors.each do |child|
         begin
-          mothers.select{ |s| s.age > (child.age + Person.coming_of_age) and child.age < (Person.infertility - s.age) }.shuffle.try(:first).try(:adopt, child, true)
+          mothers.select{ |s| s.age > (child.age + Being.coming_of_age) and child.age < (Being.infertility - s.age) }.shuffle.try(:first).try(:adopt, child, true)
         rescue Exception => e
           logger.error e
         end
