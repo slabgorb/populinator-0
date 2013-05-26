@@ -4,45 +4,46 @@ class Chromosome
   @@expressions = YAML::load(File.read(File.join(Rails.root, 'genetics', 'people.yml')))
   embedded_in :being
   field :genes, type: Array, default: []
-  
+  index({ genes: 1 })
+
   #
-  # Compare operator - compare the base 10 values 
+  # Compare operator - compare the base 10 values
   # @see value
   # @param other Chromosome
   def <=>(other)
     other.value <=> value
   end
-  
+
   def to_s
     genes.join(' ')
   end
-  
+
   #
   # Calculates the sum of base 10 values for the array of genes.
   #
-  def value 
+  def value
     genes.inject(0){ |memo, g| memo += g.to_i(16) }
   end
 
-  
+
   # creates a random set of genes
   def randomize!(genecount = 10)
     genecount.times.each { self << Chromosome.rand_hex  }
     self
   end
 
-  def self.expressions 
+  def self.expressions
     @@expressions
   end
-  
+
   # to integer
-  def to_i(index) 
+  def to_i(index)
     self.genes.inject(0){ |memo, gene| memo += gene.to_i(16)}
   end
-  
+
   # walks through the genes and checks the genes against the
   # expression table, resulting in a hash of expressed genes.
-  # for example: 
+  # for example:
   #
   # {:hair=>{:blond=>2, :red=>1, :pink=>1, :plaid=>0}}
   #
@@ -51,11 +52,11 @@ class Chromosome
   def express(exps = Chromosome.expressions, set = genes.join )
     result = { }
     exps.each_pair do |category, value|
-      if value.is_a? Hash 
+      if value.is_a? Hash
         result[category] = self.express(value, set)
       elsif value.is_a? Array
         matches = 0
-        position = 0 
+        position = 0
         value.each do |expression|
           while position
             position = set.index(expression, position + 1)
@@ -68,7 +69,7 @@ class Chromosome
     end
     result
   end
-  
+
   #
   # gene at the supplied index value
   #
@@ -80,24 +81,24 @@ class Chromosome
   # append a gene
   #
   def <<(gene)
-    genes << gene 
+    genes << gene
   end
 
-  # 
+  #
   # length represents the length of the gene array.
   #
   def length
     genes.length
   end
 
-  
+
   #
   # set the gene at the supplied index value
   #
   def []=(index, value)
-    genes[index] = value 
+    genes[index] = value
   end
-  
+
   #
   # Exchange genetic material with another chromosome. The strategy is
   # to loop through the gene arrays of this and the other chromosome
@@ -110,15 +111,15 @@ class Chromosome
     end
     c
   end
-  
+
   #
   # Change one of the genes to a random value.
   #
-  def mutate 
+  def mutate
     index = (rand * length).floor
     genes[index] = Chromosome.rand_hex
   end
-  
+
   #
   # generates a 6 digit hex number as a string
   #
@@ -126,13 +127,13 @@ class Chromosome
     ("%06x" % (rand * 16777215).floor).upcase
   end
 
-  def walk 
+  def walk
     genes.each do |gene|
       yield gene
     end
   end
 
-  
+
 end
 
 
