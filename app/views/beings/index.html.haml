@@ -1,10 +1,8 @@
-- content_for :watermark do
-  .watermark.deer_regardant
-- content_for :title do 
+- content_for :title do
   Beings
 - if @beings.empty?
   %h3 No Beings
-  
+
 -else
   %table
     %thead
@@ -18,8 +16,8 @@
     %tbody
       - @beings.collect{|c| c}.each do |being|
         %tr
-          %td= link_to being.surname, being
-          %td= link_to being.given_name, being
+          %td= link_to being.surname, being_path(being.id)
+          %td= link_to being.given_name, being_path(being.id)
           %td= being.gender
           %td= being.age
           %td= being._type
