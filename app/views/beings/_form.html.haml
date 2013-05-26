@@ -1,15 +1,12 @@
 = form_for @being do |f|
-  %fieldset
+  .container-fluid
     -if @being.errors.any?
       #error_explanation
         %h2= "#{pluralize(@being.errors.count, "error")} prohibited this being from being saved:"
         %ul
           - @being.errors.full_messages.each do |msg|
             %li= msg
-    %ul.form
-      %li.field
-        = f.select :_type, ['person', 'being'], default:@being._type
-
+    %ul.form.unstyled.row-fluid
       %li.field
         = f.label :name
         = f.text_field :name

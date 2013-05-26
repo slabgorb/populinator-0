@@ -1,6 +1,10 @@
-.watermark.cockatrice
-%h4 New being
+- content_for(:title) { 'New Being' }
+.container-fluid.span12
+  .page-header
+    %h1
+      Spawn a Being
+      %small out of bits
+  %p.explain
 
-= render 'form'
-
-= link_to 'Back', beings_path
+  = render 'form', locals: { being: @being }
+  = link_to_function "Back", "history.back()"
