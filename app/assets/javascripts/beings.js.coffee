@@ -4,18 +4,18 @@ class Being
   constructor: ->
     this.initSlider()
     this.initButtons()
-    this.initForm
+    this.initForm()
 
+  # initialization of the being form
   initForm: =>
     $('.randcheck.being-name').click ->
-       $.get '/being/random-name',
+       $.get '/beings/name/random',
          (data) ->
-           console.log data
-           $('#person_name').val data[1]
+           $('#being_name').val data[1]
              .reverse()
              .join(' ')
-           $('#person_gender_input').val data[0]
-           $('#person_age').val data[2]
+           $('#being_gender_input').val data[0]
+           $('#being_age').val data[2]
          'json'
 
 

@@ -28,7 +28,7 @@ Population::Application.routes.draw do
   get '/beings/family/:id' => 'beings#family'
   get '/beings/description/:id' => 'beings#description'
   get '/beings/history/:id' => 'beings#history'
-  get '/beings/name/random' => 'being#random_name'
+  get '/beings/name/random' => 'beings#random_name'
 
   get 'histogram/corpus/load' => 'histogram#load_corpus'
   get 'languages/corpus/load' => 'histogram#load_corpus'
