@@ -1,7 +1,10 @@
 - content_for(:title){ "#{@being.name} of #{@being.settlement.name}" } if @being.settlement
 %h1
   = @being.to_s
-  %small= "from #{@being.settlement.name}, speaks #{@being.settlement.languages.to_sentence }"
+  - if @being.settlement
+    %small= "from #{@being.settlement.name}, speaks #{@being.settlement.languages.to_sentence }"
+  - else
+    %small who floats in the void
 
 %input{type: 'hidden', id:'being-alive', value:@being.alive?.to_s }
 %input{type: 'hidden', id:'being-name', value:@being.name }
