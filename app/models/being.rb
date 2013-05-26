@@ -1,8 +1,4 @@
 class Being
-  @@coming_of_age = 1
-  @@old_age = 80
-  @@infertilty = 50
-
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include Mongoid::Chronology
@@ -12,10 +8,23 @@ class Being
   field :gender, type: String, default: nil
   field :age, type: Fixnum, default: 0
   field :alive, type: Boolean, default: true
+  field :surname, type: String
+  field :given_name, type: String
+  field :title, type: String
 
+  @@coming_of_age = 18
+  @@old_age = 80
+  @@infertilty = 50
+  @@description = 'A generic being'
 
+  @@names = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'names.yml')))
+  @@titles = YAML::load(File.read(File.join(Rails.root, 'words', ENV['POP_LANGUAGE'], 'titles.yml')))
+
+  # not yet implemented
   embeds_many :damages
+
   embeds_many :chromosomes
+  index "chromosome.genes" => 1
 
   has_many :things
   has_many :events
@@ -37,6 +46,11 @@ class Being
   scope :orphans, -> {  where(:parent_ids => [])}
   scope :progeny, -> {  where(:parent_ids.ne => [])}
   scope :parents, -> { where(:child_ids.ne => [])}
+  scope :from, ->(settlement) { where(settlement_id: settlement.id) }
+  scope :neighbors, ->(person) { where(settlement_id: person.settlement_id) }
+  scope :other_gender, ->(sex) { where(:gender.ne => sex)}
+  scope :family_members, ->(name) {  where(surname: name) }
+
 
   def to_s
     "#{name}, #{gender}, aged #{age}"
@@ -206,18 +220,6 @@ class Being
 
 
   ##
-  # Returns a random name.
-  #
-  # = Example
-  #    Being.random_name('male')
-  # > Greendrastein
-  #
-  def self.random_name(sex = self.random_gender)
-    [%w|green red yellow black|.shuffle.first.capitalize,
-     %w|dra cula franken stein were wolf shark jackal bear blob spider snake goo|.shuffle[0..((rand * 2).floor + 1)].join.titlecase]
-  end
-
-  ##
   # Instance level copy of Being.random_name
   #
   def random_name(sex = gender)
@@ -238,13 +240,6 @@ class Being
     chromosomes.delete_all
     parent1.exchange_genome(parent2).map{ |g| chromosomes << g }
     self
-  end
-
-  ##
-  # Changes the name to a random name.
-  #
-  def random_name!
-    update_attribute(:name, self.random_name.join(' '))
   end
 
   ##
@@ -428,6 +423,74 @@ class Being
 
   def _type
     self.read_attribute(:_type)
+  end
+
+  def set_title
+    unless self.title.present?
+      if self.settlement.present?
+        pop = settlement.population
+        @@titles.each{ |k,v| self.title = v.capitalize if k < pop }
+        self.title = @@titles.to_a.last unless self.title.present?
+      end
+      save
+    end
+    self
+  end
+
+  def self.names
+    @@names
+  end
+
+  def family_name
+    surname || name.try(:split).try(:last) || id
+  end
+
+  def self.genders
+    ['male', 'female']
+  end
+
+  def self.marriage_strategy (m,f)
+    (m.age / 2 + 7) < f.age and
+      (f.age / 2 + 7) < m.age and
+      not m.married? and
+      not f.married? and
+      not f.gender == m.gender and
+      # not f.sibling_of? m and
+      # not f.aunt_or_uncle_of? m and
+      # not f.niece_or_nephew_of? m and
+      # not f.cousin_of? m
+      f.age > @@coming_of_age and
+      m.age > @@coming_of_age
+  end
+
+  def name
+    [self.title, self.given_name, self.surname].reject(&:nil?).join()
+  end
+
+  ##
+  # Overrides the Being#reproduce method.
+  #
+  def reproduce(other = nil, child_name = nil, child_gender = nil)
+    child = super
+    sex = random_gender
+    child.update_attributes({  gender:sex, given_name:@@names[sex].shuffle.first })
+    child
+  end
+
+  ##
+  # Change the name.
+  #
+  def random_name!
+    name = self.class.random_name(gender)
+    update_attributes({ surname:name.last, given_name:name.first })
+  end
+
+  ##
+  # Return a random name based on the gender of the being- names are
+  # loaded from a file.
+  #
+  def self.random_name(sex = self.random_gender)
+    [@@names['surname'].shuffle.first, @@names[sex].shuffle.first]
   end
 
   ##
