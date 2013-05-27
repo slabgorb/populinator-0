@@ -7,7 +7,7 @@ describe Corpus do
 
   context 'histogram' do
     it 'compiles' do
-      @corpus.histogram(2).first.first.should eq(["^","^"])
+      @corpus.histogram(2).first.first.should eq([" "," "])
     end
   end
 
