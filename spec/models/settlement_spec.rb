@@ -44,7 +44,7 @@ describe Settlement do
       childbearers = @settlement.residents.select{ |s| s.children.present? }
       childbearers.each do |parent|
         parent.children.each do |child|
-          (child.age > (Person.infertility - parent.age)).should be_false
+          (child.age > (Being.infertility - parent.age)).should be_false
         end
       end
     end

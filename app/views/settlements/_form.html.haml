@@ -1,45 +1,43 @@
-=form_for @settlement do |f|
-  .modal-header
-    - url = image_path("heraldry/#{@settlement.icon}.png")
-    #icon-preview.span2{ style: "background-color: #{@settlement.try(:color)}; background-image: url(#{url});"}
-    %h3 Settlement #{@settlement.try(:name)}
-  .modal-body
-    .container-fluid
-      .row-fluid
-        .control-group
-          %label.control-label Name
-          .controls
-            %input#settlement-name.input-large{:value => @settlement.try(:name), :name => "settlement[name]", :required => "", :type => "text"}/
-            %i.icon-random#random-name.icon-2x
-        %ul.control-group.row-fluid.unstyled
-
-          %li.controls.pull-left.span2
-            .input-append.color{'data-color-format'=> 'hex'}
-              %input#settlement-color.input-small{:value => @settlement.try(:color), :name => "settlement[color]", :type => "text"}/
-          %li.controls.pull-left.span2
-            %input#settlement-icon.input-medium{'data-provide' => 'typeahead', :value => @settlement.try(:icon), :name => "settlement[icon]", :type => "text"}/
-            %i.icon-random#random-icon.icon2x
-          %li
-        .control-group
-          %label.control-label Language
-          .controls
-            %select#language_id{name: 'language'}
-              %op
-              - Language.all.each do |language|
-                %option{value: language.id}= language.name
-      .row-fluid
-        .control-group
-          %label.control-label Population
-          .controls
-            %input#settlement-population.input-small{:value => @settlement.try(:population), :name => "settlement[population]", :placeholder => "choose size", :required => "", :type => "text"}/
+- icon_url = image_path("heraldry/#{@settlement.icon}.png")
+= form_for @settlement do |f|
+  .container-fluid
+  .row-fluid
+    .control-group
+      %label.control-label Name
+      .controls
+        %input#settlement-name.input-large{:value => @settlement.try(:name), :name => "settlement[name]", :required => "", :type => "text"}/
+        %i.icon-random#random-name
+    .control-group
+      %h2
+        %small coat of arms
+    %ul.control-group.row-fluid.unstyled
+      %li.controls.pull-left.span2
+        .input-append.color{'data-color-format'=> 'hex'}
+          %input#settlement-color.input-small{:value => @settlement.try(:color), :name => "settlement[color]", :type => "text"}/
+      %li.controls.pull-left.span2
+        %input#settlement-icon.input-medium{'data-provide' => 'typeahead', :value => @settlement.try(:icon), :name => "settlement[icon]", :type => "text"}/
+        %i.icon-random#random-icon
+      %li
+    .control-group
+      %label.control-label Language
+      .controls
+        %select#language_id{name: 'language'}
+          %op
+          - Language.all.each do |language|
+            %option{value: language.id}= language.name
+  .row-fluid
+    .control-group
+      %label.control-label Population
+      .controls
+        %input#settlement-population.input-small{:value => @settlement.try(:population), :name => "settlement[population]", :placeholder => "choose size", :required => "", :type => "text"}/
 
 
-        .control-group
-          %label.control-label Description
-          .controls
-            %textarea#settlement-description{:name => "settlement[description]"}
-              = @settlement.try(:description)
-      / Button
+      .control-group
+        %label.control-label Description
+        .controls
+          %textarea#settlement-description{:name => "settlement[description]"}
+            = @settlement.try(:description)
+    / Button
     .modal-footer
       .control-group
         %label.control-label

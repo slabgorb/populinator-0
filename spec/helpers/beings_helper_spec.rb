@@ -12,15 +12,15 @@ describe BeingsHelper do
   describe 'possessive' do
     it 'returns his for males' do
       helper.possessive_pronoun(@male).should == 'his'
-    end      
+    end
     it 'returns her for females' do
       helper.possessive_pronoun(@female).should == 'her'
-    end      
+    end
     it 'returns its for neuter' do
       helper.possessive_pronoun(@neuter).should == 'its'
-    end      
+    end
   end
-  
+
   describe 'strength' do
     before :all do
       srand 1
@@ -29,11 +29,11 @@ describe BeingsHelper do
       helper.strength(2).should == 'especially'
     end
   end
-  
-  describe 'describe' do
-    it 'returns a descriptive string' do
-      helper.send(:describe_paragraph, @male).should =~ /Red/
-    end
-  end
-  
+
+  # describe 'describe' do
+  #   it 'returns a descriptive string' do
+  #     helper.send(:describe_paragraph, @male).should =~ /Red/
+  #   end
+  # end
+
 end

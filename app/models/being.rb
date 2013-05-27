@@ -86,6 +86,9 @@ class Being
     @@coming_of_age
   end
 
+  ##
+  # Swap spit
+  #
   def exchange_genome(other)
     g_self = genotype
     g_other = other.genotype

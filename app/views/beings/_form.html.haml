@@ -12,6 +12,9 @@
         = f.text_field :name
         %span.randcheck.being-name= escape_once('&lsaquo; random');
       %li.field
+        = f.label :name
+        = f.text_field :name
+      %li.field
         = f.label :gender
         = f.select :gender, @being.class.genders
       %li.field
