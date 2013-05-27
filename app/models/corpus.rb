@@ -4,8 +4,8 @@ class Corpus < Hash
   field :url, type: String
   belongs_to :language
 
-  @@start_token = '^'
-  @@end_token = '$'
+  @@start_token = ' '
+  @@end_token = ' '
 
   ##
   # Compiles the letter probability data structure.
@@ -27,7 +27,7 @@ class Corpus < Hash
   # TODO: make this work even if pointed to a large file
   #
   def get_text
-    Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).gsub(/[[:[punct]:]:]/, '').downcase.gsub(/\s/, @@end_token).split(//)
+    Net::HTTP.get(URI('http://' + url.gsub(/http:\/\//,''))).downcase.split(//)#gsub(/[[:[punct]:]:]/, ' ').downcase.gsub(/\s+/, @@end_token).split(//)
   end
 
 end

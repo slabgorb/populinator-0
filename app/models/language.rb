@@ -2,7 +2,7 @@ class Language
   include Mongoid::Document
 
   field :name, type: String
-  field :lookback, type: Integer
+  field :lookback, type: Integer, default: 2
   field :description, type: String
   field :glossary_json, type: String
   field :dictionary_file, type: String, default: File.join(Rails.root, 'words', 'dict.txt')
@@ -31,7 +31,7 @@ class Language
   # make a word from the histogram
   #
   def word
-    char = '^'
+    char = ''
     key = ['^'] * lookback
     word = ''
     while char.first != '$'
