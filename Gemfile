@@ -10,7 +10,6 @@ gem 'haml'
 gem 'sass'
 gem 'mongoid_orderable'
 gem 'mongoid-slugify'
-gem 'best_in_place'
 gem 'numbers_and_words'
 gem "therubyracer"
 gem "less-rails"
@@ -36,7 +35,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-rails', :git => 'https://github.com/johnbintz/guard-rails.git'
   gem 'guard-bundler'
-  # gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 
